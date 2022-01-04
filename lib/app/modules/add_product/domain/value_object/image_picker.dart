@@ -5,10 +5,10 @@ import 'package:trail/app/modules/add_product/domain/validation/pick_image_logo_
 import 'package:trail/core/domain/value_object/value_object.dart';
 
 // Photo Picker
-class PhotoPicker extends ValueObject<PickImageValueFailures, File?> {
+class PhotoPicker extends ValueObject<AddProductValueFailures, File?> {
   PhotoPicker._(this.value);
   @override
-  final Either<PickImageValueFailures, File?> value;
+  final Either<AddProductValueFailures, File?> value;
   // For Photo Validation
   factory PhotoPicker({required String? photo}) {
     return PhotoPicker._(pickImageValidator(photo: photo));

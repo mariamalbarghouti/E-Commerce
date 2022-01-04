@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 
 // Add Product Controller
@@ -42,9 +43,13 @@ class AddProductController extends GetxController {
     );
     update();
   }
-  descriptionValidator(){
-    // descriptionEditionController.value
+// Description Validator
+  descriptionValidator() {
+    return Description(
+        description: descriptionEditionController.value.text
+      );
   }
+  // descriptionEditionController.value
 
   addProduct() {}
 }

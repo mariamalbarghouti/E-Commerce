@@ -33,6 +33,7 @@ class AppPages {
     GetPage(
       name: _Paths.ADD_PRODUCT,
       page: () => const AddProductView(),
+      binding: AddPostBinding(),
     ),
     // Sign Up
     GetPage(
