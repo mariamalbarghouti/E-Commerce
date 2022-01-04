@@ -10,7 +10,7 @@ class PhotoPicker extends ValueObject<PickImageValueFailures, File?> {
   @override
   final Either<PickImageValueFailures, File?> value;
   // For Photo Validation
-  factory PhotoPicker({required String? img}) {
-    return PhotoPicker._(pickImageValidator(img: img));
+  factory PhotoPicker({required String? photo}) {
+    return PhotoPicker._(pickImageValidator(photo: photo));
   }
 }

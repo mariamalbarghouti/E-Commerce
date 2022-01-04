@@ -7,7 +7,7 @@ import 'package:trail/app/modules/domain/value_object/image_picker.dart';
 class AddProductController extends GetxController {
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
-  ImagePicker imagePicker =ImagePicker();
+  Rx<PhotoPicker> photoPicker =PhotoPicker(photo: "").obs;
   @override
   void onInit() {
     descriptionEditionController = TextEditingController().obs;
@@ -20,14 +20,16 @@ class AddProductController extends GetxController {
     descriptionEditionController.value.dispose();
     priceEditionController.value.dispose();
   }
+  // Image Picker
   pickImgFromGallery()async{
-    // ImagePicker imagePicker = ImagePicker();
-    // img = await imagePicker.pickImage(
-    //   source: ImageSource.gallery,
-    //   imageQuality: 85,
-    // );
-
+    ImagePicker imagePicker = ImagePicker();
+    XFile? img = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 85,
+    );
+    photoPicker= PhotoPicker(photo: img!.path).obs;
   }
+
   addProduct() {}
 }
 
