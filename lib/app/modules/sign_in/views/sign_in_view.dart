@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:trail/app/routes/app_pages.dart';
 
 import '../controllers/sign_in_controller.dart';
 
-// Sign In View 
+// Sign In View
 class SignInView extends GetView<SignInController> {
   const SignInView();
   @override
@@ -43,8 +44,13 @@ class SignInView extends GetView<SignInController> {
                 ),
                 // Sign In Button
                 ElevatedButton(
-                  onPressed: () async=>await  controller.signIn(),
+                  onPressed: () async => await controller.signIn(),
                   child: const Text("Sign In"),
+                ),
+                // Sign Up Button
+                TextButton(
+                  onPressed: () => Get.offAllNamed(Routes.SIGN_UP),
+                  child: const Text("Create An Account"),
                 ),
               ],
             ),

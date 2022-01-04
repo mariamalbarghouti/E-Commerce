@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 class AddPostController extends GetxController {
   //TODO: Implement AddPostController
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +15,4 @@ class AddPostController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

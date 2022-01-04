@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:trail/app/routes/app_pages.dart';
 
 import '../controllers/sign_up_controller.dart';
 
@@ -64,6 +65,11 @@ class SignUpView extends GetView<SignUpController> {
                 onPressed: () async => await controller.signUp(),
                 child: const Text("Sign Up"),
               ),
+               // Sign In Button
+                TextButton(
+                  onPressed: () => Get.offAllNamed(Routes.SIGN_IN),
+                  child: const Text("Already Have An Account"),
+                ),
             ],
           ),
         ),
