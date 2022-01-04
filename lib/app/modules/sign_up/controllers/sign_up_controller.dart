@@ -37,4 +37,6 @@ class SignUpController extends GetxController {
     confirmPasswordEditionController.value.dispose();
   }
   // void increment() => count.value++;
+
+  signUp(){}
 }
