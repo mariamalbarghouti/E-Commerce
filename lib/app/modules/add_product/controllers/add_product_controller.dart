@@ -54,11 +54,10 @@ class AddProductController extends GetxController {
           (r) => null,
         );
   }
+
 // Price Validator
   priceValidator() {
-    return Price(price: priceEditionController.value.text)
-        .value
-        .fold(
+    return Price(price: priceEditionController.value.text).value.fold(
           (l) => l.msg,
           (r) => null,
         );
