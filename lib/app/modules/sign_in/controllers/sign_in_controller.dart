@@ -57,11 +57,15 @@ class SignInController extends GetxController {
           )
           .then(
             (value) => value.fold(
-              (l) => Get.snackbar(
+              (l) {
+                emailEditionController.value.clear();
+                passwordEditionController.value.clear();
+                return Get.snackbar(
                 "Sign In",
                 l.msg,
                 snackPosition: SnackPosition.BOTTOM,
-              ),
+              );
+              },
               (r) => Get.offAllNamed(Routes.HOME),
             ),
           );

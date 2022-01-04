@@ -85,7 +85,7 @@
 //           ),
 //           // Firestore
 //           TextButton(
-//             onPressed: ()async=>await addUser(),
+//             onPressed: () async => await addUser(),
 //             child: Text(
 //               'Firebase ADD',
 //               style: TextStyle(fontSize: 20),
@@ -93,7 +93,7 @@
 //           ),
 //           // Firestore
 //           TextButton(
-//             onPressed: () async=>await updateUser() ,
+//             onPressed: () async => await updateUser(),
 //             child: Text(
 //               "Firebase Update",
 //               style: TextStyle(fontSize: 20),
@@ -101,7 +101,7 @@
 //           ),
 //           // Firestore
 //           TextButton(
-//             onPressed: () async=>await deleteUser(),
+//             onPressed: () async => await deleteUser(),
 //             child: Text(
 //               'Firebase Delete',
 //               style: TextStyle(fontSize: 20),
@@ -109,7 +109,7 @@
 //           ),
 //           // Firestore
 //           TextButton(
-//             onPressed: () =>Get.to(()=>UserInformation()),
+//             onPressed: () => Get.to(() => UserInformation()),
 //             child: Text(
 //               'Firebase Read',
 //               style: TextStyle(fontSize: 20),
@@ -137,30 +137,32 @@
 //     }
 //     // logo= EntityLogo(logo: img!.path);
 //   }
-//       Future<void> addUser() {
-//       // Call the user's CollectionReference to add a new user
-//       return users
-//           .add({
-//             'full_name': "John Doe", // John Doe
-//             'company': "Stokes and Sons", // Stokes and Sons
-//             'age': "42" // 42
-//           })
-//           .then((value) => print("User Added"))
-//           .catchError((error) => print("Failed to add user: $error"));
-//     }
-    
-// Future<void> updateUser() {
-//   return users
-//     .doc('DJewqtVFwkfWx8WZX6eC')
-//     .update({'company': 'Albarghouti'})
-//     .then((value) => print("User Updated"))
-//     .catchError((error) => print("Failed to update user: $error"));
-// }
-// Future<void> deleteUser() {
-//   return users
-//     .doc('DJewqtVFwkfWx8WZX6eC')
-//     .delete()
-//     .then((value) => print("User Deleted"))
-//     .catchError((error) => print("Failed to delete user: $error"));
-// }
+
+//   Future<void> addUser() {
+//     // Call the user's CollectionReference to add a new user
+//     return users
+//         .add({
+//           'full_name': "John Doe", // John Doe
+//           'company': "Stokes and Sons", // Stokes and Sons
+//           'age': "42" // 42
+//         })
+//         .then((value) => print("User Added"))
+//         .catchError((error) => print("Failed to add user: $error"));
+//   }
+
+//   Future<void> updateUser() {
+//     return users
+//         .doc('DJewqtVFwkfWx8WZX6eC')
+//         .update({'company': 'Albarghouti'})
+//         .then((value) => print("User Updated"))
+//         .catchError((error) => print("Failed to update user: $error"));
+//   }
+
+//   Future<void> deleteUser() {
+//     return users
+//         .doc('DJewqtVFwkfWx8WZX6eC')
+//         .delete()
+//         .then((value) => print("User Deleted"))
+//         .catchError((error) => print("Failed to delete user: $error"));
+//   }
 // }

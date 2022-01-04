@@ -1,10 +1,14 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
+import 'package:trail/app/routes/app_pages.dart';
+import 'package:trail/core/services/services.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
@@ -63,5 +67,46 @@ class AddProductController extends GetxController {
         );
   }
 
-  addProduct() {}
+  addProduct() async {
+    if ((addProductFormKey.currentState?.validate() ?? false) &&
+        pickedPhoto != null) {
+      String docID = FirebaseFirestore.instance.collection('products').doc().id;
+      var url="";
+      try {
+        await FirebaseFirestore.instance.collection("products").doc(docID).set({
+          "storageID": docID,
+          "uid": FirebaseAuth.instance.currentUser?.uid,
+          "description": descriptionEditionController.value.text,
+          "price": priceEditionController.value.text,
+        });
+      } catch (e) {
+        print("\n Error $e \n");
+      }
+      try {
+        UploadTask uploadTask = FirebaseStorage.instance
+            .ref('users/products/$docID/')
+            .putFile(pickedPhoto!);
+        uploadTask.whenComplete(() async{
+           url =await FirebaseStorage.instance
+              .ref('users/products/$docID/')
+              .getDownloadURL();
+               await FirebaseFirestore.instance.collection("products").doc(docID).set({
+        
+          "imgUrl":url,
+        },SetOptions(merge: true));
+        Get.snackbar(
+          "Sucess",
+          "Your Product Is Added",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        }).catchError((onError) {
+          print(onError);
+        });
+
+        return Get.toNamed(Routes.PRODUCTS);
+      } catch (e) {
+        print("\n Error $e \n");
+      }
+    }
+  }
 }

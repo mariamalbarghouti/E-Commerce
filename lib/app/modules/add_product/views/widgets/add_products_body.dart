@@ -34,7 +34,7 @@ class AddProductsBody extends GetView<AddProductController> {
                 decoration: const InputDecoration(
                   labelText: "Price",
                 ),
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (_) => controller.priceValidator(),
               ),
