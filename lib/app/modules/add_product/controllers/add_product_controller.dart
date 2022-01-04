@@ -1,15 +1,15 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:trail/app/modules/domain/value_object/image_picker.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
   File? pickedPhoto;
+  GlobalKey<FormState> addProductFormKey = GlobalKey();
   @override
   void onInit() {
     descriptionEditionController = TextEditingController().obs;
@@ -41,6 +41,9 @@ class AddProductController extends GetxController {
       (r) => pickedPhoto = r,
     );
     update();
+  }
+  descriptionValidator(){
+    // descriptionEditionController.value
   }
 
   addProduct() {}

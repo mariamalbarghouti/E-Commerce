@@ -4,19 +4,20 @@ import 'package:trail/app/modules/add_product/controllers/add_product_controller
 import 'package:trail/app/modules/add_product/views/widgets/image_picker_widget.dart';
 
 // Add Products Body
-class AddProductsBody extends GetView<AddProductController>  {
-  const AddProductsBody({ Key? key }) : super(key: key);
+class AddProductsBody extends GetView<AddProductController> {
+  const AddProductsBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: controller.addProductFormKey,
           child: Column(
             children: [
               // Image Picker
               const ImagePickerWidget(),
-
               // Description
               TextFormField(
                 controller: controller.descriptionEditionController.value,
@@ -25,7 +26,7 @@ class AddProductsBody extends GetView<AddProductController>  {
                 ),
                 textInputAction: TextInputAction.next,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                // validator: (_) => controller.passwordValidation(),
+                validator: (_) => controller.descriptionValidator(),
               ),
               // Price
               TextFormField(
@@ -39,12 +40,13 @@ class AddProductsBody extends GetView<AddProductController>  {
               ),
               // Add Product Button
               ElevatedButton(
-                onPressed: () => controller.addProduct(),
+                onPressed: () async => await controller.addProduct(),
                 child: const Text("Add Product"),
               ),
             ],
           ),
         ),
-      );
+      ),
+    );
   }
 }
