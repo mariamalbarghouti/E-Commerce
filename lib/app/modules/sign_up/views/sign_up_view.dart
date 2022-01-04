@@ -21,7 +21,7 @@ class SignUpView extends GetView<SignUpController> {
             children: [
               // Name
               TextFormField(
-                controller: controller.emailEditionController.value,
+                controller: controller.nameEditionController.value,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: const InputDecoration(
                   labelText: "Name",
@@ -41,7 +41,7 @@ class SignUpView extends GetView<SignUpController> {
               ),
               // Conirm Password
               TextFormField(
-                controller: controller.passwordEditionController.value,
+                controller: controller.confirmPasswordEditionController.value,
                 decoration: const InputDecoration(
                   labelText: "Confirm Password",
                 ),

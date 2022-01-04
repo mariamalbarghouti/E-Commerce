@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/modules/sign_in/domain/value_object.dart/email.dart';
-import 'package:trail/app/modules/sign_in/domain/value_object.dart/password.dart';
 import 'package:trail/app/modules/sign_in/services/sign_in_repo_impl.dart';
 import 'package:trail/app/routes/app_pages.dart';
+import 'package:trail/core/domain/value_object.dart/email.dart';
+import 'package:trail/core/domain/value_object.dart/password.dart';
 
 class SignInController extends GetxController {
   // Email Controller
