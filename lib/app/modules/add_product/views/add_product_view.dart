@@ -8,10 +8,12 @@ class AddProductView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // AppBar
       appBar: AppBar(
         title: const Text('Add Product'),
         centerTitle: true,
       ),
+      // Body
       body: const AddProductsBody(),
     );
   }
