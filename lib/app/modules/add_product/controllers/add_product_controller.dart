@@ -63,31 +63,6 @@ class AddProductController extends GetxController {
           (r) => null,
         );
   }
-  // descriptionEditionController.value
 
   addProduct() {}
 }
-
-//  logoPick();
-//               Reference ref = FirebaseStorage.instance
-//                   .ref()
-//                   .child('images')
-//                   .child('${img!.path}');
-//! =================================================================!//
-//  Future<void> logoPick() async {
-//     // print("${logo.value}");
-//     ImagePicker imagePicker = ImagePicker();
-//     img = await imagePicker.pickImage(
-//       source: ImageSource.gallery,
-//       imageQuality: 85,
-//     );
-//     // print("img ${img!.path}");
-//     try {
-//       await FirebaseStorage.instance
-//           .ref('uploads/img')
-//           .putFile(File(img!.path));
-//     } on FirebaseException catch (e) {
-//       // e.g, e.code == 'canceled'
-//     }
-//     // logo= EntityLogo(logo: img!.path);
-//   }
