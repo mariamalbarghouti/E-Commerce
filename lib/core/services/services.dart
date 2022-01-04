@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:trail/injection.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 
 // extension FirestoreX on FirebaseFirestore {

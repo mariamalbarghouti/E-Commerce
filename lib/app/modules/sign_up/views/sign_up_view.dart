@@ -26,7 +26,17 @@ class SignUpView extends GetView<SignUpController> {
                 decoration: const InputDecoration(
                   labelText: "Name",
                 ),
-                // validator: (_) => controller,
+                validator: (_) => controller.nameValidation(),
+                textInputAction: TextInputAction.next,
+              ),
+              // Email
+              TextFormField(
+                controller: controller.emailEditionController.value,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                ),
+                validator: (_) => controller.emailValidation(),
                 textInputAction: TextInputAction.next,
               ),
               // Password
@@ -35,9 +45,9 @@ class SignUpView extends GetView<SignUpController> {
                 decoration: const InputDecoration(
                   labelText: "Password",
                 ),
-                textInputAction: TextInputAction.done,
+                textInputAction: TextInputAction.next,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                // validator: (_) => controller.passwordValidation(),
+                validator: (_) => controller.passwordValidation(),
               ),
               // Conirm Password
               TextFormField(
@@ -47,7 +57,7 @@ class SignUpView extends GetView<SignUpController> {
                 ),
                 textInputAction: TextInputAction.done,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                // validator: (_) => controller.passwordValidation(),
+                validator: (_) => controller.confirmPasswordValidation(),
               ),
               // Sign In Button
               ElevatedButton(

@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trail/app/modules/sign_in/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
-import 'package:trail/core/domain/value_object.dart/email.dart';
-import 'package:trail/core/domain/value_object.dart/password.dart';
+import 'package:trail/core/domain/value_object/email.dart';
+import 'package:trail/core/domain/value_object/password.dart';
 
 // Sign In Repository Implementation
 class SignInRepoImp extends SignInRepoitory {
