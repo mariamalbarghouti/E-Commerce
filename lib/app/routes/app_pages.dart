@@ -26,7 +26,7 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.SIGNIN,
+      name: _Paths.SIGN_IN,
       page: () => const SignInView(),
       binding: RegistrationBinding(),
     ),
@@ -34,13 +34,6 @@ class AppPages {
       name: _Paths.ADD_POST,
       page: () => AddPostView(),
       binding: AddPostBinding(),
-      children: [
-        GetPage(
-          name: _Paths.ADD_POST,
-          page: () => AddPostView(),
-          binding: AddPostBinding(),
-        ),
-      ],
     ),
     GetPage(
       name: _Paths.PRODUCTS,
@@ -49,15 +42,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SIGN_UP,
-      page: () => SignUpView(),
+      page: () => const SignUpView(),
       binding: SignUpBinding(),
-      children: [
-        GetPage(
-          name: _Paths.SIGN_UP,
-          page: () => SignUpView(),
-          binding: SignUpBinding(),
-        ),
-      ],
+     
     ),
   ];
 }
