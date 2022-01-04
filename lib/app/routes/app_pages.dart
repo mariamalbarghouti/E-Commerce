@@ -7,7 +7,7 @@ import '../modules/home/views/home_view.dart';
 import '../modules/products/bindings/products_binding.dart';
 import '../modules/products/views/products_view.dart';
 import '../modules/sign_in/bindings/registration_binding.dart';
-import '../modules/sign_in/views/registration_view.dart';
+import '../modules/sign_in/views/sign_in_view.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
 import '../modules/sign_up/views/sign_up_view.dart';

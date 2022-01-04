@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controllers/registration_controller.dart';
+import '../controllers/sign_in_controller.dart';
 
 class RegistrationBinding extends Bindings {
   @override

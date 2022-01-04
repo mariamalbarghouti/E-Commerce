@@ -9,13 +9,12 @@ class SignUpView extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SignUpView'),
+        title: Text('Sign Up'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'SignUpView is working',
-          style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        child: Column(
+         
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/registration_controller.dart';
+import '../controllers/sign_in_controller.dart';
 
 // Sign In View 
 class SignInView extends GetView<SignInController> {
