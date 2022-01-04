@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,7 +9,7 @@ import 'package:trail/app/modules/domain/value_object/image_picker.dart';
 class AddProductController extends GetxController {
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
-  Rx<PhotoPicker> photoPicker =PhotoPicker(photo: "").obs;
+  File? pickedPhoto;
   @override
   void onInit() {
     descriptionEditionController = TextEditingController().obs;
@@ -20,14 +22,25 @@ class AddProductController extends GetxController {
     descriptionEditionController.value.dispose();
     priceEditionController.value.dispose();
   }
+
   // Image Picker
-  pickImgFromGallery()async{
+  pickImgFromGallery() async {
     ImagePicker imagePicker = ImagePicker();
+    late PhotoPicker photoPicker;
     XFile? img = await imagePicker.pickImage(
       source: ImageSource.gallery,
       imageQuality: 85,
     );
-    photoPicker= PhotoPicker(photo: img!.path).obs;
+    photoPicker = PhotoPicker(photo: img!.path);
+    photoPicker.value.fold(
+      (l) => Get.snackbar(
+        "Process Failed",
+        l.msg,
+        snackPosition: SnackPosition.BOTTOM,
+      ),
+      (r) => pickedPhoto = r,
+    );
+    update();
   }
 
   addProduct() {}

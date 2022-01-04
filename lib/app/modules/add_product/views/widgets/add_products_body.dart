@@ -1,36 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:trail/app/modules/add_product/controllers/add_product_controller.dart';
+import 'package:trail/app/modules/add_product/views/widgets/image_picker_widget.dart';
 
-import 'package:get/get.dart';
+// Add Products Body
+class AddProductsBody extends GetView<AddProductController>  {
+  const AddProductsBody({ Key? key }) : super(key: key);
 
-import '../controllers/add_product_controller.dart';
-
-// Add Product
-class AddProductView extends GetView<AddProductController> {
-  const AddProductView();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Product'),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               // Image Picker
-              InkWell(
-                onTap: () async=> await controller.pickImgFromGallery(),
-                child: Center(
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    color: Colors.cyan,
-                    child: const Center(child: Text("Pick From Gallery")),
-                  ),
-                ),
-              ),
+              const ImagePickerWidget(),
+
               // Description
               TextFormField(
                 controller: controller.descriptionEditionController.value,
@@ -59,7 +45,6 @@ class AddProductView extends GetView<AddProductController> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

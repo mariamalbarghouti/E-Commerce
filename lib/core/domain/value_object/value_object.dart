@@ -7,8 +7,12 @@ abstract class ValueObject<T,M> {
     return value.fold((l) => throw UnhandledError(), (r) => r);
   }
 
-  getOrElse( dflt){
+  getOrElse(dflt){
     return value.getOrElse(dflt);
+  }
+  // return right hand side
+  getRightValue(value){
+    return optionOf(value);
   }
   
   @override
