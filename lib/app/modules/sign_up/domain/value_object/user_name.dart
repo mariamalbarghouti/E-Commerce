@@ -4,7 +4,7 @@ import 'package:trail/app/modules/sign_up/domain/validation/name_validation.dart
 import 'package:trail/core/domain/value_object/value_object.dart';
 
 // User Name
-class UserName extends ValueObject<SignUpValueFailures> {
+class UserName extends ValueObject<SignUpValueFailures,String> {
   UserName._(this.value);
   @override
   final Either<SignUpValueFailures, String> value;

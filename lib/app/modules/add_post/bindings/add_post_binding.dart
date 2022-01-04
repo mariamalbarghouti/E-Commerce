@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 
-import '../controllers/add_post_controller.dart';
+import '../controllers/add_product_controller.dart';
 
 class AddPostBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AddPostController>(
-      () => AddPostController(),
+    Get.lazyPut<AddProductController>(
+      () => AddProductController(),
     );
   }
 }

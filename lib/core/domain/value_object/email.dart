@@ -4,7 +4,7 @@ import 'package:trail/core/domain/validations/email_validation.dart';
 import 'package:trail/core/domain/value_object/value_object.dart';
 
 // Email Class
-class Email extends ValueObject<SignInValueFailures> {
+class Email extends ValueObject<SignInValueFailures,String> {
   Email._(this.value);
   @override
   final Either<SignInValueFailures, String> value;

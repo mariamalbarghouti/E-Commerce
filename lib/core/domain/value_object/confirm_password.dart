@@ -5,7 +5,7 @@ import 'package:trail/core/domain/validations/confirm_password.dart';
 import 'package:trail/core/domain/value_object/value_object.dart';
 
 // Confirm Password Class
-class ConfirmPassword extends ValueObject<SignUpValueFailures> {
+class ConfirmPassword extends ValueObject<SignUpValueFailures,String> {
   ConfirmPassword._(this.value);
   @override
   final Either<SignUpValueFailures, String> value;

@@ -4,7 +4,7 @@ import 'package:trail/core/domain/validations/password_validation.dart';
 import 'package:trail/core/domain/value_object/value_object.dart';
 
 // Password
-class Password extends ValueObject<SignInValueFailures> {
+class Password extends ValueObject<SignInValueFailures,String> {
   Password._(this.value);
   @override
   Either<SignInValueFailures, String> value;
