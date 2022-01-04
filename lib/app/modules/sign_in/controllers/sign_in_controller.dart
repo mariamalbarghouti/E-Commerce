@@ -11,7 +11,7 @@ class SignInController extends GetxController {
   // Password Controller
   late Rx<TextEditingController> passwordEditionController;
   // Form Key
-  GlobalKey<FormState> registrationKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signInKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -42,7 +42,7 @@ class SignInController extends GetxController {
 
   // sign In
   Future<void> signIn() async {
-    if (registrationKey.currentState?.validate() ?? false) {
+    if (signInKey.currentState?.validate() ?? false) {
       SignInRepoImp repoImp = SignInRepoImp();
       await repoImp
           .signInWithEnailAndPassword(

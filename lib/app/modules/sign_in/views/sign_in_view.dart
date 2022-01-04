@@ -18,7 +18,7 @@ class SignInView extends GetView<SignInController> {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Form(
-            key: controller.registrationKey,
+            key: controller.signInKey,
             child: Column(
               children: [
                 // Email
