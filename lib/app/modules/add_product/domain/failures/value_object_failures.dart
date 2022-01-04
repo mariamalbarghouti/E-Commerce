@@ -9,8 +9,8 @@ abstract class AddProductValueFailures with _$AddProductValueFailures {
       _EnterImage;
   const factory AddProductValueFailures.enterAValidDescription(
       {required String msg}) = _EnterAValidDescription;
-  const factory AddProductValueFailures.enterYourDescription(
-      {required String msg}) = _EnterYourDescription;
+  const factory AddProductValueFailures.enterDescription(
+      {required String msg}) = _EnterDescription;
   const factory AddProductValueFailures.enterAValidPrice({required String msg}) =
       _EnterAValidPrice;
   const factory AddProductValueFailures.enterPrice({required String msg}) =

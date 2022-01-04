@@ -29,8 +29,8 @@ class _$AddProductValueFailuresTearOff {
     );
   }
 
-  _EnterYourDescription enterYourDescription({required String msg}) {
-    return _EnterYourDescription(
+  _EnterDescription enterDescription({required String msg}) {
+    return _EnterDescription(
       msg: msg,
     );
   }
@@ -59,7 +59,7 @@ mixin _$AddProductValueFailures {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) enterImage,
     required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterYourDescription,
+    required TResult Function(String msg) enterDescription,
     required TResult Function(String msg) enterAValidPrice,
     required TResult Function(String msg) enterPrice,
   }) =>
@@ -68,7 +68,7 @@ mixin _$AddProductValueFailures {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
   }) =>
@@ -77,7 +77,7 @@ mixin _$AddProductValueFailures {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
     required TResult orElse(),
@@ -88,7 +88,7 @@ mixin _$AddProductValueFailures {
     required TResult Function(_EnterImage value) enterImage,
     required TResult Function(_EnterAValidDescription value)
         enterAValidDescription,
-    required TResult Function(_EnterYourDescription value) enterYourDescription,
+    required TResult Function(_EnterDescription value) enterDescription,
     required TResult Function(_EnterAValidPrice value) enterAValidPrice,
     required TResult Function(_EnterPrice value) enterPrice,
   }) =>
@@ -97,7 +97,7 @@ mixin _$AddProductValueFailures {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
   }) =>
@@ -106,7 +106,7 @@ mixin _$AddProductValueFailures {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
     required TResult orElse(),
@@ -225,7 +225,7 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) enterImage,
     required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterYourDescription,
+    required TResult Function(String msg) enterDescription,
     required TResult Function(String msg) enterAValidPrice,
     required TResult Function(String msg) enterPrice,
   }) {
@@ -237,7 +237,7 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
   }) {
@@ -249,7 +249,7 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
     required TResult orElse(),
@@ -266,7 +266,7 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
     required TResult Function(_EnterImage value) enterImage,
     required TResult Function(_EnterAValidDescription value)
         enterAValidDescription,
-    required TResult Function(_EnterYourDescription value) enterYourDescription,
+    required TResult Function(_EnterDescription value) enterDescription,
     required TResult Function(_EnterAValidPrice value) enterAValidPrice,
     required TResult Function(_EnterPrice value) enterPrice,
   }) {
@@ -278,7 +278,7 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
   }) {
@@ -290,7 +290,7 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
     required TResult orElse(),
@@ -394,7 +394,7 @@ class _$_EnterAValidDescription
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) enterImage,
     required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterYourDescription,
+    required TResult Function(String msg) enterDescription,
     required TResult Function(String msg) enterAValidPrice,
     required TResult Function(String msg) enterPrice,
   }) {
@@ -406,7 +406,7 @@ class _$_EnterAValidDescription
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
   }) {
@@ -418,7 +418,7 @@ class _$_EnterAValidDescription
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
     required TResult orElse(),
@@ -435,7 +435,7 @@ class _$_EnterAValidDescription
     required TResult Function(_EnterImage value) enterImage,
     required TResult Function(_EnterAValidDescription value)
         enterAValidDescription,
-    required TResult Function(_EnterYourDescription value) enterYourDescription,
+    required TResult Function(_EnterDescription value) enterDescription,
     required TResult Function(_EnterAValidPrice value) enterAValidPrice,
     required TResult Function(_EnterPrice value) enterPrice,
   }) {
@@ -447,7 +447,7 @@ class _$_EnterAValidDescription
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
   }) {
@@ -459,7 +459,7 @@ class _$_EnterAValidDescription
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
     required TResult orElse(),
@@ -484,31 +484,31 @@ abstract class _EnterAValidDescription implements AddProductValueFailures {
 }
 
 /// @nodoc
-abstract class _$EnterYourDescriptionCopyWith<$Res>
+abstract class _$EnterDescriptionCopyWith<$Res>
     implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$EnterYourDescriptionCopyWith(_EnterYourDescription value,
-          $Res Function(_EnterYourDescription) then) =
-      __$EnterYourDescriptionCopyWithImpl<$Res>;
+  factory _$EnterDescriptionCopyWith(
+          _EnterDescription value, $Res Function(_EnterDescription) then) =
+      __$EnterDescriptionCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$EnterYourDescriptionCopyWithImpl<$Res>
+class __$EnterDescriptionCopyWithImpl<$Res>
     extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$EnterYourDescriptionCopyWith<$Res> {
-  __$EnterYourDescriptionCopyWithImpl(
-      _EnterYourDescription _value, $Res Function(_EnterYourDescription) _then)
-      : super(_value, (v) => _then(v as _EnterYourDescription));
+    implements _$EnterDescriptionCopyWith<$Res> {
+  __$EnterDescriptionCopyWithImpl(
+      _EnterDescription _value, $Res Function(_EnterDescription) _then)
+      : super(_value, (v) => _then(v as _EnterDescription));
 
   @override
-  _EnterYourDescription get _value => super._value as _EnterYourDescription;
+  _EnterDescription get _value => super._value as _EnterDescription;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_EnterYourDescription(
+    return _then(_EnterDescription(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -519,17 +519,17 @@ class __$EnterYourDescriptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EnterYourDescription
+class _$_EnterDescription
     with DiagnosticableTreeMixin
-    implements _EnterYourDescription {
-  const _$_EnterYourDescription({required this.msg});
+    implements _EnterDescription {
+  const _$_EnterDescription({required this.msg});
 
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductValueFailures.enterYourDescription(msg: $msg)';
+    return 'AddProductValueFailures.enterDescription(msg: $msg)';
   }
 
   @override
@@ -537,14 +537,14 @@ class _$_EnterYourDescription
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'AddProductValueFailures.enterYourDescription'))
+          'type', 'AddProductValueFailures.enterDescription'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EnterYourDescription &&
+        (other is _EnterDescription &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -555,20 +555,19 @@ class _$_EnterYourDescription
 
   @JsonKey(ignore: true)
   @override
-  _$EnterYourDescriptionCopyWith<_EnterYourDescription> get copyWith =>
-      __$EnterYourDescriptionCopyWithImpl<_EnterYourDescription>(
-          this, _$identity);
+  _$EnterDescriptionCopyWith<_EnterDescription> get copyWith =>
+      __$EnterDescriptionCopyWithImpl<_EnterDescription>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) enterImage,
     required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterYourDescription,
+    required TResult Function(String msg) enterDescription,
     required TResult Function(String msg) enterAValidPrice,
     required TResult Function(String msg) enterPrice,
   }) {
-    return enterYourDescription(msg);
+    return enterDescription(msg);
   }
 
   @override
@@ -576,11 +575,11 @@ class _$_EnterYourDescription
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
   }) {
-    return enterYourDescription?.call(msg);
+    return enterDescription?.call(msg);
   }
 
   @override
@@ -588,13 +587,13 @@ class _$_EnterYourDescription
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
     required TResult orElse(),
   }) {
-    if (enterYourDescription != null) {
-      return enterYourDescription(msg);
+    if (enterDescription != null) {
+      return enterDescription(msg);
     }
     return orElse();
   }
@@ -605,11 +604,11 @@ class _$_EnterYourDescription
     required TResult Function(_EnterImage value) enterImage,
     required TResult Function(_EnterAValidDescription value)
         enterAValidDescription,
-    required TResult Function(_EnterYourDescription value) enterYourDescription,
+    required TResult Function(_EnterDescription value) enterDescription,
     required TResult Function(_EnterAValidPrice value) enterAValidPrice,
     required TResult Function(_EnterPrice value) enterPrice,
   }) {
-    return enterYourDescription(this);
+    return enterDescription(this);
   }
 
   @override
@@ -617,11 +616,11 @@ class _$_EnterYourDescription
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
   }) {
-    return enterYourDescription?.call(this);
+    return enterDescription?.call(this);
   }
 
   @override
@@ -629,27 +628,26 @@ class _$_EnterYourDescription
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
     required TResult orElse(),
   }) {
-    if (enterYourDescription != null) {
-      return enterYourDescription(this);
+    if (enterDescription != null) {
+      return enterDescription(this);
     }
     return orElse();
   }
 }
 
-abstract class _EnterYourDescription implements AddProductValueFailures {
-  const factory _EnterYourDescription({required String msg}) =
-      _$_EnterYourDescription;
+abstract class _EnterDescription implements AddProductValueFailures {
+  const factory _EnterDescription({required String msg}) = _$_EnterDescription;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$EnterYourDescriptionCopyWith<_EnterYourDescription> get copyWith =>
+  _$EnterDescriptionCopyWith<_EnterDescription> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -733,7 +731,7 @@ class _$_EnterAValidPrice
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) enterImage,
     required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterYourDescription,
+    required TResult Function(String msg) enterDescription,
     required TResult Function(String msg) enterAValidPrice,
     required TResult Function(String msg) enterPrice,
   }) {
@@ -745,7 +743,7 @@ class _$_EnterAValidPrice
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
   }) {
@@ -757,7 +755,7 @@ class _$_EnterAValidPrice
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
     required TResult orElse(),
@@ -774,7 +772,7 @@ class _$_EnterAValidPrice
     required TResult Function(_EnterImage value) enterImage,
     required TResult Function(_EnterAValidDescription value)
         enterAValidDescription,
-    required TResult Function(_EnterYourDescription value) enterYourDescription,
+    required TResult Function(_EnterDescription value) enterDescription,
     required TResult Function(_EnterAValidPrice value) enterAValidPrice,
     required TResult Function(_EnterPrice value) enterPrice,
   }) {
@@ -786,7 +784,7 @@ class _$_EnterAValidPrice
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
   }) {
@@ -798,7 +796,7 @@ class _$_EnterAValidPrice
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
     required TResult orElse(),
@@ -898,7 +896,7 @@ class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) enterImage,
     required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterYourDescription,
+    required TResult Function(String msg) enterDescription,
     required TResult Function(String msg) enterAValidPrice,
     required TResult Function(String msg) enterPrice,
   }) {
@@ -910,7 +908,7 @@ class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
   }) {
@@ -922,7 +920,7 @@ class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? enterImage,
     TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterYourDescription,
+    TResult Function(String msg)? enterDescription,
     TResult Function(String msg)? enterAValidPrice,
     TResult Function(String msg)? enterPrice,
     required TResult orElse(),
@@ -939,7 +937,7 @@ class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
     required TResult Function(_EnterImage value) enterImage,
     required TResult Function(_EnterAValidDescription value)
         enterAValidDescription,
-    required TResult Function(_EnterYourDescription value) enterYourDescription,
+    required TResult Function(_EnterDescription value) enterDescription,
     required TResult Function(_EnterAValidPrice value) enterAValidPrice,
     required TResult Function(_EnterPrice value) enterPrice,
   }) {
@@ -951,7 +949,7 @@ class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
   }) {
@@ -963,7 +961,7 @@ class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnterImage value)? enterImage,
     TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterYourDescription value)? enterYourDescription,
+    TResult Function(_EnterDescription value)? enterDescription,
     TResult Function(_EnterAValidPrice value)? enterAValidPrice,
     TResult Function(_EnterPrice value)? enterPrice,
     required TResult orElse(),

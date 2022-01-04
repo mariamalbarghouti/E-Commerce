@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
@@ -43,11 +44,24 @@ class AddProductController extends GetxController {
     );
     update();
   }
+
 // Description Validator
   descriptionValidator() {
-    return Description(
-        description: descriptionEditionController.value.text
-      );
+    return Description(description: descriptionEditionController.value.text)
+        .value
+        .fold(
+          (l) => l.msg,
+          (r) => null,
+        );
+  }
+// Price Validator
+  priceValidator() {
+    return Price(price: priceEditionController.value.text)
+        .value
+        .fold(
+          (l) => l.msg,
+          (r) => null,
+        );
   }
   // descriptionEditionController.value
 

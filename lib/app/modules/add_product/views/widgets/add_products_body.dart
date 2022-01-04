@@ -36,7 +36,7 @@ class AddProductsBody extends GetView<AddProductController> {
                 ),
                 textInputAction: TextInputAction.next,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                // validator: (_) => controller.passwordValidation(),
+                validator: (_) => controller.priceValidator(),
               ),
               // Add Product Button
               ElevatedButton(

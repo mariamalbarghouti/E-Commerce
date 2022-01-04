@@ -7,12 +7,16 @@ Either<AddProductValueFailures, String> descriptionValidator({
 }) {
   if (description.trim().isEmpty) {
     return left(
-      const AddProductValueFailures.enterYourDescription(
-          msg: "Please Enter Your Description"),
+      const AddProductValueFailures.enterDescription(
+        msg: "Please Enter Your Description",
+      ),
     );
   } else if (description.length < 12) {
-    return left(const AddProductValueFailures.enterAValidDescription(
-        msg: "Please Enter A Valid Description"));
+    return left(
+      const AddProductValueFailures.enterAValidDescription(
+        msg: "Please Enter A Valid Description",
+      ),
+    );
   } else {
     return right(description);
   }
