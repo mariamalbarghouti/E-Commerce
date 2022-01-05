@@ -67,7 +67,7 @@ class AddProductController extends GetxController {
           (r) => null,
         );
   }
-
+  
   addProduct() async {
     if (pickedPhoto != null &&
         (addProductFormKey.currentState?.validate() ?? false)) {
@@ -105,7 +105,6 @@ class AddProductController extends GetxController {
         }).catchError((onError) {
           print(onError);
         });
-
         Get.toNamed(Routes.PRODUCTS);
       } catch (e) {
         print("\n Error $e \n");
