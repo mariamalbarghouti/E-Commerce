@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -68,10 +69,10 @@ class AddProductController extends GetxController {
   }
 
   addProduct() async {
-    if ((addProductFormKey.currentState?.validate() ?? false) &&
-        pickedPhoto != null) {
+    if (pickedPhoto != null &&
+        (addProductFormKey.currentState?.validate() ?? false)) {
       String docID = FirebaseFirestore.instance.collection('products').doc().id;
-      var url="";
+      var url = "";
       try {
         await FirebaseFirestore.instance.collection("products").doc(docID).set({
           "storageID": docID,
@@ -86,27 +87,35 @@ class AddProductController extends GetxController {
         UploadTask uploadTask = FirebaseStorage.instance
             .ref('users/products/$docID/')
             .putFile(pickedPhoto!);
-        uploadTask.whenComplete(() async{
-           url =await FirebaseStorage.instance
+        uploadTask.whenComplete(() async {
+          url = await FirebaseStorage.instance
               .ref('users/products/$docID/')
               .getDownloadURL();
-               await FirebaseFirestore.instance.collection("products").doc(docID).set({
-        
-          "imgUrl":url,
-        },SetOptions(merge: true));
-        Get.snackbar(
-          "Sucess",
-          "Your Product Is Added",
-          snackPosition: SnackPosition.BOTTOM,
-        );
+          await FirebaseFirestore.instance
+              .collection("products")
+              .doc(docID)
+              .set({
+            "imgUrl": url,
+          }, SetOptions(merge: true));
+          Get.snackbar(
+            "Sucess",
+            "Your Product Is Added",
+            snackPosition: SnackPosition.BOTTOM,
+          );
         }).catchError((onError) {
           print(onError);
         });
 
-        return Get.toNamed(Routes.PRODUCTS);
+        Get.toNamed(Routes.PRODUCTS);
       } catch (e) {
         print("\n Error $e \n");
       }
+    } else {
+      Get.snackbar(
+        "Error",
+        "Please Enter All Your Data",
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }

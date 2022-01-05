@@ -10,9 +10,10 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: Routes.SIGN_IN,
+      initialRoute: Routes.ADD_POST,
       logWriterCallback: Logger.write,
       getPages: AppPages.routes,
     ),
   );
 }
+
