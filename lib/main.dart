@@ -5,12 +5,15 @@ import 'package:trail/core/logger_mixin.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: Routes.SIGN_IN,
+      initialRoute: Routes.SIGN_UP,
+      debugShowCheckedModeBanner: false,
+      enableLog: true,
       logWriterCallback: Logger.write,
       getPages: AppPages.routes,
     ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/modules/sign_in/services/sign_in_repo_impl.dart';
+import 'package:trail/app/modules/sign_in/services/firebase_sign_in_repo_impl.dart';
 import 'package:trail/app/routes/app_pages.dart';
 import 'package:trail/core/domain/value_object/email.dart';
 import 'package:trail/core/domain/value_object/password.dart';
 
 class SignInController extends GetxController {
+  SignInController({required this.firebaseSignInRepoImp});
+  FirebaseSignInRepoImp firebaseSignInRepoImp ;
   // Email Controller
   late Rx<TextEditingController> emailEditionController;
   // Password Controller
@@ -43,16 +45,13 @@ class SignInController extends GetxController {
   // sign In
   Future<void> signIn() async {
     if (signInKey.currentState?.validate() ?? false) {
-      SignInRepoImp repoImp = SignInRepoImp();
-      await repoImp
+      await firebaseSignInRepoImp
           .signInWithEnailAndPassword(
             email: Email(
-              email: emailEditionController
-                  .value.text, //"mariam@gmail.com",
+              email: emailEditionController.value.text, //"mariam@gmail.com",
             ),
             password: Password(
-              password: passwordEditionController
-                  .value.text, //"123456",
+              password: passwordEditionController.value.text, //"123456",
             ),
           )
           .then(
@@ -61,10 +60,10 @@ class SignInController extends GetxController {
                 emailEditionController.value.clear();
                 passwordEditionController.value.clear();
                 return Get.snackbar(
-                "Sign In",
-                l.msg,
-                snackPosition: SnackPosition.BOTTOM,
-              );
+                  "Sign In",
+                  l.msg,
+                  snackPosition: SnackPosition.BOTTOM,
+                );
               },
               (r) => Get.offAllNamed(Routes.HOME),
             ),

@@ -1,9 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/modules/sign_up/domain/repository/repository.dart';
 import 'package:trail/app/modules/sign_up/domain/value_object/user_name.dart';
-import 'package:trail/app/modules/sign_up/services/sign_up_repo_impl.dart';
 import 'package:trail/app/routes/app_pages.dart';
 import 'package:trail/core/domain/value_object/confirm_password.dart';
 import 'package:trail/core/domain/value_object/email.dart';
@@ -11,6 +10,8 @@ import 'package:trail/core/domain/value_object/password.dart';
 
 // Sign Up Controller
 class SignUpController extends GetxController {
+  SignUpController({required this.signUpRepository});
+  ISignUpRepository signUpRepository;
   // Name Controller
   late Rx<TextEditingController> nameEditionController;
   // Email Controller
@@ -86,8 +87,7 @@ class SignUpController extends GetxController {
   // Sign Up
   signUp() async {
     if (registrationKey.currentState?.validate() ?? false) {
-      SignUpRepositoryImp repoImp = SignUpRepositoryImp();
-      await repoImp
+      await signUpRepository
           .signUpWithEmailAndPassword(
         email: Email(
           email: emailEditionController.value.text, //"mariam@gmail.com",
@@ -99,7 +99,7 @@ class SignUpController extends GetxController {
           .then(
         (value) async {
           // Register his data to firebase
-          await repoImp
+          await signUpRepository
               .registerUserInfoToFirestore(
                 email: emailEditionController.value.text,
                 password: passwordEditionController.value.text,

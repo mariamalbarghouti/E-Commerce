@@ -6,6 +6,7 @@ import 'package:trail/app/routes/app_pages.dart';
 
 
 class AppDrawerWidget extends GetView<AppDrawerController> {
+  const AppDrawerWidget();
   @override
   Widget build(BuildContext context) {
     return  Drawer(

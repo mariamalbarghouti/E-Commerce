@@ -4,7 +4,7 @@ import 'package:trail/core/domain/value_object/email.dart';
 import 'package:trail/core/domain/value_object/password.dart';
 
 /// Sign Up Repository
-abstract class SignUpRepository {
+abstract class ISignUpRepository {
   Future<Either<SignUpServerFailures, Unit>> signUpWithEmailAndPassword({
     required Email email,
     required Password password,

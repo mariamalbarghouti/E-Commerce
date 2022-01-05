@@ -5,7 +5,7 @@ import 'package:trail/core/domain/value_object/email.dart';
 import 'package:trail/core/domain/value_object/password.dart';
 
 // Sign In Repository
-abstract class SignInRepoitory extends GetConnect {
+abstract class ISignInRepoitory extends GetConnect {
   Future<Either<SignInServerFailures, Unit>> signInWithEnailAndPassword({
     required Email email,
     required Password password,

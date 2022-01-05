@@ -7,7 +7,8 @@ import 'package:trail/core/domain/value_object/email.dart';
 import 'package:trail/core/domain/value_object/password.dart';
 
 // Sign In Repository Implementation
-class SignInRepoImp extends SignInRepoitory {
+// TODO make firebase singleton
+class FirebaseSignInRepoImp extends ISignInRepoitory {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   @override

@@ -12,9 +12,11 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      drawer: AppDrawerWidget(),
+      drawer:const AppDrawerWidget(),
       body: Column(
-        children: [],
+        children: [
+          
+        ],
       ),
     );
   }
