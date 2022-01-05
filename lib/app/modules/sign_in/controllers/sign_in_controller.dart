@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/core/domain/value_object/email.dart';
+import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_in/services/firebase_sign_in_repo_impl.dart';
 import 'package:trail/app/routes/app_pages.dart';
-import 'package:trail/core/domain/value_object/email.dart';
-import 'package:trail/core/domain/value_object/password.dart';
 
 class SignInController extends GetxController {
   SignInController({required this.firebaseSignInRepoImp});

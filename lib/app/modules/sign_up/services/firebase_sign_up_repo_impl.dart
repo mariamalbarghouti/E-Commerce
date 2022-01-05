@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:trail/app/core/domain/value_object/email.dart';
+import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_up/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/sign_up/domain/repository/repository.dart';
-import 'package:trail/core/domain/value_object/email.dart';
-import 'package:trail/core/domain/value_object/password.dart';
 
 // Sign Up Repository Imp
 class FirebaseSignUpRepository extends ISignUpRepository {

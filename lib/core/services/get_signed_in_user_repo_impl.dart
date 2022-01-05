@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:trail/app/modules/splash/domain/repositories/get_sign_in_user_info.dart';
+import 'package:get/get.dart';
 
 // GEt Signed In User Info
-class GetSignedInUserInfoRepoImp extends GetSignedInUserInfoRepo {
-  @override
+class GetSignedInUser extends GetxService {
   Future<bool> isUserSignedIn() async {
     var _isUserFound = Completer<bool>();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {

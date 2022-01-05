@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dartz/dartz.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +9,6 @@ import 'package:trail/app/modules/add_product/domain/value_object/description.da
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
 import 'package:trail/app/routes/app_pages.dart';
-import 'package:trail/core/services/services.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
