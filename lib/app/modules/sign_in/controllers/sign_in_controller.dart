@@ -4,11 +4,16 @@ import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
 import 'package:trail/app/routes/app_pages.dart';
+import 'package:trail/core/services/get_signed_in_user_service.dart';
 
 // Sign In Controller
 class SignInController extends GetxController {
-  SignInController({required this.iSignInRepoitory});
-  ISignInRepoitory iSignInRepoitory ;
+  SignInController({
+    required this.iSignInRepoitory,
+    required this.getSignedInUserService,
+  });
+  final ISignInRepoitory iSignInRepoitory;
+  final SignedInUserService getSignedInUserService;
   // Email Controller
   late Rx<TextEditingController> emailEditionController;
   // Password Controller
@@ -66,7 +71,11 @@ class SignInController extends GetxController {
                   snackPosition: SnackPosition.BOTTOM,
                 );
               },
-              (r) => Get.offAllNamed(Routes.HOME),
+              (r) {
+                //  cache the user isSigned In
+                getSignedInUserService.isUserOut(isUserOut: false);
+                return Get.offAllNamed(Routes.HOME);
+              },
             ),
           );
     }

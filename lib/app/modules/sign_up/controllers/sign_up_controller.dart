@@ -7,11 +7,16 @@ import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_up/domain/repository/repository.dart';
 import 'package:trail/app/modules/sign_up/domain/value_object/user_name.dart';
 import 'package:trail/app/routes/app_pages.dart';
+import 'package:trail/core/services/get_signed_in_user_service.dart';
 
 // Sign Up Controller
 class SignUpController extends GetxController {
-  SignUpController({required this.signUpRepository});
-  ISignUpRepository signUpRepository;
+  SignUpController({
+    required this.signUpRepository,
+    required this.getSignedInUserService,
+  });
+  final ISignUpRepository signUpRepository;
+  final SignedInUserService getSignedInUserService;
   // Name Controller
   late Rx<TextEditingController> nameEditionController;
   // Email Controller
@@ -122,7 +127,10 @@ class SignUpController extends GetxController {
               l.msg,
               snackPosition: SnackPosition.BOTTOM,
             ),
-            (r) => Get.offAllNamed(Routes.HOME),
+            (r) {
+              getSignedInUserService.isUserOut(isUserOut: false);
+              return Get.offAllNamed(Routes.HOME);
+            },
           );
         },
       );

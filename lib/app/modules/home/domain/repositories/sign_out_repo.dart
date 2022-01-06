@@ -1,10 +1,6 @@
 import 'package:get/get.dart';
 
-abstract class SignOutRepo extends GetConnect{
+abstract class ISignOutRepo extends GetConnect{
   Future<void> signOut();
+  Future<bool>  isUserOut();
 }
-
-  // @override
-  // Future<Option<User>> getSignedInUser() async => _firebaseAuth
-  //     .currentUser()
-  //     .then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
