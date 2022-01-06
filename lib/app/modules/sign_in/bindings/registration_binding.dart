@@ -9,7 +9,7 @@ class RegistrationBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<ISignInRepoitory>(() => FirebaseSignInRepoImp());
     Get.lazyPut<SignInController>(
-      () => SignInController(firebaseSignInRepoImp: Get.find()),
+      () => SignInController(iSignInRepoitory: Get.find()),
     );
   }
 }

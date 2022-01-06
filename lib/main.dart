@@ -11,12 +11,12 @@ void main() async {
   // initializing firebase
   await Firebase.initializeApp();
   // where to go
-  await whereToGo();
+  String _whereRoGo = await whereToGo();
   // run app
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: Routes.SPLASH,
+      initialRoute: _whereRoGo,
       debugShowCheckedModeBanner: false,
       enableLog: true,
       logWriterCallback: Logger.write,
@@ -29,11 +29,10 @@ void main() async {
 /// go home
 /// else
 /// sign Up
-Future<void> whereToGo() async {
-  print('starting services ...');
-  if (await Get.putAsync(() => GetSignedInUser().isUserSignedIn())) {
-    Get.offAllNamed(Routes.HOME);
+Future<String> whereToGo() async {
+  if (await Get.put(GetSignedInUser().getIsUserSignedIn)) {
+    return Routes.HOME;
   } else {
-    Get.offAllNamed(Routes.SIGN_IN);
+    return Routes.SIGN_IN;
   }
 }
