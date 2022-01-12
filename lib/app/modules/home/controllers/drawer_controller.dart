@@ -7,23 +7,24 @@ import 'package:trail/core/services/get_signed_in_user_service.dart';
 // App Drawer Controller
 // TODO make it better
 class AppDrawerController extends GetxController {
+  final ISignOutRepo signedInUserRepo;
+  final SignedInUserService signedInUserService;
   AppDrawerController({
     required this.signedInUserRepo,
     required this.signedInUserService,
   });
-  final ISignOutRepo signedInUserRepo;
-  final SignedInUserService signedInUserService;
 // Sigin Out
   signOut() async {
     await signedInUserRepo.signOut();
 
     if (await signedInUserRepo.isUserOut()) {
-      Get.offAllNamed(Routes.SIGN_IN);
-
       signedInUserService.isUserOut(isUserOut: true);
-    }else{
-        Get.offAllNamed(Routes.HOME);
+      print("User Signed Out");
+      Get.offAllNamed(Routes.SIGN_IN);
+    } else {
+      print("User Signed In");
       signedInUserService.isUserOut(isUserOut: false);
+      Get.offAllNamed(Routes.HOME);
     }
   }
 }

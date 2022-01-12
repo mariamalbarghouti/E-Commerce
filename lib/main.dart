@@ -31,7 +31,7 @@ void main() async {
 /// else
 /// sign Up
 Future<String> whereToGo() async {
-  if (await Get.put(SignedInUserService().getIsUserOut)) {
+  if (await Get.put(SignedInUserService()).getIsUserOut) {
     return Routes.SIGN_IN;
   } else {
     return Routes.HOME;

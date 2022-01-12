@@ -1,13 +1,17 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // GEt Signed In User Info
 class SignedInUserService extends GetxService {
-  final _storage = GetStorage();
   // getter for user
-  bool get getIsUserOut => _storage.read('isSignedIn') ?? false;
+  Future<bool> get getIsUserOut async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return (prefs.getBool('isSignedOut') ?? false);
+  }
+
   // InsertToLocal DB
-  void isUserOut({required bool isUserOut}) {
-    _storage.write('isSignedIn', isUserOut);
+  void isUserOut({required bool isUserOut}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isSignedOut', isUserOut);
   }
 }
