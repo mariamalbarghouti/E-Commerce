@@ -5,14 +5,9 @@ part 'value_object_failures.freezed.dart';
 
 @freezed
 abstract class AddProductValueFailures with _$AddProductValueFailures {
-  const factory AddProductValueFailures.enterImage({required String msg}) =
-      _EnterImage;
-  const factory AddProductValueFailures.enterAValidDescription(
-      {required String msg}) = _EnterAValidDescription;
-  const factory AddProductValueFailures.enterDescription(
-      {required String msg}) = _EnterDescription;
-  const factory AddProductValueFailures.enterAValidPrice({required String msg}) =
-      _EnterAValidPrice;
-  const factory AddProductValueFailures.enterPrice({required String msg}) =
-      _EnterPrice;
+  const factory AddProductValueFailures.empty({required String msg}) = _Empty;
+  const factory AddProductValueFailures.shortLenght({required String msg}) =
+      _ShortLength;
+  const factory AddProductValueFailures.invalidPrice({required String msg}) =
+      _InvalidPrice;
 }

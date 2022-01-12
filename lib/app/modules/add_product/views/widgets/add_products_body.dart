@@ -18,6 +18,16 @@ class AddProductsBody extends GetView<AddProductController> {
             children: [
               // Image Picker
               const ImagePickerWidget(),
+              // Title
+              TextFormField(
+                controller: controller.titleEditionController.value,
+                decoration: const InputDecoration(
+                  labelText: "Title",
+                ),
+                textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (_) => controller.titleValidator(),
+              ),
               // Description
               TextFormField(
                 controller: controller.descriptionEditionController.value,

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:trail/app/core/domain/validations/value_field_validation/empty_filed.dart';
 import 'package:trail/app/core/domain/value_object/value_object.dart';
 import 'package:trail/app/modules/add_product/domain/failures/value_object_failures.dart';
 import 'package:trail/app/modules/add_product/domain/validation/price_validator.dart';
@@ -9,6 +10,6 @@ class Price extends ValueObject<AddProductValueFailures,String>{
   @override
 final Either<AddProductValueFailures, String> value ;
   factory Price({required String price}) {
-    return Price._(priceValidator(price: price));
+    return Price._(emptyValidator(price).flatMap(priceValidator));
   }
 }

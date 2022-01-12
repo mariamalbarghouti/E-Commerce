@@ -17,32 +17,20 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AddProductValueFailuresTearOff {
   const _$AddProductValueFailuresTearOff();
 
-  _EnterImage enterImage({required String msg}) {
-    return _EnterImage(
+  _Empty empty({required String msg}) {
+    return _Empty(
       msg: msg,
     );
   }
 
-  _EnterAValidDescription enterAValidDescription({required String msg}) {
-    return _EnterAValidDescription(
+  _ShortLength shortLenght({required String msg}) {
+    return _ShortLength(
       msg: msg,
     );
   }
 
-  _EnterDescription enterDescription({required String msg}) {
-    return _EnterDescription(
-      msg: msg,
-    );
-  }
-
-  _EnterAValidPrice enterAValidPrice({required String msg}) {
-    return _EnterAValidPrice(
-      msg: msg,
-    );
-  }
-
-  _EnterPrice enterPrice({required String msg}) {
-    return _EnterPrice(
+  _InvalidPrice invalidPrice({required String msg}) {
+    return _InvalidPrice(
       msg: msg,
     );
   }
@@ -57,58 +45,45 @@ mixin _$AddProductValueFailures {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String msg) enterImage,
-    required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterDescription,
-    required TResult Function(String msg) enterAValidPrice,
-    required TResult Function(String msg) enterPrice,
+    required TResult Function(String msg) empty,
+    required TResult Function(String msg) shortLenght,
+    required TResult Function(String msg) invalidPrice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_EnterImage value) enterImage,
-    required TResult Function(_EnterAValidDescription value)
-        enterAValidDescription,
-    required TResult Function(_EnterDescription value) enterDescription,
-    required TResult Function(_EnterAValidPrice value) enterAValidPrice,
-    required TResult Function(_EnterPrice value) enterPrice,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_InvalidPrice value) invalidPrice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -149,31 +124,29 @@ class _$AddProductValueFailuresCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$EnterImageCopyWith<$Res>
+abstract class _$EmptyCopyWith<$Res>
     implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$EnterImageCopyWith(
-          _EnterImage value, $Res Function(_EnterImage) then) =
-      __$EnterImageCopyWithImpl<$Res>;
+  factory _$EmptyCopyWith(_Empty value, $Res Function(_Empty) then) =
+      __$EmptyCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$EnterImageCopyWithImpl<$Res>
+class __$EmptyCopyWithImpl<$Res>
     extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$EnterImageCopyWith<$Res> {
-  __$EnterImageCopyWithImpl(
-      _EnterImage _value, $Res Function(_EnterImage) _then)
-      : super(_value, (v) => _then(v as _EnterImage));
+    implements _$EmptyCopyWith<$Res> {
+  __$EmptyCopyWithImpl(_Empty _value, $Res Function(_Empty) _then)
+      : super(_value, (v) => _then(v as _Empty));
 
   @override
-  _EnterImage get _value => super._value as _EnterImage;
+  _Empty get _value => super._value as _Empty;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_EnterImage(
+    return _then(_Empty(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -184,29 +157,29 @@ class __$EnterImageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
-  const _$_EnterImage({required this.msg});
+class _$_Empty with DiagnosticableTreeMixin implements _Empty {
+  const _$_Empty({required this.msg});
 
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductValueFailures.enterImage(msg: $msg)';
+    return 'AddProductValueFailures.empty(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AddProductValueFailures.enterImage'))
+      ..add(DiagnosticsProperty('type', 'AddProductValueFailures.empty'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EnterImage &&
+        (other is _Empty &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -217,45 +190,39 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
 
   @JsonKey(ignore: true)
   @override
-  _$EnterImageCopyWith<_EnterImage> get copyWith =>
-      __$EnterImageCopyWithImpl<_EnterImage>(this, _$identity);
+  _$EmptyCopyWith<_Empty> get copyWith =>
+      __$EmptyCopyWithImpl<_Empty>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String msg) enterImage,
-    required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterDescription,
-    required TResult Function(String msg) enterAValidPrice,
-    required TResult Function(String msg) enterPrice,
+    required TResult Function(String msg) empty,
+    required TResult Function(String msg) shortLenght,
+    required TResult Function(String msg) invalidPrice,
   }) {
-    return enterImage(msg);
+    return empty(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
   }) {
-    return enterImage?.call(msg);
+    return empty?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
     required TResult orElse(),
   }) {
-    if (enterImage != null) {
-      return enterImage(msg);
+    if (empty != null) {
+      return empty(msg);
     }
     return orElse();
   }
@@ -263,82 +230,226 @@ class _$_EnterImage with DiagnosticableTreeMixin implements _EnterImage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_EnterImage value) enterImage,
-    required TResult Function(_EnterAValidDescription value)
-        enterAValidDescription,
-    required TResult Function(_EnterDescription value) enterDescription,
-    required TResult Function(_EnterAValidPrice value) enterAValidPrice,
-    required TResult Function(_EnterPrice value) enterPrice,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_InvalidPrice value) invalidPrice,
   }) {
-    return enterImage(this);
+    return empty(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
   }) {
-    return enterImage?.call(this);
+    return empty?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
     required TResult orElse(),
   }) {
-    if (enterImage != null) {
-      return enterImage(this);
+    if (empty != null) {
+      return empty(this);
     }
     return orElse();
   }
 }
 
-abstract class _EnterImage implements AddProductValueFailures {
-  const factory _EnterImage({required String msg}) = _$_EnterImage;
+abstract class _Empty implements AddProductValueFailures {
+  const factory _Empty({required String msg}) = _$_Empty;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$EnterImageCopyWith<_EnterImage> get copyWith =>
+  _$EmptyCopyWith<_Empty> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ShortLengthCopyWith<$Res>
+    implements $AddProductValueFailuresCopyWith<$Res> {
+  factory _$ShortLengthCopyWith(
+          _ShortLength value, $Res Function(_ShortLength) then) =
+      __$ShortLengthCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$ShortLengthCopyWithImpl<$Res>
+    extends _$AddProductValueFailuresCopyWithImpl<$Res>
+    implements _$ShortLengthCopyWith<$Res> {
+  __$ShortLengthCopyWithImpl(
+      _ShortLength _value, $Res Function(_ShortLength) _then)
+      : super(_value, (v) => _then(v as _ShortLength));
+
+  @override
+  _ShortLength get _value => super._value as _ShortLength;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_ShortLength(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
+  const _$_ShortLength({required this.msg});
+
+  @override
+  final String msg;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddProductValueFailures.shortLenght(msg: $msg)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddProductValueFailures.shortLenght'))
+      ..add(DiagnosticsProperty('msg', msg));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ShortLength &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ShortLengthCopyWith<_ShortLength> get copyWith =>
+      __$ShortLengthCopyWithImpl<_ShortLength>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) empty,
+    required TResult Function(String msg) shortLenght,
+    required TResult Function(String msg) invalidPrice,
+  }) {
+    return shortLenght(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
+  }) {
+    return shortLenght?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
+    required TResult orElse(),
+  }) {
+    if (shortLenght != null) {
+      return shortLenght(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_InvalidPrice value) invalidPrice,
+  }) {
+    return shortLenght(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
+  }) {
+    return shortLenght?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
+    required TResult orElse(),
+  }) {
+    if (shortLenght != null) {
+      return shortLenght(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShortLength implements AddProductValueFailures {
+  const factory _ShortLength({required String msg}) = _$_ShortLength;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ShortLengthCopyWith<_ShortLength> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$EnterAValidDescriptionCopyWith<$Res>
+abstract class _$InvalidPriceCopyWith<$Res>
     implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$EnterAValidDescriptionCopyWith(_EnterAValidDescription value,
-          $Res Function(_EnterAValidDescription) then) =
-      __$EnterAValidDescriptionCopyWithImpl<$Res>;
+  factory _$InvalidPriceCopyWith(
+          _InvalidPrice value, $Res Function(_InvalidPrice) then) =
+      __$InvalidPriceCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$EnterAValidDescriptionCopyWithImpl<$Res>
+class __$InvalidPriceCopyWithImpl<$Res>
     extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$EnterAValidDescriptionCopyWith<$Res> {
-  __$EnterAValidDescriptionCopyWithImpl(_EnterAValidDescription _value,
-      $Res Function(_EnterAValidDescription) _then)
-      : super(_value, (v) => _then(v as _EnterAValidDescription));
+    implements _$InvalidPriceCopyWith<$Res> {
+  __$InvalidPriceCopyWithImpl(
+      _InvalidPrice _value, $Res Function(_InvalidPrice) _then)
+      : super(_value, (v) => _then(v as _InvalidPrice));
 
   @override
-  _EnterAValidDescription get _value => super._value as _EnterAValidDescription;
+  _InvalidPrice get _value => super._value as _InvalidPrice;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_EnterAValidDescription(
+    return _then(_InvalidPrice(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -349,32 +460,29 @@ class __$EnterAValidDescriptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EnterAValidDescription
-    with DiagnosticableTreeMixin
-    implements _EnterAValidDescription {
-  const _$_EnterAValidDescription({required this.msg});
+class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
+  const _$_InvalidPrice({required this.msg});
 
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductValueFailures.enterAValidDescription(msg: $msg)';
+    return 'AddProductValueFailures.invalidPrice(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'AddProductValueFailures.enterAValidDescription'))
+      ..add(DiagnosticsProperty('type', 'AddProductValueFailures.invalidPrice'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EnterAValidDescription &&
+        (other is _InvalidPrice &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -385,46 +493,39 @@ class _$_EnterAValidDescription
 
   @JsonKey(ignore: true)
   @override
-  _$EnterAValidDescriptionCopyWith<_EnterAValidDescription> get copyWith =>
-      __$EnterAValidDescriptionCopyWithImpl<_EnterAValidDescription>(
-          this, _$identity);
+  _$InvalidPriceCopyWith<_InvalidPrice> get copyWith =>
+      __$InvalidPriceCopyWithImpl<_InvalidPrice>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String msg) enterImage,
-    required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterDescription,
-    required TResult Function(String msg) enterAValidPrice,
-    required TResult Function(String msg) enterPrice,
+    required TResult Function(String msg) empty,
+    required TResult Function(String msg) shortLenght,
+    required TResult Function(String msg) invalidPrice,
   }) {
-    return enterAValidDescription(msg);
+    return invalidPrice(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
   }) {
-    return enterAValidDescription?.call(msg);
+    return invalidPrice?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
     required TResult orElse(),
   }) {
-    if (enterAValidDescription != null) {
-      return enterAValidDescription(msg);
+    if (invalidPrice != null) {
+      return invalidPrice(msg);
     }
     return orElse();
   }
@@ -432,554 +533,45 @@ class _$_EnterAValidDescription
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_EnterImage value) enterImage,
-    required TResult Function(_EnterAValidDescription value)
-        enterAValidDescription,
-    required TResult Function(_EnterDescription value) enterDescription,
-    required TResult Function(_EnterAValidPrice value) enterAValidPrice,
-    required TResult Function(_EnterPrice value) enterPrice,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_InvalidPrice value) invalidPrice,
   }) {
-    return enterAValidDescription(this);
+    return invalidPrice(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
   }) {
-    return enterAValidDescription?.call(this);
+    return invalidPrice?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
     required TResult orElse(),
   }) {
-    if (enterAValidDescription != null) {
-      return enterAValidDescription(this);
+    if (invalidPrice != null) {
+      return invalidPrice(this);
     }
     return orElse();
   }
 }
 
-abstract class _EnterAValidDescription implements AddProductValueFailures {
-  const factory _EnterAValidDescription({required String msg}) =
-      _$_EnterAValidDescription;
+abstract class _InvalidPrice implements AddProductValueFailures {
+  const factory _InvalidPrice({required String msg}) = _$_InvalidPrice;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$EnterAValidDescriptionCopyWith<_EnterAValidDescription> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$EnterDescriptionCopyWith<$Res>
-    implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$EnterDescriptionCopyWith(
-          _EnterDescription value, $Res Function(_EnterDescription) then) =
-      __$EnterDescriptionCopyWithImpl<$Res>;
-  @override
-  $Res call({String msg});
-}
-
-/// @nodoc
-class __$EnterDescriptionCopyWithImpl<$Res>
-    extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$EnterDescriptionCopyWith<$Res> {
-  __$EnterDescriptionCopyWithImpl(
-      _EnterDescription _value, $Res Function(_EnterDescription) _then)
-      : super(_value, (v) => _then(v as _EnterDescription));
-
-  @override
-  _EnterDescription get _value => super._value as _EnterDescription;
-
-  @override
-  $Res call({
-    Object? msg = freezed,
-  }) {
-    return _then(_EnterDescription(
-      msg: msg == freezed
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_EnterDescription
-    with DiagnosticableTreeMixin
-    implements _EnterDescription {
-  const _$_EnterDescription({required this.msg});
-
-  @override
-  final String msg;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductValueFailures.enterDescription(msg: $msg)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'AddProductValueFailures.enterDescription'))
-      ..add(DiagnosticsProperty('msg', msg));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _EnterDescription &&
-            (identical(other.msg, msg) ||
-                const DeepCollectionEquality().equals(other.msg, msg)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
-
-  @JsonKey(ignore: true)
-  @override
-  _$EnterDescriptionCopyWith<_EnterDescription> get copyWith =>
-      __$EnterDescriptionCopyWithImpl<_EnterDescription>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String msg) enterImage,
-    required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterDescription,
-    required TResult Function(String msg) enterAValidPrice,
-    required TResult Function(String msg) enterPrice,
-  }) {
-    return enterDescription(msg);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
-  }) {
-    return enterDescription?.call(msg);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
-    required TResult orElse(),
-  }) {
-    if (enterDescription != null) {
-      return enterDescription(msg);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_EnterImage value) enterImage,
-    required TResult Function(_EnterAValidDescription value)
-        enterAValidDescription,
-    required TResult Function(_EnterDescription value) enterDescription,
-    required TResult Function(_EnterAValidPrice value) enterAValidPrice,
-    required TResult Function(_EnterPrice value) enterPrice,
-  }) {
-    return enterDescription(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
-  }) {
-    return enterDescription?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
-    required TResult orElse(),
-  }) {
-    if (enterDescription != null) {
-      return enterDescription(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EnterDescription implements AddProductValueFailures {
-  const factory _EnterDescription({required String msg}) = _$_EnterDescription;
-
-  @override
-  String get msg => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$EnterDescriptionCopyWith<_EnterDescription> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$EnterAValidPriceCopyWith<$Res>
-    implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$EnterAValidPriceCopyWith(
-          _EnterAValidPrice value, $Res Function(_EnterAValidPrice) then) =
-      __$EnterAValidPriceCopyWithImpl<$Res>;
-  @override
-  $Res call({String msg});
-}
-
-/// @nodoc
-class __$EnterAValidPriceCopyWithImpl<$Res>
-    extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$EnterAValidPriceCopyWith<$Res> {
-  __$EnterAValidPriceCopyWithImpl(
-      _EnterAValidPrice _value, $Res Function(_EnterAValidPrice) _then)
-      : super(_value, (v) => _then(v as _EnterAValidPrice));
-
-  @override
-  _EnterAValidPrice get _value => super._value as _EnterAValidPrice;
-
-  @override
-  $Res call({
-    Object? msg = freezed,
-  }) {
-    return _then(_EnterAValidPrice(
-      msg: msg == freezed
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_EnterAValidPrice
-    with DiagnosticableTreeMixin
-    implements _EnterAValidPrice {
-  const _$_EnterAValidPrice({required this.msg});
-
-  @override
-  final String msg;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductValueFailures.enterAValidPrice(msg: $msg)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'AddProductValueFailures.enterAValidPrice'))
-      ..add(DiagnosticsProperty('msg', msg));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _EnterAValidPrice &&
-            (identical(other.msg, msg) ||
-                const DeepCollectionEquality().equals(other.msg, msg)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
-
-  @JsonKey(ignore: true)
-  @override
-  _$EnterAValidPriceCopyWith<_EnterAValidPrice> get copyWith =>
-      __$EnterAValidPriceCopyWithImpl<_EnterAValidPrice>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String msg) enterImage,
-    required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterDescription,
-    required TResult Function(String msg) enterAValidPrice,
-    required TResult Function(String msg) enterPrice,
-  }) {
-    return enterAValidPrice(msg);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
-  }) {
-    return enterAValidPrice?.call(msg);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
-    required TResult orElse(),
-  }) {
-    if (enterAValidPrice != null) {
-      return enterAValidPrice(msg);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_EnterImage value) enterImage,
-    required TResult Function(_EnterAValidDescription value)
-        enterAValidDescription,
-    required TResult Function(_EnterDescription value) enterDescription,
-    required TResult Function(_EnterAValidPrice value) enterAValidPrice,
-    required TResult Function(_EnterPrice value) enterPrice,
-  }) {
-    return enterAValidPrice(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
-  }) {
-    return enterAValidPrice?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
-    required TResult orElse(),
-  }) {
-    if (enterAValidPrice != null) {
-      return enterAValidPrice(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EnterAValidPrice implements AddProductValueFailures {
-  const factory _EnterAValidPrice({required String msg}) = _$_EnterAValidPrice;
-
-  @override
-  String get msg => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$EnterAValidPriceCopyWith<_EnterAValidPrice> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$EnterPriceCopyWith<$Res>
-    implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$EnterPriceCopyWith(
-          _EnterPrice value, $Res Function(_EnterPrice) then) =
-      __$EnterPriceCopyWithImpl<$Res>;
-  @override
-  $Res call({String msg});
-}
-
-/// @nodoc
-class __$EnterPriceCopyWithImpl<$Res>
-    extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$EnterPriceCopyWith<$Res> {
-  __$EnterPriceCopyWithImpl(
-      _EnterPrice _value, $Res Function(_EnterPrice) _then)
-      : super(_value, (v) => _then(v as _EnterPrice));
-
-  @override
-  _EnterPrice get _value => super._value as _EnterPrice;
-
-  @override
-  $Res call({
-    Object? msg = freezed,
-  }) {
-    return _then(_EnterPrice(
-      msg: msg == freezed
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_EnterPrice with DiagnosticableTreeMixin implements _EnterPrice {
-  const _$_EnterPrice({required this.msg});
-
-  @override
-  final String msg;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductValueFailures.enterPrice(msg: $msg)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AddProductValueFailures.enterPrice'))
-      ..add(DiagnosticsProperty('msg', msg));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _EnterPrice &&
-            (identical(other.msg, msg) ||
-                const DeepCollectionEquality().equals(other.msg, msg)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
-
-  @JsonKey(ignore: true)
-  @override
-  _$EnterPriceCopyWith<_EnterPrice> get copyWith =>
-      __$EnterPriceCopyWithImpl<_EnterPrice>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String msg) enterImage,
-    required TResult Function(String msg) enterAValidDescription,
-    required TResult Function(String msg) enterDescription,
-    required TResult Function(String msg) enterAValidPrice,
-    required TResult Function(String msg) enterPrice,
-  }) {
-    return enterPrice(msg);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
-  }) {
-    return enterPrice?.call(msg);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String msg)? enterImage,
-    TResult Function(String msg)? enterAValidDescription,
-    TResult Function(String msg)? enterDescription,
-    TResult Function(String msg)? enterAValidPrice,
-    TResult Function(String msg)? enterPrice,
-    required TResult orElse(),
-  }) {
-    if (enterPrice != null) {
-      return enterPrice(msg);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_EnterImage value) enterImage,
-    required TResult Function(_EnterAValidDescription value)
-        enterAValidDescription,
-    required TResult Function(_EnterDescription value) enterDescription,
-    required TResult Function(_EnterAValidPrice value) enterAValidPrice,
-    required TResult Function(_EnterPrice value) enterPrice,
-  }) {
-    return enterPrice(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
-  }) {
-    return enterPrice?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnterImage value)? enterImage,
-    TResult Function(_EnterAValidDescription value)? enterAValidDescription,
-    TResult Function(_EnterDescription value)? enterDescription,
-    TResult Function(_EnterAValidPrice value)? enterAValidPrice,
-    TResult Function(_EnterPrice value)? enterPrice,
-    required TResult orElse(),
-  }) {
-    if (enterPrice != null) {
-      return enterPrice(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EnterPrice implements AddProductValueFailures {
-  const factory _EnterPrice({required String msg}) = _$_EnterPrice;
-
-  @override
-  String get msg => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$EnterPriceCopyWith<_EnterPrice> get copyWith =>
+  _$InvalidPriceCopyWith<_InvalidPrice> get copyWith =>
       throw _privateConstructorUsedError;
 }

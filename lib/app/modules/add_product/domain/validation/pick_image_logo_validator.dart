@@ -8,7 +8,7 @@ Either<AddProductValueFailures, File?> pickImageValidator({required String? phot
     return right(File(photo));
   } else {
     return left(
-     const AddProductValueFailures.enterImage(msg: "please_enter_your_logo"),
+     const AddProductValueFailures.empty(msg: "please_enter_your_logo"),
     );
   }
 }

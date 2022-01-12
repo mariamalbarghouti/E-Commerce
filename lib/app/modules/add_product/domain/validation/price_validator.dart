@@ -3,17 +3,11 @@ import 'package:trail/app/modules/add_product/domain/failures/value_object_failu
 
 // Price Validator
 Either<AddProductValueFailures, String> priceValidator(
-    {required String price}) {
+  String price) {
   var regex = r'''\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?''';
-  if (price.trim().isEmpty) {
-    return   left(
-      const AddProductValueFailures.enterPrice(
-        msg: "Please Enter The Price",
-      ),
-    );
-  } else if (!RegExp(regex).hasMatch(price)) {
+ if (!RegExp(regex).hasMatch(price)) {
     return left(
-      const AddProductValueFailures.enterAValidPrice(
+      const AddProductValueFailures.invalidPrice(
         msg: "Please Enter A Valid Price",
       ),
     );

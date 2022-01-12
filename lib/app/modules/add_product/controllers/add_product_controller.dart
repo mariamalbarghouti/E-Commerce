@@ -8,25 +8,30 @@ import 'package:image_picker/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/title.dart';
 import 'package:trail/app/routes/app_pages.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
+  late Rx<TextEditingController> titleEditionController;
   File? pickedPhoto;
   GlobalKey<FormState> addProductFormKey = GlobalKey();
   @override
   void onInit() {
     descriptionEditionController = TextEditingController().obs;
     priceEditionController = TextEditingController().obs;
+    titleEditionController = TextEditingController().obs;
     super.onInit();
   }
 
   @override
   void onClose() {
+    titleEditionController.value.dispose();
     descriptionEditionController.value.dispose();
     priceEditionController.value.dispose();
+    super.dispose();
   }
 
   // Image Picker
@@ -49,6 +54,14 @@ class AddProductController extends GetxController {
     update();
   }
 
+  // Title Validator
+  titleValidator() {
+    return ProductTitle(title: titleEditionController.value.text).value.fold(
+          (l) => l.msg,
+          (r) => null,
+        );
+  }
+
 // Description Validator
   descriptionValidator() {
     return Description(description: descriptionEditionController.value.text)
@@ -66,7 +79,7 @@ class AddProductController extends GetxController {
           (r) => null,
         );
   }
-  
+
   addProduct() async {
     if (pickedPhoto != null &&
         (addProductFormKey.currentState?.validate() ?? false)) {
