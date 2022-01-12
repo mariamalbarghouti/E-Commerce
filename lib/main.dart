@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trail/core/logger_mixin.dart';
-import 'package:trail/core/services/get_signed_in_user_service.dart';
+import 'package:trail/core/services/get_user_sign_in_state_service.dart';
 import 'app/routes/app_pages.dart';
 
 // Main Function

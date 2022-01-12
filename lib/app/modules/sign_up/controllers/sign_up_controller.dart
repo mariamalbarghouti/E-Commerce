@@ -7,7 +7,7 @@ import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_up/domain/repository/repository.dart';
 import 'package:trail/app/modules/sign_up/domain/value_object/user_name.dart';
 import 'package:trail/app/routes/app_pages.dart';
-import 'package:trail/core/services/get_signed_in_user_service.dart';
+import 'package:trail/core/services/get_user_sign_in_state_service.dart';
 
 // Sign Up Controller
 class SignUpController extends GetxController {
