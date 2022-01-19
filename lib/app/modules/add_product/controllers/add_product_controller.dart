@@ -1,15 +1,20 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/title.dart';
 import 'package:trail/app/routes/app_pages.dart';
+import 'package:path/path.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
@@ -17,6 +22,8 @@ class AddProductController extends GetxController {
   late Rx<TextEditingController> priceEditionController;
   late Rx<TextEditingController> titleEditionController;
   File? pickedPhoto;
+  var images = <Asset>[].obs;
+
   GlobalKey<FormState> addProductFormKey = GlobalKey();
   @override
   void onInit() {
@@ -51,6 +58,32 @@ class AddProductController extends GetxController {
       ),
       (r) => pickedPhoto = r,
     );
+    List<Asset> resultList = <Asset>[];
+    String error = 'No Error Detected';
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 5,
+        enableCamera: true,
+        selectedAssets: images,
+        materialOptions: const MaterialOptions(
+          actionBarColor: "#000000",
+          actionBarTitle: "Select Image",
+          allViewTitle: "All Photos",
+          // actionBarTitleColor: '#090909',
+          useDetailsView: false,
+          selectCircleStrokeColor: "#000000",
+        ),
+      );
+    } on Exception catch (e) {
+      error = e.toString();
+    }
+    print("path ${pickedPhoto!.path}");
+    images.value = resultList;
+  }
+
+  deleteImage(int index) {
+    images.removeAt(index);
     update();
   }
 
@@ -79,48 +112,13 @@ class AddProductController extends GetxController {
           (r) => null,
         );
   }
-
+  // Add Product
   addProduct() async {
     if (pickedPhoto != null &&
         (addProductFormKey.currentState?.validate() ?? false)) {
       String docID = FirebaseFirestore.instance.collection('products').doc().id;
-      var url = "";
-      try {
-        await FirebaseFirestore.instance.collection("products").doc(docID).set({
-          "storageID": docID,
-          "uid": FirebaseAuth.instance.currentUser?.uid,
-          "description": descriptionEditionController.value.text,
-          "price": priceEditionController.value.text,
-        });
-      } catch (e) {
-        print("\n Error $e \n");
-      }
-      try {
-        UploadTask uploadTask = FirebaseStorage.instance
-            .ref('users/products/$docID/')
-            .putFile(pickedPhoto!);
-        uploadTask.whenComplete(() async {
-          url = await FirebaseStorage.instance
-              .ref('users/products/$docID/')
-              .getDownloadURL();
-          await FirebaseFirestore.instance
-              .collection("products")
-              .doc(docID)
-              .set({
-            "imgUrl": url,
-          }, SetOptions(merge: true));
-          Get.snackbar(
-            "Sucess",
-            "Your Product Is Added",
-            snackPosition: SnackPosition.BOTTOM,
-          );
-        }).catchError((onError) {
-          print(onError);
-        });
-        Get.toNamed(Routes.PRODUCTS);
-      } catch (e) {
-        print("\n Error $e \n");
-      }
+      await _uploadProductDetails(docID);
+      await _uploadImage(docID);
     } else {
       Get.snackbar(
         "Error",
@@ -128,5 +126,44 @@ class AddProductController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+
+  _uploadProductDetails(docID) async {
+    try {
+      final filePath =
+          await FlutterAbsolutePath.getAbsolutePath(images[0].identifier ?? "");
+      await FirebaseStorage.instance
+          .ref('products/$docID')
+          .putFile(File(filePath ?? "")); //File(pickedPhoto!.path));
+    } catch (e) {
+      // e.g, e.code == 'canceled'
+      print(e.toString());
+    }
+  }
+  _uploadImage(docID)async{
+     try {
+        // FirebaseStorage.instance
+        //   .ref('users/products/$docID/')
+        //   .putFile(File(basename(images[0].name??"")));
+        // images[0].name??""
+        // uploadTask.whenComplete(() async {
+        //   url = await FirebaseStorage.instance
+        //       .ref('users/products/$docID/')
+        //       .getDownloadURL();
+        // }).catchError((onError) {
+        //   print(onError);
+        // });
+        await FirebaseFirestore.instance.collection("products").doc(docID).set({
+          "imgUrl": url,
+        }, SetOptions(merge: true));
+        Get.snackbar(
+          "Sucess",
+          "Your Product Is Added",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        Get.toNamed(Routes.HOME);
+      } catch (e) {
+        print("\n Error $e \n");
+      }
   }
 }

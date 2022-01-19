@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:trail/app/modules/add_product/controllers/add_product_controller.dart';
-import 'package:trail/app/modules/add_product/views/widgets/image_picker_widget.dart';
+import 'package:trail/app/modules/add_product/views/widgets/image_picker/image_picker_widget.dart';
 
 // Add Products Body
 class AddProductsBody extends GetView<AddProductController> {
