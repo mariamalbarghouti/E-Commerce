@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/core/domain/value_object/value_object.dart';
 import 'package:trail/app/modules/add_product/domain/failures/value_object_failures.dart';
-import 'package:trail/app/modules/add_product/domain/validation/pick_image_logo_validator.dart';
 
 // Photo Picker
 class PhotoPicker extends ValueObject<AddProductValueFailures, File?> {
@@ -10,7 +9,7 @@ class PhotoPicker extends ValueObject<AddProductValueFailures, File?> {
   @override
   final Either<AddProductValueFailures, File?> value;
   // For Photo Validation
-  factory PhotoPicker({required String? photo}) {
-    return PhotoPicker._(pickImageValidator(photo: photo));
-  }
+  // factory PhotoPicker({required String? photo}) {
+  //   return PhotoPicker._(pickImageValidator(photo: photo));
+  // }
 }

@@ -40,7 +40,7 @@ class AddProductController extends GetxController {
 
   // Image Picker
   pickImgFromGallery() async {
-    late PhotoPicker photoPicker;
+    // late PhotoPicker photoPicker;
     // photoPicker.value.fold(
     //   (l) => Get.snackbar(
     //     "Process Failed",
@@ -69,10 +69,11 @@ class AddProductController extends GetxController {
     } on Exception catch (e) {
       error = e.toString();
     }
-    print("path ${pickedPhoto!.path}");
+    // print("path ${pickedPhoto!.path}");
     images.value = resultList;
   }
 
+  // Delete Image From UI
   deleteImage(int index) {
     images.removeAt(index);
     update();
@@ -86,7 +87,7 @@ class AddProductController extends GetxController {
         );
   }
 
-// Description Validator
+  // Description Validator
   descriptionValidator() {
     return Description(description: descriptionEditionController.value.text)
         .value
@@ -96,7 +97,7 @@ class AddProductController extends GetxController {
         );
   }
 
-// Price Validator
+  // Price Validator
   priceValidator() {
     return Price(price: priceEditionController.value.text).value.fold(
           (l) => l.msg,
@@ -120,7 +121,7 @@ class AddProductController extends GetxController {
     }
   }
 
-//  Upload Product Details
+  //  Upload Product Details
   Future<void> _uploadProductDetails(docID) async {
     try {
       final filePath =

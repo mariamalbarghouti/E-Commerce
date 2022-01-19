@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -40,3 +39,29 @@ Future<String> whereToGo() async {
     return Routes.HOME;
   }
 }
+
+// "Creates a value object": {
+// 		"prefix": "vobj",
+// 		"body": [
+// 			"class $1 extends ValueObject<$2> {"
+//     ],
+// }
+
+// "Value Object": {
+//         "prefix": "vobj",
+//         "body": [
+//             "class ${1} extends ValueObject<${2}> {",
+//             "  @override",
+//             "  final Either <ValueFailure<${2}>, ${2}> value;",
+
+//             "  factory ${1}(${2} input) {",
+//             "    return ${1}._(",
+//             "      // insert validation",
+//             "    );",
+//             "  }",
+
+//             "  const ${1}._(this.value);",
+//             "}"
+//         ],
+//         "description": "Value Object"
+//     }
