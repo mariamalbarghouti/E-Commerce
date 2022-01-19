@@ -1,14 +1,11 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
@@ -43,21 +40,15 @@ class AddProductController extends GetxController {
 
   // Image Picker
   pickImgFromGallery() async {
-    ImagePicker imagePicker = ImagePicker();
     late PhotoPicker photoPicker;
-    XFile? img = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 85,
-    );
-    photoPicker = PhotoPicker(photo: img!.path);
-    photoPicker.value.fold(
-      (l) => Get.snackbar(
-        "Process Failed",
-        l.msg,
-        snackPosition: SnackPosition.BOTTOM,
-      ),
-      (r) => pickedPhoto = r,
-    );
+    // photoPicker.value.fold(
+    //   (l) => Get.snackbar(
+    //     "Process Failed",
+    //     l.msg,
+    //     snackPosition: SnackPosition.BOTTOM,
+    //   ),
+    //   (r) => pickedPhoto = r,
+    // );
     List<Asset> resultList = <Asset>[];
     String error = 'No Error Detected';
 
@@ -112,13 +103,14 @@ class AddProductController extends GetxController {
           (r) => null,
         );
   }
+
   // Add Product
   addProduct() async {
     if (pickedPhoto != null &&
         (addProductFormKey.currentState?.validate() ?? false)) {
       String docID = FirebaseFirestore.instance.collection('products').doc().id;
       await _uploadProductDetails(docID);
-      await _uploadImage(docID);
+      await _uploadImageToFireSrtorage(docID);
     } else {
       Get.snackbar(
         "Error",
@@ -128,42 +120,33 @@ class AddProductController extends GetxController {
     }
   }
 
-  _uploadProductDetails(docID) async {
+//  Upload Product Details
+  Future<void> _uploadProductDetails(docID) async {
     try {
       final filePath =
           await FlutterAbsolutePath.getAbsolutePath(images[0].identifier ?? "");
       await FirebaseStorage.instance
           .ref('products/$docID')
-          .putFile(File(filePath ?? "")); //File(pickedPhoto!.path));
+          .putFile(File(filePath ?? ""));
     } catch (e) {
-      // e.g, e.code == 'canceled'
       print(e.toString());
     }
   }
-  _uploadImage(docID)async{
-     try {
-        // FirebaseStorage.instance
-        //   .ref('users/products/$docID/')
-        //   .putFile(File(basename(images[0].name??"")));
-        // images[0].name??""
-        // uploadTask.whenComplete(() async {
-        //   url = await FirebaseStorage.instance
-        //       .ref('users/products/$docID/')
-        //       .getDownloadURL();
-        // }).catchError((onError) {
-        //   print(onError);
-        // });
-        await FirebaseFirestore.instance.collection("products").doc(docID).set({
-          "imgUrl": url,
-        }, SetOptions(merge: true));
-        Get.snackbar(
-          "Sucess",
-          "Your Product Is Added",
-          snackPosition: SnackPosition.BOTTOM,
-        );
-        Get.toNamed(Routes.HOME);
-      } catch (e) {
-        print("\n Error $e \n");
-      }
+
+//  Upload Image
+  Future<void> _uploadImageToFireSrtorage(docID) async {
+    try {
+      await FirebaseFirestore.instance.collection("products").doc(docID).set({
+        "imgUrl": url,
+      }, SetOptions(merge: true));
+      Get.snackbar(
+        "Sucess",
+        "Your Product Is Added",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      Get.toNamed(Routes.HOME);
+    } catch (e) {
+      print("\n Error $e \n");
+    }
   }
 }
