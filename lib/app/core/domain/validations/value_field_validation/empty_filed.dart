@@ -6,7 +6,7 @@ Either<AddProductValueFailures, String>emptyValidator( String data) {
   if (data.trim().isEmpty) {
     return left(
       const AddProductValueFailures.empty(
-        msg: "Please Enter Your Data",
+        msg: "This Field Is Empty",
       ),
     );
   } else {

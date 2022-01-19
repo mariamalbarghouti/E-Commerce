@@ -23,14 +23,26 @@ class _$AddProductValueFailuresTearOff {
     );
   }
 
-  _ShortLength shortLenght({required String msg}) {
-    return _ShortLength(
+  _ExceedingLenth exceedingLenth({required String msg}) {
+    return _ExceedingLenth(
+      msg: msg,
+    );
+  }
+
+  _ShortLenth shortLenght({required String msg}) {
+    return _ShortLenth(
       msg: msg,
     );
   }
 
   _InvalidPrice invalidPrice({required String msg}) {
     return _InvalidPrice(
+      msg: msg,
+    );
+  }
+
+  _MultipleLines multipleLines({required String msg}) {
+    return _MultipleLines(
       msg: msg,
     );
   }
@@ -46,44 +58,56 @@ mixin _$AddProductValueFailures {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) empty,
+    required TResult Function(String msg) exceedingLenth,
     required TResult Function(String msg) shortLenght,
     required TResult Function(String msg) invalidPrice,
+    required TResult Function(String msg) multipleLines,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
-    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_ExceedingLenth value) exceedingLenth,
+    required TResult Function(_ShortLenth value) shortLenght,
     required TResult Function(_InvalidPrice value) invalidPrice,
+    required TResult Function(_MultipleLines value) multipleLines,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,8 +221,10 @@ class _$_Empty with DiagnosticableTreeMixin implements _Empty {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) empty,
+    required TResult Function(String msg) exceedingLenth,
     required TResult Function(String msg) shortLenght,
     required TResult Function(String msg) invalidPrice,
+    required TResult Function(String msg) multipleLines,
   }) {
     return empty(msg);
   }
@@ -207,8 +233,10 @@ class _$_Empty with DiagnosticableTreeMixin implements _Empty {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
   }) {
     return empty?.call(msg);
   }
@@ -217,8 +245,10 @@ class _$_Empty with DiagnosticableTreeMixin implements _Empty {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -231,8 +261,10 @@ class _$_Empty with DiagnosticableTreeMixin implements _Empty {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
-    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_ExceedingLenth value) exceedingLenth,
+    required TResult Function(_ShortLenth value) shortLenght,
     required TResult Function(_InvalidPrice value) invalidPrice,
+    required TResult Function(_MultipleLines value) multipleLines,
   }) {
     return empty(this);
   }
@@ -241,8 +273,10 @@ class _$_Empty with DiagnosticableTreeMixin implements _Empty {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
   }) {
     return empty?.call(this);
   }
@@ -251,8 +285,10 @@ class _$_Empty with DiagnosticableTreeMixin implements _Empty {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -273,31 +309,31 @@ abstract class _Empty implements AddProductValueFailures {
 }
 
 /// @nodoc
-abstract class _$ShortLengthCopyWith<$Res>
+abstract class _$ExceedingLenthCopyWith<$Res>
     implements $AddProductValueFailuresCopyWith<$Res> {
-  factory _$ShortLengthCopyWith(
-          _ShortLength value, $Res Function(_ShortLength) then) =
-      __$ShortLengthCopyWithImpl<$Res>;
+  factory _$ExceedingLenthCopyWith(
+          _ExceedingLenth value, $Res Function(_ExceedingLenth) then) =
+      __$ExceedingLenthCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$ShortLengthCopyWithImpl<$Res>
+class __$ExceedingLenthCopyWithImpl<$Res>
     extends _$AddProductValueFailuresCopyWithImpl<$Res>
-    implements _$ShortLengthCopyWith<$Res> {
-  __$ShortLengthCopyWithImpl(
-      _ShortLength _value, $Res Function(_ShortLength) _then)
-      : super(_value, (v) => _then(v as _ShortLength));
+    implements _$ExceedingLenthCopyWith<$Res> {
+  __$ExceedingLenthCopyWithImpl(
+      _ExceedingLenth _value, $Res Function(_ExceedingLenth) _then)
+      : super(_value, (v) => _then(v as _ExceedingLenth));
 
   @override
-  _ShortLength get _value => super._value as _ShortLength;
+  _ExceedingLenth get _value => super._value as _ExceedingLenth;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_ShortLength(
+    return _then(_ExceedingLenth(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -308,8 +344,175 @@ class __$ShortLengthCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
-  const _$_ShortLength({required this.msg});
+class _$_ExceedingLenth
+    with DiagnosticableTreeMixin
+    implements _ExceedingLenth {
+  const _$_ExceedingLenth({required this.msg});
+
+  @override
+  final String msg;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddProductValueFailures.exceedingLenth(msg: $msg)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'AddProductValueFailures.exceedingLenth'))
+      ..add(DiagnosticsProperty('msg', msg));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ExceedingLenth &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ExceedingLenthCopyWith<_ExceedingLenth> get copyWith =>
+      __$ExceedingLenthCopyWithImpl<_ExceedingLenth>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) empty,
+    required TResult Function(String msg) exceedingLenth,
+    required TResult Function(String msg) shortLenght,
+    required TResult Function(String msg) invalidPrice,
+    required TResult Function(String msg) multipleLines,
+  }) {
+    return exceedingLenth(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
+  }) {
+    return exceedingLenth?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
+    required TResult orElse(),
+  }) {
+    if (exceedingLenth != null) {
+      return exceedingLenth(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_ExceedingLenth value) exceedingLenth,
+    required TResult Function(_ShortLenth value) shortLenght,
+    required TResult Function(_InvalidPrice value) invalidPrice,
+    required TResult Function(_MultipleLines value) multipleLines,
+  }) {
+    return exceedingLenth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
+  }) {
+    return exceedingLenth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
+    required TResult orElse(),
+  }) {
+    if (exceedingLenth != null) {
+      return exceedingLenth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExceedingLenth implements AddProductValueFailures {
+  const factory _ExceedingLenth({required String msg}) = _$_ExceedingLenth;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ExceedingLenthCopyWith<_ExceedingLenth> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ShortLenthCopyWith<$Res>
+    implements $AddProductValueFailuresCopyWith<$Res> {
+  factory _$ShortLenthCopyWith(
+          _ShortLenth value, $Res Function(_ShortLenth) then) =
+      __$ShortLenthCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$ShortLenthCopyWithImpl<$Res>
+    extends _$AddProductValueFailuresCopyWithImpl<$Res>
+    implements _$ShortLenthCopyWith<$Res> {
+  __$ShortLenthCopyWithImpl(
+      _ShortLenth _value, $Res Function(_ShortLenth) _then)
+      : super(_value, (v) => _then(v as _ShortLenth));
+
+  @override
+  _ShortLenth get _value => super._value as _ShortLenth;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_ShortLenth(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ShortLenth with DiagnosticableTreeMixin implements _ShortLenth {
+  const _$_ShortLenth({required this.msg});
 
   @override
   final String msg;
@@ -330,7 +533,7 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ShortLength &&
+        (other is _ShortLenth &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -341,15 +544,17 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
 
   @JsonKey(ignore: true)
   @override
-  _$ShortLengthCopyWith<_ShortLength> get copyWith =>
-      __$ShortLengthCopyWithImpl<_ShortLength>(this, _$identity);
+  _$ShortLenthCopyWith<_ShortLenth> get copyWith =>
+      __$ShortLenthCopyWithImpl<_ShortLenth>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) empty,
+    required TResult Function(String msg) exceedingLenth,
     required TResult Function(String msg) shortLenght,
     required TResult Function(String msg) invalidPrice,
+    required TResult Function(String msg) multipleLines,
   }) {
     return shortLenght(msg);
   }
@@ -358,8 +563,10 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
   }) {
     return shortLenght?.call(msg);
   }
@@ -368,8 +575,10 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
     required TResult orElse(),
   }) {
     if (shortLenght != null) {
@@ -382,8 +591,10 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
-    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_ExceedingLenth value) exceedingLenth,
+    required TResult Function(_ShortLenth value) shortLenght,
     required TResult Function(_InvalidPrice value) invalidPrice,
+    required TResult Function(_MultipleLines value) multipleLines,
   }) {
     return shortLenght(this);
   }
@@ -392,8 +603,10 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
   }) {
     return shortLenght?.call(this);
   }
@@ -402,8 +615,10 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
     required TResult orElse(),
   }) {
     if (shortLenght != null) {
@@ -413,14 +628,14 @@ class _$_ShortLength with DiagnosticableTreeMixin implements _ShortLength {
   }
 }
 
-abstract class _ShortLength implements AddProductValueFailures {
-  const factory _ShortLength({required String msg}) = _$_ShortLength;
+abstract class _ShortLenth implements AddProductValueFailures {
+  const factory _ShortLenth({required String msg}) = _$_ShortLenth;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShortLengthCopyWith<_ShortLength> get copyWith =>
+  _$ShortLenthCopyWith<_ShortLenth> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -500,8 +715,10 @@ class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) empty,
+    required TResult Function(String msg) exceedingLenth,
     required TResult Function(String msg) shortLenght,
     required TResult Function(String msg) invalidPrice,
+    required TResult Function(String msg) multipleLines,
   }) {
     return invalidPrice(msg);
   }
@@ -510,8 +727,10 @@ class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
   }) {
     return invalidPrice?.call(msg);
   }
@@ -520,8 +739,10 @@ class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
     TResult Function(String msg)? shortLenght,
     TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
     required TResult orElse(),
   }) {
     if (invalidPrice != null) {
@@ -534,8 +755,10 @@ class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
-    required TResult Function(_ShortLength value) shortLenght,
+    required TResult Function(_ExceedingLenth value) exceedingLenth,
+    required TResult Function(_ShortLenth value) shortLenght,
     required TResult Function(_InvalidPrice value) invalidPrice,
+    required TResult Function(_MultipleLines value) multipleLines,
   }) {
     return invalidPrice(this);
   }
@@ -544,8 +767,10 @@ class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
   }) {
     return invalidPrice?.call(this);
   }
@@ -554,8 +779,10 @@ class _$_InvalidPrice with DiagnosticableTreeMixin implements _InvalidPrice {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
-    TResult Function(_ShortLength value)? shortLenght,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
     TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
     required TResult orElse(),
   }) {
     if (invalidPrice != null) {
@@ -573,5 +800,170 @@ abstract class _InvalidPrice implements AddProductValueFailures {
   @override
   @JsonKey(ignore: true)
   _$InvalidPriceCopyWith<_InvalidPrice> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$MultipleLinesCopyWith<$Res>
+    implements $AddProductValueFailuresCopyWith<$Res> {
+  factory _$MultipleLinesCopyWith(
+          _MultipleLines value, $Res Function(_MultipleLines) then) =
+      __$MultipleLinesCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$MultipleLinesCopyWithImpl<$Res>
+    extends _$AddProductValueFailuresCopyWithImpl<$Res>
+    implements _$MultipleLinesCopyWith<$Res> {
+  __$MultipleLinesCopyWithImpl(
+      _MultipleLines _value, $Res Function(_MultipleLines) _then)
+      : super(_value, (v) => _then(v as _MultipleLines));
+
+  @override
+  _MultipleLines get _value => super._value as _MultipleLines;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_MultipleLines(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_MultipleLines with DiagnosticableTreeMixin implements _MultipleLines {
+  const _$_MultipleLines({required this.msg});
+
+  @override
+  final String msg;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddProductValueFailures.multipleLines(msg: $msg)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'AddProductValueFailures.multipleLines'))
+      ..add(DiagnosticsProperty('msg', msg));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _MultipleLines &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$MultipleLinesCopyWith<_MultipleLines> get copyWith =>
+      __$MultipleLinesCopyWithImpl<_MultipleLines>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) empty,
+    required TResult Function(String msg) exceedingLenth,
+    required TResult Function(String msg) shortLenght,
+    required TResult Function(String msg) invalidPrice,
+    required TResult Function(String msg) multipleLines,
+  }) {
+    return multipleLines(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
+  }) {
+    return multipleLines?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? empty,
+    TResult Function(String msg)? exceedingLenth,
+    TResult Function(String msg)? shortLenght,
+    TResult Function(String msg)? invalidPrice,
+    TResult Function(String msg)? multipleLines,
+    required TResult orElse(),
+  }) {
+    if (multipleLines != null) {
+      return multipleLines(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_ExceedingLenth value) exceedingLenth,
+    required TResult Function(_ShortLenth value) shortLenght,
+    required TResult Function(_InvalidPrice value) invalidPrice,
+    required TResult Function(_MultipleLines value) multipleLines,
+  }) {
+    return multipleLines(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
+  }) {
+    return multipleLines?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ExceedingLenth value)? exceedingLenth,
+    TResult Function(_ShortLenth value)? shortLenght,
+    TResult Function(_InvalidPrice value)? invalidPrice,
+    TResult Function(_MultipleLines value)? multipleLines,
+    required TResult orElse(),
+  }) {
+    if (multipleLines != null) {
+      return multipleLines(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MultipleLines implements AddProductValueFailures {
+  const factory _MultipleLines({required String msg}) = _$_MultipleLines;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$MultipleLinesCopyWith<_MultipleLines> get copyWith =>
       throw _privateConstructorUsedError;
 }
