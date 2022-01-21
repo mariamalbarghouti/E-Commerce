@@ -20,6 +20,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message?.contains('PERMISSION_DENIED') ?? false) {
+        print("PERMISSION_DENIED ${e.message}");
         return left(const AddProductServerFailures.permissionsDenied());
       } else {
         // TODO read the documentation about return error from server

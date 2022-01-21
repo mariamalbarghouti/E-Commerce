@@ -18,10 +18,12 @@ class _$ProductTearOff {
   const _$ProductTearOff();
 
   _Product call(
-      {required ProductTitle title,
+      {required String id,
+      required ProductTitle title,
       required Price price,
       required Description description}) {
     return _Product(
+      id: id,
       title: title,
       price: price,
       description: description,
@@ -34,7 +36,7 @@ const $Product = _$ProductTearOff();
 
 /// @nodoc
 mixin _$Product {
-// TODO UUID
+  String get id => throw _privateConstructorUsedError;
   ProductTitle get title => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
   Description get description => throw _privateConstructorUsedError;
@@ -47,7 +49,8 @@ mixin _$Product {
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
-  $Res call({ProductTitle title, Price price, Description description});
+  $Res call(
+      {String id, ProductTitle title, Price price, Description description});
 }
 
 /// @nodoc
@@ -60,11 +63,16 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -86,7 +94,8 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$ProductCopyWith(_Product value, $Res Function(_Product) then) =
       __$ProductCopyWithImpl<$Res>;
   @override
-  $Res call({ProductTitle title, Price price, Description description});
+  $Res call(
+      {String id, ProductTitle title, Price price, Description description});
 }
 
 /// @nodoc
@@ -100,11 +109,16 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
   }) {
     return _then(_Product(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -125,10 +139,15 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
 class _$_Product extends _Product {
   const _$_Product(
-      {required this.title, required this.price, required this.description})
+      {required this.id,
+      required this.title,
+      required this.price,
+      required this.description})
       : super._();
 
-  @override // TODO UUID
+  @override
+  final String id;
+  @override
   final ProductTitle title;
   @override
   final Price price;
@@ -137,13 +156,15 @@ class _$_Product extends _Product {
 
   @override
   String toString() {
-    return 'Product(title: $title, price: $price, description: $description)';
+    return 'Product(id: $id, title: $title, price: $price, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Product &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.price, price) ||
@@ -156,6 +177,7 @@ class _$_Product extends _Product {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(description);
@@ -168,12 +190,15 @@ class _$_Product extends _Product {
 
 abstract class _Product extends Product {
   const factory _Product(
-      {required ProductTitle title,
+      {required String id,
+      required ProductTitle title,
       required Price price,
       required Description description}) = _$_Product;
   const _Product._() : super._();
 
-  @override // TODO UUID
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
   ProductTitle get title => throw _privateConstructorUsedError;
   @override
   Price get price => throw _privateConstructorUsedError;

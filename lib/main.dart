@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // initializing firebase
   await Firebase.initializeApp();
-   Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
+  //  Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
     Get.put<FirebaseFirestore>( FirebaseFirestore.instance,permanent: true);
     // Get.lazyPut<FirebaseStorage>( FirebaseStorage.instance, fenix: true);
   // where to go

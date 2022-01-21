@@ -130,32 +130,29 @@ class AddProductController extends GetxController {
   //   }
   // }
   addProduct() async {
-    // GuSRhcccqwviwfqVMNnt
-    //  var x= FirebaseFirestore.instance.productUuid;
-    //  FirebaseFirestore x= Get.find<FirebaseFirestore>();
-     print("X ${Get.find<FirebaseFirestore>().productUuid}");
-    // if (addProductFormKey.currentState?.validate() ?? false) 
-    // {
-    //   // String docID = FirebaseFirestore.instance.collection('products').doc().id;
-    //   // await _uploadProductDetails(docID);
-    //   // await _uploadFireStore(docID);
-    //   // await _uploadImageToFireSrtorage(docID);
+    if (addProductFormKey.currentState?.validate() ?? false) 
+    {
+      // String docID = FirebaseFirestore.instance.collection('products').doc().id;
+      // await _uploadProductDetails(docID);
+      // await _uploadFireStore(docID);
+      // await _uploadImageToFireSrtorage(docID);
     //   print("X $x");
-    //   productRepo.createProduct(
-    //     product: Product(
-    //       title: ProductTitle(title: titleEditionController.value.text),
-    //       price: Price(price: priceEditionController.value.text),
-    //       description:
-    //           Description(description: descriptionEditionController.value.text),
-    //     ),
-    //   );
-    // } else {
-    //   Get.snackbar(
-    //     "Error",
-    //     "Please Enter All Your Data",
-    //     snackPosition: SnackPosition.BOTTOM,
-    //   );
-    // }
+      productRepo.createProduct(
+        product: Product(
+          id: Get.find<FirebaseFirestore>().productUuid,
+          title: ProductTitle(title: titleEditionController.value.text),
+          price: Price(price: priceEditionController.value.text),
+          description:
+              Description(description: descriptionEditionController.value.text),
+        ),
+      );
+    } else {
+      Get.snackbar(
+        "Error",
+        "Please Enter All Your Data",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 
   //  Upload Product Details

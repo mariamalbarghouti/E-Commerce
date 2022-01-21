@@ -14,6 +14,7 @@ part 'add_product_tdo.g.dart';
 @freezed
 abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
+     @JsonKey(ignore: true) @Default("") String id,
     required String title,
     // not String Because It's
     // better for db storage
@@ -24,13 +25,15 @@ abstract class ProductDTO with _$ProductDTO {
 
   // Convert Peoduct to Product DTO
   factory ProductDTO.fromDomain({required Product product}) {
-    // dynamic x="";
     return ProductDTO(
+      id: product.id,
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),
     );
   }
+  // 
+  // from Json 
   factory ProductDTO.fromJson(Map<String, dynamic> json) =>
       _$ProductDTOFromJson(json);
 }
@@ -38,6 +41,7 @@ abstract class ProductDTO with _$ProductDTO {
 extension ProductDTOX on ProductDTO {
   Product toDomain() {
     return Product(
+      id: id,
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),
