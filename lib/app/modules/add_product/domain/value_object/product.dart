@@ -17,13 +17,13 @@ abstract class Product implements _$Product {
     required ProductTitle title,
     required Price price,
     required Description description,
-    required ListOf5<Asset> pickedImages,
+    // required ListOf5<Asset> pickedImages,
   }) = _Product;
   Option<AddProductValueFailures> get failureOption {
     return title.value
         .andThen(price.value)
         .andThen(description.value)
-        .andThen(pickedImages.value)
+        // .andThen(pickedImages.value)
         .fold((l) => some(l), (r) => none());
   }
 }

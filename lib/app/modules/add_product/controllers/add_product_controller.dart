@@ -6,14 +6,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/routes/app_pages.dart';
 import 'package:path/path.dart';
 
 // Add Product Controller
 class AddProductController extends GetxController {
+  AddProductController(this.productRepo);
+  final IProductRepo productRepo;
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
   late Rx<TextEditingController> titleEditionController;
@@ -105,12 +109,44 @@ class AddProductController extends GetxController {
   }
 
   // Add Product
+  // addProduct() async {
+  //   print("pickedPhoto $pickedPhoto");
+  //   if //(
+  //     // pickedPhoto != null &&
+  //       (addProductFormKey.currentState?.validate() ?? false)//)
+  //        {
+  //     String docID = FirebaseFirestore.instance.collection('products').doc().id;
+
+  //     await _uploadProductDetails(docID);
+  //     await _uploadFireStore(docID);
+  //     await _uploadImageToFireSrtorage(docID);
+  //   } else {
+  //     Get.snackbar(
+  //       "Error",
+  //       "Please Enter All Your Data",
+  //       snackPosition: SnackPosition.BOTTOM,
+  //     );
+  //   }
+  // }
   addProduct() async {
-    if (pickedPhoto != null &&
-        (addProductFormKey.currentState?.validate() ?? false)) {
+    print("pickedPhoto $pickedPhoto");
+    if //(
+        // pickedPhoto != null &&
+        (addProductFormKey.currentState?.validate() ?? false) //)
+    {
       String docID = FirebaseFirestore.instance.collection('products').doc().id;
-      await _uploadProductDetails(docID);
-      await _uploadImageToFireSrtorage(docID);
+
+      // await _uploadProductDetails(docID);
+      // await _uploadFireStore(docID);
+      // await _uploadImageToFireSrtorage(docID);
+      productRepo.createProduct(
+        product: Product(
+          title: ProductTitle(title: titleEditionController.value.text),
+          price: Price(price: priceEditionController.value.text),
+          description:
+              Description(description: descriptionEditionController.value.text),
+        ),
+      );
     } else {
       Get.snackbar(
         "Error",
@@ -130,6 +166,19 @@ class AddProductController extends GetxController {
           .putFile(File(filePath ?? ""));
     } catch (e) {
       print(e.toString());
+    }
+  }
+  // TODO put user id
+
+  Future<void> _uploadFireStore(docID) async {
+    try {
+      await FirebaseFirestore.instance.collection("products").doc(docID).set({
+        "title": titleEditionController.value.text,
+        "price": priceEditionController.value.text,
+        "description": descriptionEditionController.value.text,
+      });
+    } catch (e) {
+      print("\n Error $e \n");
     }
   }
 
