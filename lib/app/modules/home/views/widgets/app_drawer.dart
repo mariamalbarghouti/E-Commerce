@@ -16,7 +16,7 @@ class AppDrawerWidget extends GetView<AppDrawerController> {
           children: [
             // Add Post
             TextButton(
-              onPressed: () =>Get.toNamed(Routes.ADD_POST),
+              onPressed: () =>Get.toNamed(Routes.ADD_PRODUCT),
               child: const Text("Add Post"),
             ),
             // Sign Out Button 

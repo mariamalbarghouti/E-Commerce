@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../modules/add_product/bindings/add_post_binding.dart';
 import '../modules/add_product/views/add_product_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -7,7 +8,6 @@ import '../modules/sign_in/bindings/registration_binding.dart';
 import '../modules/sign_in/views/sign_in_view.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
 import '../modules/sign_up/views/sign_up_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -38,5 +38,6 @@ class AppPages {
       page: () => const AddProductView(),
       binding: AddPostBinding(),
     ),
+   
   ];
 }

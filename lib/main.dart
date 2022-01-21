@@ -1,5 +1,8 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trail/core/logger_mixin.dart';
@@ -12,6 +15,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // initializing firebase
   await Firebase.initializeApp();
+   Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
+    Get.put<FirebaseFirestore>( FirebaseFirestore.instance,permanent: true);
+    // Get.lazyPut<FirebaseStorage>( FirebaseStorage.instance, fenix: true);
   // where to go
   String _whereRoGo = await whereToGo();
   // run app
@@ -19,7 +25,8 @@ void main() async {
     GetMaterialApp(
       title: "Application",
       // initialRoute: _whereRoGo,
-      initialRoute: Routes.ADD_POST,
+      // initialRoute: Routes.SPLASH_SCREEN,
+      initialRoute: Routes.ADD_PRODUCT,
       debugShowCheckedModeBanner: false,
       enableLog: true,
       logWriterCallback: Logger.write,

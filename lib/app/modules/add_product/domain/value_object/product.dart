@@ -13,7 +13,7 @@ part 'product.freezed.dart';
 abstract class Product implements _$Product {
   const Product._();
   const factory Product({
-    // TODO UUID
+    
     required ProductTitle title,
     required Price price,
     required Description description,

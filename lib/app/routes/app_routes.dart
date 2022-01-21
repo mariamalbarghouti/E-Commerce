@@ -5,8 +5,9 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const SIGN_IN = _Paths.SIGN_IN;
-  static const ADD_POST = _Paths.ADD_PRODUCT;
+  static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
   static const SIGN_UP = _Paths.SIGN_UP;
+  // static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
 }
 
 abstract class _Paths {

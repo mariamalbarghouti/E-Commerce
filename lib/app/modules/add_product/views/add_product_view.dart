@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trail/app/modules/add_product/views/widgets/add_products_body.dart';
+import 'package:trail/app/routes/app_pages.dart';
 
 
 // Add Product
@@ -14,7 +16,12 @@ class AddProductView extends StatelessWidget{
         centerTitle: true,
       ),
       // Body
-      body: const AddProductsBody(),
+      body: Column(
+        children: [
+          const AddProductsBody(),
+          TextButton(onPressed: ()=>Get.offAllNamed(Routes.HOME), child: Text("clickMe"))
+        ],
+      ),
     );
   }
 }

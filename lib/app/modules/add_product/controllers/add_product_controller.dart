@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -129,31 +130,32 @@ class AddProductController extends GetxController {
   //   }
   // }
   addProduct() async {
-    // print("pickedPhoto ${Price(price:priceEditionController.value.text ).getOrCrash()}");
-    if //(
-        // pickedPhoto != null &&
-        (addProductFormKey.currentState?.validate() ?? false) //)
-    {
-      String docID = FirebaseFirestore.instance.collection('products').doc().id;
-
-      // await _uploadProductDetails(docID);
-      // await _uploadFireStore(docID);
-      // await _uploadImageToFireSrtorage(docID);
-      productRepo.createProduct(
-        product: Product(
-          title: ProductTitle(title: titleEditionController.value.text),
-          price:  Price(price: priceEditionController.value.text),
-          description:
-              Description(description: descriptionEditionController.value.text),
-        ),
-      );
-    } else {
-      Get.snackbar(
-        "Error",
-        "Please Enter All Your Data",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
+    // GuSRhcccqwviwfqVMNnt
+    //  var x= FirebaseFirestore.instance.productUuid;
+    //  FirebaseFirestore x= Get.find<FirebaseFirestore>();
+     print("X ${Get.find<FirebaseFirestore>().productUuid}");
+    // if (addProductFormKey.currentState?.validate() ?? false) 
+    // {
+    //   // String docID = FirebaseFirestore.instance.collection('products').doc().id;
+    //   // await _uploadProductDetails(docID);
+    //   // await _uploadFireStore(docID);
+    //   // await _uploadImageToFireSrtorage(docID);
+    //   print("X $x");
+    //   productRepo.createProduct(
+    //     product: Product(
+    //       title: ProductTitle(title: titleEditionController.value.text),
+    //       price: Price(price: priceEditionController.value.text),
+    //       description:
+    //           Description(description: descriptionEditionController.value.text),
+    //     ),
+    //   );
+    // } else {
+    //   Get.snackbar(
+    //     "Error",
+    //     "Please Enter All Your Data",
+    //     snackPosition: SnackPosition.BOTTOM,
+    //   );
+    // }
   }
 
   //  Upload Product Details
