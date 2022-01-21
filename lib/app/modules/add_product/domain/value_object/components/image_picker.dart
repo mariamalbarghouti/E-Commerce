@@ -19,14 +19,14 @@ import 'package:trail/app/modules/add_product/domain/failures/value_object_failu
 import 'package:trail/app/modules/add_product/domain/validation/image_picker_validator.dart';
 
 // Picked Images List
-class List5<T> extends ValueObject<AddProductValueFailures,List<T>>{
-  List5._(this.value);
+class ListOf5<T> extends ValueObject<AddProductValueFailures,List<T>>{
+  ListOf5._(this.value);
   static const maxLength=5;
   @override
   Either<AddProductValueFailures, List<T>>  value;
   // List Length Validator
-  factory List5({required List<T> listOfPickedImages}){
-    return List5._(imagePickerValidator<T>(maxLength:maxLength ,ImagesList: listOfPickedImages));
+  factory ListOf5({required List<T> listOfPickedImages}){
+    return ListOf5._(imagePickerValidator<T>(maxLength:maxLength ,ImagesList: listOfPickedImages));
   }
   // List Length
   // 0 is empty or more than 5

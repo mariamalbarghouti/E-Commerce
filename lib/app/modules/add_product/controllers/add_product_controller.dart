@@ -6,10 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/description.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/image_picker.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/price.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/title.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/routes/app_pages.dart';
 import 'package:path/path.dart';
 
@@ -122,7 +121,7 @@ class AddProductController extends GetxController {
   }
 
   //  Upload Product Details
-  Future<void> _uploadProductDetails(docID) async {
+  Future<void> _uploadImageToFireSrtorage(docID) async {
     try {
       final filePath =
           await FlutterAbsolutePath.getAbsolutePath(images[0].identifier ?? "");
@@ -135,7 +134,7 @@ class AddProductController extends GetxController {
   }
 
 //  Upload Image
-  Future<void> _uploadImageToFireSrtorage(docID) async {
+  Future<void> _uploadProductDetails(docID) async {
     try {
       await FirebaseFirestore.instance.collection("products").doc(docID).set({
         "imgUrl": url,
