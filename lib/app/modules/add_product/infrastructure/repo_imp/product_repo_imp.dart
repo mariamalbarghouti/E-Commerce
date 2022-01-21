@@ -6,7 +6,9 @@ import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
 
-class ProductRepo implements IProductRepo {
+// Implementing Prodiuct Repository 
+// With Firebase
+class ProductRepoFirebaseImp implements IProductRepo {
   @override
   Future<Either<AddProductServerFailures, Unit>> createProduct(
       {required Product product}) async {
@@ -14,12 +16,10 @@ class ProductRepo implements IProductRepo {
       ProductDTO _productDTO = ProductDTO.fromDomain(product: product);
       await FirebaseFirestore.instance
           .collection("products")
-          .doc("")
-          .set(_productDTO.toJson());
-         return right(unit);
-      
+          .add(_productDTO.toJson());
+      return right(unit);
     } on PlatformException catch (e) {
-      if (e.message?.contains('PERMISSION_DENIED')??false) {
+      if (e.message?.contains('PERMISSION_DENIED') ?? false) {
         return left(const AddProductServerFailures.permissionsDenied());
       } else {
         // TODO read the documentation about return error from server

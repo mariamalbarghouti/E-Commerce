@@ -15,18 +15,20 @@ part 'add_product_tdo.g.dart';
 abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
     required String title,
-    // TODOO get is as num to see if it is okay or crash
-    required String price,
+    // not String Because It's
+    // better for db storage
+    required num price,
     required String description,
     // required List<Asset> pickedImages,
   }) = _ProductDTO;
 
   // Convert Peoduct to Product DTO
   factory ProductDTO.fromDomain({required Product product}) {
+    // dynamic x="";
     return ProductDTO(
       title: product.title.getOrCrash(),
-      price: product.price.getOrCrash(),
-      description: product.price.getOrCrash(),
+      price: num.parse(product.price.getOrCrash()),
+      description: product.description.getOrCrash(),
     );
   }
   factory ProductDTO.fromJson(Map<String, dynamic> json) =>
@@ -37,7 +39,7 @@ extension ProductDTOX on ProductDTO {
   Product toDomain() {
     return Product(
       title: ProductTitle(title: title),
-      price: Price(price: price),
+      price: Price(price: price.toString()),
       description: Description(description: description),
       //  pickedImages: ListOf5(listOfPickedImages: []),
     );

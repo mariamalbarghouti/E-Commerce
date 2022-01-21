@@ -129,7 +129,7 @@ class AddProductController extends GetxController {
   //   }
   // }
   addProduct() async {
-    print("pickedPhoto $pickedPhoto");
+    // print("pickedPhoto ${Price(price:priceEditionController.value.text ).getOrCrash()}");
     if //(
         // pickedPhoto != null &&
         (addProductFormKey.currentState?.validate() ?? false) //)
@@ -142,7 +142,7 @@ class AddProductController extends GetxController {
       productRepo.createProduct(
         product: Product(
           title: ProductTitle(title: titleEditionController.value.text),
-          price: Price(price: priceEditionController.value.text),
+          price:  Price(price: priceEditionController.value.text),
           description:
               Description(description: descriptionEditionController.value.text),
         ),

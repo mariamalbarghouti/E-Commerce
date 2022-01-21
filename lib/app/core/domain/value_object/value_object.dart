@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/core/error/error.dart';
 
+
 abstract class ValueObject<T,M> {
   Either<T, M> get value;
   getOrCrash(){
-    return value.fold((l) => throw UnhandledError(), (r) => r);
+    return value.fold((l) => throw UnexpectedValueError(failure: l), (r) => r);
   }
 
   getOrElse(dflt){

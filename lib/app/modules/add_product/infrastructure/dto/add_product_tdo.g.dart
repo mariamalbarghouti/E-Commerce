@@ -9,7 +9,7 @@ part of 'add_product_tdo.dart';
 _$_ProductDTO _$$_ProductDTOFromJson(Map<String, dynamic> json) =>
     _$_ProductDTO(
       title: json['title'] as String,
-      price: json['price'] as String,
+      price: json['price'] as num,
       description: json['description'] as String,
     );
 

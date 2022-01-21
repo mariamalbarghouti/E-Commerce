@@ -23,7 +23,7 @@ class _$ProductDTOTearOff {
 
   _ProductDTO call(
       {required String title,
-      required String price,
+      required num price,
       required String description}) {
     return _ProductDTO(
       title: title,
@@ -43,8 +43,9 @@ const $ProductDTO = _$ProductDTOTearOff();
 /// @nodoc
 mixin _$ProductDTO {
   String get title =>
-      throw _privateConstructorUsedError; // TODOO get is as num to see if it is okay or crash
-  String get price => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // not String Because It's
+// better for db storage
+  num get price => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,7 +59,7 @@ abstract class $ProductDTOCopyWith<$Res> {
   factory $ProductDTOCopyWith(
           ProductDTO value, $Res Function(ProductDTO) then) =
       _$ProductDTOCopyWithImpl<$Res>;
-  $Res call({String title, String price, String description});
+  $Res call({String title, num price, String description});
 }
 
 /// @nodoc
@@ -83,7 +84,7 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -98,7 +99,7 @@ abstract class _$ProductDTOCopyWith<$Res> implements $ProductDTOCopyWith<$Res> {
           _ProductDTO value, $Res Function(_ProductDTO) then) =
       __$ProductDTOCopyWithImpl<$Res>;
   @override
-  $Res call({String title, String price, String description});
+  $Res call({String title, num price, String description});
 }
 
 /// @nodoc
@@ -125,7 +126,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -145,8 +146,9 @@ class _$_ProductDTO implements _ProductDTO {
 
   @override
   final String title;
-  @override // TODOO get is as num to see if it is okay or crash
-  final String price;
+  @override // not String Because It's
+// better for db storage
+  final num price;
   @override
   final String description;
 
@@ -189,7 +191,7 @@ class _$_ProductDTO implements _ProductDTO {
 abstract class _ProductDTO implements ProductDTO {
   factory _ProductDTO(
       {required String title,
-      required String price,
+      required num price,
       required String description}) = _$_ProductDTO;
 
   factory _ProductDTO.fromJson(Map<String, dynamic> json) =
@@ -197,8 +199,9 @@ abstract class _ProductDTO implements ProductDTO {
 
   @override
   String get title => throw _privateConstructorUsedError;
-  @override // TODOO get is as num to see if it is okay or crash
-  String get price => throw _privateConstructorUsedError;
+  @override // not String Because It's
+// better for db storage
+  num get price => throw _privateConstructorUsedError;
   @override
   String get description => throw _privateConstructorUsedError;
   @override
