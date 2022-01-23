@@ -18,7 +18,7 @@ class _$ProductTearOff {
   const _$ProductTearOff();
 
   _Product call(
-      {required String id,
+      {String? id,
       required ProductTitle title,
       required Price price,
       required Description description}) {
@@ -36,7 +36,7 @@ const $Product = _$ProductTearOff();
 
 /// @nodoc
 mixin _$Product {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   ProductTitle get title => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
   Description get description => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
   $Res call(
-      {String id, ProductTitle title, Price price, Description description});
+      {String? id, ProductTitle title, Price price, Description description});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$ProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id, ProductTitle title, Price price, Description description});
+      {String? id, ProductTitle title, Price price, Description description});
 }
 
 /// @nodoc
@@ -118,7 +118,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -139,14 +139,14 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
 class _$_Product extends _Product {
   const _$_Product(
-      {required this.id,
+      {this.id,
       required this.title,
       required this.price,
       required this.description})
       : super._();
 
   @override
-  final String id;
+  final String? id;
   @override
   final ProductTitle title;
   @override
@@ -190,14 +190,14 @@ class _$_Product extends _Product {
 
 abstract class _Product extends Product {
   const factory _Product(
-      {required String id,
+      {String? id,
       required ProductTitle title,
       required Price price,
       required Description description}) = _$_Product;
   const _Product._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @override
   ProductTitle get title => throw _privateConstructorUsedError;
   @override

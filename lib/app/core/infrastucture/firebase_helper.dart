@@ -6,13 +6,20 @@ import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.d
 // Firebase helper
 extension FirebaseX on FirebaseFirestore {
   // User Collection
+  // var x="";
   CollectionReference get userCollection => collection("users");
   // Products Collection
   CollectionReference get productsCollection => collection("products");
   // Products uuid
-  String get productUuid => productsCollection.id;
+  // String get productUuid => collection("products").doc().id;
+  //  String uuid({required String collectionPath}) {
+  //    return collection(collectionPath).doc().id;
+  //  }
+  /// Product Document generate 
+  /// [productCollection]NDA[uuid]
+  //  DocumentReference<Map<String, dynamic>> get productDocument => doc("${productsCollection.path}/$productUuid");
   // User Document
-  Future<DocumentReference> get userDocument async {
+  Future<DocumentReference<Object?>> get userDocument async {
     return FirebaseFirestore.instance.userCollection.doc(await userID);
   }
 

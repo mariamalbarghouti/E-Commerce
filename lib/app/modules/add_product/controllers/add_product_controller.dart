@@ -140,10 +140,7 @@ class AddProductController extends GetxController {
       await productRepo
           .createProduct(
             product: Product(
-              // TODO uncomment
-              //!!!!!!!!!!
-              id: Get.find<FirebaseFirestore>().productUuid,
-              // id:"s",
+              // id: Get.find<FirebaseFirestore>().productUuid,
               title: ProductTitle(title: titleEditionController.value.text),
               price: Price(price: priceEditionController.value.text),
               description: Description(

@@ -27,7 +27,7 @@ abstract class ProductDTO with _$ProductDTO {
   // Convert Peoduct to Product DTO
   factory ProductDTO.fromDomain({required Product product}) {
     return ProductDTO(
-      id: product.id,
+      // id: product.id!,
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),

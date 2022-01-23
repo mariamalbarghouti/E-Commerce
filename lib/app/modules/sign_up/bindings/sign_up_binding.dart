@@ -9,11 +9,9 @@ class SignUpBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ISignUpRepository>(() => SignUpFirebaseRepositoryImp());
-    // Get.lazyPut<SignedInUserService>(() => SignedInUserService());
     Get.lazyPut<SignUpController>(
       () => SignUpController(
         signUpRepository: Get.find(),
-        // getSignedInUserService: Get.find(),
       ),
     );
   }
