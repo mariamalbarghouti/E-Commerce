@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -12,19 +11,18 @@ import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo
 // Implementing Prodiuct Repository
 // With Firebase
 class ProductRepoFirebaseImp implements IProductRepo {
+  final _firebaseFirestore = Get.find<FirebaseFirestore>();
   // Create Product Firebase Implementation
   @override
   Future<Either<AddProductServerFailures, Unit>> createProduct({
     required Product product,
   }) async {
-    ProductDTO _productDTO = ProductDTO.fromDomain(product: product);
+    ProductDTO _productDTO = ProductDTO.fromDomain(
+      product: product,
+      uid: await _firebaseFirestore.userID,
+    );
     try {
-      // DocumentReference<Object?> docRef=
-      await Get.find<FirebaseFirestore>()
-          .productsCollection
-          .add(_productDTO.toJson());
-
-      // print("docRef.id ${ docRef.id}");
+      await _firebaseFirestore.productsCollection.add(_productDTO.toJson());
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {

@@ -16,6 +16,7 @@ part 'add_product_tdo.g.dart';
 abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
     @JsonKey(ignore: true) @Default("") String id,
+    String?  uid,
     required String title,
     // not String Because It's
     // better for db storage
@@ -25,9 +26,10 @@ abstract class ProductDTO with _$ProductDTO {
   }) = _ProductDTO;
 
   // Convert Peoduct to Product DTO
-  factory ProductDTO.fromDomain({required Product product}) {
+  factory ProductDTO.fromDomain({required Product product,required String? uid}) {
     return ProductDTO(
       // id: product.id!,
+      uid: uid,
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),

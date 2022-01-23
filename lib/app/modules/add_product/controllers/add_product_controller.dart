@@ -137,14 +137,26 @@ class AddProductController extends GetxController {
       // await _uploadFireStore(docID);
       // await _uploadImageToFireSrtorage(docID);
       //   print("X $x");
-      await productRepo
+     await _uploadProductInfoToFireStore();
+    } else {
+      Get.snackbar(
+        "Error",
+        "Please Enter All Your Data",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+  // 
+  Future<void>_uploadProductInfoToFireStore()async{
+    return await productRepo
           .createProduct(
             product: Product(
               // id: Get.find<FirebaseFirestore>().productUuid,
               title: ProductTitle(title: titleEditionController.value.text),
               price: Price(price: priceEditionController.value.text),
               description: Description(
-                  description: descriptionEditionController.value.text),
+                description: descriptionEditionController.value.text,
+              ),
             ),
           )
           .then((value) => value.fold((AddProductServerFailures l) {
@@ -161,13 +173,6 @@ class AddProductController extends GetxController {
                 );
                 Get.offNamed(Routes.HOME);
               }));
-    } else {
-      Get.snackbar(
-        "Error",
-        "Please Enter All Your Data",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
   }
 
   //  Upload Product Details

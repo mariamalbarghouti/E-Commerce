@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/core/error/authentication_error.dart';
 import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
@@ -25,12 +26,7 @@ extension FirebaseX on FirebaseFirestore {
 
   /// The user must be already authenticated when calling this method.
   /// Otherwise, throws NotAuthenticatedError.
-  Future<String> get userID async {
-    return await Get.find<ISignInRepoitory>().getSignedInUserID().then(
-          (value) => value.fold(
-            () => throw AuthenticationError(),
-            (a) => a,
-          ),
-        );
+  Future<String?> get userID async {
+    return  Get.find<FirebaseAuth>().currentUser?.uid;
   }
 }

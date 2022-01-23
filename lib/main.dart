@@ -19,15 +19,16 @@ void main() async {
   await Firebase.initializeApp();
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
-  // Get.lazyPut<FirebaseStorage>( FirebaseStorage.instance, fenix: true);
   // where to go
-  String _whereRoGo = await whereToGo();
+  // String _whereRoGo = await whereToGo();
   // FirebaseCrashlytics.instance.crash();
   // run app
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: _whereRoGo,
+      initialRoute: (Get.find<FirebaseAuth>().currentUser?.uid == null)
+          ? Routes.SIGN_IN
+          : Routes.HOME,
       // initialRoute: Routes.SPLASH_SCREEN,
       // initialRoute: Routes.ADD_PRODUCT,
       // initialRoute: Routes.SIGN_IN,
@@ -44,9 +45,11 @@ void main() async {
 /// else
 /// sign Up
 Future<String> whereToGo() async {
-  return await Get.put(FirebaseSignInRepoImp())
-      .getSignedInUserID()
-      .then((value) => value.fold(() => Routes.SIGN_IN, (a) => Routes.HOME));
+  if (Get.find<FirebaseAuth>().currentUser?.uid == null) {
+    return Routes.SIGN_IN;
+  } else {
+    return Routes.HOME;
+  }
 }
 
 // "Creates a value object": {
