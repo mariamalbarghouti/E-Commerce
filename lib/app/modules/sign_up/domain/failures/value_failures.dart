@@ -11,4 +11,5 @@ abstract class SignUpValueFailures with _$SignUpValueFailures {
       _EnterAValidName;
   const factory SignUpValueFailures.passwordDoesNotMath({required String msg}) =
       _PasswordDoesNotMath;
+  const factory SignUpValueFailures.nullUser({required String msg}) = _NullUser;
 }

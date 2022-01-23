@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_in/domain/failures/server_failures.dart';
@@ -7,18 +8,28 @@ import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
 
 // Sign In Repository Implementation
-// TODO make firebase singleton
 class FirebaseSignInRepoImp extends ISignInRepoitory {
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth =Get.find();
+  
+  // TODO
+  // i think i have to return right and left
+  // to handle the issues if uid is null
+  // TODO daeling with it in UI
+  @override
+  Future<Option<String>> getSignedInUserID() async {
+    return optionOf(_firebaseAuth.currentUser?.uid);
+  }
+
+  // Sign In With Email And Password
   @override
   Future<Either<SignInServerFailures, Unit>> signInWithEnailAndPassword({
     required Email email,
     required Password password,
   }) async {
     try {
-      return await firebaseAuth
+      return await _firebaseAuth
           .signInWithEmailAndPassword(
+            // TODO Why get or else
             email: email.getOrElse(() => "Invalid Email"),
             password: password.getOrElse(() => "Invalide Password"),
           )

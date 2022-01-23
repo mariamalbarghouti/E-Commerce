@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
@@ -14,7 +15,7 @@ part 'add_product_tdo.g.dart';
 @freezed
 abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
-     @JsonKey(ignore: true) @Default("") String id,
+    @JsonKey(ignore: true) @Default("") String id,
     required String title,
     // not String Because It's
     // better for db storage
@@ -32,8 +33,13 @@ abstract class ProductDTO with _$ProductDTO {
       description: product.description.getOrCrash(),
     );
   }
-  // 
-  // from Json 
+  // Fetching Data From DB
+  factory ProductDTO.fromFireStore(DocumentSnapshot doc) {
+    return ProductDTO.fromJson(doc.data() as Map<String, dynamic>)
+        .copyWith(id: doc.id);
+  }
+
+  // from Json
   factory ProductDTO.fromJson(Map<String, dynamic> json) =>
       _$ProductDTOFromJson(json);
 }

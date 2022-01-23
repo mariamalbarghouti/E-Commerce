@@ -8,12 +8,11 @@ import 'package:trail/core/services/get_user_sign_in_state_service.dart';
 
 // Sign In Controller
 class SignInController extends GetxController {
-  SignInController({
-    required this.iSignInRepoitory,
-    required this.getSignedInUserService,
-  });
+  SignInController({required this.iSignInRepoitory
+      // required this.getSignedInUserService,
+      });
   final ISignInRepoitory iSignInRepoitory;
-  final SignedInUserService getSignedInUserService;
+  // final SignedInUserService getSignedInUserService;
   // Email Controller
   late Rx<TextEditingController> emailEditionController;
   // Password Controller
@@ -73,7 +72,12 @@ class SignInController extends GetxController {
               },
               (r) {
                 //  cache the user isSigned In
-                getSignedInUserService.isUserOut(isUserOut: false);
+                // getSignedInUserService.isUserOut(isUserOut: false);
+                Get.snackbar(
+                  "Sign In",
+                  "You Have Signed In Successfully",
+                  snackPosition: SnackPosition.BOTTOM,
+                );
                 return Get.offAllNamed(Routes.HOME);
               },
             ),

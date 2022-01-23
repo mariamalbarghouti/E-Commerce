@@ -13,10 +13,10 @@ import 'package:trail/core/services/get_user_sign_in_state_service.dart';
 class SignUpController extends GetxController {
   SignUpController({
     required this.signUpRepository,
-    required this.getSignedInUserService,
+    // required this.getSignedInUserService,
   });
   final ISignUpRepository signUpRepository;
-  final SignedInUserService getSignedInUserService;
+  // final SignedInUserService getSignedInUserService;
   // Name Controller
   late Rx<TextEditingController> nameEditionController;
   // Email Controller
@@ -92,23 +92,27 @@ class SignUpController extends GetxController {
   // Sign Up
   signUp() async {
     if (registrationKey.currentState?.validate() ?? false) {
+      // Register With Email And Password
       await signUpRepository
           .signUpWithEmailAndPassword(
-        email: Email(
-          email: emailEditionController.value.text, //"mariam@gmail.com",
-        ),
-        password: Password(
-          password: passwordEditionController.value.text, //"123456",
-        ),
+        email: Email(email: emailEditionController.value.text),
+        password: Password(password: passwordEditionController.value.text),
       )
-          .then(
-        (value) async {
-          // Register his data to firebase
+          .then((value) async {
+        value.fold(
+            // Error Occures
+            (l) => Get.snackbar(
+                  "Error",
+                  l.msg,
+                  snackPosition: SnackPosition.BOTTOM,
+                ),
+            // Register his data to firebase
+            (r) async {
           await signUpRepository
               .registerUserInfoToFirestore(
                 email: emailEditionController.value.text,
                 password: passwordEditionController.value.text,
-                uid: FirebaseAuth.instance.currentUser?.uid,
+                // uid: Get.find<FirebaseAuth>().currentUser?.uid,
               )
               .then(
                 (value) => value.fold(
@@ -117,23 +121,18 @@ class SignUpController extends GetxController {
                     l.msg,
                     snackPosition: SnackPosition.BOTTOM,
                   ),
-                  (r) => r,
+                  (r) {
+                    Get.snackbar(
+                      "Sign Up",
+                      "You Have Created An Account Sucessfully",
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
+                    return Get.offAllNamed(Routes.HOME);
+                  },
                 ),
               );
-          // Response to UI
-          return value.fold(
-            (l) => Get.snackbar(
-              "Sign Up",
-              l.msg,
-              snackPosition: SnackPosition.BOTTOM,
-            ),
-            (r) {
-              getSignedInUserService.isUserOut(isUserOut: false);
-              return Get.offAllNamed(Routes.HOME);
-            },
-          );
-        },
-      );
+        });
+      });
     }
   }
 }

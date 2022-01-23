@@ -17,16 +17,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AddProductServerFailuresTearOff {
   const _$AddProductServerFailuresTearOff();
 
-  _ServerError serverError() {
-    return const _ServerError();
+  _ServerError serverError({required String msg}) {
+    return _ServerError(
+      msg: msg,
+    );
   }
 
-  _PermissionsDenied permissionsDenied() {
-    return const _PermissionsDenied();
+  _PermissionsDenied permissionsDenied({required String msg}) {
+    return _PermissionsDenied(
+      msg: msg,
+    );
   }
 
-  _UnexpectedError unexpectedError() {
-    return const _UnexpectedError();
+  _UnexpectedError unexpectedError({required String msg}) {
+    return _UnexpectedError(
+      msg: msg,
+    );
   }
 }
 
@@ -35,25 +41,27 @@ const $AddProductServerFailures = _$AddProductServerFailuresTearOff();
 
 /// @nodoc
 mixin _$AddProductServerFailures {
+  String get msg => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() serverError,
-    required TResult Function() permissionsDenied,
-    required TResult Function() unexpectedError,
+    required TResult Function(String msg) serverError,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +87,10 @@ mixin _$AddProductServerFailures {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AddProductServerFailuresCopyWith<AddProductServerFailures> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -86,6 +98,7 @@ abstract class $AddProductServerFailuresCopyWith<$Res> {
   factory $AddProductServerFailuresCopyWith(AddProductServerFailures value,
           $Res Function(AddProductServerFailures) then) =
       _$AddProductServerFailuresCopyWithImpl<$Res>;
+  $Res call({String msg});
 }
 
 /// @nodoc
@@ -96,13 +109,28 @@ class _$AddProductServerFailuresCopyWithImpl<$Res>
   final AddProductServerFailures _value;
   // ignore: unused_field
   final $Res Function(AddProductServerFailures) _then;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_value.copyWith(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$ServerErrorCopyWith<$Res> {
+abstract class _$ServerErrorCopyWith<$Res>
+    implements $AddProductServerFailuresCopyWith<$Res> {
   factory _$ServerErrorCopyWith(
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
 }
 
 /// @nodoc
@@ -115,64 +143,88 @@ class __$ServerErrorCopyWithImpl<$Res>
 
   @override
   _ServerError get _value => super._value as _ServerError;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_ServerError(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
-  const _$_ServerError();
+  const _$_ServerError({required this.msg});
+
+  @override
+  final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductServerFailures.serverError()';
+    return 'AddProductServerFailures.serverError(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(
-          DiagnosticsProperty('type', 'AddProductServerFailures.serverError'));
+      ..add(DiagnosticsProperty('type', 'AddProductServerFailures.serverError'))
+      ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ServerError);
+    return identical(this, other) ||
+        (other is _ServerError &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ServerErrorCopyWith<_ServerError> get copyWith =>
+      __$ServerErrorCopyWithImpl<_ServerError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() serverError,
-    required TResult Function() permissionsDenied,
-    required TResult Function() unexpectedError,
+    required TResult Function(String msg) serverError,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
   }) {
-    return serverError();
+    return serverError(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
   }) {
-    return serverError?.call();
+    return serverError?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
-      return serverError();
+      return serverError(msg);
     }
     return orElse();
   }
@@ -213,14 +265,24 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
 }
 
 abstract class _ServerError implements AddProductServerFailures {
-  const factory _ServerError() = _$_ServerError;
+  const factory _ServerError({required String msg}) = _$_ServerError;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ServerErrorCopyWith<_ServerError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$PermissionsDeniedCopyWith<$Res> {
+abstract class _$PermissionsDeniedCopyWith<$Res>
+    implements $AddProductServerFailuresCopyWith<$Res> {
   factory _$PermissionsDeniedCopyWith(
           _PermissionsDenied value, $Res Function(_PermissionsDenied) then) =
       __$PermissionsDeniedCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
 }
 
 /// @nodoc
@@ -233,6 +295,18 @@ class __$PermissionsDeniedCopyWithImpl<$Res>
 
   @override
   _PermissionsDenied get _value => super._value as _PermissionsDenied;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_PermissionsDenied(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -240,11 +314,14 @@ class __$PermissionsDeniedCopyWithImpl<$Res>
 class _$_PermissionsDenied
     with DiagnosticableTreeMixin
     implements _PermissionsDenied {
-  const _$_PermissionsDenied();
+  const _$_PermissionsDenied({required this.msg});
+
+  @override
+  final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductServerFailures.permissionsDenied()';
+    return 'AddProductServerFailures.permissionsDenied(msg: $msg)';
   }
 
   @override
@@ -252,47 +329,57 @@ class _$_PermissionsDenied
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'AddProductServerFailures.permissionsDenied'));
+          'type', 'AddProductServerFailures.permissionsDenied'))
+      ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PermissionsDenied);
+    return identical(this, other) ||
+        (other is _PermissionsDenied &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PermissionsDeniedCopyWith<_PermissionsDenied> get copyWith =>
+      __$PermissionsDeniedCopyWithImpl<_PermissionsDenied>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() serverError,
-    required TResult Function() permissionsDenied,
-    required TResult Function() unexpectedError,
+    required TResult Function(String msg) serverError,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
   }) {
-    return permissionsDenied();
+    return permissionsDenied(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
   }) {
-    return permissionsDenied?.call();
+    return permissionsDenied?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
     required TResult orElse(),
   }) {
     if (permissionsDenied != null) {
-      return permissionsDenied();
+      return permissionsDenied(msg);
     }
     return orElse();
   }
@@ -333,14 +420,25 @@ class _$_PermissionsDenied
 }
 
 abstract class _PermissionsDenied implements AddProductServerFailures {
-  const factory _PermissionsDenied() = _$_PermissionsDenied;
+  const factory _PermissionsDenied({required String msg}) =
+      _$_PermissionsDenied;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$PermissionsDeniedCopyWith<_PermissionsDenied> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$UnexpectedErrorCopyWith<$Res> {
+abstract class _$UnexpectedErrorCopyWith<$Res>
+    implements $AddProductServerFailuresCopyWith<$Res> {
   factory _$UnexpectedErrorCopyWith(
           _UnexpectedError value, $Res Function(_UnexpectedError) then) =
       __$UnexpectedErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
 }
 
 /// @nodoc
@@ -353,6 +451,18 @@ class __$UnexpectedErrorCopyWithImpl<$Res>
 
   @override
   _UnexpectedError get _value => super._value as _UnexpectedError;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_UnexpectedError(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -360,11 +470,14 @@ class __$UnexpectedErrorCopyWithImpl<$Res>
 class _$_UnexpectedError
     with DiagnosticableTreeMixin
     implements _UnexpectedError {
-  const _$_UnexpectedError();
+  const _$_UnexpectedError({required this.msg});
+
+  @override
+  final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductServerFailures.unexpectedError()';
+    return 'AddProductServerFailures.unexpectedError(msg: $msg)';
   }
 
   @override
@@ -372,47 +485,57 @@ class _$_UnexpectedError
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'AddProductServerFailures.unexpectedError'));
+          'type', 'AddProductServerFailures.unexpectedError'))
+      ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UnexpectedError);
+    return identical(this, other) ||
+        (other is _UnexpectedError &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UnexpectedErrorCopyWith<_UnexpectedError> get copyWith =>
+      __$UnexpectedErrorCopyWithImpl<_UnexpectedError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() serverError,
-    required TResult Function() permissionsDenied,
-    required TResult Function() unexpectedError,
+    required TResult Function(String msg) serverError,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
   }) {
-    return unexpectedError();
+    return unexpectedError(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
   }) {
-    return unexpectedError?.call();
+    return unexpectedError?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? permissionsDenied,
-    TResult Function()? unexpectedError,
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
     required TResult orElse(),
   }) {
     if (unexpectedError != null) {
-      return unexpectedError();
+      return unexpectedError(msg);
     }
     return orElse();
   }
@@ -453,5 +576,12 @@ class _$_UnexpectedError
 }
 
 abstract class _UnexpectedError implements AddProductServerFailures {
-  const factory _UnexpectedError() = _$_UnexpectedError;
+  const factory _UnexpectedError({required String msg}) = _$_UnexpectedError;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$UnexpectedErrorCopyWith<_UnexpectedError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

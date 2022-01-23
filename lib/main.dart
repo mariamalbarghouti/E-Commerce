@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,18 +16,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // initializing firebase
   await Firebase.initializeApp();
-  //  Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
+   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
     Get.put<FirebaseFirestore>( FirebaseFirestore.instance,permanent: true);
     // Get.lazyPut<FirebaseStorage>( FirebaseStorage.instance, fenix: true);
   // where to go
   String _whereRoGo = await whereToGo();
+  // FirebaseCrashlytics.instance.crash();
   // run app
   runApp(
     GetMaterialApp(
       title: "Application",
       // initialRoute: _whereRoGo,
       // initialRoute: Routes.SPLASH_SCREEN,
-      initialRoute: Routes.ADD_PRODUCT,
+      // initialRoute: Routes.ADD_PRODUCT,
+      initialRoute: Routes.SIGN_IN,
       debugShowCheckedModeBanner: false,
       enableLog: true,
       logWriterCallback: Logger.write,
@@ -34,7 +37,7 @@ void main() async {
     ),
   );
 }
-
+// TODO edit it
 /// Function for if the user is signed In
 /// go home
 /// else

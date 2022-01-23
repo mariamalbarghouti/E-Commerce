@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:trail/app/core/error/error.dart';
+import 'package:trail/app/core/error/value_failure_error.dart';
 
 
 abstract class ValueObject<T,M> {

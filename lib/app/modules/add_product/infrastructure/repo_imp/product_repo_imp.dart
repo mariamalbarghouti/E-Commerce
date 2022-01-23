@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/add_product/domain/failures/server_failures.dart';
@@ -6,9 +7,10 @@ import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
 
-// Implementing Prodiuct Repository 
+// Implementing Prodiuct Repository
 // With Firebase
 class ProductRepoFirebaseImp implements IProductRepo {
+  // Create Product Firebase Implementation 
   @override
   Future<Either<AddProductServerFailures, Unit>> createProduct(
       {required Product product}) async {
@@ -18,16 +20,21 @@ class ProductRepoFirebaseImp implements IProductRepo {
           .collection("products")
           .add(_productDTO.toJson());
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message?.contains('PERMISSION_DENIED') ?? false) {
-        print("PERMISSION_DENIED ${e.message}");
-        return left(const AddProductServerFailures.permissionsDenied());
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return left(
+          const AddProductServerFailures.permissionsDenied(
+              msg: "Permission Denied"),
+        );
       } else {
-        // TODO read the documentation about return error from server
-        return left(const AddProductServerFailures.unexpectedError());
+        return left(
+          const AddProductServerFailures.unexpectedError(
+              msg: "Unexpected Error"),
+        );
       }
     }
   }
+}
 //    //  Upload Product Details
 //   Future<void> _uploadImageToFireSrtorage(docID) async {
 //     try {
@@ -72,4 +79,4 @@ class ProductRepoFirebaseImp implements IProductRepo {
 //   }
 // }
 
-}
+// }

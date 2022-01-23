@@ -6,6 +6,10 @@ import 'package:trail/app/modules/sign_in/domain/failures/server_failures.dart';
 
 // Sign In Repository
 abstract class ISignInRepoitory extends GetConnect {
+   // return None if null
+  // otherwise return some
+   Future<Option<String>> getSignedInUserID();
+  //  Sign In With Email And Password
   Future<Either<SignInServerFailures, Unit>> signInWithEnailAndPassword({
     required Email email,
     required Password password,

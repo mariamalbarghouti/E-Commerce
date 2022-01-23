@@ -34,6 +34,12 @@ class _$SignUpValueFailuresTearOff {
       msg: msg,
     );
   }
+
+  _NullUser nullUser({required String msg}) {
+    return _NullUser(
+      msg: msg,
+    );
+  }
 }
 
 /// @nodoc
@@ -48,6 +54,7 @@ mixin _$SignUpValueFailures {
     required TResult Function(String msg) emptyName,
     required TResult Function(String msg) enterAValidName,
     required TResult Function(String msg) passwordDoesNotMath,
+    required TResult Function(String msg) nullUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +62,7 @@ mixin _$SignUpValueFailures {
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +70,7 @@ mixin _$SignUpValueFailures {
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +79,7 @@ mixin _$SignUpValueFailures {
     required TResult Function(_EmptyName value) emptyName,
     required TResult Function(_EnterAValidName value) enterAValidName,
     required TResult Function(_PasswordDoesNotMath value) passwordDoesNotMath,
+    required TResult Function(_NullUser value) nullUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +87,7 @@ mixin _$SignUpValueFailures {
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +95,7 @@ mixin _$SignUpValueFailures {
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -200,6 +212,7 @@ class _$_EmptyName with DiagnosticableTreeMixin implements _EmptyName {
     required TResult Function(String msg) emptyName,
     required TResult Function(String msg) enterAValidName,
     required TResult Function(String msg) passwordDoesNotMath,
+    required TResult Function(String msg) nullUser,
   }) {
     return emptyName(msg);
   }
@@ -210,6 +223,7 @@ class _$_EmptyName with DiagnosticableTreeMixin implements _EmptyName {
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
   }) {
     return emptyName?.call(msg);
   }
@@ -220,6 +234,7 @@ class _$_EmptyName with DiagnosticableTreeMixin implements _EmptyName {
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
     required TResult orElse(),
   }) {
     if (emptyName != null) {
@@ -234,6 +249,7 @@ class _$_EmptyName with DiagnosticableTreeMixin implements _EmptyName {
     required TResult Function(_EmptyName value) emptyName,
     required TResult Function(_EnterAValidName value) enterAValidName,
     required TResult Function(_PasswordDoesNotMath value) passwordDoesNotMath,
+    required TResult Function(_NullUser value) nullUser,
   }) {
     return emptyName(this);
   }
@@ -244,6 +260,7 @@ class _$_EmptyName with DiagnosticableTreeMixin implements _EmptyName {
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
   }) {
     return emptyName?.call(this);
   }
@@ -254,6 +271,7 @@ class _$_EmptyName with DiagnosticableTreeMixin implements _EmptyName {
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
     required TResult orElse(),
   }) {
     if (emptyName != null) {
@@ -354,6 +372,7 @@ class _$_EnterAValidName
     required TResult Function(String msg) emptyName,
     required TResult Function(String msg) enterAValidName,
     required TResult Function(String msg) passwordDoesNotMath,
+    required TResult Function(String msg) nullUser,
   }) {
     return enterAValidName(msg);
   }
@@ -364,6 +383,7 @@ class _$_EnterAValidName
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
   }) {
     return enterAValidName?.call(msg);
   }
@@ -374,6 +394,7 @@ class _$_EnterAValidName
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
     required TResult orElse(),
   }) {
     if (enterAValidName != null) {
@@ -388,6 +409,7 @@ class _$_EnterAValidName
     required TResult Function(_EmptyName value) emptyName,
     required TResult Function(_EnterAValidName value) enterAValidName,
     required TResult Function(_PasswordDoesNotMath value) passwordDoesNotMath,
+    required TResult Function(_NullUser value) nullUser,
   }) {
     return enterAValidName(this);
   }
@@ -398,6 +420,7 @@ class _$_EnterAValidName
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
   }) {
     return enterAValidName?.call(this);
   }
@@ -408,6 +431,7 @@ class _$_EnterAValidName
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
     required TResult orElse(),
   }) {
     if (enterAValidName != null) {
@@ -510,6 +534,7 @@ class _$_PasswordDoesNotMath
     required TResult Function(String msg) emptyName,
     required TResult Function(String msg) enterAValidName,
     required TResult Function(String msg) passwordDoesNotMath,
+    required TResult Function(String msg) nullUser,
   }) {
     return passwordDoesNotMath(msg);
   }
@@ -520,6 +545,7 @@ class _$_PasswordDoesNotMath
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
   }) {
     return passwordDoesNotMath?.call(msg);
   }
@@ -530,6 +556,7 @@ class _$_PasswordDoesNotMath
     TResult Function(String msg)? emptyName,
     TResult Function(String msg)? enterAValidName,
     TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
     required TResult orElse(),
   }) {
     if (passwordDoesNotMath != null) {
@@ -544,6 +571,7 @@ class _$_PasswordDoesNotMath
     required TResult Function(_EmptyName value) emptyName,
     required TResult Function(_EnterAValidName value) enterAValidName,
     required TResult Function(_PasswordDoesNotMath value) passwordDoesNotMath,
+    required TResult Function(_NullUser value) nullUser,
   }) {
     return passwordDoesNotMath(this);
   }
@@ -554,6 +582,7 @@ class _$_PasswordDoesNotMath
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
   }) {
     return passwordDoesNotMath?.call(this);
   }
@@ -564,6 +593,7 @@ class _$_PasswordDoesNotMath
     TResult Function(_EmptyName value)? emptyName,
     TResult Function(_EnterAValidName value)? enterAValidName,
     TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
     required TResult orElse(),
   }) {
     if (passwordDoesNotMath != null) {
@@ -582,5 +612,161 @@ abstract class _PasswordDoesNotMath implements SignUpValueFailures {
   @override
   @JsonKey(ignore: true)
   _$PasswordDoesNotMathCopyWith<_PasswordDoesNotMath> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$NullUserCopyWith<$Res>
+    implements $SignUpValueFailuresCopyWith<$Res> {
+  factory _$NullUserCopyWith(_NullUser value, $Res Function(_NullUser) then) =
+      __$NullUserCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$NullUserCopyWithImpl<$Res>
+    extends _$SignUpValueFailuresCopyWithImpl<$Res>
+    implements _$NullUserCopyWith<$Res> {
+  __$NullUserCopyWithImpl(_NullUser _value, $Res Function(_NullUser) _then)
+      : super(_value, (v) => _then(v as _NullUser));
+
+  @override
+  _NullUser get _value => super._value as _NullUser;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_NullUser(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NullUser with DiagnosticableTreeMixin implements _NullUser {
+  const _$_NullUser({required this.msg});
+
+  @override
+  final String msg;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SignUpValueFailures.nullUser(msg: $msg)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SignUpValueFailures.nullUser'))
+      ..add(DiagnosticsProperty('msg', msg));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _NullUser &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$NullUserCopyWith<_NullUser> get copyWith =>
+      __$NullUserCopyWithImpl<_NullUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) emptyName,
+    required TResult Function(String msg) enterAValidName,
+    required TResult Function(String msg) passwordDoesNotMath,
+    required TResult Function(String msg) nullUser,
+  }) {
+    return nullUser(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String msg)? emptyName,
+    TResult Function(String msg)? enterAValidName,
+    TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
+  }) {
+    return nullUser?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? emptyName,
+    TResult Function(String msg)? enterAValidName,
+    TResult Function(String msg)? passwordDoesNotMath,
+    TResult Function(String msg)? nullUser,
+    required TResult orElse(),
+  }) {
+    if (nullUser != null) {
+      return nullUser(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmptyName value) emptyName,
+    required TResult Function(_EnterAValidName value) enterAValidName,
+    required TResult Function(_PasswordDoesNotMath value) passwordDoesNotMath,
+    required TResult Function(_NullUser value) nullUser,
+  }) {
+    return nullUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_EmptyName value)? emptyName,
+    TResult Function(_EnterAValidName value)? enterAValidName,
+    TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
+  }) {
+    return nullUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmptyName value)? emptyName,
+    TResult Function(_EnterAValidName value)? enterAValidName,
+    TResult Function(_PasswordDoesNotMath value)? passwordDoesNotMath,
+    TResult Function(_NullUser value)? nullUser,
+    required TResult orElse(),
+  }) {
+    if (nullUser != null) {
+      return nullUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NullUser implements SignUpValueFailures {
+  const factory _NullUser({required String msg}) = _$_NullUser;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$NullUserCopyWith<_NullUser> get copyWith =>
       throw _privateConstructorUsedError;
 }

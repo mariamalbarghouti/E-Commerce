@@ -8,3 +8,4 @@ class UnexpectedValueError<T> extends Error{
     return Error.safeToString("Unexpected Value Failure at an unrecoverable point. Terminating. Failure was $failure");
   }
 }
+
