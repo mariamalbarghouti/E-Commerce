@@ -74,7 +74,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
           msg: "Unexpected Error"),);
     }
   }
-}
+// }
 //    //  Upload Product Details
 //   Future<void> _uploadImageToFireSrtorage(docID) async {
 //     try {
@@ -119,4 +119,4 @@ class ProductRepoFirebaseImp implements IProductRepo {
 //   }
 // }
 
-// }
+}
