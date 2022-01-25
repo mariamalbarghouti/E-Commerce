@@ -19,18 +19,15 @@ void main() async {
   await Firebase.initializeApp();
   Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
   Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
-  // where to go
-  // String _whereRoGo = await whereToGo();
-  // FirebaseCrashlytics.instance.crash();
   // run app
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: (Get.find<FirebaseAuth>().currentUser?.uid == null)
-          ? Routes.SIGN_IN
-          : Routes.HOME,
+      // initialRoute: (Get.find<FirebaseAuth>().currentUser?.uid == null)
+      //     ? Routes.SIGN_IN
+      //     : Routes.HOME,
       // initialRoute: Routes.SPLASH_SCREEN,
-      // initialRoute: Routes.ADD_PRODUCT,
+      initialRoute: Routes.ADD_PRODUCT,
       // initialRoute: Routes.SIGN_IN,
       debugShowCheckedModeBanner: false,
       enableLog: true,
@@ -44,13 +41,13 @@ void main() async {
 /// go home
 /// else
 /// sign Up
-Future<String> whereToGo() async {
-  if (Get.find<FirebaseAuth>().currentUser?.uid == null) {
-    return Routes.SIGN_IN;
-  } else {
-    return Routes.HOME;
-  }
-}
+// Future<String> whereToGo() async {
+//   if (Get.find<FirebaseAuth>().currentUser?.uid == null) {
+//     return Routes.SIGN_IN;
+//   } else {
+//     return Routes.HOME;
+//   }
+// }
 
 // "Creates a value object": {
 // 		"prefix": "vobj",

@@ -55,7 +55,6 @@ class AddProductController extends GetxController {
     //   (r) => pickedPhoto = r,
     // );
     List<Asset> resultList = <Asset>[];
-    String error = 'No Error Detected';
 
     try {
       resultList = await MultiImagePicker.pickImages(
@@ -72,10 +71,10 @@ class AddProductController extends GetxController {
         ),
       );
     } on Exception catch (e) {
-      error = e.toString();
+      // TODO
+      print("Exception image error $e");
     }
-    // print("path ${pickedPhoto!.path}");
-    images.value = resultList;
+    images.value = [...resultList];
   }
 
   // Delete Image From UI
@@ -111,33 +110,15 @@ class AddProductController extends GetxController {
   }
 
   // Add Product
-  // addProduct() async {
-  //   print("pickedPhoto $pickedPhoto");
-  //   if //(
-  //     // pickedPhoto != null &&
-  //       (addProductFormKey.currentState?.validate() ?? false)//)
-  //        {
-  //     String docID = FirebaseFirestore.instance.collection('products').doc().id;
-
-  //     await _uploadProductDetails(docID);
-  //     await _uploadFireStore(docID);
-  //     await _uploadImageToFireSrtorage(docID);
-  //   } else {
-  //     Get.snackbar(
-  //       "Error",
-  //       "Please Enter All Your Data",
-  //       snackPosition: SnackPosition.BOTTOM,
-  //     );
-  //   }
-  // }
   addProduct() async {
     if (addProductFormKey.currentState?.validate() ?? false) {
-      // String docID = FirebaseFirestore.instance.collection('products').doc().id;
-      // await _uploadProductDetails(docID);
-      // await _uploadFireStore(docID);
-      // await _uploadImageToFireSrtorage(docID);
-      //   print("X $x");
-     await _uploadProductInfoToFireStore();
+      // TODO Just Swap [1,2]
+      // TODO [2]
+      // Upload post details
+      await _uploadProductInfoToFireStore();
+      // TODO [1]
+      // Upload Images To Firebase
+      await _uploadImageToFireSrtorage();
     } else {
       Get.snackbar(
         "Error",
@@ -146,59 +127,56 @@ class AddProductController extends GetxController {
       );
     }
   }
-  // 
-  Future<void>_uploadProductInfoToFireStore()async{
+
+  // Upload User's Info
+  Future<void> _uploadProductInfoToFireStore() async {
     return await productRepo
-          .createProduct(
-            product: Product(
-              // id: Get.find<FirebaseFirestore>().productUuid,
-              title: ProductTitle(title: titleEditionController.value.text),
-              price: Price(price: priceEditionController.value.text),
-              description: Description(
-                description: descriptionEditionController.value.text,
-              ),
+        .createProduct(
+          product: Product(
+            title: ProductTitle(title: titleEditionController.value.text),
+            price: Price(price: priceEditionController.value.text),
+            description: Description(
+              description: descriptionEditionController.value.text,
             ),
-          )
-          .then((value) => value.fold((AddProductServerFailures l) {
-                Get.snackbar(
-                  "Error",
-                  l.msg,
-                  snackPosition: SnackPosition.BOTTOM,
-                );
-              }, (r) {
-                Get.snackbar(
-                  "Sucess",
-                  "Your Product Has Been Added Sucessfully",
-                  snackPosition: SnackPosition.BOTTOM,
-                );
-                Get.offNamed(Routes.HOME);
-              }));
+          ),
+        )
+        .then(
+          (value) => value.fold(
+            (l) {
+              Get.snackbar(
+                "Error",
+                l.msg,
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            },
+            (r) {
+              Get.snackbar(
+                "Sucess",
+                "Your Product Has Been Added Sucessfully",
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              Get.offNamed(Routes.HOME);
+            },
+          ),
+        );
   }
 
-  //  Upload Product Details
-  Future<void> _uploadImageToFireSrtorage(docID) async {
-    try {
-      final filePath =
-          await FlutterAbsolutePath.getAbsolutePath(images[0].identifier ?? "");
-      await FirebaseStorage.instance
-          .ref('products/$docID')
-          .putFile(File(filePath ?? ""));
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-  // TODO put user id
-
-  Future<void> _uploadFireStore(docID) async {
-    try {
-      await FirebaseFirestore.instance.collection("products").doc(docID).set({
-        "title": titleEditionController.value.text,
-        "price": priceEditionController.value.text,
-        "description": descriptionEditionController.value.text,
-      });
-    } catch (e) {
-      print("\n Error $e \n");
-    }
+  //  Upload Products's Images To FireStorage
+  Future<void> _uploadImageToFireSrtorage() async {
+    return await productRepo.uploadProductImages(images: images).then(
+          (value) => value.fold(
+            (l) => Get.snackbar(
+              "Error",
+              l.msg,
+              snackPosition: SnackPosition.BOTTOM,
+            ),
+            (r) => Get.snackbar(
+              "Sucess",
+              "Your Product Has Been Added Sucessfully",
+              snackPosition: SnackPosition.BOTTOM,
+            ),
+          ),
+        );
   }
 
 //  Upload Image
