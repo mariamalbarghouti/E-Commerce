@@ -171,22 +171,22 @@ class AddProductController extends GetxController {
   }
 
   //  Upload Products's Images To FireStorage
-  Future<void> _uploadImageToFireSrtorage() async {
-    return await productRepo.uploadProductImages(images: images).then(
-          (value) => value.fold(
-            (l) => Get.snackbar(
-              "Error",
-              l.msg,
-              snackPosition: SnackPosition.BOTTOM,
-            ),
-            (r) => Get.snackbar(
-              "Sucess",
-              "Your Product Has Been Added Sucessfully",
-              snackPosition: SnackPosition.BOTTOM,
-            ),
-          ),
-        );
-  }
+  // Future<void> _uploadImageToFireSrtorage() async {
+  //   return await productRepo.uploadProductImages(images: images).then(
+  //         (value) => value.fold(
+  //           (l) => Get.snackbar(
+  //             "Error",
+  //             l.msg,
+  //             snackPosition: SnackPosition.BOTTOM,
+  //           ),
+  //           (r) => Get.snackbar(
+  //             "Sucess",
+  //             "Your Product Has Been Added Sucessfully",
+  //             snackPosition: SnackPosition.BOTTOM,
+  //           ),
+  //         ),
+  //       );
+  // }
 
 //  Upload Image
   // Future<void> _uploadProductDetails(docID) async {
