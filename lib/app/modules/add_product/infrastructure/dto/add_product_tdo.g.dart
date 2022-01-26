@@ -12,6 +12,8 @@ _$_ProductDTO _$$_ProductDTOFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       price: json['price'] as num,
       description: json['description'] as String,
+      images:
+          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$_ProductDTOToJson(_$_ProductDTO instance) =>
@@ -20,4 +22,5 @@ Map<String, dynamic> _$$_ProductDTOToJson(_$_ProductDTO instance) =>
       'title': instance.title,
       'price': instance.price,
       'description': instance.description,
+      'images': instance.images,
     };

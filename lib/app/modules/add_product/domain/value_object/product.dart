@@ -8,7 +8,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/components/pri
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 
 part 'product.freezed.dart';
-
+// TODO: make it list of 5
 @freezed
 abstract class Product implements _$Product {
   const Product._();
@@ -17,8 +17,10 @@ abstract class Product implements _$Product {
     required ProductTitle title,
     required Price price,
     required Description description,
+    required List<String> pickedImages,
     // required ListOf5<Asset> pickedImages,
   }) = _Product;
+  
   Option<AddProductValueFailures> get failureOption {
     return title.value
         .andThen(price.value)

@@ -18,7 +18,7 @@ extension FirebaseX on FirebaseFirestore {
   //  }
   /// Product Document generate 
   /// [productCollection]NDA[uuid]
-  //  DocumentReference<Map<String, dynamic>> get productDocument => doc("${productsCollection.path}/$productUuid");
+  String get Uuid => productsCollection.doc().id;
   // User Document
   Future<DocumentReference<Object?>> get userDocument async {
     return FirebaseFirestore.instance.userCollection.doc(await userID);

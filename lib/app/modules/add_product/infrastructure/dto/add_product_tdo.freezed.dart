@@ -26,13 +26,15 @@ class _$ProductDTOTearOff {
       String? uid,
       required String title,
       required num price,
-      required String description}) {
+      required String description,
+      required List<String> images}) {
     return _ProductDTO(
       id: id,
       uid: uid,
       title: title,
       price: price,
       description: description,
+      images: images,
     );
   }
 
@@ -54,6 +56,7 @@ mixin _$ProductDTO {
 // better for db storage
   num get price => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,7 +74,8 @@ abstract class $ProductDTOCopyWith<$Res> {
       String? uid,
       String title,
       num price,
-      String description});
+      String description,
+      List<String> images});
 }
 
 /// @nodoc
@@ -89,6 +93,7 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
+    Object? images = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -111,6 +116,10 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -126,7 +135,8 @@ abstract class _$ProductDTOCopyWith<$Res> implements $ProductDTOCopyWith<$Res> {
       String? uid,
       String title,
       num price,
-      String description});
+      String description,
+      List<String> images});
 }
 
 /// @nodoc
@@ -146,6 +156,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
+    Object? images = freezed,
   }) {
     return _then(_ProductDTO(
       id: id == freezed
@@ -168,6 +179,10 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -180,7 +195,8 @@ class _$_ProductDTO implements _ProductDTO {
       this.uid,
       required this.title,
       required this.price,
-      required this.description});
+      required this.description,
+      required this.images});
 
   factory _$_ProductDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ProductDTOFromJson(json);
@@ -197,10 +213,12 @@ class _$_ProductDTO implements _ProductDTO {
   final num price;
   @override
   final String description;
+  @override
+  final List<String> images;
 
   @override
   String toString() {
-    return 'ProductDTO(id: $id, uid: $uid, title: $title, price: $price, description: $description)';
+    return 'ProductDTO(id: $id, uid: $uid, title: $title, price: $price, description: $description, images: $images)';
   }
 
   @override
@@ -217,7 +235,9 @@ class _$_ProductDTO implements _ProductDTO {
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)));
+                    .equals(other.description, description)) &&
+            (identical(other.images, images) ||
+                const DeepCollectionEquality().equals(other.images, images)));
   }
 
   @override
@@ -227,7 +247,8 @@ class _$_ProductDTO implements _ProductDTO {
       const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(description);
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(images);
 
   @JsonKey(ignore: true)
   @override
@@ -246,7 +267,8 @@ abstract class _ProductDTO implements ProductDTO {
       String? uid,
       required String title,
       required num price,
-      required String description}) = _$_ProductDTO;
+      required String description,
+      required List<String> images}) = _$_ProductDTO;
 
   factory _ProductDTO.fromJson(Map<String, dynamic> json) =
       _$_ProductDTO.fromJson;
@@ -263,6 +285,8 @@ abstract class _ProductDTO implements ProductDTO {
   num get price => throw _privateConstructorUsedError;
   @override
   String get description => throw _privateConstructorUsedError;
+  @override
+  List<String> get images => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductDTOCopyWith<_ProductDTO> get copyWith =>

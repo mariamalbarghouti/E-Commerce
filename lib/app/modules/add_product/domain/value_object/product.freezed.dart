@@ -21,12 +21,14 @@ class _$ProductTearOff {
       {String? id,
       required ProductTitle title,
       required Price price,
-      required Description description}) {
+      required Description description,
+      required List<String> pickedImages}) {
     return _Product(
       id: id,
       title: title,
       price: price,
       description: description,
+      pickedImages: pickedImages,
     );
   }
 }
@@ -40,6 +42,7 @@ mixin _$Product {
   ProductTitle get title => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
   Description get description => throw _privateConstructorUsedError;
+  List<String> get pickedImages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
@@ -50,7 +53,11 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
   $Res call(
-      {String? id, ProductTitle title, Price price, Description description});
+      {String? id,
+      ProductTitle title,
+      Price price,
+      Description description,
+      List<String> pickedImages});
 }
 
 /// @nodoc
@@ -67,6 +74,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
+    Object? pickedImages = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -85,6 +93,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as Description,
+      pickedImages: pickedImages == freezed
+          ? _value.pickedImages
+          : pickedImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -95,7 +107,11 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$ProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id, ProductTitle title, Price price, Description description});
+      {String? id,
+      ProductTitle title,
+      Price price,
+      Description description,
+      List<String> pickedImages});
 }
 
 /// @nodoc
@@ -113,6 +129,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
+    Object? pickedImages = freezed,
   }) {
     return _then(_Product(
       id: id == freezed
@@ -131,6 +148,10 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as Description,
+      pickedImages: pickedImages == freezed
+          ? _value.pickedImages
+          : pickedImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -142,7 +163,8 @@ class _$_Product extends _Product {
       {this.id,
       required this.title,
       required this.price,
-      required this.description})
+      required this.description,
+      required this.pickedImages})
       : super._();
 
   @override
@@ -153,10 +175,12 @@ class _$_Product extends _Product {
   final Price price;
   @override
   final Description description;
+  @override
+  final List<String> pickedImages;
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, price: $price, description: $description)';
+    return 'Product(id: $id, title: $title, price: $price, description: $description, pickedImages: $pickedImages)';
   }
 
   @override
@@ -171,7 +195,10 @@ class _$_Product extends _Product {
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)));
+                    .equals(other.description, description)) &&
+            (identical(other.pickedImages, pickedImages) ||
+                const DeepCollectionEquality()
+                    .equals(other.pickedImages, pickedImages)));
   }
 
   @override
@@ -180,7 +207,8 @@ class _$_Product extends _Product {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(description);
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(pickedImages);
 
   @JsonKey(ignore: true)
   @override
@@ -193,7 +221,8 @@ abstract class _Product extends Product {
       {String? id,
       required ProductTitle title,
       required Price price,
-      required Description description}) = _$_Product;
+      required Description description,
+      required List<String> pickedImages}) = _$_Product;
   const _Product._() : super._();
 
   @override
@@ -204,6 +233,8 @@ abstract class _Product extends Product {
   Price get price => throw _privateConstructorUsedError;
   @override
   Description get description => throw _privateConstructorUsedError;
+  @override
+  List<String> get pickedImages => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>

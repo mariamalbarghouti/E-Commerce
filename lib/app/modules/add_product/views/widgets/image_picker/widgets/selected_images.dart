@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/controllers/add_product_controller.dart';
 
+// Selected Images
 class SelectedImagesWidget extends GetView<AddProductController> {
   const SelectedImagesWidget({Key? key}) : super(key: key);
 
@@ -23,7 +24,7 @@ class SelectedImagesWidget extends GetView<AddProductController> {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    print("Assets name = ${controller.images[index].name}");
+                    // print("Assets name = ${controller.images[index].name}");
                     Asset asset = controller.images[index];
                     return Stack(
                       clipBehavior: Clip.none,

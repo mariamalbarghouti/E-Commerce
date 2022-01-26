@@ -4,8 +4,8 @@ import 'package:trail/app/modules/add_product/domain/failures/server_failures.da
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 
 abstract class IProductRepo {
-  String? productID;
+late final String productID;
  Future<Either<AddProductServerFailures,Unit>> createProduct({required Product product});
 /// TODO make list of 5
- Future<Either<AddProductServerFailures,Unit>> uploadProductImages({required List<Asset> images});
+ Future<Either<AddProductServerFailures,List<String>>> uploadProductImages({required List<Asset> images});
 }
