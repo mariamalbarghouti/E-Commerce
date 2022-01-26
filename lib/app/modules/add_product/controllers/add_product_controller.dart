@@ -19,8 +19,8 @@ class AddProductController extends GetxController {
   late Rx<TextEditingController> titleEditionController;
   File? pickedPhoto;
   var images = <Asset>[].obs;
+  final GlobalKey<FormState> addProductFormKey = GlobalKey();
 
-  GlobalKey<FormState> addProductFormKey = GlobalKey();
   @override
   void onInit() {
     descriptionEditionController = TextEditingController().obs;
