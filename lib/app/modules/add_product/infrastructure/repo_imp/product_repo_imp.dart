@@ -86,49 +86,4 @@ class ProductRepoFirebaseImp implements IProductRepo {
       }
     }
   }
-
-  //  Upload Product Details
-//   Future<void> _uploadImageToFireSrtorage(docID) async {
-//     try {
-//       final filePath =
-//           await FlutterAbsolutePath.getAbsolutePath(images[0].identifier ?? "");
-//       await FirebaseStorage.instance
-//           .ref('products/$docID')
-//           .putFile(File(filePath ?? ""));
-//     } catch (e) {
-//       print(e.toString());
-//     }
-//   }
-  // TODO put user id
-
-//   Future<void> _uploadFireStore(docID) async {
-//     try {
-//       await FirebaseFirestore.instance.collection("products").doc(docID).set({
-//         "title": titleEditionController.value.text,
-//         "price": priceEditionController.value.text,
-//         "description": descriptionEditionController.value.text,
-//       });
-//     } catch (e) {
-//       print("\n Error $e \n");
-//     }
-//   }
-
-// //  Upload Image
-//   Future<void> _uploadProductDetails(docID) async {
-//     try {
-//       await FirebaseFirestore.instance.collection("products").doc(docID).set({
-//         "imgUrl": url,
-//       }, SetOptions(merge: true));
-//       Get.snackbar(
-//         "Sucess",
-//         "Your Product Is Added",
-//         snackPosition: SnackPosition.BOTTOM,
-//       );
-//       Get.toNamed(Routes.HOME);
-//     } catch (e) {
-//       print("\n Error $e \n");
-//     }
-//   }
-// }
-
 }

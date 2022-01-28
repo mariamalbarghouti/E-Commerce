@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -33,7 +34,7 @@ abstract class ProductDTO with _$ProductDTO {
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),
-      images: product.pickedImages,
+      images: product.pickedImages.getOrCrash(),
     );
   }
   // Fetching Data From DB
@@ -54,7 +55,7 @@ extension ProductDTOX on ProductDTO {
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),
-      pickedImages: images,
+      pickedImages: ListOf5<String>(listOfPickedImages: images),//images,
       //  pickedImages: ListOf5(listOfPickedImages: []),
     );
   }
