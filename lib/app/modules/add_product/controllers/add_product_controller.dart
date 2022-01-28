@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:kt_dart/collection.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -18,8 +20,9 @@ class AddProductController extends GetxController {
   late Rx<TextEditingController> priceEditionController;
   late Rx<TextEditingController> titleEditionController;
   File? pickedPhoto;
-  var images = <Asset>[].obs;
+  var images = List<Asset>.unmodifiable([]).obs;//<Asset>[].obs;//emptyList<Asset>().obs;
   final GlobalKey<FormState> addProductFormKey = GlobalKey();
+  late ListOf5<Asset> list5 = ListOf5(listOfPickedImages: <Asset>[]);
 
   @override
   void onInit() {
@@ -39,13 +42,34 @@ class AddProductController extends GetxController {
 
   // Image Picker
   pickImgFromGallery() async {
-    List<Asset> resultList = <Asset>[];
-    colredPrint(color: LogColors.blue, msg: "images.value${images.length}");
+    // List<Asset> resultList = <Asset>[];
     try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: 5,
+      // resultList
+      // images.value = await MultiImagePicker.pickImages(
+      //   maxImages: 30,
+      //   enableCamera: true,
+      //   selectedAssets: images,
+      //   // list5.getOrElse( <Asset>[]),
+      //   materialOptions: const MaterialOptions(
+      //     actionBarColor: "#000000",
+      //     actionBarTitle: "Select Image",
+      //     allViewTitle: "All Photos",
+      //     // actionBarTitleColor: '#090909',
+      //     useDetailsView: false,
+      //     selectCircleStrokeColor: "#000000",
+      //   ),
+      // );
+      // coloredPrint(
+      //   color: LogColors.yellow,
+      //   msg: "list5.value${list5.value.length}",
+      // );
+      // images.value = [...resultList];
+      // list5=ListOf5<Asset>(listOfPickedImages: resultList);
+      images.value = await MultiImagePicker.pickImages(
+        maxImages: 30,
         enableCamera: true,
-        selectedAssets: images,
+        selectedAssets: images.toList(),
+        // list5.getOrElse( <Asset>[]),
         materialOptions: const MaterialOptions(
           actionBarColor: "#000000",
           actionBarTitle: "Select Image",
@@ -55,7 +79,16 @@ class AddProductController extends GetxController {
           selectCircleStrokeColor: "#000000",
         ),
       );
-      images.value = [...resultList];
+      return ListOf5<Asset>(listOfPickedImages: images).value.fold(
+        (l) {
+          return Get.snackbar(
+            "Error",
+            l.msg,
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        },
+        (r) => r,
+      );
     } on Exception catch (e) {
       Get.snackbar(
         "Error",
@@ -64,9 +97,11 @@ class AddProductController extends GetxController {
       );
     }
   }
+
   // Delete Image From UI
   deleteImage(int index) {
     images.removeAt(index);
+    // list5.getOrCrash().removeAt(index);
     update();
   }
 
@@ -123,17 +158,17 @@ class AddProductController extends GetxController {
 
   // Upload Images to Firebase
   Future<dynamic> _uploadImagesToFirestorage() async {
-    return await productRepo
-        .uploadProductImages(images: images)
-        .then((value) => value.fold((l) {
-              Get.snackbar(
-                "Error",
-                l.msg,
-                snackPosition: SnackPosition.BOTTOM,
-              );
-            }, (r) {
-              return r;
-            }));
+    return await productRepo.uploadProductImages(images: images).then(
+          (value) => value.fold((l) {
+            Get.snackbar(
+              "Error",
+              l.msg,
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          }, (r) {
+            return r;
+          }),
+        );
   }
 
 //  Upload Product Info to Firebase

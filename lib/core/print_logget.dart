@@ -1,6 +1,6 @@
 
 
-void colredPrint({required String msg,required LogColors color, }) {
+void coloredPrint({required String msg,required LogColors color, }) {
   print('${convertenumToValue(color)} $msg\x1B[0m');
 }
 

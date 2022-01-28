@@ -9,10 +9,10 @@ abstract class ValueObject<T,M> {
   }
 
   getOrElse(dflt){
-    return value.getOrElse(dflt);
+    return value.getOrElse(()=>dflt);
   }
   // return right hand side
-  getRightValue(value){
+  getRightValue(){
     return optionOf(value);
   }
   
