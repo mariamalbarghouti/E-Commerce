@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';

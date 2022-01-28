@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:kt_dart/collection.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -20,9 +18,8 @@ class AddProductController extends GetxController {
   late Rx<TextEditingController> priceEditionController;
   late Rx<TextEditingController> titleEditionController;
   File? pickedPhoto;
-  var images = List<Asset>.unmodifiable([]).obs;//<Asset>[].obs;//emptyList<Asset>().obs;
+  var images = <Asset>[].obs;
   final GlobalKey<FormState> addProductFormKey = GlobalKey();
-  late ListOf5<Asset> list5 = ListOf5(listOfPickedImages: <Asset>[]);
 
   @override
   void onInit() {
@@ -41,35 +38,12 @@ class AddProductController extends GetxController {
   }
 
   // Image Picker
-  pickImgFromGallery() async {
-    // List<Asset> resultList = <Asset>[];
+  Future<void> pickImgFromGallery() async {
     try {
-      // resultList
-      // images.value = await MultiImagePicker.pickImages(
-      //   maxImages: 30,
-      //   enableCamera: true,
-      //   selectedAssets: images,
-      //   // list5.getOrElse( <Asset>[]),
-      //   materialOptions: const MaterialOptions(
-      //     actionBarColor: "#000000",
-      //     actionBarTitle: "Select Image",
-      //     allViewTitle: "All Photos",
-      //     // actionBarTitleColor: '#090909',
-      //     useDetailsView: false,
-      //     selectCircleStrokeColor: "#000000",
-      //   ),
-      // );
-      // coloredPrint(
-      //   color: LogColors.yellow,
-      //   msg: "list5.value${list5.value.length}",
-      // );
-      // images.value = [...resultList];
-      // list5=ListOf5<Asset>(listOfPickedImages: resultList);
       images.value = await MultiImagePicker.pickImages(
         maxImages: 30,
         enableCamera: true,
-        selectedAssets: images.toList(),
-        // list5.getOrElse( <Asset>[]),
+        selectedAssets: images,
         materialOptions: const MaterialOptions(
           actionBarColor: "#000000",
           actionBarTitle: "Select Image",
@@ -78,16 +52,6 @@ class AddProductController extends GetxController {
           useDetailsView: false,
           selectCircleStrokeColor: "#000000",
         ),
-      );
-      return ListOf5<Asset>(listOfPickedImages: images).value.fold(
-        (l) {
-          return Get.snackbar(
-            "Error",
-            l.msg,
-            snackPosition: SnackPosition.BOTTOM,
-          );
-        },
-        (r) => r,
       );
     } on Exception catch (e) {
       Get.snackbar(
@@ -101,8 +65,6 @@ class AddProductController extends GetxController {
   // Delete Image From UI
   deleteImage(int index) {
     images.removeAt(index);
-    // list5.getOrCrash().removeAt(index);
-    update();
   }
 
   // Title Validator
@@ -134,11 +96,8 @@ class AddProductController extends GetxController {
   // Add Product
   addProduct() async {
     if (addProductFormKey.currentState?.validate() ?? false) {
-      // TODO Just Swap [1,2]
-      // TODO [2]
       // Upload post details
       await _uploadProduct();
-      // TODO [1]
       // Upload Images To Firebase
       // await _uploadImageToFireSrtorage();
     } else {
@@ -204,39 +163,4 @@ class AddProductController extends GetxController {
           ),
         );
   }
-
-  //  Upload Products's Images To FireStorage
-  // Future<void> _uploadImageToFireSrtorage() async {
-  //   return await productRepo.uploadProductImages(images: images).then(
-  //         (value) => value.fold(
-  //           (l) => Get.snackbar(
-  //             "Error",
-  //             l.msg,
-  //             snackPosition: SnackPosition.BOTTOM,
-  //           ),
-  //           (r) => Get.snackbar(
-  //             "Sucess",
-  //             "Your Product Has Been Added Sucessfully",
-  //             snackPosition: SnackPosition.BOTTOM,
-  //           ),
-  //         ),
-  //       );
-  // }
-
-//  Upload Image
-  // Future<void> _uploadProductDetails(docID) async {
-  //   try {
-  //     await FirebaseFirestore.instance.collection("products").doc(docID).set({
-  //       "imgUrl": url,
-  //     }, SetOptions(merge: true));
-  //     Get.snackbar(
-  //       "Sucess",
-  //       "Your Product Is Added",
-  //       snackPosition: SnackPosition.BOTTOM,
-  //     );
-  //     Get.toNamed(Routes.HOME);
-  //   } catch (e) {
-  //     print("\n Error $e \n");
-  //   }
-  // }
 }
