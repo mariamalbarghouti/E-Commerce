@@ -55,8 +55,7 @@ extension ProductDTOX on ProductDTO {
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),
-      pickedImages: ListOf5<String>(listOfPickedImages: images),//images,
-      //  pickedImages: ListOf5(listOfPickedImages: []),
+      pickedImages: ListOf5<String>(listOfPickedImages: images),
     );
   }
 }

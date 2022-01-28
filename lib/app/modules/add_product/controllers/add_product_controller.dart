@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -41,7 +42,7 @@ class AddProductController extends GetxController {
   Future<void> pickImgFromGallery() async {
     try {
       images.value = await MultiImagePicker.pickImages(
-        maxImages: 30,
+        maxImages:5,
         enableCamera: true,
         selectedAssets: images,
         materialOptions: const MaterialOptions(
@@ -140,7 +141,7 @@ class AddProductController extends GetxController {
             description: Description(
               description: descriptionEditionController.value.text,
             ),
-            pickedImages: images,
+            pickedImages: ListOf5(listOfPickedImages: images),
           ),
         )
         .then(
