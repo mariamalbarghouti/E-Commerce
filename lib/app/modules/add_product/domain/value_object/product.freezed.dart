@@ -22,7 +22,7 @@ class _$ProductTearOff {
       required ProductTitle title,
       required Price price,
       required Description description,
-      required ListOf5<String> pickedImages}) {
+      required ListOf5<dynamic> pickedImages}) {
     return _Product(
       id: id,
       title: title,
@@ -41,9 +41,8 @@ mixin _$Product {
   String? get id => throw _privateConstructorUsedError;
   ProductTitle get title => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
-  Description get description =>
-      throw _privateConstructorUsedError; // required List<String> pickedImages,
-  ListOf5<String> get pickedImages => throw _privateConstructorUsedError;
+  Description get description => throw _privateConstructorUsedError;
+  ListOf5<dynamic> get pickedImages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
@@ -58,7 +57,7 @@ abstract class $ProductCopyWith<$Res> {
       ProductTitle title,
       Price price,
       Description description,
-      ListOf5<String> pickedImages});
+      ListOf5<dynamic> pickedImages});
 }
 
 /// @nodoc
@@ -97,7 +96,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       pickedImages: pickedImages == freezed
           ? _value.pickedImages
           : pickedImages // ignore: cast_nullable_to_non_nullable
-              as ListOf5<String>,
+              as ListOf5<dynamic>,
     ));
   }
 }
@@ -112,7 +111,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       ProductTitle title,
       Price price,
       Description description,
-      ListOf5<String> pickedImages});
+      ListOf5<dynamic> pickedImages});
 }
 
 /// @nodoc
@@ -152,7 +151,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       pickedImages: pickedImages == freezed
           ? _value.pickedImages
           : pickedImages // ignore: cast_nullable_to_non_nullable
-              as ListOf5<String>,
+              as ListOf5<dynamic>,
     ));
   }
 }
@@ -176,8 +175,8 @@ class _$_Product extends _Product {
   final Price price;
   @override
   final Description description;
-  @override // required List<String> pickedImages,
-  final ListOf5<String> pickedImages;
+  @override
+  final ListOf5<dynamic> pickedImages;
 
   @override
   String toString() {
@@ -223,7 +222,7 @@ abstract class _Product extends Product {
       required ProductTitle title,
       required Price price,
       required Description description,
-      required ListOf5<String> pickedImages}) = _$_Product;
+      required ListOf5<dynamic> pickedImages}) = _$_Product;
   const _Product._() : super._();
 
   @override
@@ -234,8 +233,8 @@ abstract class _Product extends Product {
   Price get price => throw _privateConstructorUsedError;
   @override
   Description get description => throw _privateConstructorUsedError;
-  @override // required List<String> pickedImages,
-  ListOf5<String> get pickedImages => throw _privateConstructorUsedError;
+  @override
+  ListOf5<dynamic> get pickedImages => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>

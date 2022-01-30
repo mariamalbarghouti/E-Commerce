@@ -1,10 +1,8 @@
-
-
-void coloredPrint({required String msg,required LogColors color, }) {
+void coloredPrint({required String msg, LogColors color = LogColors.yellow}) {
   print('${convertenumToValue(color)} $msg\x1B[0m');
 }
 
-enum LogColors { black, red, green, yellow, blue, magenta, cyan }
+enum LogColors { black, red, green, yellow, blue, magenta, cyan, white }
 
 String convertenumToValue(LogColors color) {
   switch (color) {

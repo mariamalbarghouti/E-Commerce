@@ -23,21 +23,33 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
   @override
   Future<Either<AddProductServerFailures, List<String>>> uploadProductImages({
-    required List<Asset> images,
+    required List<File> images,
   }) async {
     try {
-      String? filePath;
+      // String? filePath;
       List<String> _downloadedUrl = [];
       for (int i = 0; i < images.length; i++) {
-        filePath = await FlutterAbsolutePath.getAbsolutePath(
-            images[i].identifier ?? "");
-
+        // filePath = await FlutterAbsolutePath.getAbsolutePath(
+        //   images[i].identifier ?? "",
+        // );
+ //     List<String> _downloadedUrl = [];
+      // for (int i = 0; i < _imagesForDomain.length; i++) {
+      //   UploadTask _uploadTask = FirebaseStorage.instance
+      //       .ref('products')
+      //       .child("mk")
+      //       .child(i.toString())//name ?? "")
+      //       .putFile(File(_imagesForDomain[i].path ));
+      //   await _uploadTask.then((picValue) async {
+      //     await picValue.ref.getDownloadURL().then((downloadUrl) {
+      //       _downloadedUrl.add(downloadUrl);
+      //     });
+      //   });
+      // }
         UploadTask _uploadTask = FirebaseStorage.instance
-        // TODO handle ""
             .ref('products')
             .child(productID)
-            .child(images[i].name ?? "")
-            .putFile(File(filePath ?? ""));
+            .child('$i')
+            .putFile(images[i]);
         await _uploadTask.then((picValue) async {
           await picValue.ref.getDownloadURL().then((downloadUrl) {
             _downloadedUrl.add(downloadUrl);
@@ -47,7 +59,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(_downloadedUrl);
     } catch (e) {
       return left(
-         AddProductServerFailures.unexpectedError(msg: "Unexpected Error ${e}"),
+        AddProductServerFailures.unexpectedError(msg: "Unexpected Error $e"),
       );
     }
   }
@@ -57,18 +69,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
   Future<Either<AddProductServerFailures, Unit>> createProduct({
     required Product product,
   }) async {
-    // TODO Delet it
     ProductDTO _productDTO = ProductDTO.fromDomain(
       product: product,
       uid: await _firebaseFirestore.userID,
     );
     try {
-      // DocumentReference<Object?> productPref =
       await _firebaseFirestore.productsCollection
           .doc(productID)
           .set(_productDTO.toJson());
-      // .set(;
-      // productID = productPref.id;
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
