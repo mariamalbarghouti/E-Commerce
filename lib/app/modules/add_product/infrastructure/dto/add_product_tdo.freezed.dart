@@ -23,11 +23,12 @@ class _$ProductDTOTearOff {
 
   _ProductDTO call(
       {@JsonKey(ignore: true) String id = "",
-      String? uid,
+      @DocumentReferenceConverter() required DocumentReference<Object?> uid,
       required String title,
       required num price,
       required String description,
-      required List<String> images}) {
+      required List<String> images,
+      @FieldValueConverter() required FieldValue time}) {
     return _ProductDTO(
       id: id,
       uid: uid,
@@ -35,6 +36,7 @@ class _$ProductDTOTearOff {
       price: price,
       description: description,
       images: images,
+      time: time,
     );
   }
 
@@ -49,14 +51,17 @@ const $ProductDTO = _$ProductDTOTearOff();
 /// @nodoc
 mixin _$ProductDTO {
   @JsonKey(ignore: true)
-  String get id => throw _privateConstructorUsedError;
-  String? get uid => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError; // String?  uid,
+  @DocumentReferenceConverter()
+  DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
   String get title =>
       throw _privateConstructorUsedError; // not String Because It's
 // better for db storage
   num get price => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
+  @FieldValueConverter()
+  FieldValue get time => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,11 +76,12 @@ abstract class $ProductDTOCopyWith<$Res> {
       _$ProductDTOCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(ignore: true) String id,
-      String? uid,
+      @DocumentReferenceConverter() DocumentReference<Object?> uid,
       String title,
       num price,
       String description,
-      List<String> images});
+      List<String> images,
+      @FieldValueConverter() FieldValue time});
 }
 
 /// @nodoc
@@ -94,6 +100,7 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
     Object? price = freezed,
     Object? description = freezed,
     Object? images = freezed,
+    Object? time = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -103,7 +110,7 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DocumentReference<Object?>,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,10 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      time: time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as FieldValue,
     ));
   }
 }
@@ -132,11 +143,12 @@ abstract class _$ProductDTOCopyWith<$Res> implements $ProductDTOCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(ignore: true) String id,
-      String? uid,
+      @DocumentReferenceConverter() DocumentReference<Object?> uid,
       String title,
       num price,
       String description,
-      List<String> images});
+      List<String> images,
+      @FieldValueConverter() FieldValue time});
 }
 
 /// @nodoc
@@ -157,6 +169,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
     Object? price = freezed,
     Object? description = freezed,
     Object? images = freezed,
+    Object? time = freezed,
   }) {
     return _then(_ProductDTO(
       id: id == freezed
@@ -166,7 +179,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DocumentReference<Object?>,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -183,6 +196,10 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      time: time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as FieldValue,
     ));
   }
 }
@@ -192,11 +209,12 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
 class _$_ProductDTO implements _ProductDTO {
   _$_ProductDTO(
       {@JsonKey(ignore: true) this.id = "",
-      this.uid,
+      @DocumentReferenceConverter() required this.uid,
       required this.title,
       required this.price,
       required this.description,
-      required this.images});
+      required this.images,
+      @FieldValueConverter() required this.time});
 
   factory _$_ProductDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ProductDTOFromJson(json);
@@ -204,8 +222,9 @@ class _$_ProductDTO implements _ProductDTO {
   @override
   @JsonKey(ignore: true)
   final String id;
-  @override
-  final String? uid;
+  @override // String?  uid,
+  @DocumentReferenceConverter()
+  final DocumentReference<Object?> uid;
   @override
   final String title;
   @override // not String Because It's
@@ -215,10 +234,13 @@ class _$_ProductDTO implements _ProductDTO {
   final String description;
   @override
   final List<String> images;
+  @override
+  @FieldValueConverter()
+  final FieldValue time;
 
   @override
   String toString() {
-    return 'ProductDTO(id: $id, uid: $uid, title: $title, price: $price, description: $description, images: $images)';
+    return 'ProductDTO(id: $id, uid: $uid, title: $title, price: $price, description: $description, images: $images, time: $time)';
   }
 
   @override
@@ -237,7 +259,9 @@ class _$_ProductDTO implements _ProductDTO {
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
             (identical(other.images, images) ||
-                const DeepCollectionEquality().equals(other.images, images)));
+                const DeepCollectionEquality().equals(other.images, images)) &&
+            (identical(other.time, time) ||
+                const DeepCollectionEquality().equals(other.time, time)));
   }
 
   @override
@@ -248,7 +272,8 @@ class _$_ProductDTO implements _ProductDTO {
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(images);
+      const DeepCollectionEquality().hash(images) ^
+      const DeepCollectionEquality().hash(time);
 
   @JsonKey(ignore: true)
   @override
@@ -264,11 +289,12 @@ class _$_ProductDTO implements _ProductDTO {
 abstract class _ProductDTO implements ProductDTO {
   factory _ProductDTO(
       {@JsonKey(ignore: true) String id,
-      String? uid,
+      @DocumentReferenceConverter() required DocumentReference<Object?> uid,
       required String title,
       required num price,
       required String description,
-      required List<String> images}) = _$_ProductDTO;
+      required List<String> images,
+      @FieldValueConverter() required FieldValue time}) = _$_ProductDTO;
 
   factory _ProductDTO.fromJson(Map<String, dynamic> json) =
       _$_ProductDTO.fromJson;
@@ -276,8 +302,9 @@ abstract class _ProductDTO implements ProductDTO {
   @override
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
-  @override
-  String? get uid => throw _privateConstructorUsedError;
+  @override // String?  uid,
+  @DocumentReferenceConverter()
+  DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
   @override
   String get title => throw _privateConstructorUsedError;
   @override // not String Because It's
@@ -287,6 +314,9 @@ abstract class _ProductDTO implements ProductDTO {
   String get description => throw _privateConstructorUsedError;
   @override
   List<String> get images => throw _privateConstructorUsedError;
+  @override
+  @FieldValueConverter()
+  FieldValue get time => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductDTOCopyWith<_ProductDTO> get copyWith =>

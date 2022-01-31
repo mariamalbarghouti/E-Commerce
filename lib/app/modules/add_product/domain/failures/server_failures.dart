@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // TODO: create a core server error
 part 'server_failures.freezed.dart';
 
+// Server Errors
 @freezed
 abstract class AddProductServerFailures with _$AddProductServerFailures {
   const factory AddProductServerFailures.serverError({required String msg}) =

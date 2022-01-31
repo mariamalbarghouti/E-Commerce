@@ -4,7 +4,7 @@ import 'package:trail/app/modules/add_product/domain/failures/value_object_failu
 // Price Validator
 Either<AddProductValueFailures, String> priceValidator(
   String price) {
-  var regex = r'''\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?''';
+  var regex = r'''^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$''';
  if (!RegExp(regex).hasMatch(price)) {
     return left(
       const AddProductValueFailures.invalidPrice(

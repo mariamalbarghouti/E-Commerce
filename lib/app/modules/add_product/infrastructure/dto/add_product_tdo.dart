@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/components/images/image_picker.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/images/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
+import 'package:trail/app/modules/add_product/infrastructure/dto/converter/document_refrence_converter.dart';
+import 'package:trail/app/modules/add_product/infrastructure/dto/converter/field_value_converter.dart';
 
 part 'add_product_tdo.freezed.dart';
 part 'add_product_tdo.g.dart';
@@ -17,18 +18,22 @@ part 'add_product_tdo.g.dart';
 abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
     @JsonKey(ignore: true) @Default("") String id,
-    String?  uid,
+    // String?  uid,
+    @DocumentReferenceConverter() required DocumentReference<Object?> uid,
     required String title,
     // not String Because It's
     // better for db storage
     required num price,
     required String description,
     required List<String> images,
+    @FieldValueConverter() required FieldValue time,
     // required List<Asset> pickedImages,
   }) = _ProductDTO;
 
   // Convert Peoduct to Product DTO
-  factory ProductDTO.fromDomain({required Product product,required String? uid}) {
+  factory ProductDTO.fromDomain(
+      {required Product product,
+      required DocumentReference<Object?> uid}) {
     return ProductDTO(
       // id: product.id!,
       uid: uid,
@@ -36,6 +41,7 @@ abstract class ProductDTO with _$ProductDTO {
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),
       images: product.pickedImages.getOrCrash(),
+      time: FieldValue.serverTimestamp(),
     );
   }
   // Fetching Data From DB

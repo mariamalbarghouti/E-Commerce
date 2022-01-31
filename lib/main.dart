@@ -23,11 +23,11 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
-      // initialRoute: (Get.find<FirebaseAuth>().currentUser?.uid == null)
-      //     ? Routes.SIGN_IN
-      //     : Routes.HOME,
+      initialRoute: (Get.find<FirebaseAuth>().currentUser?.uid == null)
+          ? Routes.SIGN_IN
+          : Routes.HOME,
       // initialRoute: Routes.SPLASH_SCREEN,
-      initialRoute: Routes.ADD_PRODUCT,
+      // initialRoute: Routes.ADD_PRODUCT,
       // initialRoute: Routes.SIGN_IN,
       debugShowCheckedModeBanner: false,
       enableLog: true,

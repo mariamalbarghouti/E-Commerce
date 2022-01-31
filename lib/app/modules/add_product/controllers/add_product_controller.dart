@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,17 +81,8 @@ class AddProductController extends GetxController {
   Future<void> deleteImage(int index) async {
     // Delete UI
     pickedImages.removeAt(index);
-coloredPrint(
-      msg: " pickedImages${pickedImages.length}",
-    );
-     coloredPrint(
-      msg: " _product.value.pickedImages ${_product.value.pickedImages.length}",
-    );
     // Delete Data to Domain
     _product.value.pickedImages.deleteIndex(index);
-    coloredPrint(
-      msg: " _product.value.pickedImages ${    _product.value.pickedImages.length}",
-    );
   }
 
   // Title Validator
@@ -131,30 +123,28 @@ coloredPrint(
 
   // Add Product
   Future<void> addProduct() async {
-      coloredPrint(
-      msg: "msg${_product.value.failureOption.fold(() => null, (a) => a.msg)}");
-    // );
-      coloredPrint(
-      msg: "msg${_product.value.pickedImages.length}");
-    // );
-
-      coloredPrint(
-      msg: "true ${_product.value.failureOption.isNone()}",
-    );
-    addProductController.value.reset();
-    // if (!_product.value.failureOption.isSome()) {
-    //   await _uploadProduct();
-    //   addProductController.value.success();
-    // } else {
-    //   addProductController.value.error();
-    //   Get.snackbar(
-    //     "Error",
-    //     "${_product.value.failureOption.fold(() => none(), (a) => a.msg)}",
-    //     snackPosition: SnackPosition.BOTTOM,
-    //   );
-    //   Future.delayed(const Duration(seconds: 3))
-    //       .whenComplete(() => addProductController.value.reset());
-    // }
+    // if there is NO failures
+    // add product
+    // else
+    // error
+    if (!_product.value.failureOption.isSome()) {
+      // add product
+      await _uploadProduct();
+      // sucess btn
+      addProductController.value.success();
+    } else {
+      // button error
+      addProductController.value.error();
+      // error anackbar
+      Get.snackbar(
+        "Error",
+        "${_product.value.failureOption.fold(() => none(), (a) => a.msg)}",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      // after 3 seconds make button reset
+      Future.delayed(const Duration(seconds: 3))
+          .whenComplete(() => addProductController.value.reset());
+    }
   }
 
   // Upload Data
@@ -219,10 +209,8 @@ coloredPrint(
   // Covert Asset into File
   Future<void> _convertAssetIntoFile() async {
     List<File> _imagesForDomain = <File>[];
-
     // Convert Asset To File
-    for (var element in pickedImages) {
-      coloredPrint(msg: "msg ${element.name}");
+    await Future.wait(pickedImages.map((element) async {
       if (element.identifier == null) {
         return;
       } else if (await FlutterAbsolutePath.getAbsolutePath(
@@ -236,9 +224,15 @@ coloredPrint(
               ""),
         );
       }
-    }
+    }));
+
+    // coloredPrint(msg: "CCC _imagesForDomain ${_imagesForDomain.length}");
     // Copy the value
     _product.value = _product.value.copyWith(
         pickedImages: ListOf5<File>(listOfPickedImages: _imagesForDomain));
+    // coloredPrint(
+    //     msg:
+    //         "CCC element ${_product.value.pickedImages.value.fold((l) => l.msg, (r) => r)}",
+    //     color: LogColors.red);
   }
 }
