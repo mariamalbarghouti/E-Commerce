@@ -4,7 +4,7 @@ import 'package:trail/app/modules/add_product/infrastructure/repo_imp/product_re
 
 import '../controllers/add_product_controller.dart';
 
-class AddPostBinding extends Bindings {
+class AddProductBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<IProductRepo>(() => ProductRepoFirebaseImp());

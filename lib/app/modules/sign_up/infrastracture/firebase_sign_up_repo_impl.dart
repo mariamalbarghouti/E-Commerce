@@ -29,29 +29,23 @@ class SignUpFirebaseRepositoryImp extends ISignUpRepository {
       // Email In Use
       if (e.code == 'email-already-in-use') {
         return left(
-          const SignUpServerFailures.emailAlreadyInUse(
-            msg: "Email Already In Use",
-          ),
+          const SignUpServerFailures.emailAlreadyInUse(),
         );
         // Invalid Email
       } else if (e.code == 'invalid-email') {
         return left(
-          const SignUpServerFailures.invalidEmail(
-            msg: "Invalid Email",
-          ),
+          const SignUpServerFailures.invalidEmail(),
         );
         // Weak Password
       } else if (e.code == "weak-password") {
         return left(
-          const SignUpServerFailures.weakPassword(
-            msg: "Weak Password",
-          ),
+          const SignUpServerFailures.weakPassword(),
         );
         // Else
       } else {
         return left(
-          const SignUpServerFailures.serverError(
-            msg: "Server Error",
+          SignUpServerFailures.serverError(
+            msg: "Server Error ${e.code}",
           ),
         );
       }

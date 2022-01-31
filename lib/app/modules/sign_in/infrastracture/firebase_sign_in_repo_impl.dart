@@ -9,8 +9,8 @@ import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.d
 
 // Sign In Repository Implementation
 class FirebaseSignInRepoImp extends ISignInRepoitory {
-  final FirebaseAuth _firebaseAuth =Get.find();
-  
+  final FirebaseAuth _firebaseAuth = Get.find();
+
   // TODO
   // i think i have to return right and left
   // to handle the issues if uid is null
@@ -38,25 +38,18 @@ class FirebaseSignInRepoImp extends ISignInRepoitory {
     } on FirebaseAuthException catch (e) {
       // User Not Found
       if (e.code == 'user-not-found') {
-        return left(
-          const SignInServerFailures.userNotFound(msg: "User Not Found"),
-        );
+        return left(const SignInServerFailures.userNotFound());
         // User Diabled
       } else if (e.code == "user-disabled") {
-        return left(
-          const SignInServerFailures.userDisabled(msg: "User Disabled"),
-        );
+        return left(const SignInServerFailures.userDisabled());
         // Invalid Email Or Wrong Password
       } else if (e.code == "invalid-email" || e.code == "wrong-password") {
-        return left(
-          const SignInServerFailures.invalidEmailOrPassword(
-            msg: "InvalideEmailOrPassword",
-          ),
-        );
+        return left(const SignInServerFailures.invalidEmailOrPassword());
         // Server Error
       } else {
         return left(
-            const SignInServerFailures.serverError(msg: "Server Error"));
+          SignInServerFailures.serverError(msg: "Server Error ${e.code}"),
+        );
       }
     }
   }

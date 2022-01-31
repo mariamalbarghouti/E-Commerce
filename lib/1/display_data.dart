@@ -1,165 +1,51 @@
-// import 'dart:io';
-// import 'package:flutter/cupertino.dart';
-// import 'package:get/get.dart';
-// import 'package:multi_image_picker2/multi_image_picker2.dart';
-// import 'package:trail/app/modules/add_product/domain/product_repo.dart';
-// import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
-// import 'package:trail/app/modules/add_product/domain/value_object/components/image_picker.dart';
-// import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
-// import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
-// import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-// import 'package:trail/app/routes/app_pages.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:flutter/material.dart';
 
-// // Add Product Controller
-// class AddProductController extends GetxController {
-//   AddProductController(this.productRepo);
-//   final IProductRepo productRepo;
-//   late Rx<TextEditingController> descriptionEditionController;
-//   late Rx<TextEditingController> priceEditionController;
-//   late Rx<TextEditingController> titleEditionController;
-//   var images = <Asset>[].obs;
-//   final GlobalKey<FormState> addProductFormKey = GlobalKey<FormState>();
-//   late final Product _product;
+// class UserInformation extends StatefulWidget {
 //   @override
-//   void onInit() {
-//     descriptionEditionController = TextEditingController().obs;
-//     priceEditionController = TextEditingController().obs;
-//     titleEditionController = TextEditingController().obs;
-//     super.onInit();
-//   }
+//     _UserInformationState createState() => _UserInformationState();
+// }
 
+// class _UserInformationState extends State<UserInformation> {
+//   final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').snapshots();
+// @override
+//   void initState() {
+//     super.initState();
+//   }
 //   @override
-//   void onClose() {
-//     titleEditionController.value.dispose();
-//     descriptionEditionController.value.dispose();
-//     priceEditionController.value.dispose();
-//     super.dispose();
-//   }
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: StreamBuilder<QuerySnapshot>(
+//           stream: _usersStream,
+//           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+//             if (snapshot.hasError) {
+//               return Text('Something went wrong');
+//             }
 
-//   // Image Picker
-//   Future<void> pickImgFromGallery() async {
-//     try {
-//       images.value = await MultiImagePicker.pickImages(
-//         maxImages: 30,
-//         enableCamera: true,
-//         selectedAssets: images,
-//         materialOptions: const MaterialOptions(
-//           actionBarColor: "#000000",
-//           actionBarTitle: "Select Image",
-//           allViewTitle: "All Photos",
-//           // actionBarTitleColor: '#090909',
-//           useDetailsView: false,
-//           selectCircleStrokeColor: "#000000",
-//         ),
-//       );
-//     } on Exception catch (e) {
-//       Get.snackbar(
-//         "Error",
-//         e.toString(),
-//         snackPosition: SnackPosition.BOTTOM,
-//       );
-//     }
-//   }
-
-//   // Delete Image From UI
-//   deleteImage(int index) {
-//     images.removeAt(index);
-//   }
-
-//   // Title Validator
-//   titleValidator() {
-//     return ProductTitle(title: titleEditionController.value.text).value.fold(
-//           (l) => l.msg,
-//           (r) => null,
-//         );
-//   }
-
-//   // Description Validator
-//   descriptionValidator() {
-//     return Description(description: descriptionEditionController.value.text)
-//         .value
-//         .fold(
-//           (l) => l.msg,
-//           (r) => null,
-//         );
-//   }
-
-//   // Price Validator
-//   priceValidator() {
-//     return Price(price: priceEditionController.value.text).value.fold(
-//           (l) => l.msg,
-//           (r) => null,
-//         );
-//   }
-
-//   // Add Product
-//   addProduct() async {
-//     if (addProductFormKey.currentState?.validate() ?? false) {
-//       // Upload post details
-//       await _uploadProduct();
-//       // Upload Images To Firebase
-//       // await _uploadImageToFireSrtorage();
-//     } else {
-//       Get.snackbar(
-//         "Error",
-//         "Please Enter All Your Data",
-//         snackPosition: SnackPosition.BOTTOM,
-//       );
-//     }
-//   }
-
-//   // Upload Data
-//   Future<void> _uploadProduct() async {
-//     var images = await _uploadImagesToFirestorage();
-//     await _uploadProductInfo(images: images);
-//   }
-
-//   // Upload Images to Firebase
-//   Future<dynamic> _uploadImagesToFirestorage() async {
-//     return await productRepo.uploadProductImages(images: images).then(
-//           (value) => value.fold((l) {
-//             Get.snackbar(
-//               "Error",
-//               l.msg,
-//               snackPosition: SnackPosition.BOTTOM,
+//             if (snapshot.connectionState == ConnectionState.waiting) {
+//               return Text("Loading");
+//             }
+//             return ListView(
+//               children: snapshot.data!.docs.map((DocumentSnapshot document) {
+//               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+//                 return ListTile(
+//                   title: Text("${data['age']}"),
+//                   subtitle: Text("${data['full_name']}"),
+//                 );
+//               }).toList(),
 //             );
-//           }, (r) {
-//             return r;
-//           }),
-//         );
+//           },
+//         ),
+//       ),
+//     );
 //   }
-
-// //  Upload Product Info to Firebase
-//   Future<void> _uploadProductInfo({required List<String> images}) async {
-//     await productRepo
-//         .createProduct(
-//           product: Product(
-//             title: ProductTitle(title: titleEditionController.value.text),
-//             price: Price(price: priceEditionController.value.text),
-//             description: Description(
-//               description: descriptionEditionController.value.text,
-//             ),
-//             pickedImages: ListOf5(listOfPickedImages: images),
-//           ),
-//         )
-//         .then(
-//           (value) => value.fold(
-//             (l) {
-//               Get.snackbar(
-//                 "Error",
-//                 l.msg,
-//                 snackPosition: SnackPosition.BOTTOM,
-//               );
-//             },
-//             (r) {
-//               Get.snackbar(
-//                 "Sucess",
-//                 "Your Product Has Been Added Sucessfully",
-//                 snackPosition: SnackPosition.BOTTOM,
-//               );
-//               Get.offNamed(Routes.HOME);
-//             },
-//           ),
-//         );
-//   }
+//     // Future<List> fetchAllContact() async {
+//     // List contactList = [];
+//     // DocumentSnapshot documentSnapshot =
+//     //     await FirebaseStorage.doc('u').doc('details').get();
+//     // contactList = documentSnapshot.data()['contacts'];
+//     // return contactList;
+//   // }
 // }

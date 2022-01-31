@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-import 'package:trail/app/modules/add_product/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
@@ -21,7 +21,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
 // Upload product Images
   @override
-  Future<Either<AddProductServerFailures, List<String>>> uploadProductImages({
+  Future<Either<FireStoreServerFailures, List<String>>> uploadProductImages({
     required List<File> images,
   }) async {
     try {
@@ -42,14 +42,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(_downloadedUrl);
     } catch (e) {
       return left(
-        AddProductServerFailures.unexpectedError(msg: "Unexpected Error $e"),
+        FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"),
       );
     }
   }
 
   // Create Product Firebase Implementation
   @override
-  Future<Either<AddProductServerFailures, Unit>> createProduct({
+  Future<Either<FireStoreServerFailures, Unit>> createProduct({
     required Product product,
   }) async {
     ProductDTO _productDTO = ProductDTO.fromDomain(
@@ -64,14 +64,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
         return left(
-          const AddProductServerFailures.permissionsDenied(
-            msg: "Permission Denied",
+          const FireStoreServerFailures.permissionsDenied(
+            // msg: "Permission Denied",
           ),
         );
       } else {
         return left(
-          const AddProductServerFailures.unexpectedError(
-            msg: "Unexpected Error",
+          const FireStoreServerFailures.unexpectedError(
+            // msg: "Unexpected Error",
           ),
         );
       }

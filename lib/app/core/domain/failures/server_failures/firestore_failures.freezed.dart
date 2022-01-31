@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'server_failures.dart';
+part of 'firestore_failures.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,22 +14,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$AddProductServerFailuresTearOff {
-  const _$AddProductServerFailuresTearOff();
+class _$FireStoreServerFailuresTearOff {
+  const _$FireStoreServerFailuresTearOff();
 
-  _ServerError serverError({required String msg}) {
+  _ServerError serverError({String msg = "Server Error"}) {
     return _ServerError(
       msg: msg,
     );
   }
 
-  _PermissionsDenied permissionsDenied({required String msg}) {
+  _PermissionsDenied permissionsDenied({String msg = "Permission Denied"}) {
     return _PermissionsDenied(
       msg: msg,
     );
   }
 
-  _UnexpectedError unexpectedError({required String msg}) {
+  _UnexpectedError unexpectedError({String msg = "Unexpected Error"}) {
     return _UnexpectedError(
       msg: msg,
     );
@@ -37,10 +37,10 @@ class _$AddProductServerFailuresTearOff {
 }
 
 /// @nodoc
-const $AddProductServerFailures = _$AddProductServerFailuresTearOff();
+const $FireStoreServerFailures = _$FireStoreServerFailuresTearOff();
 
 /// @nodoc
-mixin _$AddProductServerFailures {
+mixin _$FireStoreServerFailures {
   String get msg => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -89,26 +89,26 @@ mixin _$AddProductServerFailures {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AddProductServerFailuresCopyWith<AddProductServerFailures> get copyWith =>
+  $FireStoreServerFailuresCopyWith<FireStoreServerFailures> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddProductServerFailuresCopyWith<$Res> {
-  factory $AddProductServerFailuresCopyWith(AddProductServerFailures value,
-          $Res Function(AddProductServerFailures) then) =
-      _$AddProductServerFailuresCopyWithImpl<$Res>;
+abstract class $FireStoreServerFailuresCopyWith<$Res> {
+  factory $FireStoreServerFailuresCopyWith(FireStoreServerFailures value,
+          $Res Function(FireStoreServerFailures) then) =
+      _$FireStoreServerFailuresCopyWithImpl<$Res>;
   $Res call({String msg});
 }
 
 /// @nodoc
-class _$AddProductServerFailuresCopyWithImpl<$Res>
-    implements $AddProductServerFailuresCopyWith<$Res> {
-  _$AddProductServerFailuresCopyWithImpl(this._value, this._then);
+class _$FireStoreServerFailuresCopyWithImpl<$Res>
+    implements $FireStoreServerFailuresCopyWith<$Res> {
+  _$FireStoreServerFailuresCopyWithImpl(this._value, this._then);
 
-  final AddProductServerFailures _value;
+  final FireStoreServerFailures _value;
   // ignore: unused_field
-  final $Res Function(AddProductServerFailures) _then;
+  final $Res Function(FireStoreServerFailures) _then;
 
   @override
   $Res call({
@@ -125,7 +125,7 @@ class _$AddProductServerFailuresCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class _$ServerErrorCopyWith<$Res>
-    implements $AddProductServerFailuresCopyWith<$Res> {
+    implements $FireStoreServerFailuresCopyWith<$Res> {
   factory _$ServerErrorCopyWith(
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
@@ -135,7 +135,7 @@ abstract class _$ServerErrorCopyWith<$Res>
 
 /// @nodoc
 class __$ServerErrorCopyWithImpl<$Res>
-    extends _$AddProductServerFailuresCopyWithImpl<$Res>
+    extends _$FireStoreServerFailuresCopyWithImpl<$Res>
     implements _$ServerErrorCopyWith<$Res> {
   __$ServerErrorCopyWithImpl(
       _ServerError _value, $Res Function(_ServerError) _then)
@@ -160,21 +160,22 @@ class __$ServerErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
-  const _$_ServerError({required this.msg});
+  const _$_ServerError({this.msg = "Server Error"});
 
+  @JsonKey(defaultValue: "Server Error")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductServerFailures.serverError(msg: $msg)';
+    return 'FireStoreServerFailures.serverError(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AddProductServerFailures.serverError'))
+      ..add(DiagnosticsProperty('type', 'FireStoreServerFailures.serverError'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
@@ -264,8 +265,8 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   }
 }
 
-abstract class _ServerError implements AddProductServerFailures {
-  const factory _ServerError({required String msg}) = _$_ServerError;
+abstract class _ServerError implements FireStoreServerFailures {
+  const factory _ServerError({String msg}) = _$_ServerError;
 
   @override
   String get msg => throw _privateConstructorUsedError;
@@ -277,7 +278,7 @@ abstract class _ServerError implements AddProductServerFailures {
 
 /// @nodoc
 abstract class _$PermissionsDeniedCopyWith<$Res>
-    implements $AddProductServerFailuresCopyWith<$Res> {
+    implements $FireStoreServerFailuresCopyWith<$Res> {
   factory _$PermissionsDeniedCopyWith(
           _PermissionsDenied value, $Res Function(_PermissionsDenied) then) =
       __$PermissionsDeniedCopyWithImpl<$Res>;
@@ -287,7 +288,7 @@ abstract class _$PermissionsDeniedCopyWith<$Res>
 
 /// @nodoc
 class __$PermissionsDeniedCopyWithImpl<$Res>
-    extends _$AddProductServerFailuresCopyWithImpl<$Res>
+    extends _$FireStoreServerFailuresCopyWithImpl<$Res>
     implements _$PermissionsDeniedCopyWith<$Res> {
   __$PermissionsDeniedCopyWithImpl(
       _PermissionsDenied _value, $Res Function(_PermissionsDenied) _then)
@@ -314,14 +315,15 @@ class __$PermissionsDeniedCopyWithImpl<$Res>
 class _$_PermissionsDenied
     with DiagnosticableTreeMixin
     implements _PermissionsDenied {
-  const _$_PermissionsDenied({required this.msg});
+  const _$_PermissionsDenied({this.msg = "Permission Denied"});
 
+  @JsonKey(defaultValue: "Permission Denied")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductServerFailures.permissionsDenied(msg: $msg)';
+    return 'FireStoreServerFailures.permissionsDenied(msg: $msg)';
   }
 
   @override
@@ -329,7 +331,7 @@ class _$_PermissionsDenied
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'AddProductServerFailures.permissionsDenied'))
+          'type', 'FireStoreServerFailures.permissionsDenied'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
@@ -419,9 +421,8 @@ class _$_PermissionsDenied
   }
 }
 
-abstract class _PermissionsDenied implements AddProductServerFailures {
-  const factory _PermissionsDenied({required String msg}) =
-      _$_PermissionsDenied;
+abstract class _PermissionsDenied implements FireStoreServerFailures {
+  const factory _PermissionsDenied({String msg}) = _$_PermissionsDenied;
 
   @override
   String get msg => throw _privateConstructorUsedError;
@@ -433,7 +434,7 @@ abstract class _PermissionsDenied implements AddProductServerFailures {
 
 /// @nodoc
 abstract class _$UnexpectedErrorCopyWith<$Res>
-    implements $AddProductServerFailuresCopyWith<$Res> {
+    implements $FireStoreServerFailuresCopyWith<$Res> {
   factory _$UnexpectedErrorCopyWith(
           _UnexpectedError value, $Res Function(_UnexpectedError) then) =
       __$UnexpectedErrorCopyWithImpl<$Res>;
@@ -443,7 +444,7 @@ abstract class _$UnexpectedErrorCopyWith<$Res>
 
 /// @nodoc
 class __$UnexpectedErrorCopyWithImpl<$Res>
-    extends _$AddProductServerFailuresCopyWithImpl<$Res>
+    extends _$FireStoreServerFailuresCopyWithImpl<$Res>
     implements _$UnexpectedErrorCopyWith<$Res> {
   __$UnexpectedErrorCopyWithImpl(
       _UnexpectedError _value, $Res Function(_UnexpectedError) _then)
@@ -470,14 +471,15 @@ class __$UnexpectedErrorCopyWithImpl<$Res>
 class _$_UnexpectedError
     with DiagnosticableTreeMixin
     implements _UnexpectedError {
-  const _$_UnexpectedError({required this.msg});
+  const _$_UnexpectedError({this.msg = "Unexpected Error"});
 
+  @JsonKey(defaultValue: "Unexpected Error")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddProductServerFailures.unexpectedError(msg: $msg)';
+    return 'FireStoreServerFailures.unexpectedError(msg: $msg)';
   }
 
   @override
@@ -485,7 +487,7 @@ class _$_UnexpectedError
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'AddProductServerFailures.unexpectedError'))
+          'type', 'FireStoreServerFailures.unexpectedError'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
@@ -575,8 +577,8 @@ class _$_UnexpectedError
   }
 }
 
-abstract class _UnexpectedError implements AddProductServerFailures {
-  const factory _UnexpectedError({required String msg}) = _$_UnexpectedError;
+abstract class _UnexpectedError implements FireStoreServerFailures {
+  const factory _UnexpectedError({String msg}) = _$_UnexpectedError;
 
   @override
   String get msg => throw _privateConstructorUsedError;

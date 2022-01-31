@@ -23,19 +23,20 @@ class _$SignInServerFailuresTearOff {
     );
   }
 
-  _InvalidEmailOrPassword invalidEmailOrPassword({required String msg}) {
+  _InvalidEmailOrPassword invalidEmailOrPassword(
+      {String msg = "Invalid Email Or Password"}) {
     return _InvalidEmailOrPassword(
       msg: msg,
     );
   }
 
-  _UserNotFound userNotFound({required String msg}) {
+  _UserNotFound userNotFound({String msg = "User Not Found"}) {
     return _UserNotFound(
       msg: msg,
     );
   }
 
-  _UserDisabled userDisabled({required String msg}) {
+  _UserDisabled userDisabled({String msg = "User Disabled"}) {
     return _UserDisabled(
       msg: msg,
     );
@@ -334,8 +335,9 @@ class __$InvalidEmailOrPasswordCopyWithImpl<$Res>
 class _$_InvalidEmailOrPassword
     with DiagnosticableTreeMixin
     implements _InvalidEmailOrPassword {
-  const _$_InvalidEmailOrPassword({required this.msg});
+  const _$_InvalidEmailOrPassword({this.msg = "Invalid Email Or Password"});
 
+  @JsonKey(defaultValue: "Invalid Email Or Password")
   @override
   final String msg;
 
@@ -448,7 +450,7 @@ class _$_InvalidEmailOrPassword
 }
 
 abstract class _InvalidEmailOrPassword implements SignInServerFailures {
-  const factory _InvalidEmailOrPassword({required String msg}) =
+  const factory _InvalidEmailOrPassword({String msg}) =
       _$_InvalidEmailOrPassword;
 
   @override
@@ -496,8 +498,9 @@ class __$UserNotFoundCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
-  const _$_UserNotFound({required this.msg});
+  const _$_UserNotFound({this.msg = "User Not Found"});
 
+  @JsonKey(defaultValue: "User Not Found")
   @override
   final String msg;
 
@@ -608,7 +611,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
 }
 
 abstract class _UserNotFound implements SignInServerFailures {
-  const factory _UserNotFound({required String msg}) = _$_UserNotFound;
+  const factory _UserNotFound({String msg}) = _$_UserNotFound;
 
   @override
   String get msg => throw _privateConstructorUsedError;
@@ -655,8 +658,9 @@ class __$UserDisabledCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
-  const _$_UserDisabled({required this.msg});
+  const _$_UserDisabled({this.msg = "User Disabled"});
 
+  @JsonKey(defaultValue: "User Disabled")
   @override
   final String msg;
 
@@ -767,7 +771,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
 }
 
 abstract class _UserDisabled implements SignInServerFailures {
-  const factory _UserDisabled({required String msg}) = _$_UserDisabled;
+  const factory _UserDisabled({String msg}) = _$_UserDisabled;
 
   @override
   String get msg => throw _privateConstructorUsedError;

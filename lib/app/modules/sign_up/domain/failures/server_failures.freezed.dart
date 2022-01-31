@@ -17,19 +17,19 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SignUpServerFailuresTearOff {
   const _$SignUpServerFailuresTearOff();
 
-  _EmailAlreadyInUse emailAlreadyInUse({required String msg}) {
+  _EmailAlreadyInUse emailAlreadyInUse({String msg = "Email Already In Use"}) {
     return _EmailAlreadyInUse(
       msg: msg,
     );
   }
 
-  _InvalidEmail invalidEmail({required String msg}) {
+  _InvalidEmail invalidEmail({String msg = "Invalid Email"}) {
     return _InvalidEmail(
       msg: msg,
     );
   }
 
-  _WeakPassword weakPassword({required String msg}) {
+  _WeakPassword weakPassword({String msg = "Weak Password"}) {
     return _WeakPassword(
       msg: msg,
     );
@@ -174,8 +174,9 @@ class __$EmailAlreadyInUseCopyWithImpl<$Res>
 class _$_EmailAlreadyInUse
     with DiagnosticableTreeMixin
     implements _EmailAlreadyInUse {
-  const _$_EmailAlreadyInUse({required this.msg});
+  const _$_EmailAlreadyInUse({this.msg = "Email Already In Use"});
 
+  @JsonKey(defaultValue: "Email Already In Use")
   @override
   final String msg;
 
@@ -286,8 +287,7 @@ class _$_EmailAlreadyInUse
 }
 
 abstract class _EmailAlreadyInUse implements SignUpServerFailures {
-  const factory _EmailAlreadyInUse({required String msg}) =
-      _$_EmailAlreadyInUse;
+  const factory _EmailAlreadyInUse({String msg}) = _$_EmailAlreadyInUse;
 
   @override
   String get msg => throw _privateConstructorUsedError;
@@ -334,8 +334,9 @@ class __$InvalidEmailCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
-  const _$_InvalidEmail({required this.msg});
+  const _$_InvalidEmail({this.msg = "Invalid Email"});
 
+  @JsonKey(defaultValue: "Invalid Email")
   @override
   final String msg;
 
@@ -445,7 +446,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
 }
 
 abstract class _InvalidEmail implements SignUpServerFailures {
-  const factory _InvalidEmail({required String msg}) = _$_InvalidEmail;
+  const factory _InvalidEmail({String msg}) = _$_InvalidEmail;
 
   @override
   String get msg => throw _privateConstructorUsedError;
@@ -492,8 +493,9 @@ class __$WeakPasswordCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
-  const _$_WeakPassword({required this.msg});
+  const _$_WeakPassword({this.msg = "Weak Password"});
 
+  @JsonKey(defaultValue: "Weak Password")
   @override
   final String msg;
 
@@ -603,7 +605,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
 }
 
 abstract class _WeakPassword implements SignUpServerFailures {
-  const factory _WeakPassword({required String msg}) = _$_WeakPassword;
+  const factory _WeakPassword({String msg}) = _$_WeakPassword;
 
   @override
   String get msg => throw _privateConstructorUsedError;
