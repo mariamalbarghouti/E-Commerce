@@ -10,6 +10,7 @@ import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo
 import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:trail/core/logger_mixin.dart';
 import 'package:trail/core/print_logget.dart';
 
 // Sign Out Repository Implementation
@@ -22,29 +23,47 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
   }
 
   @override
-  Stream<Either<FireStoreServerFailures, List<Product>>>
+  Stream<Either<FireStoreServerFailures, List<Product>>> //List<Product>>>
       fetchProducts() async* {
-    //  Product x=Product.empty();
     CollectionReference<Object?> _productsCollection =
         _firebaseFirestore.productsCollection;
-    yield* _productsCollection
-        .snapshots()
-        .map((snapshot) => right<FireStoreServerFailures, List<Product>>(
-                snapshot.docs.map((doc) {
-              // coloredPrint(msg: "Error ${doc.data().toString()}",color: LogColors.magenta,);
-              //  x=ProductDTO.fromFireStore(doc).toDomain();
-              return ProductDTO.fromFireStore(doc).toDomain();
-            }).toList()))
-        // TODO see errors
-        .onErrorReturnWith((error, stackTrace) {
-      if (error is FirebaseException) {
-        // TODO make it better
-        return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
-      } else {
-        return left(
-          FireStoreServerFailures.unexpectedError(msg: "Error $error"),
-        );
-      }
-    });
+    yield* _productsCollection.snapshots().map(
+      (snapshot) {
+        return right<FireStoreServerFailures, List<Product>>(snapshot.docs
+            .map((doc) =>
+                    // coloredPrint(
+                    //     msg:
+                    //         "msgProductDTO.fromFireStore(doc)${ProductDTO.fromFireStore(doc).toDomain(doc)}",
+                    //     color: LogColors.green);
+                    // return
+                    ProductDTO.fromFireStore(doc).toDomain(doc) //;
+                // }
+                )
+            .toList());
+      },
+    ).handleError(
+      (error) {
+        if (error is FirebaseException) {
+          //&& e.message!.contains('PERMISSION_DENIED')) {
+          return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
+        } else {
+          return left(
+            FireStoreServerFailures.unexpectedError(msg: "Error $error"),
+          );
+        }
+      },
+    );
+    // .onErrorReturnWith((error, stackTrace) {
+    //   if (error is FirebaseException) {
+    //     // TODO make it better
+    //     return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
+    //   } else {
+    //     return left(
+    //       FireStoreServerFailures.unexpectedError(msg: "Error $error"),
+    //     );
+    //   }
+
+    // }
+    // );
   }
 }

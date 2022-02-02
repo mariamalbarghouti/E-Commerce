@@ -7,6 +7,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/components/tit
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/converter/document_refrence_converter.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/converter/field_value_converter.dart';
+import 'package:trail/core/print_logget.dart';
 
 part 'add_product_tdo.freezed.dart';
 part 'add_product_tdo.g.dart';
@@ -19,7 +20,7 @@ abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
     @JsonKey(ignore: true) @Default("") String id,
     // DocumentReference<Object?>  uid,
-    @DocumentReferenceConverter() required DocumentReference<Object?> uid,
+    // @DocumentReferenceConverter() required DocumentReference<Object?> uid,
     // @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
     required String title,
     // not String Because It's
@@ -35,12 +36,11 @@ abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO.fromDomain(
       {required Product product, required DocumentReference<Object?> uid}) {
     return ProductDTO(
-      // id: product.id??"",
+      // id: product.id,
       // fetchProductsLeft(FireStoreServerFailures.unexpectedError(msg:
       //Error type 'String' is not a subtype of type 'DocumentReference<Object?>'
       //in type cast))
-
-      uid: uid,
+      // uid: uid,
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),
@@ -50,6 +50,7 @@ abstract class ProductDTO with _$ProductDTO {
   }
   // Fetching Data From DB
   factory ProductDTO.fromFireStore(DocumentSnapshot doc) {
+    // coloredPrint(msg: "insode fromFireStore: doc ${(doc.data()).toString()}",color:LogColors.red);
     return ProductDTO.fromJson(doc.data() as Map<String, dynamic>)
         .copyWith(id: doc.id);
   }
@@ -60,10 +61,14 @@ abstract class ProductDTO with _$ProductDTO {
 }
 
 extension ProductDTOX on ProductDTO {
-  Product toDomain() {
+  Product toDomain(QueryDocumentSnapshot<Object?>doc) {
+    // print("object")
+    // coloredPrint(msg: "toDomain: doc ${ProductDTO.fromFireStore(doc)}",color:LogColors.cyan);
+    // coloredPrint(msg: "toDomain: doc ${doc.data()}",color:LogColors.cyan);
+    // coloredPrint(msg: msg)
     return Product(
       id: id,
-      uid: uid,
+      // uid: uid,
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),
