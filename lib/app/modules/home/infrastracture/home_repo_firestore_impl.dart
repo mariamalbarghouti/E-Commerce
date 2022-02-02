@@ -37,7 +37,7 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
         // TODO make it better
         return left( FireStoreServerFailures.permissionsDenied(msg: "$error"));
       } else {
-        return left(const FireStoreServerFailures.unexpectedError());
+        return left( FireStoreServerFailures.unexpectedError(msg: "Error $error"));
       }
     });
    

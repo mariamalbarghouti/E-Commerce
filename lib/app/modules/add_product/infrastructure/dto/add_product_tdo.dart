@@ -18,7 +18,7 @@ part 'add_product_tdo.g.dart';
 abstract class ProductDTO with _$ProductDTO {
   factory ProductDTO({
     @JsonKey(ignore: true) @Default("") String id,
-    // String?  uid,
+    // DocumentReference<Object?>  uid,
     @DocumentReferenceConverter() required DocumentReference<Object?> uid,
     required String title,
     // not String Because It's
@@ -33,9 +33,14 @@ abstract class ProductDTO with _$ProductDTO {
   // Convert Peoduct to Product DTO
   factory ProductDTO.fromDomain(
       {required Product product,
-      required DocumentReference<Object?> uid}) {
+      required DocumentReference<Object?> uid
+      }) {
     return ProductDTO(
-      // id: product.id!,
+      // id: product.id??"",
+      // fetchProductsLeft(FireStoreServerFailures.unexpectedError(msg: 
+      //Error type 'String' is not a subtype of type 'DocumentReference<Object?>' 
+      //in type cast))
+
       uid: uid,
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),

@@ -5,10 +5,15 @@ import 'package:trail/core/print_logget.dart';
 
 class HomeController extends GetxController {
   HomeController({required this.homeRepository});
- final IHomeRepository homeRepository;
-  
-  goToProduct()async{
-   
+  final IHomeRepository homeRepository;
+
+  goToProduct() async {
+    homeRepository.fetchProducts();
+    //  print("object")
+    coloredPrint(
+      msg: "fetchProducts${await homeRepository.fetchProducts().first}",
+      color: LogColors.red,
+    );
 // snapshot.data!.docs.map((DocumentSnapshot document) {
 //               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 //                 return ListTile(
@@ -17,6 +22,4 @@ class HomeController extends GetxController {
 //                 );
 //               }).toList(),
   }
-  
-  
 }

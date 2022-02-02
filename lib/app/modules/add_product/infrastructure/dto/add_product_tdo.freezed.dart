@@ -51,7 +51,8 @@ const $ProductDTO = _$ProductDTOTearOff();
 /// @nodoc
 mixin _$ProductDTO {
   @JsonKey(ignore: true)
-  String get id => throw _privateConstructorUsedError; // String?  uid,
+  String get id =>
+      throw _privateConstructorUsedError; // DocumentReference<Object?>  uid,
   @DocumentReferenceConverter()
   DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
   String get title =>
@@ -222,7 +223,7 @@ class _$_ProductDTO implements _ProductDTO {
   @override
   @JsonKey(ignore: true)
   final String id;
-  @override // String?  uid,
+  @override // DocumentReference<Object?>  uid,
   @DocumentReferenceConverter()
   final DocumentReference<Object?> uid;
   @override
@@ -302,7 +303,7 @@ abstract class _ProductDTO implements ProductDTO {
   @override
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
-  @override // String?  uid,
+  @override // DocumentReference<Object?>  uid,
   @DocumentReferenceConverter()
   DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
   @override

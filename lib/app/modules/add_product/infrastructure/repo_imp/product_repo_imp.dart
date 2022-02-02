@@ -25,7 +25,6 @@ class ProductRepoFirebaseImp implements IProductRepo {
     required List<File> images,
   }) async {
     try {
-
       List<String> _downloadedUrl = [];
       for (int i = 0; i < images.length; i++) {
         UploadTask _uploadTask = FirebaseStorage.instance
@@ -64,15 +63,11 @@ class ProductRepoFirebaseImp implements IProductRepo {
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
         return left(
-          const FireStoreServerFailures.permissionsDenied(
-            // msg: "Permission Denied",
-          ),
+          const FireStoreServerFailures.permissionsDenied(),
         );
       } else {
         return left(
-          const FireStoreServerFailures.unexpectedError(
-            // msg: "Unexpected Error",
-          ),
+          const FireStoreServerFailures.unexpectedError(),
         );
       }
     }
