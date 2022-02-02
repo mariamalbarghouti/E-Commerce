@@ -9,11 +9,18 @@ class HomeController extends GetxController {
 
   goToProduct() async {
     homeRepository.fetchProducts();
+    // Map<String, dynamic> 
+    // List<Map<String, dynamic>> x= await FirebaseFirestore.instance.collection("products").get().then((value) => value.docs.map((e) => e.data()).toList());
+    //  Map<String,dynamic> v=x[0];
+    //  var c=v["uid"];
     //  print("object")
     coloredPrint(
       msg: "fetchProducts${await homeRepository.fetchProducts().first}",
+      // msg: "${c}",
       color: LogColors.red,
     );
+
+
 // snapshot.data!.docs.map((DocumentSnapshot document) {
 //               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 //                 return ListTile(

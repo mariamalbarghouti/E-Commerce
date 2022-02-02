@@ -20,6 +20,7 @@ abstract class ProductDTO with _$ProductDTO {
     @JsonKey(ignore: true) @Default("") String id,
     // DocumentReference<Object?>  uid,
     @DocumentReferenceConverter() required DocumentReference<Object?> uid,
+    // @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
     required String title,
     // not String Because It's
     // better for db storage
@@ -32,13 +33,11 @@ abstract class ProductDTO with _$ProductDTO {
 
   // Convert Peoduct to Product DTO
   factory ProductDTO.fromDomain(
-      {required Product product,
-      required DocumentReference<Object?> uid
-      }) {
+      {required Product product, required DocumentReference<Object?> uid}) {
     return ProductDTO(
       // id: product.id??"",
-      // fetchProductsLeft(FireStoreServerFailures.unexpectedError(msg: 
-      //Error type 'String' is not a subtype of type 'DocumentReference<Object?>' 
+      // fetchProductsLeft(FireStoreServerFailures.unexpectedError(msg:
+      //Error type 'String' is not a subtype of type 'DocumentReference<Object?>'
       //in type cast))
 
       uid: uid,
@@ -64,6 +63,7 @@ extension ProductDTOX on ProductDTO {
   Product toDomain() {
     return Product(
       id: id,
+      uid: uid,
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),

@@ -19,12 +19,14 @@ class _$ProductTearOff {
 
   _Product call(
       {String? id,
+      DocumentReference<Object?>? uid,
       required ProductTitle title,
       required Price price,
       required Description description,
       required ListOf5<dynamic> pickedImages}) {
     return _Product(
       id: id,
+      uid: uid,
       title: title,
       price: price,
       description: description,
@@ -39,6 +41,7 @@ const $Product = _$ProductTearOff();
 /// @nodoc
 mixin _$Product {
   String? get id => throw _privateConstructorUsedError;
+  DocumentReference<Object?>? get uid => throw _privateConstructorUsedError;
   ProductTitle get title => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
   Description get description => throw _privateConstructorUsedError;
@@ -54,6 +57,7 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      DocumentReference<Object?>? uid,
       ProductTitle title,
       Price price,
       Description description,
@@ -71,6 +75,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
@@ -81,6 +86,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Object?>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -108,6 +117,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      DocumentReference<Object?>? uid,
       ProductTitle title,
       Price price,
       Description description,
@@ -126,6 +136,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
@@ -136,6 +147,10 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Object?>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -161,6 +176,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 class _$_Product extends _Product {
   const _$_Product(
       {this.id,
+      this.uid,
       required this.title,
       required this.price,
       required this.description,
@@ -169,6 +185,8 @@ class _$_Product extends _Product {
 
   @override
   final String? id;
+  @override
+  final DocumentReference<Object?>? uid;
   @override
   final ProductTitle title;
   @override
@@ -180,7 +198,7 @@ class _$_Product extends _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, price: $price, description: $description, pickedImages: $pickedImages)';
+    return 'Product(id: $id, uid: $uid, title: $title, price: $price, description: $description, pickedImages: $pickedImages)';
   }
 
   @override
@@ -189,6 +207,8 @@ class _$_Product extends _Product {
         (other is _Product &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.price, price) ||
@@ -205,6 +225,7 @@ class _$_Product extends _Product {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(description) ^
@@ -219,6 +240,7 @@ class _$_Product extends _Product {
 abstract class _Product extends Product {
   const factory _Product(
       {String? id,
+      DocumentReference<Object?>? uid,
       required ProductTitle title,
       required Price price,
       required Description description,
@@ -227,6 +249,8 @@ abstract class _Product extends Product {
 
   @override
   String? get id => throw _privateConstructorUsedError;
+  @override
+  DocumentReference<Object?>? get uid => throw _privateConstructorUsedError;
   @override
   ProductTitle get title => throw _privateConstructorUsedError;
   @override

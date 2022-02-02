@@ -22,24 +22,29 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
   }
 
   @override
-  Stream<Either<FireStoreServerFailures, List<Product>>> fetchProducts() async* {
+  Stream<Either<FireStoreServerFailures, List<Product>>>
+      fetchProducts() async* {
+    //  Product x=Product.empty();
     CollectionReference<Object?> _productsCollection =
         _firebaseFirestore.productsCollection;
     yield* _productsCollection
         .snapshots()
         .map((snapshot) => right<FireStoreServerFailures, List<Product>>(
-            snapshot.docs
-                .map((doc) => ProductDTO.fromFireStore(doc).toDomain())
-                .toList()))
-                // TODO see errors
+                snapshot.docs.map((doc) {
+              // coloredPrint(msg: "Error ${doc.data().toString()}",color: LogColors.magenta,);
+              //  x=ProductDTO.fromFireStore(doc).toDomain();
+              return ProductDTO.fromFireStore(doc).toDomain();
+            }).toList()))
+        // TODO see errors
         .onErrorReturnWith((error, stackTrace) {
       if (error is FirebaseException) {
         // TODO make it better
-        return left( FireStoreServerFailures.permissionsDenied(msg: "$error"));
+        return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
       } else {
-        return left( FireStoreServerFailures.unexpectedError(msg: "Error $error"));
+        return left(
+          FireStoreServerFailures.unexpectedError(msg: "Error $error"),
+        );
       }
     });
-   
   }
 }

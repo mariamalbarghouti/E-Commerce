@@ -54,7 +54,8 @@ mixin _$ProductDTO {
   String get id =>
       throw _privateConstructorUsedError; // DocumentReference<Object?>  uid,
   @DocumentReferenceConverter()
-  DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
+  DocumentReference<Object?> get uid =>
+      throw _privateConstructorUsedError; // @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
   String get title =>
       throw _privateConstructorUsedError; // not String Because It's
 // better for db storage
@@ -226,7 +227,7 @@ class _$_ProductDTO implements _ProductDTO {
   @override // DocumentReference<Object?>  uid,
   @DocumentReferenceConverter()
   final DocumentReference<Object?> uid;
-  @override
+  @override // @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
   final String title;
   @override // not String Because It's
 // better for db storage
@@ -306,7 +307,7 @@ abstract class _ProductDTO implements ProductDTO {
   @override // DocumentReference<Object?>  uid,
   @DocumentReferenceConverter()
   DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
-  @override
+  @override // @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
   String get title => throw _privateConstructorUsedError;
   @override // not String Because It's
 // better for db storage

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:trail/app/modules/add_product/domain/failures/value_object_failures.dart';
@@ -17,6 +18,7 @@ abstract class Product implements _$Product {
   const Product._();
   const factory Product({
     String? id,
+     DocumentReference<Object?>? uid,
     required ProductTitle title,
     required Price price,
     required Description description,

@@ -53,7 +53,8 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }) async {
     ProductDTO _productDTO = ProductDTO.fromDomain(
       product: product,
-      uid: await _firebaseFirestore.userDocument,
+      uid: _firebaseFirestore.userCollection
+          .doc(await _firebaseFirestore.userID),
     );
     try {
       await _firebaseFirestore.productsCollection
