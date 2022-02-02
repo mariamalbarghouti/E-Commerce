@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
-import 'package:trail/core/print_logget.dart';
+import 'package:trail/core/print_logger.dart';
 
 class HomeController extends GetxController {
   HomeController({required this.homeRepository});

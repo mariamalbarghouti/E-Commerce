@@ -7,7 +7,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/components/tit
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/converter/document_refrence_converter.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/converter/field_value_converter.dart';
-import 'package:trail/core/print_logget.dart';
+import 'package:trail/core/print_logger.dart';
 
 part 'add_product_tdo.freezed.dart';
 part 'add_product_tdo.g.dart';
@@ -73,7 +73,7 @@ extension ProductDTOX on ProductDTO {
       description: Description(description: description),
       pickedImages: ListOf5<String>(listOfPickedImages: images),
     );
-    coloredPrint(msg: "toDomain: doc ${_product.toString()}",color:LogColors.cyan);
+    // coloredPrint(msg: "toDomain: doc ${_product.toString()}",color:LogColors.cyan);
     return _product;
   }
 }

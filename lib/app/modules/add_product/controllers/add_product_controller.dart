@@ -15,7 +15,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/components/pri
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/routes/app_pages.dart';
-import 'package:trail/core/print_logget.dart';
+import 'package:trail/core/print_logger.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 // Add Product Controller

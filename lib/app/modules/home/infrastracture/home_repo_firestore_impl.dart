@@ -11,7 +11,7 @@ import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:trail/core/logger_mixin.dart';
-import 'package:trail/core/print_logget.dart';
+import 'package:trail/core/print_logger.dart';
 
 // Sign Out Repository Implementation
 class HomeRepoFirebaseImplimentation extends IHomeRepository {

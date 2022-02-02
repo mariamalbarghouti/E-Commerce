@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/add_product/domain/failures/value_object_failures.dart';
-import 'package:trail/core/print_logget.dart';
+import 'package:trail/core/print_logger.dart';
 
 // ListOf5 Validator
 Either<AddProductValueFailures, List<T>> listOf5Validator<T>({
