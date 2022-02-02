@@ -61,18 +61,19 @@ abstract class ProductDTO with _$ProductDTO {
 }
 
 extension ProductDTOX on ProductDTO {
-  Product toDomain(QueryDocumentSnapshot<Object?>doc) {
+  Product toDomain() {
     // print("object")
     // coloredPrint(msg: "toDomain: doc ${ProductDTO.fromFireStore(doc)}",color:LogColors.cyan);
-    // coloredPrint(msg: "toDomain: doc ${doc.data()}",color:LogColors.cyan);
     // coloredPrint(msg: msg)
-    return Product(
+    Product _product=Product(
       id: id,
       // uid: uid,
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),
-      pickedImages: ListOf5(listOfPickedImages: images),
+      pickedImages: ListOf5<String>(listOfPickedImages: images),
     );
+    coloredPrint(msg: "toDomain: doc ${_product.toString()}",color:LogColors.cyan);
+    return _product;
   }
 }

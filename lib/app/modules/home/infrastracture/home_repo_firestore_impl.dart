@@ -36,34 +36,20 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
                     //         "msgProductDTO.fromFireStore(doc)${ProductDTO.fromFireStore(doc).toDomain(doc)}",
                     //     color: LogColors.green);
                     // return
-                    ProductDTO.fromFireStore(doc).toDomain(doc) //;
+                    ProductDTO.fromFireStore(doc).toDomain() //;
                 // }
                 )
             .toList());
       },
-    ).handleError(
-      (error) {
-        if (error is FirebaseException) {
-          //&& e.message!.contains('PERMISSION_DENIED')) {
-          return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
-        } else {
-          return left(
-            FireStoreServerFailures.unexpectedError(msg: "Error $error"),
-          );
-        }
-      },
-    );
-    // .onErrorReturnWith((error, stackTrace) {
-    //   if (error is FirebaseException) {
-    //     // TODO make it better
-    //     return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
-    //   } else {
-    //     return left(
-    //       FireStoreServerFailures.unexpectedError(msg: "Error $error"),
-    //     );
-    //   }
-
-    // }
-    // );
+    ).onErrorReturnWith((error, stackTrace) {
+      if (error is FirebaseException) {
+        // TODO make it better
+        return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
+      } else {
+        return left(
+          FireStoreServerFailures.unexpectedError(msg: "Error $error"),
+        );
+      }
+    });
   }
 }

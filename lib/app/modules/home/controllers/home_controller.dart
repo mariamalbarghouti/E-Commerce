@@ -8,8 +8,10 @@ class HomeController extends GetxController {
   final IHomeRepository homeRepository;
 
   goToProduct() async {
-    homeRepository.fetchProducts().listen((event) { event.fold((l) => coloredPrint(msg: l.msg,color: LogColors.yellow), (r) => coloredPrint(msg: r.first.toString(),color: LogColors.magenta));});
-    // Map<String, dynamic> 
+    homeRepository.fetchProducts().listen((event) {
+      event.fold((l) => l.msg, (r) => r);
+    });
+    // Map<String, dynamic>
     // List<Map<String, dynamic>> x= await FirebaseFirestore.instance.collection("products").get().then((value) => value.docs.map((e) => e.data()).toList());
     //  Map<String,dynamic> v=x[0];
     //  var c=v["uid"];
@@ -19,7 +21,6 @@ class HomeController extends GetxController {
     //   // msg: "${c}",
     //   color: LogColors.red,
     // );
-
 
 // snapshot.data!.docs.map((DocumentSnapshot document) {
 //               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
