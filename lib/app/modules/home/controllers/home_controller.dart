@@ -8,7 +8,6 @@ import 'package:trail/app/routes/app_pages.dart';
 class HomeController extends GetxController with StateMixin<List<Product>> {
   HomeController({required this.homeRepository});
   final IHomeRepository homeRepository;
-  late List<Product> product;
   @override
   void onInit() async {
     await fetchProductsFromDB();
@@ -23,22 +22,8 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
           (l) => change(
                 null,
                 status: RxStatus.error(l.msg),
-              ), (r) =>
-        // error inside my code "i mean the data does not satisfy my logic"
-        // r.map((e) {
-        //   if (e.failureOption.isSome()) {
-        //     return change(r,
-        //         status: RxStatus.error(
-        //             "This Product Have An Error, please contact us. product id is: ${e.id}"));
-        //   } else {
-        //     return change(r, status: RxStatus.success());
-        //   }
-        // });
-      //   r.map((e) => e.failureOption.isSome()
-      //       ? change(null, status: RxStatus.error("ds"))
-      //       : 
-      change(r, status: RxStatus.success()));
-      // });
+              ),
+          (r) => change(r, status: RxStatus.success()));
     });
   }
 
