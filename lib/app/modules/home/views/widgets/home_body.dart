@@ -70,7 +70,7 @@ class HomeBody extends GetView<HomeController> {
           }),
 
       // On Error
-      onError: (_) => Container(
+      onError: (error) => Container(
         color: Colors.green,
         child: const Center(
           child: Text("Unexcepected Error"),
