@@ -7,8 +7,8 @@ class ProductDetailsController extends GetxController {
 late Product product;
   @override
   void onInit() {
-   product=Get.arguments[0];
+  // 
+   product=Get.arguments;
     super.onInit();
   }
-
 }

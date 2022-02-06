@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:trail/app/modules/product_details/controllers/product_details_controller.dart';
 
@@ -12,23 +13,27 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          // Images
           CarouselSlider.builder(
-            itemCount: controller.product.pickedImages.length,
+            itemCount: Get.arguments.pickedImages.length,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) =>
                     Image.network(
-              controller.product.pickedImages.getOrCrash()[itemIndex],
+              Get.arguments.pickedImages.getOrCrash()[itemIndex],
             ),
             options: CarouselOptions(
               aspectRatio: 3 / 2,
-              pauseAutoPlayInFiniteScroll: true,
-              // autoPlayInterval: false,
               enableInfiniteScroll: false,
             ),
           ),
-          // 
+          // Price
           Text(
-            controller.product.price.getOrCrash(),
+            "Price: ${Get.arguments.price.getOrCrash()}",
+            style: const TextStyle(fontSize: 20),
+          ),
+          // Description
+          Text(
+            "Description: ${Get.arguments.description.getOrCrash()}",
             style: const TextStyle(fontSize: 20),
           ),
         ],

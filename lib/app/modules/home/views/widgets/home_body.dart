@@ -23,17 +23,19 @@ class HomeBody extends GetView<HomeController> {
               child: state![index].failureOption.isNone()
                   ? InkWell(
                       onTap: () async =>
-                          await controller.goToMoreDetails(state),
+                          await controller.goToMoreDetails(state[index]),
                       child: Stack(
                         fit: StackFit.expand,
                         clipBehavior: Clip.hardEdge,
                         children: [
+                          // Image
                           Image.network(
                             state[index].pickedImages.getOrCrash()[0],
                             fit: BoxFit.fill,
                             height: 200,
                             width: 200,
                           ),
+                          // Price
                           OverflowBox(
                             minHeight: 30,
                             alignment: Alignment.bottomCenter,
