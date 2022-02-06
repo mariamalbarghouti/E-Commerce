@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
@@ -22,7 +23,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 // Upload product Images
   @override
   Future<Either<FireStoreServerFailures, List<String>>> uploadProductImages({
-    required List<File> images,
+    required ListOf5<File> images,
   }) async {
     try {
       List<String> _downloadedUrl = [];
@@ -31,7 +32,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
             .ref('products')
             .child(productID)
             .child('$i')
-            .putFile(images[i]);
+            .putFile(images.getOrCrash()[i]);
         await _uploadTask.then((picValue) async {
           await picValue.ref.getDownloadURL().then((downloadUrl) {
             _downloadedUrl.add(downloadUrl);

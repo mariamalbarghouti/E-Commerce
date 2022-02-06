@@ -62,7 +62,6 @@ class AddProductController extends GetxController {
       );
       // Convert Asset To File
       await _convertAssetIntoFile();
-
       // coloredPrint(msg: "msg ${_product.toString()}", color: LogColors.green);
     } on Exception catch (e) {
       Get.snackbar(
@@ -164,7 +163,8 @@ class AddProductController extends GetxController {
   // Upload Images to Firebase
   Future<Option<List<String>>> _uploadImagesToFirestorage() async {
     return await productRepo
-        .uploadProductImages(images: _product.value.pickedImages.getOrCrash())
+        .uploadProductImages(
+            images: (_product.value.pickedImages) as ListOf5<File>)
         .then(
           (value) => value.fold((l) {
             Get.snackbar(
@@ -224,8 +224,8 @@ class AddProductController extends GetxController {
 
     // coloredPrint(msg: "CCC _imagesForDomain ${_imagesForDomain.length}");
     // Copy the value
-    _product.value = _product.value.copyWith(
-        pickedImages: ListOf5<File>(listOf5: _imagesForDomain));
+    _product.value = _product.value
+        .copyWith(pickedImages: ListOf5<File>(listOf5: _imagesForDomain));
     // coloredPrint(
     //     msg:
     //         "CCC element ${_product.value.pickedImages.value.fold((l) => l.msg, (r) => r)}",
