@@ -1,16 +1,19 @@
 import 'package:get/get.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/core/print_logger.dart';
 
+// Product Details Controller
 class ProductDetailsController extends GetxController {
-  //TODO: Implement ProductDetailsController
-
-  final count = 0.obs;
+late Product product;
   @override
   void onInit() {
-    Get.arguments;
-    coloredPrint(msg:   Get.arguments[0].toString());
+   product=Get.arguments[0];
     super.onInit();
   }
+  // fun() {
+  //   Get.arguments;
+  //   coloredPrint(msg: product.toString());
+  // }
 
   // @override
   // void onReady() {
