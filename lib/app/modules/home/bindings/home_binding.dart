@@ -24,8 +24,17 @@ class HomeBinding extends Bindings {
     Get.lazyPut<IHomeRepository>(
       () => HomeRepoFirebaseImplimentation(),
     );
-    Get.lazyPut<HomeController>(
-      () => HomeController(homeRepository: Get.find()),
+    // Get.put<HomeController>(
+    //   // ()=>
+    //   // Get.putAsync(
+    //   // () async=>await
+    //    HomeController(homeRepository: Get.find()),//.fetchProductsFromDB(),
+    // );
+    Get.put<HomeController>(
+      // ()=>
+      // Get.putAsync(
+      // () async=>await
+       HomeController(homeRepository: Get.find()),//.fetchProductsFromDB(),
     );
   }
 }

@@ -9,9 +9,9 @@ class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
   ListOf5._(this.value);
   @override
   Either<AddProductValueFailures, List<T>> value;
-  factory ListOf5({required List<T> listOfPickedImages}) {
+  factory ListOf5({required List<T> listOf5}) {
     return ListOf5._(
-      listOf5Validator<T>(imagesList: listOfPickedImages),
+      listOf5Validator<T>(imagesList: listOf5),
     );
   }
 

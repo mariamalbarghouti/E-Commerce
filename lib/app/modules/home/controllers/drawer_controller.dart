@@ -4,6 +4,7 @@ import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
 // App Drawer Controller
 // TODO make it better
 class AppDrawerController extends GetxController {
+  
   final IHomeRepository signedInUserRepo;
   // final SignedInUserService signedInUserService;
   AppDrawerController({

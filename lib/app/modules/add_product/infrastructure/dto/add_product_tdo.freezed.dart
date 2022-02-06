@@ -23,6 +23,7 @@ class _$ProductDTOTearOff {
 
   _ProductDTO call(
       {@JsonKey(ignore: true) String id = "",
+      @DocumentReferenceConverter() required DocumentReference<Object?> uid,
       required String title,
       required num price,
       required String description,
@@ -30,6 +31,7 @@ class _$ProductDTOTearOff {
       @FieldValueConverter() required FieldValue time}) {
     return _ProductDTO(
       id: id,
+      uid: uid,
       title: title,
       price: price,
       description: description,
@@ -49,10 +51,9 @@ const $ProductDTO = _$ProductDTOTearOff();
 /// @nodoc
 mixin _$ProductDTO {
   @JsonKey(ignore: true)
-  String get id =>
-      throw _privateConstructorUsedError; // DocumentReference<Object?>  uid,
-// @DocumentReferenceConverter() required DocumentReference<Object?> uid,
-// @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
+  String get id => throw _privateConstructorUsedError;
+  @DocumentReferenceConverter()
+  DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
   String get title =>
       throw _privateConstructorUsedError; // not String Because It's
 // better for db storage
@@ -75,6 +76,7 @@ abstract class $ProductDTOCopyWith<$Res> {
       _$ProductDTOCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(ignore: true) String id,
+      @DocumentReferenceConverter() DocumentReference<Object?> uid,
       String title,
       num price,
       String description,
@@ -93,6 +95,7 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
@@ -104,6 +107,10 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Object?>,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -136,6 +143,7 @@ abstract class _$ProductDTOCopyWith<$Res> implements $ProductDTOCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(ignore: true) String id,
+      @DocumentReferenceConverter() DocumentReference<Object?> uid,
       String title,
       num price,
       String description,
@@ -156,6 +164,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? title = freezed,
     Object? price = freezed,
     Object? description = freezed,
@@ -167,6 +176,10 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Object?>,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -196,6 +209,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
 class _$_ProductDTO implements _ProductDTO {
   _$_ProductDTO(
       {@JsonKey(ignore: true) this.id = "",
+      @DocumentReferenceConverter() required this.uid,
       required this.title,
       required this.price,
       required this.description,
@@ -208,9 +222,10 @@ class _$_ProductDTO implements _ProductDTO {
   @override
   @JsonKey(ignore: true)
   final String id;
-  @override // DocumentReference<Object?>  uid,
-// @DocumentReferenceConverter() required DocumentReference<Object?> uid,
-// @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
+  @override
+  @DocumentReferenceConverter()
+  final DocumentReference<Object?> uid;
+  @override
   final String title;
   @override // not String Because It's
 // better for db storage
@@ -225,7 +240,7 @@ class _$_ProductDTO implements _ProductDTO {
 
   @override
   String toString() {
-    return 'ProductDTO(id: $id, title: $title, price: $price, description: $description, images: $images, time: $time)';
+    return 'ProductDTO(id: $id, uid: $uid, title: $title, price: $price, description: $description, images: $images, time: $time)';
   }
 
   @override
@@ -234,6 +249,8 @@ class _$_ProductDTO implements _ProductDTO {
         (other is _ProductDTO &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.price, price) ||
@@ -251,6 +268,7 @@ class _$_ProductDTO implements _ProductDTO {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(description) ^
@@ -271,6 +289,7 @@ class _$_ProductDTO implements _ProductDTO {
 abstract class _ProductDTO implements ProductDTO {
   factory _ProductDTO(
       {@JsonKey(ignore: true) String id,
+      @DocumentReferenceConverter() required DocumentReference<Object?> uid,
       required String title,
       required num price,
       required String description,
@@ -283,9 +302,10 @@ abstract class _ProductDTO implements ProductDTO {
   @override
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
-  @override // DocumentReference<Object?>  uid,
-// @DocumentReferenceConverter() required DocumentReference<Object?> uid,
-// @DocumentReferenceConverter() required  DocumentReference<Map<String, dynamic>> uid,
+  @override
+  @DocumentReferenceConverter()
+  DocumentReference<Object?> get uid => throw _privateConstructorUsedError;
+  @override
   String get title => throw _privateConstructorUsedError;
   @override // not String Because It's
 // better for db storage

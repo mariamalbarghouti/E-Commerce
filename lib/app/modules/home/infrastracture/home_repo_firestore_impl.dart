@@ -27,18 +27,13 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
       fetchProducts() async* {
     CollectionReference<Object?> _productsCollection =
         _firebaseFirestore.productsCollection;
-    yield* _productsCollection.snapshots().map(
+    yield* _productsCollection
+        .orderBy('time', descending: true)
+        .snapshots()
+        .map(
       (snapshot) {
         return right<FireStoreServerFailures, List<Product>>(snapshot.docs
-            .map((doc) =>
-                    // coloredPrint(
-                    //     msg:
-                    //         "msgProductDTO.fromFireStore(doc)${ProductDTO.fromFireStore(doc).toDomain(doc)}",
-                    //     color: LogColors.green);
-                    // return
-                    ProductDTO.fromFireStore(doc).toDomain() //;
-                // }
-                )
+            .map((doc) => ProductDTO.fromFireStore(doc).toDomain())
             .toList());
       },
     ).onErrorReturnWith((error, stackTrace) {
@@ -46,6 +41,7 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
         // TODO make it better
         return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
       } else {
+        // coloredPrint(msg: "Error ${error}");
         return left(
           FireStoreServerFailures.unexpectedError(msg: "Error $error"),
         );

@@ -1,16 +1,12 @@
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/components/images/list_of_5.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -157,7 +153,7 @@ class AddProductController extends GetxController {
       (a) async {
         // copy the value
         _product.value = _product.value.copyWith(
-          pickedImages: ListOf5<String>(listOfPickedImages: a),
+          pickedImages: ListOf5<String>(listOf5: a),
         );
         // Upload Product Info
         await _uploadProductInfo();
@@ -229,7 +225,7 @@ class AddProductController extends GetxController {
     // coloredPrint(msg: "CCC _imagesForDomain ${_imagesForDomain.length}");
     // Copy the value
     _product.value = _product.value.copyWith(
-        pickedImages: ListOf5<File>(listOfPickedImages: _imagesForDomain));
+        pickedImages: ListOf5<File>(listOf5: _imagesForDomain));
     // coloredPrint(
     //     msg:
     //         "CCC element ${_product.value.pickedImages.value.fold((l) => l.msg, (r) => r)}",

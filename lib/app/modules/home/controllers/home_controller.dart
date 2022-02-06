@@ -1,33 +1,49 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 import 'package:get/get.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
-import 'package:trail/core/print_logger.dart';
+import 'package:trail/app/routes/app_pages.dart';
 
-class HomeController extends GetxController {
+// Home Controller
+class HomeController extends GetxController with StateMixin<List<Product>> {
   HomeController({required this.homeRepository});
   final IHomeRepository homeRepository;
+  late List<Product> product;
+  @override
+  void onInit() async {
+    await fetchProductsFromDB();
+    super.onInit();
+  }
 
-  goToProduct() async {
+  // Fetching Data
+  Future<void> fetchProductsFromDB() async {
     homeRepository.fetchProducts().listen((event) {
-      event.fold((l) => l.msg, (r) => r);
+      event.fold(
+          // If database hase an error
+          (l) => change(
+                null,
+                status: RxStatus.error(l.msg),
+              ), (r) =>
+        // error inside my code "i mean the data does not satisfy my logic"
+        // r.map((e) {
+        //   if (e.failureOption.isSome()) {
+        //     return change(r,
+        //         status: RxStatus.error(
+        //             "This Product Have An Error, please contact us. product id is: ${e.id}"));
+        //   } else {
+        //     return change(r, status: RxStatus.success());
+        //   }
+        // });
+      //   r.map((e) => e.failureOption.isSome()
+      //       ? change(null, status: RxStatus.error("ds"))
+      //       : 
+      change(r, status: RxStatus.success()));
+      // });
     });
-    // Map<String, dynamic>
-    // List<Map<String, dynamic>> x= await FirebaseFirestore.instance.collection("products").get().then((value) => value.docs.map((e) => e.data()).toList());
-    //  Map<String,dynamic> v=x[0];
-    //  var c=v["uid"];
-    //  print("object")
-    // coloredPrint(
-    //   msg: "fetchProducts${await homeRepository.fetchProducts().first}",
-    //   // msg: "${c}",
-    //   color: LogColors.red,
-    // );
+  }
 
-// snapshot.data!.docs.map((DocumentSnapshot document) {
-//               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-//                 return ListTile(
-//                   title: Text("${data['age']}"),
-//                   subtitle: Text("${data['full_name']}"),
-//                 );
-//               }).toList(),
+  // Go To More Details
+  Future<void> goToMoreDetails(products) async {
+    return await Get.toNamed(Routes.PRODUCT_DETAILS, arguments: products);
   }
 }
