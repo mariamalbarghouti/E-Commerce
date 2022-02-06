@@ -10,17 +10,5 @@ late Product product;
    product=Get.arguments[0];
     super.onInit();
   }
-  // fun() {
-  //   Get.arguments;
-  //   coloredPrint(msg: product.toString());
-  // }
 
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  // }
-
-  // @override
-  // void onClose() {}
-  // void increment() => count.value++;
 }
