@@ -74,8 +74,8 @@ class HomeBody extends GetView<HomeController> {
       // On Error
       onError: (error) => Container(
         color: Colors.green,
-        child: const Center(
-          child: Text("Unexcepected Error"),
+        child:  Center(
+          child: Text("Unexcepected Error $error"),
         ),
       ),
       // On Loading

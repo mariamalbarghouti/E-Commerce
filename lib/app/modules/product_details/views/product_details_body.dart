@@ -15,15 +15,15 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
         children: [
           // Images
           CarouselSlider.builder(
+            options: CarouselOptions(
+              aspectRatio: 3 / 2,
+              enableInfiniteScroll: false,
+            ),
             itemCount: Get.arguments.pickedImages.length,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) =>
                     Image.network(
               Get.arguments.pickedImages.getOrCrash()[itemIndex],
-            ),
-            options: CarouselOptions(
-              aspectRatio: 3 / 2,
-              enableInfiniteScroll: false,
             ),
           ),
           // Price
@@ -34,6 +34,11 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
           // Description
           Text(
             "Description: ${Get.arguments.description.getOrCrash()}",
+            style: const TextStyle(fontSize: 20),
+          ),
+          // Time
+          Text(
+            "Time: ${Get.arguments.time.toString().substring(0, Get.arguments.time.toString().indexOf("."))}",
             style: const TextStyle(fontSize: 20),
           ),
         ],

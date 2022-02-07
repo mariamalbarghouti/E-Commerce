@@ -20,6 +20,7 @@ abstract class Product implements _$Product {
     required Price price,
     required Description description,
     required ListOf5 pickedImages,
+    DateTime? time,
   }) = _Product;
 
   factory Product.empty() {
@@ -28,8 +29,10 @@ abstract class Product implements _$Product {
       price: Price(price: ""),
       description: Description(description: ""),
       pickedImages: ListOf5(listOf5: []),
+      // time: FieldValue.serverTimestamp(), //DateTime.now(),
     );
   }
+  // 
   Option<AddProductValueFailures> get failureOption {
     return title.value
         .andThen(price.value)

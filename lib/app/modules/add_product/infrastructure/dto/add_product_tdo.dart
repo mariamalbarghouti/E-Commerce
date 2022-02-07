@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:timeago/timeago.dart';
+
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
@@ -26,7 +29,7 @@ abstract class ProductDTO with _$ProductDTO {
     required num price,
     required String description,
     required List<String> images,
-    @FieldValueConverter() required FieldValue time,
+    @FieldValueConverter() required Timestamp time,
     // required List<Asset> pickedImages,
   }) = _ProductDTO;
 
@@ -43,13 +46,13 @@ abstract class ProductDTO with _$ProductDTO {
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),
       images: product.pickedImages.getOrCrash(),
-      time: FieldValue.serverTimestamp(),
+      time: Timestamp.now(), //FieldValue.serverTimestamp(),
     );
   }
   // Fetching Data From DB
   factory ProductDTO.fromFireStore(DocumentSnapshot doc) {
-    return ProductDTO.fromJson(doc.data() as Map<String, dynamic>)
-        .copyWith(id: doc.id);
+    return ProductDTO.fromJson(doc.data() as Map<String, dynamic>).copyWith(
+        id: doc.id );//, time: (doc.data() as Map<String, dynamic>)["time"]);
   }
 
   // from Json
@@ -58,14 +61,16 @@ abstract class ProductDTO with _$ProductDTO {
 }
 
 extension ProductDTOX on ProductDTO {
+  // Timestamp time=time;
   Product toDomain() {
-  return Product(
+    return Product(
       id: id,
       uid: uid,
       title: ProductTitle(title: title),
       price: Price(price: price.toString()),
       description: Description(description: description),
       pickedImages: ListOf5<String>(listOf5: images),
+      time:time.toDate(),
     );
   }
 }

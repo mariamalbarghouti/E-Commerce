@@ -37,13 +37,14 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
             .toList());
       },
     ).onErrorReturnWith((error, stackTrace) {
-      if (error is FirebaseException) {
-        // TODO make it better
-        return left(FireStoreServerFailures.permissionsDenied(msg: "$error"));
+      if (error is FirebaseException && error.code == 'permission-denied') {
+        return left(const FireStoreServerFailures.permissionsDenied());
+      } else if (error is FirebaseException &&
+          error.code != 'permission-denied') {
+        return left(const FireStoreServerFailures.serverError());
       } else {
-        // coloredPrint(msg: "Error ${error}");
         return left(
-          FireStoreServerFailures.unexpectedError(msg: "Error $error"),
+          FireStoreServerFailures.unexpectedError(msg: "Error: $error"),
         );
       }
     });

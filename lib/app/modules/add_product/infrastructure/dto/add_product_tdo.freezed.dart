@@ -28,7 +28,7 @@ class _$ProductDTOTearOff {
       required num price,
       required String description,
       required List<String> images,
-      @FieldValueConverter() required FieldValue time}) {
+      @FieldValueConverter() required Timestamp time}) {
     return _ProductDTO(
       id: id,
       uid: uid,
@@ -61,7 +61,7 @@ mixin _$ProductDTO {
   String get description => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   @FieldValueConverter()
-  FieldValue get time => throw _privateConstructorUsedError;
+  Timestamp get time => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -81,7 +81,7 @@ abstract class $ProductDTOCopyWith<$Res> {
       num price,
       String description,
       List<String> images,
-      @FieldValueConverter() FieldValue time});
+      @FieldValueConverter() Timestamp time});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class _$ProductDTOCopyWithImpl<$Res> implements $ProductDTOCopyWith<$Res> {
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as FieldValue,
+              as Timestamp,
     ));
   }
 }
@@ -148,7 +148,7 @@ abstract class _$ProductDTOCopyWith<$Res> implements $ProductDTOCopyWith<$Res> {
       num price,
       String description,
       List<String> images,
-      @FieldValueConverter() FieldValue time});
+      @FieldValueConverter() Timestamp time});
 }
 
 /// @nodoc
@@ -199,7 +199,7 @@ class __$ProductDTOCopyWithImpl<$Res> extends _$ProductDTOCopyWithImpl<$Res>
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as FieldValue,
+              as Timestamp,
     ));
   }
 }
@@ -236,7 +236,7 @@ class _$_ProductDTO implements _ProductDTO {
   final List<String> images;
   @override
   @FieldValueConverter()
-  final FieldValue time;
+  final Timestamp time;
 
   @override
   String toString() {
@@ -294,7 +294,7 @@ abstract class _ProductDTO implements ProductDTO {
       required num price,
       required String description,
       required List<String> images,
-      @FieldValueConverter() required FieldValue time}) = _$_ProductDTO;
+      @FieldValueConverter() required Timestamp time}) = _$_ProductDTO;
 
   factory _ProductDTO.fromJson(Map<String, dynamic> json) =
       _$_ProductDTO.fromJson;
@@ -316,7 +316,7 @@ abstract class _ProductDTO implements ProductDTO {
   List<String> get images => throw _privateConstructorUsedError;
   @override
   @FieldValueConverter()
-  FieldValue get time => throw _privateConstructorUsedError;
+  Timestamp get time => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductDTOCopyWith<_ProductDTO> get copyWith =>
