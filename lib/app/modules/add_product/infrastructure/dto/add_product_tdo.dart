@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:timeago/timeago.dart';
+// import 'package:timeago/timeago.dart';
 
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';

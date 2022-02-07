@@ -34,7 +34,7 @@ dependencies:
   # flutter_absolute_path: ^1.0.6
   rxdart: ^0.27.3
   carousel_slider: ^4.0.0
-  timeago: ^3.2.1
+  # timeago: ^3.2.1
   flutter_absolute_path:
    git:
     url: https://github.com/kornperkus/flutter_absolute_path.git
