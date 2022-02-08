@@ -2,11 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
-import 'package:trail/app/modules/sign_in/infrastracture/firebase_sign_in_repo_impl.dart';
 import 'package:trail/core/logger_mixin.dart';
 import 'app/routes/app_pages.dart';
 
@@ -35,41 +32,73 @@ void main() async {
     ),
   );
 }
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:trail/z.dart';
 
-/// Function for if the user is signed In
-/// go home
-/// else
-/// sign Up
-// Future<String> whereToGo() async {
-//   if (Get.find<FirebaseAuth>().currentUser?.uid == null) {
-//     return Routes.SIGN_IN;
-//   } else {
-//     return Routes.HOME;
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetMaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.red,
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: MyHomePage(
+//         title: "Pagination",
+//       ),
+//     );
 //   }
 // }
 
-// "Creates a value object": {
-// 		"prefix": "vobj",
-// 		"body": [
-// 			"class $1 extends ValueObject<$2> {"
-//     ],
+// class MyHomePage extends StatelessWidget {
+//   String? title;
+
+//   MyHomePage({
+//     this.title,
+//   });
+
+//   HomePageController homePageController = Get.put(HomePageController());
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(title!),
+//       ),
+//       body: GetBuilder(
+//         init: homePageController,
+//         builder: (value) => ListView.builder(
+//           controller: homePageController.controller,
+//           itemCount: homePageController.list.length,
+//           itemBuilder: (context, index) {
+//             return Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Container(
+//                 color: Colors.red,
+//                 height: 100,
+//                 child: Center(
+//                   child: Text(homePageController.list[index].name),
+//                 ),
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
 // }
 
-// "Value Object": {
-//         "prefix": "vobj",
-//         "body": [
-//             "class ${1} extends ValueObject<${2}> {",
-//             "  @override",
-//             "  final Either <ValueFailure<${2}>, ${2}> value;",
+// class Model {
+//   String name;
 
-//             "  factory ${1}(${2} input) {",
-//             "    return ${1}._(",
-//             "      // insert validation",
-//             "    );",
-//             "  }",
-
-//             "  const ${1}._(this.value);",
-//             "}"
-//         ],
-//         "description": "Value Object"
-//     }
+//   Model({
+//     required this.name,
+//   });
+// }

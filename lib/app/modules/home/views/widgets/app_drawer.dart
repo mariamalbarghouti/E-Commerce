@@ -5,7 +5,7 @@ import 'package:trail/app/modules/home/controllers/drawer_controller.dart';
 import 'package:trail/app/routes/app_pages.dart';
 
 
-class AppDrawerWidget extends GetView<AppDrawerController> {
+class AppDrawerWidget extends StatelessWidget {
   const AppDrawerWidget();
   @override
   Widget build(BuildContext context) {
