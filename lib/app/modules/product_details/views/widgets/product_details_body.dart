@@ -10,13 +10,14 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-      CarouselController buttonCarouselController = CarouselController();
+    // CarouselController buttonCarouselController = CarouselController();
     return SingleChildScrollView(
       child: Column(
         children: [
+          Obx((()=> Text("The Seller's Account: ${controller.email}"))),
           // Images
           CarouselSlider.builder(
-            carouselController: buttonCarouselController,
+            // carouselController: buttonCarouselController,
             options: CarouselOptions(
               aspectRatio: 3 / 2,
               enableInfiniteScroll: false,
@@ -28,10 +29,12 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
               Get.arguments.pickedImages.getOrCrash()[itemIndex],
             ),
           ),
-          TextButton(onPressed:()=>
-            buttonCarouselController.nextPage(
-            duration:const Duration(milliseconds: 300), curve: Curves.linear),
-        child:const Text("FFG")),
+          // IconButton(
+          //   onPressed: () => buttonCarouselController.nextPage(
+          //       duration: const Duration(milliseconds: 300),
+          //       curve: Curves.linear),
+          //   icon: const Icon(Icons.forward),
+          // ),
           // Price
           Text(
             "Price: ${Get.arguments.price.getOrCrash()}",

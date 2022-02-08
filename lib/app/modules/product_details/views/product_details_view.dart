@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:trail/app/modules/product_details/views/product_details_body.dart';
+import 'package:trail/app/modules/product_details/views/widgets/product_details_app_bar.dart';
+import 'package:trail/app/modules/product_details/views/widgets/product_details_body.dart';
 
 // Product Details View
 class ProductDetailsView extends StatelessWidget {
   const ProductDetailsView();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // Appbar
-      appBar: AppBar(
-        title: const Text('ProductDetailsView'),
-        centerTitle: true,
-      ),
+      appBar:  ProductDetailsAppBar(),
       // Body
-      body: const ProductDetailsBody(),
+      body: ProductDetailsBody(),
     );
   }
 }
