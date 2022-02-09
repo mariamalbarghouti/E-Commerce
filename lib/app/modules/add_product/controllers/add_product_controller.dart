@@ -39,9 +39,15 @@ class AddProductController extends GetxController {
     titleEditionController.value.dispose();
     descriptionEditionController.value.dispose();
     priceEditionController.value.dispose();
-    // addProductController.value.stop();
-    super.dispose();
+    super.onClose();
   }
+
+  //   @override
+  // void dispose() {
+  //   // productRepo.
+  //   scrollingController.value.dispose();
+  //   super.dispose();
+  // }
 
   // Image Picker
   Future<void> pickImgFromGallery() async {

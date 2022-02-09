@@ -9,20 +9,21 @@ class HomeBody extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return controller.obx(
       // On Sucess
-      (state) => controller.isLoading.value
-          ? Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(5),
-              color: Colors.yellowAccent,
-              child: const Text(
-                'Loading',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            )
-          : GridView.builder(
+      (state) =>// controller.isLoading.value
+          // ? Container(
+          //     width: MediaQuery.of(context).size.width,
+          //     padding: const EdgeInsets.all(5),
+          //     color: Colors.yellowAccent,
+          //     child: const Text(
+          //       'Loading',
+          //       textAlign: TextAlign.center,
+          //       style: TextStyle(
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     ),
+          //   )
+          // : 
+          GridView.builder(
               controller: controller.scrollingController.value,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -31,6 +32,7 @@ class HomeBody extends GetView<HomeController> {
               itemCount: state?.length,
               itemBuilder: (context, index) {
                 return Card(
+              key: ValueKey(index),
                   elevation: 2.0,
                   color: Colors.amber,
                   // If It Satisfy Logic Layer
