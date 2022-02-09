@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
