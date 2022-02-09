@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
-import 'package:trail/app/routes/app_pages.dart';
-import 'package:trail/core/print_logger.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../../core/domain/failures/server_failures/firestore_failures.dart';
+import '../../add_product/domain/value_object/product.dart';
+import '../domain/repositories/sign_out_repo.dart';
+import '../../../routes/app_pages.dart';
+import '../../../../core/print_logger.dart';
 
 // Home Controller
 class HomeController extends GetxController with StateMixin<List<Product>> {
@@ -16,7 +16,8 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   // or append it
   List<Product> _products = [];
   // Screolling Controller
-  Rx<ScrollController> scrollingController = ScrollController().obs;
+  // Rx<ScrollController> scrollingController = ScrollController().obs;
+  Rx<RefreshController> refresherController = RefreshController().obs;
   // Is Loading
   Rx<bool> isLoading = false.obs;
 
@@ -25,7 +26,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
     // Fetch First Page From DB
     _fetchProductsFromDB();
     // Fetching The Next Page
-    scrollingController.value.addListener(_fetchNextPageOfProductsFromDB);
+    // scrollingController.value.addListener(_fetchNextPageOfProductsFromDB);
     super.onInit();
   }
 
@@ -33,10 +34,17 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   void onClose() {
     // coloredPrint(msg: "Closed");
     homeRepository.dispose();
-    scrollingController.value.dispose();
+    // scrollingController.value.dispose();
+    refresherController.value.dispose();
     super.onClose();
   }
+// fun()async{
+//     // monitor network fetch
+//     await Future.delayed(Duration(milliseconds: 1000));
+//     // if failed,use loadFailed(),if no data return,use LoadNodata()
 
+//   return  refresherController.value.loadComplete();
+// }
   // Fetching Data
   void _fetchProductsFromDB() {
     homeRepository.fetchProducts().listen((event) {
@@ -52,48 +60,68 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   }
 
   // Fetching Data
-  void _fetchNextPageOfProductsFromDB() {
+  void fetchNextPageOfProductsFromDB() {
     // Listen To The Scrolle Controller
     // If the User Reatch The End fetch the Next Page
     // scrollingController.value.addListener(() {
-    if (scrollingController.value.offset >=
-            scrollingController.value.position.maxScrollExtent &&
-        !scrollingController.value.position.outOfRange) {
-      if (isLoading.value) {
-        return;
-      }
-      isLoading.value = true;
-      // Fetch Next Page
-      homeRepository.fetchProductsFromTheNextPage().listen((event) {
-        event.fold(
-            // If database hase an error
-            (l) {
-          // If the error is NoMoreData
-          // just return a snack bar
-          // else
-          // return the error
-          if (l.msg == const FireStoreServerFailures.noMoreData().msg) {
-            Get.snackbar(
-              "😒",
-              l.msg,
-              snackPosition: SnackPosition.BOTTOM,
-            );
-          } else {
-            return change(null, status: RxStatus.error(l.msg));
-          }
-        },
-            // If No Error
-            (r) {
-          _products.addAll(r);
-          // Change UI
-          change(_products, status: RxStatus.success());
-          isLoading.value = false;
-        });
-      });
+    // if (scrollingController.value.offset >=
+    //         scrollingController.value.position.maxScrollExtent &&
+    //     !scrollingController.value.position.outOfRange) {
+    if (isLoading.value) {
+      return;
     }
-    // });
+    isLoading.value = true;
+    refresherController.value.requestLoading();
+
+    change(_products, status: RxStatus.loadingMore());
+    // Fetch Next Page
+    homeRepository.fetchProductsFromTheNextPage().listen((event) {
+      event.fold(
+          // If database hase an error
+          (l) {
+        // If the error is NoMoreData
+        // just return a snack bar
+        // else
+        // return the error
+        if (l.msg == const FireStoreServerFailures.noMoreData().msg) {
+          Get.snackbar(
+            "😒",
+            l.msg,
+            snackPosition: SnackPosition.BOTTOM,
+          );
+          return refresherController.value.loadNoData();
+        } else {
+          refresherController.value.loadFailed();
+          return change(null, status: RxStatus.error(l.msg));
+        }
+      },
+          // If No Error
+          (r) {
+        _products.addAll(r);
+        // Change UI
+        change(_products, status: RxStatus.success());
+        refresherController.value.loadComplete();
+        isLoading.value = false;
+      });
+    });
   }
 
+  // Refresh The Screen
+  void refreshTheScreen() {
+    refresherController.refresh();
+
+    // Clear The Products
+    _products.clear();
+    // Fetch first 15
+    _fetchProductsFromDB();
+    // tell the ui i am done
+    refresherController.value.refreshCompleted();
+  }
+  goUp(){
+    // refresherController.value.position= 
+    refresherController.value.position?.moveTo(0);
+  }
+  
   // Go To More Details
   Future<void> goToMoreDetails(products) async {
     return await Get.toNamed(Routes.PRODUCT_DETAILS, arguments: products);

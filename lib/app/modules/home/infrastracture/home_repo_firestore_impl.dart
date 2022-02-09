@@ -22,6 +22,7 @@ class HomeRepoFirebaseImplimentation extends IHomeRepository {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
   // first one
   @override
   Stream<Either<FireStoreServerFailures, List<Product>>>
