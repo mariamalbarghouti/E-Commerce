@@ -10,6 +10,7 @@ class HomeBinding extends Bindings {
     // Home Repository
     Get.put<IHomeRepository>(
       HomeRepoFirebaseImplimentation(),
+      permanent: true,
     );
     // Home Controller
     Get.put<HomeController>(

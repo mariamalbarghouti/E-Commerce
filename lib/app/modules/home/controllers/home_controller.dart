@@ -22,17 +22,16 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
 
   @override
   void onInit() {
-    coloredPrint(msg: "we");
     // Fetch First Page From DB
     _fetchProductsFromDB();
     // Fetching The Next Page
-    _fetchNextPageOfProductsFromDB();
+    scrollingController.value.addListener(_fetchNextPageOfProductsFromDB);
     super.onInit();
   }
 
   @override
   void onClose() {
-    coloredPrint(msg: "Closed");
+    // coloredPrint(msg: "Closed");
     homeRepository.dispose();
     scrollingController.value.dispose();
     super.onClose();
@@ -56,45 +55,43 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   void _fetchNextPageOfProductsFromDB() {
     // Listen To The Scrolle Controller
     // If the User Reatch The End fetch the Next Page
-    // TODO Make The controller do
-    scrollingController.value.addListener(() {
-      coloredPrint(msg: "msg ${scrollingController.value.offset}");
-      if (scrollingController.value.offset >=
-              scrollingController.value.position.maxScrollExtent &&
-          !scrollingController.value.position.outOfRange) {
-        if (isLoading.value) {
-          return;
-        }
-        isLoading.value = true;
-        // Fetch Next Page
-        homeRepository.fetchProductsFromTheNextPage().listen((event) {
-          event.fold(
-              // If database hase an error
-              (l) {
-            // If the error is NoMoreData
-            // just return a snack bar
-            // else
-            // return the error
-            if (l.msg == const FireStoreServerFailures.noMoreData().msg) {
-              Get.snackbar(
-                "😒",
-                l.msg,
-                snackPosition: SnackPosition.BOTTOM,
-              );
-            } else {
-              return change(null, status: RxStatus.error(l.msg));
-            }
-          },
-              // If No Error
-              (r) {
-            _products.addAll(r);
-            // Change UI
-            change(_products, status: RxStatus.success());
-            isLoading.value = false;
-          });
-        });
+    // scrollingController.value.addListener(() {
+    if (scrollingController.value.offset >=
+            scrollingController.value.position.maxScrollExtent &&
+        !scrollingController.value.position.outOfRange) {
+      if (isLoading.value) {
+        return;
       }
-    });
+      isLoading.value = true;
+      // Fetch Next Page
+      homeRepository.fetchProductsFromTheNextPage().listen((event) {
+        event.fold(
+            // If database hase an error
+            (l) {
+          // If the error is NoMoreData
+          // just return a snack bar
+          // else
+          // return the error
+          if (l.msg == const FireStoreServerFailures.noMoreData().msg) {
+            Get.snackbar(
+              "😒",
+              l.msg,
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          } else {
+            return change(null, status: RxStatus.error(l.msg));
+          }
+        },
+            // If No Error
+            (r) {
+          _products.addAll(r);
+          // Change UI
+          change(_products, status: RxStatus.success());
+          isLoading.value = false;
+        });
+      });
+    }
+    // });
   }
 
   // Go To More Details
