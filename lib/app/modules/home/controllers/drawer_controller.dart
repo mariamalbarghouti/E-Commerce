@@ -26,4 +26,7 @@ class AppDrawerController extends GetxController {
     //   Get.offAllNamed(Routes.HOME);
     // }
   }
+  goToAddPost(){
+    
+  }
 }

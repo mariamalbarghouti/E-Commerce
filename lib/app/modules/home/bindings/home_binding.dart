@@ -12,6 +12,9 @@ class HomeBinding extends Bindings {
       HomeRepoFirebaseImplimentation(),
     );
     // Home Controller
-    Get.put<HomeController>(HomeController(homeRepository: Get.find()));
+    Get.put<HomeController>(
+      HomeController(homeRepository: Get.find()),
+      permanent: true,
+    );
   }
 }

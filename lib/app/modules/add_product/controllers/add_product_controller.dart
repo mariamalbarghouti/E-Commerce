@@ -195,7 +195,8 @@ class AddProductController extends GetxController {
                 "Your Product Has Been Added Sucessfully",
                 snackPosition: SnackPosition.BOTTOM,
               );
-              Get.offNamed(Routes.HOME);
+              // Go back
+             return  Get.offAllNamed(Routes.HOME);
             },
           ),
         );
@@ -220,14 +221,8 @@ class AddProductController extends GetxController {
         );
       }
     }));
-
-    // coloredPrint(msg: "CCC _imagesForDomain ${_imagesForDomain.length}");
     // Copy the value
     _product.value = _product.value
         .copyWith(pickedImages: ListOf5<File>(listOf5: _imagesForDomain));
-    // coloredPrint(
-    //     msg:
-    //         "CCC element ${_product.value.pickedImages.value.fold((l) => l.msg, (r) => r)}",
-    //     color: LogColors.red);
   }
 }

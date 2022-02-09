@@ -30,20 +30,14 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
     super.onInit();
   }
 
-  // @override
-  // void dispose() {
-  //   homeRepository.dispose();
-  //   scrollingController.value.dispose();
-  //   super.dispose();
-  // }
-
-@override
+  @override
   void onClose() {
     coloredPrint(msg: "Closed");
     homeRepository.dispose();
     scrollingController.value.dispose();
     super.onClose();
   }
+
   // Fetching Data
   void _fetchProductsFromDB() {
     homeRepository.fetchProducts().listen((event) {
@@ -60,7 +54,6 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
 
   // Fetching Data
   void _fetchNextPageOfProductsFromDB() {
-    
     // Listen To The Scrolle Controller
     // If the User Reatch The End fetch the Next Page
     // TODO Make The controller do
@@ -108,5 +101,4 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   Future<void> goToMoreDetails(products) async {
     return await Get.toNamed(Routes.PRODUCT_DETAILS, arguments: products);
   }
-
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/home/controllers/home_controller.dart';
+import 'package:trail/core/print_logger.dart';
 
 class HomeBody extends GetView<HomeController> {
   const HomeBody({Key? key}) : super(key: key);
@@ -31,6 +32,7 @@ class HomeBody extends GetView<HomeController> {
               ),
               itemCount: state?.length,
               itemBuilder: (context, index) {
+                coloredPrint(msg: "ADDED $index");
                 return Card(
               key: ValueKey(index),
                   elevation: 2.0,
