@@ -19,6 +19,16 @@ class AppDrawerWidget extends StatelessWidget {
               onPressed: () =>Get.toNamed(Routes.ADD_PRODUCT),
               child: const Text("Add Post"),
             ),
+            // Disable Account
+            TextButton(
+              onPressed: () =>Get.toNamed(Routes.ADD_PRODUCT),
+              child: const Text("Disable Account"),
+            ),
+            // Disable Account
+            TextButton(
+              onPressed: () =>Get.toNamed(Routes.ADD_PRODUCT),
+              child: const Text("Disable Account"),
+            ),
             // Sign Out Button 
             TextButton(
               onPressed: () async=>await Get.find<AppDrawerController>().signOut(),
