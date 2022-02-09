@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/core/infrastucture/firebase_helper.dart';
+import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
 import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
 import 'package:trail/app/routes/app_pages.dart';
 import 'package:trail/core/print_logger.dart';
@@ -12,101 +10,80 @@ import 'package:trail/core/print_logger.dart';
 // Home Controller
 class HomeController extends GetxController with StateMixin<List<Product>> {
   HomeController({required this.homeRepository});
-  List<Product> pro = [];
+  // repo
   final IHomeRepository homeRepository;
-  Rx<ScrollController> controller = ScrollController().obs;
-  DocumentSnapshot? lastDocument;
-  QuerySnapshot? querySnapshot;
+  // for presenting the Data
+  // or append it
+  List<Product> _products = [];
+  // Screolling Controller
+  Rx<ScrollController> scrollingController = ScrollController().obs;
+  // Is Loading
   Rx<bool> isLoading = false.obs;
-  bool hasMore = true;
+
   @override
-  void onInit() async {
-    coloredPrint(msg: "msg upper");
-    // await fetchProductsFromDB();
-    await getData();
-       controller.value.addListener(() {
-          if (controller.value.offset >=
-              controller.value.position.maxScrollExtent &&
-          !controller.value.position.outOfRange){
-        getData();
-      }
-    });
+  void onInit() {
+    // Fetch First Page From DB
+    _fetchProductsFromDB();
+    // Fetching The Next Page
+    _fetchNextPageOfProductsFromDB();
     super.onInit();
   }
 
-  getData() async {
-    if (!hasMore) {
-      coloredPrint(msg: 'No More Products');
-      return;
-    }
-    if (isLoading.value) {
-      return;
-    }
-    isLoading.value = true;
-
-    if (lastDocument == null) {
-      querySnapshot = await FirebaseFirestore.instance.productsCollection
-          .limit(5)
-          .get();
-             querySnapshot!.docs
-          .map((e) => pro.add(ProductDTO.fromFireStore(e).toDomain()))
-          .toList();
-      change(pro, status: RxStatus.success());
-      isLoading.value = false;
-
-    } else {
-      querySnapshot = await FirebaseFirestore.instance.productsCollection
-          .startAfterDocument(lastDocument!)
-          .limit(2)
-          .get();
-      querySnapshot!.docs
-          .map((e) => pro.add(ProductDTO.fromFireStore(e).toDomain()))
-          .toList();
-      isLoading.value = false;
-      change(pro, status: RxStatus.success());
-    }
-    if (querySnapshot!.docs.length < 2) {
-      hasMore = false;
-    }
-
-    // lastDocument = querySnapshot!.docs[querySnapshot!.docs.length - 1];
-    lastDocument = querySnapshot!.docs[querySnapshot!.size-1]; //[querySnapshot!.docs.length];
-  }
-
-  fun() async {
-    coloredPrint(msg: "msg");
-    controller.value.addListener(() async {
-      if (controller.value.offset >=
-              controller.value.position.maxScrollExtent &&
-          !controller.value.position.outOfRange) {
-        coloredPrint(msg: "msg");
-
-        try {
-          coloredPrint(msg: "msg");
-          await FirebaseFirestore.instance.productsCollection
-              // .sta({"id":pro.last.id!})
-              .limit(6)
-              .get()
-              .then((value) => value.docs.map((e) {
-                    //  completer.complete(
-                    pro.add(ProductDTO.fromFireStore(e).toDomain());
-                  }).toList());
-          change(pro, status: RxStatus.success());
-        } catch (e) {}
-      }
+  // Fetching Data
+  void _fetchProductsFromDB() {
+    homeRepository.fetchProducts().listen((event) {
+      event.fold(
+          // If database hase an error
+          (l) => change(null, status: RxStatus.error(l.msg)),
+          // return the data
+          (r) {
+        _products = r;
+        change(_products, status: RxStatus.success());
+      });
     });
   }
 
   // Fetching Data
-  Future<void> fetchProductsFromDB() async {
-    homeRepository.fetchProducts().listen((event) {
-      event.fold(
-          // If database hase an error
-          (l) => change(
-                null,
-                status: RxStatus.error(l.msg),
-              ),
-          (r) => change(r, status: RxStatus.success()));
+  void _fetchNextPageOfProductsFromDB() {
+    // Listen To The Scrolle Controller
+    // If the User Reatch The End fetch the Next Page
+    // TODO Make The controller do
+    scrollingController.value.addListener(() {
+      if (scrollingController.value.offset >=
+              scrollingController.value.position.maxScrollExtent &&
+          !scrollingController.value.position.outOfRange) {
+        if (isLoading.value) {
+          return;
+        }
+        isLoading.value = true;
+        // Fetch Next Page
+        homeRepository.fetchProductsFromTheNextPage().listen((event) {
+          event.fold(
+              // If database hase an error
+              (l) {
+            // If the error is NoMoreData
+            // just return a snack bar
+            // else
+            // return the error
+            if (l.msg == const FireStoreServerFailures.noMoreData().msg) {
+              Get.snackbar(
+                "😒",
+                l.msg,
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            } else {
+              return change(null, status: RxStatus.error(l.msg));
+            }
+          },
+              // If No Error
+              (r) {
+            _products.addAll(r);
+            // Change UI
+            change(_products, status: RxStatus.success());
+            isLoading.value = false;
+          });
+        });
+      }
     });
   }
 

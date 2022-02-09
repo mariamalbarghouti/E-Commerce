@@ -34,6 +34,12 @@ class _$FireStoreServerFailuresTearOff {
       msg: msg,
     );
   }
+
+  _NoMoreData noMoreData({String msg = "There Is No More Data"}) {
+    return _NoMoreData(
+      msg: msg,
+    );
+  }
 }
 
 /// @nodoc
@@ -48,6 +54,7 @@ mixin _$FireStoreServerFailures {
     required TResult Function(String msg) serverError,
     required TResult Function(String msg) permissionsDenied,
     required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +62,7 @@ mixin _$FireStoreServerFailures {
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +70,7 @@ mixin _$FireStoreServerFailures {
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +79,7 @@ mixin _$FireStoreServerFailures {
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_PermissionsDenied value) permissionsDenied,
     required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +87,7 @@ mixin _$FireStoreServerFailures {
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +95,7 @@ mixin _$FireStoreServerFailures {
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -202,6 +214,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     required TResult Function(String msg) serverError,
     required TResult Function(String msg) permissionsDenied,
     required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
     return serverError(msg);
   }
@@ -212,6 +225,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
     return serverError?.call(msg);
   }
@@ -222,6 +236,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -236,6 +251,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_PermissionsDenied value) permissionsDenied,
     required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
     return serverError(this);
   }
@@ -246,6 +262,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
     return serverError?.call(this);
   }
@@ -256,6 +273,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -358,6 +376,7 @@ class _$_PermissionsDenied
     required TResult Function(String msg) serverError,
     required TResult Function(String msg) permissionsDenied,
     required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
     return permissionsDenied(msg);
   }
@@ -368,6 +387,7 @@ class _$_PermissionsDenied
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
     return permissionsDenied?.call(msg);
   }
@@ -378,6 +398,7 @@ class _$_PermissionsDenied
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
     if (permissionsDenied != null) {
@@ -392,6 +413,7 @@ class _$_PermissionsDenied
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_PermissionsDenied value) permissionsDenied,
     required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
     return permissionsDenied(this);
   }
@@ -402,6 +424,7 @@ class _$_PermissionsDenied
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
     return permissionsDenied?.call(this);
   }
@@ -412,6 +435,7 @@ class _$_PermissionsDenied
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
     if (permissionsDenied != null) {
@@ -514,6 +538,7 @@ class _$_UnexpectedError
     required TResult Function(String msg) serverError,
     required TResult Function(String msg) permissionsDenied,
     required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
     return unexpectedError(msg);
   }
@@ -524,6 +549,7 @@ class _$_UnexpectedError
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
     return unexpectedError?.call(msg);
   }
@@ -534,6 +560,7 @@ class _$_UnexpectedError
     TResult Function(String msg)? serverError,
     TResult Function(String msg)? permissionsDenied,
     TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
     if (unexpectedError != null) {
@@ -548,6 +575,7 @@ class _$_UnexpectedError
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_PermissionsDenied value) permissionsDenied,
     required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
     return unexpectedError(this);
   }
@@ -558,6 +586,7 @@ class _$_UnexpectedError
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
     return unexpectedError?.call(this);
   }
@@ -568,6 +597,7 @@ class _$_UnexpectedError
     TResult Function(_ServerError value)? serverError,
     TResult Function(_PermissionsDenied value)? permissionsDenied,
     TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
     if (unexpectedError != null) {
@@ -585,5 +615,164 @@ abstract class _UnexpectedError implements FireStoreServerFailures {
   @override
   @JsonKey(ignore: true)
   _$UnexpectedErrorCopyWith<_UnexpectedError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$NoMoreDataCopyWith<$Res>
+    implements $FireStoreServerFailuresCopyWith<$Res> {
+  factory _$NoMoreDataCopyWith(
+          _NoMoreData value, $Res Function(_NoMoreData) then) =
+      __$NoMoreDataCopyWithImpl<$Res>;
+  @override
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$NoMoreDataCopyWithImpl<$Res>
+    extends _$FireStoreServerFailuresCopyWithImpl<$Res>
+    implements _$NoMoreDataCopyWith<$Res> {
+  __$NoMoreDataCopyWithImpl(
+      _NoMoreData _value, $Res Function(_NoMoreData) _then)
+      : super(_value, (v) => _then(v as _NoMoreData));
+
+  @override
+  _NoMoreData get _value => super._value as _NoMoreData;
+
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_NoMoreData(
+      msg: msg == freezed
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NoMoreData with DiagnosticableTreeMixin implements _NoMoreData {
+  const _$_NoMoreData({this.msg = "There Is No More Data"});
+
+  @JsonKey(defaultValue: "There Is No More Data")
+  @override
+  final String msg;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FireStoreServerFailures.noMoreData(msg: $msg)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FireStoreServerFailures.noMoreData'))
+      ..add(DiagnosticsProperty('msg', msg));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _NoMoreData &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
+
+  @JsonKey(ignore: true)
+  @override
+  _$NoMoreDataCopyWith<_NoMoreData> get copyWith =>
+      __$NoMoreDataCopyWithImpl<_NoMoreData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) serverError,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
+  }) {
+    return noMoreData(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
+  }) {
+    return noMoreData?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? serverError,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
+    required TResult orElse(),
+  }) {
+    if (noMoreData != null) {
+      return noMoreData(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_PermissionsDenied value) permissionsDenied,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
+  }) {
+    return noMoreData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
+  }) {
+    return noMoreData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
+    required TResult orElse(),
+  }) {
+    if (noMoreData != null) {
+      return noMoreData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoMoreData implements FireStoreServerFailures {
+  const factory _NoMoreData({String msg}) = _$_NoMoreData;
+
+  @override
+  String get msg => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$NoMoreDataCopyWith<_NoMoreData> get copyWith =>
       throw _privateConstructorUsedError;
 }

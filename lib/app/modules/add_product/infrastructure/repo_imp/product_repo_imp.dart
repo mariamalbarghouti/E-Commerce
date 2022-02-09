@@ -13,7 +13,7 @@ import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo
 
 // Implementing Prodiuct Repository
 // With Firebase
-class ProductRepoFirebaseImp implements IProductRepo {
+class ProductRepoFirebaseImp implements IAddProductRepo {
   final _firebaseFirestore = Get.find<FirebaseFirestore>();
 
   // Create UUID

@@ -6,7 +6,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/components/lis
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 
 // Product Repository
-abstract class IProductRepo {
+abstract class IAddProductRepo {
   // Id For The Post And The Folder of the images
   late final String productID;
   //  Upload Images To DB

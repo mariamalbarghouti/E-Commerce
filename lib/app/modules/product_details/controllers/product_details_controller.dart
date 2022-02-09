@@ -20,8 +20,9 @@ class ProductDetailsController extends GetxController {
   @override
   void onInit() async {
     // product=Get.arguments;
+    // product.id
 
-    // To Make Drop Menu of 
+    // To Make Drop Menu of
     // Delete or Update
     // shown if the post is user's his own
     // or not
@@ -41,6 +42,9 @@ class ProductDetailsController extends GetxController {
       case "Delete":
         {
           coloredPrint(msg: "Delete", color: LogColors.blue);
+          await FirebaseFirestore.instance.productsCollection
+              .doc(Get.arguments.id)
+              .delete();
           break;
         }
       case "Update":

@@ -17,7 +17,7 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 // Add Product Controller
 class AddProductController extends GetxController {
   AddProductController(this.productRepo);
-  final IProductRepo productRepo;
+  final IAddProductRepo productRepo;
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
   late Rx<TextEditingController> titleEditionController;

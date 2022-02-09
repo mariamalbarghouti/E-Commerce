@@ -23,7 +23,7 @@ class HomeBody extends GetView<HomeController> {
               ),
             )
           : GridView.builder(
-              controller: controller.controller.value,
+              controller: controller.scrollingController.value,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 2 / 2,
