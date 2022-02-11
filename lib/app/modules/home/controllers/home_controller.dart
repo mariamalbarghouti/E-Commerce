@@ -127,7 +127,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   // Refresh The Screen
   void refreshTheScreen() {
     refresherController.refresh();
-
+    // Get.delete()
     // Clear The Products
     _products.clear();
     // Fetch first 15
