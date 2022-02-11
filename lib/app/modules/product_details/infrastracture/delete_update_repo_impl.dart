@@ -14,7 +14,7 @@ class DeleteOrUpdateRepImpl implements IDeleteOrUpdateRep {
   Future<Option<FireStoreServerFailures>> deleteThePost(
       {required String id}) async {
     try {
-      await _firebaseFirestore.productsCollection.doc().delete();
+      await _firebaseFirestore.productsCollection.doc(id).delete();
       return none();
     } catch (e) {
       return _handlingError(e);

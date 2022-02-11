@@ -3,6 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/product_details/repository/delete_update_repo.dart';
+import 'package:trail/app/routes/app_pages.dart';
 import 'package:trail/core/print_logger.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
@@ -24,7 +25,6 @@ class ProductDetailsController extends GetxController {
   @override
   void onInit() async {
     // product = Get.arguments;
-    // product.id
 
     // To Make Drop Menu of
     // Delete or Update
@@ -33,7 +33,7 @@ class ProductDetailsController extends GetxController {
 
     isMine.value =
         ((await Get.find<FirebaseFirestore>().userID) == Get.arguments.uid!.id);
-    //Get.arguments.uid!.id;
+
     // retrive seller account
     email.value = (await Get.arguments.uid?.get().then((value) => value.id))!;
     super.onInit();
@@ -45,7 +45,7 @@ class ProductDetailsController extends GetxController {
       case "Delete":
         _deletepost();
         break;
-
+        
       case "Update":
         {
           coloredPrint(msg: "Update", color: LogColors.blue);
@@ -65,12 +65,12 @@ class ProductDetailsController extends GetxController {
     bool deleteImagesHasFailures = await deleteUpdateRepo
         .deleteTheImages(id: Get.arguments.id)
         .then((value) => value.isSome());
-
-    if (!deletePostHasFailures && !deleteImagesHasFailures) {
-      Get.snackbar("Sucess", "You Have Deleted The Post!");
-    } else {
+    // Make UI Send Message
+    if (deletePostHasFailures && deleteImagesHasFailures) {
       Get.snackbar("Failure", "An Error Have Been Occurs");
+    } else {
+      Get.snackbar("Sucess", "You Have Deleted The Post!");
+      return Get.offNamed(Routes.HOME);
     }
   }
-  
 }
