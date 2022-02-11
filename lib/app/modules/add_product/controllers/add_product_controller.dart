@@ -41,7 +41,7 @@ class AddProductController extends GetxController {
     priceEditionController.value.dispose();
     super.onClose();
   }
-  
+
   // Image Picker
   Future<void> pickImgFromGallery() async {
     try {
@@ -196,7 +196,7 @@ class AddProductController extends GetxController {
                 snackPosition: SnackPosition.BOTTOM,
               );
               // Go back
-             return  Get.offAllNamed(Routes.HOME);
+              return Get.offAllNamed(Routes.HOME);
             },
           ),
         );
@@ -206,21 +206,20 @@ class AddProductController extends GetxController {
   Future<void> _convertAssetIntoFile() async {
     List<File> _imagesForDomain = <File>[];
     // Convert Asset To File
-    await Future.wait(pickedImages.map((element) async {
-      if (element.identifier == null) {
-        return;
-      } else if (await FlutterAbsolutePath.getAbsolutePath(
-              element.identifier!) ==
-          null) {
-        return;
-      } else {
-        // Convert Asset Into Add File
-        _imagesForDomain.add(
-          File(await FlutterAbsolutePath.getAbsolutePath(element.identifier!) ??
-              ""),
-        );
-      }
-    }));
+    await Future.wait(
+      pickedImages.map((element) async {
+        if (element.identifier != null) {
+          // Convert Asset Into Add File
+          _imagesForDomain.add(
+            File(await FlutterAbsolutePath.getAbsolutePath(
+                    element.identifier!) ??
+                ""),
+          );
+        } else {
+          return;
+        }
+      }),
+    );
     // Copy the value
     _product.value = _product.value
         .copyWith(pickedImages: ListOf5<File>(listOf5: _imagesForDomain));

@@ -27,7 +27,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   Rx<FloatingSearchBarController> floatingSearchBarController =
       FloatingSearchBarController().obs;
 
-   Rx<FloatingSearchBarController> controller=FloatingSearchBarController().obs;
+  //  Rx<FloatingSearchBarController> controller=FloatingSearchBarController().obs;
 
   // @override
   // void dispose() {
@@ -49,11 +49,9 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
 
   @override
   void onClose() {
-    // coloredPrint(msg: "Closed");
     homeRepository.dispose();
     // scrollingController.value.dispose();
     refresherController.value.dispose();
-    controller.value.dispose();
     super.onClose();
   }
 // fun()async{

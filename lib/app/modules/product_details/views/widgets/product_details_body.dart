@@ -14,7 +14,7 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Obx((()=> Text("The Seller's Account: ${controller.email}"))),
+          Obx((()=> Text("The Seller's Account: ${controller.email.value}"))),
           // Images
           CarouselSlider.builder(
             // carouselController: buttonCarouselController,
@@ -30,9 +30,7 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
             ),
           ),
           // IconButton(
-          //   onPressed: () => buttonCarouselController.nextPage(
-          //       duration: const Duration(milliseconds: 300),
-          //       curve: Curves.linear),
+          //   onPressed: ()async=> await controller.deletePost(),
           //   icon: const Icon(Icons.forward),
           // ),
           // Price

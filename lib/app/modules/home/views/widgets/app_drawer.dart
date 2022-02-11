@@ -16,12 +16,12 @@ class AppDrawerWidget extends StatelessWidget {
           children: [
             // Add Post
             TextButton(
-              onPressed: () =>Get.toNamed(Routes.ADD_PRODUCT),
+              onPressed:()async=> await Get.find<AppDrawerController>().goToAddPost(),
               child: const Text("Add Post"),
             ),
             // Sign Out Button 
             TextButton(
-              onPressed: () async=>Get.find<AppDrawerController>().goToAddPost(),
+              onPressed: () async=> await Get.find<AppDrawerController>().signOut() ,
               child: const Text("Sign out"),
             ),
           ],

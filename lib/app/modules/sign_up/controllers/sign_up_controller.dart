@@ -89,7 +89,7 @@ class SignUpController extends GetxController {
   }
 
   // Sign Up
-  signUp() async {
+  Future<void> signUp() async {
     if (registrationKey.currentState?.validate() ?? false) {
       // Register With Email And Password
       await signUpRepository
@@ -111,6 +111,7 @@ class SignUpController extends GetxController {
               .registerUserInfoToFirestore(
                 email: emailEditionController.value.text,
                 password: passwordEditionController.value.text,
+
                 // uid: Get.find<FirebaseAuth>().currentUser?.uid,
               )
               .then(

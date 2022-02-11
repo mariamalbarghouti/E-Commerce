@@ -5,20 +5,20 @@ import 'package:trail/app/routes/app_pages.dart';
 // App Drawer Controller
 // TODO make it better
 class AppDrawerController extends GetxController {
-  
-  final IHomeRepository signedInUserRepo;
+  final IHomeRepository homeRepo;
   // final SignedInUserService signedInUserService;
   AppDrawerController({
-    required this.signedInUserRepo,
+    required this.homeRepo,
     // required this.signedInUserService,
   });
 // Sigin Out
- Future<void> signOut() async {
-    await signedInUserRepo.signOut();
-   return Get.offAllNamed(Routes.SIGN_IN);
+  Future<void> signOut() async {
+    await homeRepo.signOut();
+    return Get.offAllNamed(Routes.SIGN_IN);
   }
+
 // go to add post
- Future<void> goToAddPost()async{
-    await Get.find<AppDrawerController>().signOut();
+  Future<void> goToAddPost() async {
+    return await Get.toNamed(Routes.ADD_PRODUCT);
   }
 }

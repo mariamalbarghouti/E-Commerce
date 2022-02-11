@@ -1,12 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
+import 'package:trail/app/modules/product_details/repository/delete_update_repo.dart';
 import 'package:trail/core/print_logger.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 
 // Product Details Controller
 class ProductDetailsController extends GetxController {
+  ProductDetailsController(this.deleteUpdateRepo);
+  final IDeleteOrUpdateRep deleteUpdateRepo;
   // late Product product;
   // email
   final Rx<String> email = "".obs;
@@ -19,7 +23,7 @@ class ProductDetailsController extends GetxController {
 
   @override
   void onInit() async {
-    // product=Get.arguments;
+    // product = Get.arguments;
     // product.id
 
     // To Make Drop Menu of
@@ -28,11 +32,10 @@ class ProductDetailsController extends GetxController {
     // or not
 
     isMine.value =
-        await Get.find<FirebaseFirestore>().userID == Get.arguments.uid!.id;
+        ((await Get.find<FirebaseFirestore>().userID) == Get.arguments.uid!.id);
+    //Get.arguments.uid!.id;
     // retrive seller account
-    email.value = await Get.arguments.uid!
-        .get()
-        .then((value) async => await value.get("email"));
+    email.value = (await Get.arguments.uid?.get().then((value) => value.id))!;
     super.onInit();
   }
 
@@ -40,13 +43,9 @@ class ProductDetailsController extends GetxController {
   Future<void> deleteOrUpdate({required String? itemName}) async {
     switch (itemName) {
       case "Delete":
-        {
-          coloredPrint(msg: "Delete", color: LogColors.blue);
-          await FirebaseFirestore.instance.productsCollection
-              .doc(Get.arguments.id)
-              .delete();
-          break;
-        }
+        _deletepost();
+        break;
+
       case "Update":
         {
           coloredPrint(msg: "Update", color: LogColors.blue);
@@ -56,4 +55,22 @@ class ProductDetailsController extends GetxController {
         return;
     }
   }
+
+  Future<void> _deletepost() async {
+    // Check if delete post have failure or not
+    bool deletePostHasFailures = await deleteUpdateRepo
+        .deleteThePost(id: Get.arguments.id)
+        .then((value) => value.isSome());
+    // Check if delete image have failure or not
+    bool deleteImagesHasFailures = await deleteUpdateRepo
+        .deleteTheImages(id: Get.arguments.id)
+        .then((value) => value.isSome());
+
+    if (!deletePostHasFailures && !deleteImagesHasFailures) {
+      Get.snackbar("Sucess", "You Have Deleted The Post!");
+    } else {
+      Get.snackbar("Failure", "An Error Have Been Occurs");
+    }
+  }
+  
 }
