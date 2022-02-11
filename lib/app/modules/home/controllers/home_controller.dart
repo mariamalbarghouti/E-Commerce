@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../core/domain/failures/server_failures/firestore_failures.dart';
 import '../../add_product/domain/value_object/product.dart';
@@ -20,11 +21,27 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   Rx<RefreshController> refresherController = RefreshController().obs;
   // Is Loading
   Rx<bool> isLoading = false.obs;
+  // final List<String> _searchHistory = ["Fusha", "Google"];
+  // late Rx<List<String>> filteredSearchHistory;
+  // Rx<String>? selectedTerm;
+  Rx<FloatingSearchBarController> floatingSearchBarController =
+      FloatingSearchBarController().obs;
+
+   Rx<FloatingSearchBarController> controller=FloatingSearchBarController().obs;
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   @override
   void onInit() {
+    // filteredSearchHistory?.value = filteredSearchTerms(filter: null);
+    // floatingSearchBarController.value=FloatingSearchBarController();
+    // controller.value = FloatingSearchBarController();
     // Fetch First Page From DB
     _fetchProductsFromDB();
+
     // Fetching The Next Page
     // scrollingController.value.addListener(_fetchNextPageOfProductsFromDB);
     super.onInit();
@@ -36,6 +53,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
     homeRepository.dispose();
     // scrollingController.value.dispose();
     refresherController.value.dispose();
+    controller.value.dispose();
     super.onClose();
   }
 // fun()async{
@@ -117,11 +135,13 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
     // tell the ui i am done
     refresherController.value.refreshCompleted();
   }
-  goUp(){
-    // refresherController.value.position= 
+
+  goUp() {
+    // refresherController.value.position=
     refresherController.value.position?.moveTo(0);
   }
-  
+
+
   // Go To More Details
   Future<void> goToMoreDetails(products) async {
     return await Get.toNamed(Routes.PRODUCT_DETAILS, arguments: products);

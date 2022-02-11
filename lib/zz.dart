@@ -1,134 +1,82 @@
 // import 'dart:async';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:trail/app/core/infrastucture/firebase_helper.dart';
-// import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-// import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
-// import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
-// import 'package:trail/app/routes/app_pages.dart';
-// import 'package:trail/core/print_logger.dart';
+// ...
+// Timer? _debounceTimer;
+// ...
 
-// // Home Controller
-// class HomeController extends GetxController with StateMixin<List<Product>> {
-//   HomeController({required this.homeRepository});
-//   List<Product> _products = [];
-//   final IHomeRepository homeRepository;
-//   Rx<ScrollController> controller = ScrollController().obs;
-//   // DocumentSnapshot? lastDocument;
-//   // QuerySnapshot? querySnapshot;
-//   Rx<bool> isLoading = false.obs;
-//   bool hasMore = true;
-//   @override
-//   void onInit() async {
-//     coloredPrint(msg: "msg upper");
-//     await _fetchProductsFromDB();
-//     // await getData();
-//      controller.value.addListener(_fetchNextPageOfProductsFromDB);
-//     //  controller.value.addListener(() {
-//     //     if (controller.value.offset >=
-//     //         controller.value.position.maxScrollExtent &&
-//     //     !controller.value.position.outOfRange){
-//     // getData();
-//     // }
-//     // });
-//     super.onInit();
-//   }
+// Create Denouncing function
 
-//   // getData() async {
-//   //   if (!hasMore) {
-//   //     coloredPrint(msg: 'No More Products');
-//   //     return;
-//   //   }
-//   //   if (isLoading.value) {
-//   //     return;
-//   //   }
-//   //   isLoading.value = true;
+// Next, we write the denounce function. This function will take a function that will be called and a int for the time it has to wait in milliseconds as a parameter.
 
-//   //   if (lastDocument == null) {
-//   //     querySnapshot = await FirebaseFirestore.instance.productsCollection
-//   //         .limit(5)
-//   //         .get();
-//   //            querySnapshot!.docs
-//   //         .map((e) => pro.add(ProductDTO.fromFireStore(e).toDomain()))
-//   //         .toList();
-//   //     change(pro, status: RxStatus.success());
-//   //     isLoading.value = false;
+// ...
+// void debouncing({required Function() fn, int waitForMs = 500}) {
+//   // if this function is called before 500ms [waitForMs] expired
+//   //cancel the previous call
+//   _debounceTimer?.cancel();
+//   // set a 500ms [waitForMs] timer for the [fn] to be called
+//   _debounceTimer = Timer(Duration(milliseconds: waitForMs), fn);
+// }
+// ...
 
-//   //   } else {
-//   //     querySnapshot = await FirebaseFirestore.instance.productsCollection
-//   //         .startAfterDocument(lastDocument!)
-//   //         .limit(2)
-//   //         .get();
-//   //     querySnapshot!.docs
-//   //         .map((e) => pro.add(ProductDTO.fromFireStore(e).toDomain()))
-//   //         .toList();
-//   //     isLoading.value = false;
-//   //     change(pro, status: RxStatus.success());
-//   //   }
-//   //   if (querySnapshot!.docs.length < 2) {
-//   //     hasMore = false;
-//   //   }
+// Debouncing Search
 
-//   //   // lastDocument = querySnapshot!.docs[querySnapshot!.docs.length - 1];
-//   //   lastDocument = querySnapshot!.docs[querySnapshot!.size-1]; //[querySnapshot!.docs.length];
-//   // }
+// Now it’s time to use the function. We will do what I mentioned above which is avoid sending an API call for every letter the user type in the TextField aka Search box.
 
-//   // fun() async {
-//   //   coloredPrint(msg: "msg");
-//   //   controller.value.addListener(() async {
-//   //     if (controller.value.offset >=
-//   //             controller.value.position.maxScrollExtent &&
-//   //         !controller.value.position.outOfRange) {
-//   //       coloredPrint(msg: "msg");
+// ...
+// late TextEditingController _controller;
+// ...
+// @override
+// void initState() {
+//   _controller = TextEditingController();
+//   _controller.addListener(_onSearchChange);
+//   super.initState();
+// }
+// void _onSearchChange() {
+//   debouncing(
+//     fn: () {
+//       print('get search suggestion from keyword: ${_controller.text}');
+//     },
+//   );
+// }
+// @override
+// void dispose() {
+//   ...
+  
+//   _controller.removeListener(_onSearchChange);
+//   super.dispose();
+// }
+// @override
+// Widget build(BuildContext context) {
+//   return Scaffold(
+//     appBar: AppBar(
+//       title: Text(widget.title),
+//     ),
+//     body: TextField(
+//       decoration: InputDecoration(
+//         hintText: 'Search',
+//       ),
+//       controller: _controller,
+//     ),
+//   );
+// }
 
-//   //       try {
-//   //         coloredPrint(msg: "msg");
-//   //         await FirebaseFirestore.instance.productsCollection
-//   //             // .sta({"id":pro.last.id!})
-//   //             .limit(6)
-//   //             .get()
-//   //             .then((value) => value.docs.map((e) {
-//   //                   //  completer.complete(
-//   //                   pro.add(ProductDTO.fromFireStore(e).toDomain());
-//   //                 }).toList());
-//   //         change(pro, status: RxStatus.success());
-//   //       } catch (e) {}
-//   //     }
-//   //   });
-//   // }
+// This is what print out when you search for “play” without using debouncing
 
-//   // Fetching Data
-//   Future<void> _fetchProductsFromDB() async {
-//     homeRepository.fetchProducts().listen((event) {
-//       event.fold(
-//           // If database hase an error
-//           (l) => change(null, status: RxStatus.error(l.msg)),
-//           (r) {
-//             _products=r;
-//             change(_products, status: RxStatus.success());
-//           });
-//     });
-//   }
+// flutter: get search suggestion from keyword: p
+// flutter: get search suggestion from keyword: pl
+// flutter: get search suggestion from keyword: pla
+// flutter: get search suggestion from keyword: play
 
-//   // Fetching Data
-//   Future<void> _fetchNextPageOfProductsFromDB() async {
-//     if (controller.value.offset >= controller.value.position.maxScrollExtent &&
-//         !controller.value.position.outOfRange) {
-//       homeRepository.fetchProductsNextPage().listen((event) {
-//         event.fold(
-//             // If database hase an error
-//             (l) => change(null, status: RxStatus.error(l.msg)),
-//             (r) {
-//               _products.addAll(r);
-//               change(_products, status: RxStatus.success());
-//             });
-//       });
-//     }
-//   }
+// This is with debouncing
 
-//   // Go To More Details
-//   Future<void> goToMoreDetails(products) async {
-//     return await Get.toNamed(Routes.PRODUCT_DETAILS, arguments: products);
-//   }
+// flutter: get search suggestion from keyword: play
+
+// Finally
+
+// don’t forget to cancel your Timer in dispose.
+
+// @override
+// void dispose() {
+//   // cleaning up the debounce timer
+//   _debounceTimer?.cancel();
+//   ...
 // }

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
+import 'package:trail/app/routes/app_pages.dart';
 
 // App Drawer Controller
 // TODO make it better
@@ -12,21 +13,12 @@ class AppDrawerController extends GetxController {
     // required this.signedInUserService,
   });
 // Sigin Out
-  signOut() async {
-    // TODO finish it
+ Future<void> signOut() async {
     await signedInUserRepo.signOut();
-
-    // if (await signedInUserRepo.isUserOut()) {
-    //   signedInUserService.isUserOut(isUserOut: true);
-    //   print("User Signed Out");
-    //   Get.offAllNamed(Routes.SIGN_IN);
-    // } else {
-    //   print("User Signed In");
-    //   signedInUserService.isUserOut(isUserOut: false);
-    //   Get.offAllNamed(Routes.HOME);
-    // }
+   return Get.offAllNamed(Routes.SIGN_IN);
   }
-  goToAddPost(){
-    
+// go to add post
+ Future<void> goToAddPost()async{
+    await Get.find<AppDrawerController>().signOut();
   }
 }

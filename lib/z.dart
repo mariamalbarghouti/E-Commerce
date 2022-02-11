@@ -1,52 +1,75 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:trail/main.dart';
+// import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-// class HomePageController extends GetxController {
-//   List<Model> list = [];
-//   ScrollController controller = ScrollController();
-//   int listLength = 4;
+// class HH extends StatefulWidget {
+//   const HH({Key? key}) : super(key: key);
+
 //   @override
-//   void onInit() {
-//     //  getData();
-//     generateList();
-//     addItems();
-//     controller.addListener(addItems);
-//     super.onInit();
-//   }
-//   //   void getData() async {
-// //     final listOfData = await _provider.getData(_pageNo);
-// //     moviesList.assignAll(listOfData);
-// //     isLoading.value = false;
-// //   }
-//   addItems() async {
+//   State<HH> createState() => _HHState();
+// }
 
-//     // if reaching the end
-//     if (controller.offset >= controller.position.maxScrollExtent &&
-//         !controller.position.outOfRange) {
-//           // Loading
-//           // getDate(++_page)
-//           //  if (listOfData.isEmpty) {
-//           //   loadingState.value = LoadingState(
-//           //    loadingType: LoadingType.completed,
-//           //  completed: "there is no data");
-//           //  } else {
-//           //     moviesList.addAll(listOfData);
-//           //     loadingState.value = LoadingState(loadingType: LoadingType.loaded);
-//           // }
-//       for (int i = 0; i < 14; i++) {
-//         listLength++;
-//         list.add(Model(name: (listLength).toString()));
-//         print("object $listLength");
-//         update();
-//       }
+// class _HHState extends State<HH> {
+//   late FloatingSearchBarController floatingSearchBarController;
+//   String? selectedTerm;
+//   List<String> history = ["Flutter", "Karim", "Mariam"];
+//   late List<String> filteredList;
+//   //  = FloatingSearchBarController().obs;
+//   @override
+//   void initState() {
+//     floatingSearchBarController = FloatingSearchBarController();
+//     filteredList = history;
+//     super.initState();
+//   }
+
+//   @override
+//   void dispose() {
+//     floatingSearchBarController.dispose();
+//     super.dispose();
+//   }
+
+//   bool isFound(query) => (history.contains(query)) ? true : false;
+//   deleteFromHistory(query) {
+
+//     history.removeWhere((element) => element.contains(query));
+//   }
+
+//   addSearch(query) {
+//     // If Exsist
+//     // Delete it then make it first
+//     // Add it first
+//     if (isFound(query)) {
+//       // delete from history
+//       deleteFromHistory(query);
+//       // reorder the list
+//       addSearch(query);
 //     }
-//     // });
+//     // Add Search
+//     if (history.length < 5) {
+//       history.add(query);
+//     }
 //   }
 
-//   generateList() {
-//     list = List.generate(
-//         listLength, (index) => Model(name: (index + 1).toString()));
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: FloatingSearchBar(
+//         debounceDelay: const Duration(milliseconds: 20),
+//         actions: [
+//           FloatingSearchBarAction.searchToClear(),
+//         ],
+//         hint: "Searching...",
+//         title: Text(selectedTerm ?? "Search Bar"),
+//         onQueryChanged: (query) {
+//           selectedTerm = query;
+//           setState(() {});
+//         },
+//         onSubmitted: (query) {
+//           addSearch(query);
+//         },
+//         builder: (context, animation) => Container(
+
+//         ),
+//       ),
+//     );
 //   }
 // }
