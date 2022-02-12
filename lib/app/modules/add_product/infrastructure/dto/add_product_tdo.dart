@@ -35,13 +35,13 @@ abstract class ProductDTO with _$ProductDTO {
 
   // Convert Peoduct to Product DTO
   factory ProductDTO.fromDomain(
-      {required Product product, required DocumentReference<Object?> uid}) {
+      {required Product product}) {
     return ProductDTO(
       // id: product.id,
       // fetchProductsLeft(FireStoreServerFailures.unexpectedError(msg:
       //Error type 'String' is not a subtype of type 'DocumentReference<Object?>'
       //in type cast))
-      uid: uid,
+      uid: product.uid!,
       title: product.title.getOrCrash(),
       price: num.parse(product.price.getOrCrash()),
       description: product.description.getOrCrash(),

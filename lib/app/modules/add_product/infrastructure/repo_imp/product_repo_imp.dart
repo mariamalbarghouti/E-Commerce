@@ -53,9 +53,10 @@ class ProductRepoFirebaseImp implements IAddProductRepo {
     required Product product,
   }) async {
     ProductDTO _productDTO = ProductDTO.fromDomain(
-      product: product,
-      uid: _firebaseFirestore.userCollection
-          .doc(await _firebaseFirestore.userID),
+      product: product.copyWith(
+        uid: _firebaseFirestore.userCollection
+            .doc(await _firebaseFirestore.userID),
+      ),
     );
     try {
       await _firebaseFirestore.productsCollection
@@ -74,5 +75,4 @@ class ProductRepoFirebaseImp implements IAddProductRepo {
       }
     }
   }
-  
 }

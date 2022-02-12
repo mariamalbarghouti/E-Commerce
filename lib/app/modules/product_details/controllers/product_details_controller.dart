@@ -45,7 +45,7 @@ class ProductDetailsController extends GetxController {
       case "Delete":
         _deletepost();
         break;
-        
+
       case "Update":
         {
           coloredPrint(msg: "Update", color: LogColors.blue);
@@ -56,6 +56,7 @@ class ProductDetailsController extends GetxController {
     }
   }
 
+// Delete The Post
   Future<void> _deletepost() async {
     // Check if delete post have failure or not
     bool deletePostHasFailures = await deleteUpdateRepo
