@@ -7,5 +7,6 @@ abstract class IDeleteOrUpdateRep {
   Future< Option<FireStoreServerFailures>>deleteThePost({required String id});
   // Delete Images
   Future< Option<FireStoreServerFailures>>deleteTheImages({required String id});
+  // Update Product
   Future<Option<FireStoreServerFailures>> update({required Product product});
 }
