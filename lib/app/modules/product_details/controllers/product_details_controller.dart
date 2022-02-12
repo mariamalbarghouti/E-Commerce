@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
@@ -12,7 +11,7 @@ import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 class ProductDetailsController extends GetxController {
   ProductDetailsController(this.productRepo);
   final IProductRepo productRepo;
-  Product product=Get.arguments;
+  Product product = Get.arguments;
   // email
   final Rx<String> email = "".obs;
   // for making more hidden or not
@@ -35,7 +34,7 @@ class ProductDetailsController extends GetxController {
         ((await Get.find<FirebaseFirestore>().userID) == product.uid!.id);
 
     // retrive seller account
-    email.value = (await product.uid?.get().then((value) => value.id))!;
+    email.value = (await product.uid?.get().then((value) => (value.data()as Map<String,dynamic>)["email"]))!;
     super.onInit();
   }
 
@@ -47,12 +46,9 @@ class ProductDetailsController extends GetxController {
         break;
 
       case "Update":
-        {
-          coloredPrint(msg: "Update", color: LogColors.blue);
-          Get.toNamed(Routes.ADD_PRODUCT,arguments: product);
-          // deleteUpdateRepo.update(product: product)
-          break;
-        }
+        Get.toNamed(Routes.ADD_PRODUCT, arguments: product);
+        break;
+
       default:
         return;
     }
@@ -64,7 +60,7 @@ class ProductDetailsController extends GetxController {
     bool deletePostHasFailures = await productRepo
         .deleteThePost(id: product.id!)
         .then((value) => value.isSome());
-        
+
     // Check if delete image have failure or not
     bool deleteImagesHasFailures = await productRepo
         .deleteTheImages(id: product.id!)

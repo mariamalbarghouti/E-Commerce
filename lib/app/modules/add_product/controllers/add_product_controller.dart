@@ -34,7 +34,7 @@ class AddProductController extends GetxController {
     priceEditionController = TextEditingController().obs;
     titleEditionController = TextEditingController().obs;
     addProductController = RoundedLoadingButtonController().obs;
-    // If 
+    // If
     if (product != null) {
       descriptionEditionController.value.text =
           product!.description.getOrCrash();
@@ -127,7 +127,6 @@ class AddProductController extends GetxController {
 
   // Add Product
   Future<void> addProduct() async {
-
     // if there is NO failures
     // add product
     // else
@@ -135,11 +134,10 @@ class AddProductController extends GetxController {
 
     if (!_product.value.failureOption.isSome()) {
       // add product
-      if(product!=null){
-      await _uploadProduct();
-
-      }else{
-       await _updateProduct();
+      if (product != null) {
+        await _uploadProduct();
+      } else {
+        await _updateProduct();
       }
       // sucess btn
       addProductController.value.success();
@@ -157,27 +155,42 @@ class AddProductController extends GetxController {
           .whenComplete(() => addProductController.value.reset());
     }
   }
-_updateProduct()async{
-await productRepo.createProduct(product: _product.value).then(
+
+ Future<void> _updateProduct() async {
+    await productRepo.update(product: _product.value).then(
           (value) => value.fold(
-            (l) {
-              Get.snackbar(
-                "Error",
-                l.msg,
-                snackPosition: SnackPosition.BOTTOM,
-              );
-            },
-            (r) {
-              Get.snackbar(
-                "Sucess",
-                "Your Product Has Been Added Sucessfully",
-                snackPosition: SnackPosition.BOTTOM,
-              );
-              // Go back
-              return Get.offAllNamed(Routes.HOME);
-            },
-          ),);
-}
+            () => Get.snackbar(
+              "Success",
+              "You Have Updated The Product",
+              snackPosition: SnackPosition.BOTTOM,
+            ),
+            (a) => Get.snackbar(
+              "Error",
+              a.msg,
+              snackPosition: SnackPosition.BOTTOM,
+            ),
+          ),
+        );
+    // (l) {
+    //   Get.snackbar(
+    //     "Error",
+    //     l.msg,
+    //     snackPosition: SnackPosition.BOTTOM,
+    //   );
+    // },
+    // (r) {
+    //   Get.snackbar(
+    //     "Sucess",
+    //     "Your Product Has Been Added Sucessfully",
+    //     snackPosition: SnackPosition.BOTTOM,
+    //   );
+    //   // Go back
+    //   return Get.offAllNamed(Routes.HOME);
+    // },
+    // ),
+    // );
+  }
+
   // Upload Data
   Future<void> _uploadProduct() async {
     // Upload Images

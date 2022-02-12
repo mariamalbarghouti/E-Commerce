@@ -29,10 +29,6 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
               controller.product.pickedImages.getOrCrash()[itemIndex],
             ),
           ),
-          // IconButton(
-          //   onPressed: ()async=> await controller.deletePost(),
-          //   icon: const Icon(Icons.forward),
-          // ),
           // Price
           Text(
             "Price: ${Get.arguments.price.getOrCrash()}",
