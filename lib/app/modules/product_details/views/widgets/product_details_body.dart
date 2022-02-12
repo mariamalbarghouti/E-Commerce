@@ -22,11 +22,11 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
               aspectRatio: 3 / 2,
               enableInfiniteScroll: false,
             ),
-            itemCount: Get.arguments.pickedImages.length,
+            itemCount: controller.product.pickedImages.length,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) =>
                     Image.network(
-              Get.arguments.pickedImages.getOrCrash()[itemIndex],
+              controller.product.pickedImages.getOrCrash()[itemIndex],
             ),
           ),
           // IconButton(

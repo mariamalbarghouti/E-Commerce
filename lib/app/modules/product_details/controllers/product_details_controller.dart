@@ -12,7 +12,7 @@ import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 class ProductDetailsController extends GetxController {
   ProductDetailsController(this.deleteUpdateRepo);
   final IDeleteOrUpdateRep deleteUpdateRepo;
-  // late Product product;
+  Product product=Get.arguments;
   // email
   final Rx<String> email = "".obs;
   // for making more hidden or not
@@ -32,10 +32,10 @@ class ProductDetailsController extends GetxController {
     // or not
 
     isMine.value =
-        ((await Get.find<FirebaseFirestore>().userID) == Get.arguments.uid!.id);
+        ((await Get.find<FirebaseFirestore>().userID) == product.uid!.id);
 
     // retrive seller account
-    email.value = (await Get.arguments.uid?.get().then((value) => value.id))!;
+    email.value = (await product.uid?.get().then((value) => value.id))!;
     super.onInit();
   }
 
@@ -49,6 +49,8 @@ class ProductDetailsController extends GetxController {
       case "Update":
         {
           coloredPrint(msg: "Update", color: LogColors.blue);
+          Get.toNamed(Routes.ADD_PRODUCT,arguments: product);
+          // deleteUpdateRepo.update(product: product)
           break;
         }
       default:
@@ -60,11 +62,12 @@ class ProductDetailsController extends GetxController {
   Future<void> _deletepost() async {
     // Check if delete post have failure or not
     bool deletePostHasFailures = await deleteUpdateRepo
-        .deleteThePost(id: Get.arguments.id)
+        .deleteThePost(id: product.id!)
         .then((value) => value.isSome());
+        
     // Check if delete image have failure or not
     bool deleteImagesHasFailures = await deleteUpdateRepo
-        .deleteTheImages(id: Get.arguments.id)
+        .deleteTheImages(id: product.id!)
         .then((value) => value.isSome());
     // Make UI Send Message
     if (deletePostHasFailures && deleteImagesHasFailures) {

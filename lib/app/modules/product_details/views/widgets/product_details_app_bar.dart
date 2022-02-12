@@ -11,7 +11,7 @@ class ProductDetailsAppBar extends GetView<ProductDetailsController>
   Widget build(BuildContext context) {
     // Appbar
     return AppBar(
-      title: Text('${Get.arguments.title.getOrCrash()}'),
+      title: Text('${controller.product.title.getOrCrash()}'),
       centerTitle: true,
       // Delete aor Update
       actions: [

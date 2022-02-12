@@ -17,6 +17,7 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 // Add Product Controller
 class AddProductController extends GetxController {
   AddProductController(this.productRepo);
+  Product? product=Get.arguments;
   final IAddProductRepo productRepo;
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
@@ -27,12 +28,22 @@ class AddProductController extends GetxController {
   final Rx<Product> _product = Product.empty().obs;
   @override
   void onInit() {
+    if(product==null){
+
+    
     descriptionEditionController = TextEditingController().obs;
     priceEditionController = TextEditingController().obs;
     titleEditionController = TextEditingController().obs;
     addProductController = RoundedLoadingButtonController().obs;
+    }else{
+       descriptionEditionController.value.text=product!.description.getOrCrash();
+       priceEditionController.value.text=product!.price.getOrCrash();
+       titleEditionController.value.text=product!.title.getOrCrash();
+    }
     super.onInit();
   }
+
+  
 
   @override
   void onClose() {

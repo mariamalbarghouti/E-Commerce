@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/product_details/infrastracture/delete_update_repo_impl.dart';
 import 'package:trail/app/modules/product_details/repository/delete_update_repo.dart';
 
@@ -13,5 +14,6 @@ class ProductDetailsBinding extends Bindings {
     Get.lazyPut<ProductDetailsController>(
       () => ProductDetailsController(Get.find()),
     );
+    // Product o= Product.empty(). 
   }
 }
