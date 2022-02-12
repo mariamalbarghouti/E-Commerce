@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-import 'package:trail/app/modules/product_details/repository/delete_update_repo.dart';
 import 'package:trail/app/routes/app_pages.dart';
 import 'package:trail/core/print_logger.dart';
 // import 'package:timeago/timeago.dart' as timeago;
@@ -10,8 +10,8 @@ import 'package:trail/app/core/infrastucture/firebase_helper.dart';
 
 // Product Details Controller
 class ProductDetailsController extends GetxController {
-  ProductDetailsController(this.deleteUpdateRepo);
-  final IDeleteOrUpdateRep deleteUpdateRepo;
+  ProductDetailsController(this.productRepo);
+  final IProductRepo productRepo;
   Product product=Get.arguments;
   // email
   final Rx<String> email = "".obs;
@@ -61,12 +61,12 @@ class ProductDetailsController extends GetxController {
 // Delete The Post
   Future<void> _deletepost() async {
     // Check if delete post have failure or not
-    bool deletePostHasFailures = await deleteUpdateRepo
+    bool deletePostHasFailures = await productRepo
         .deleteThePost(id: product.id!)
         .then((value) => value.isSome());
         
     // Check if delete image have failure or not
-    bool deleteImagesHasFailures = await deleteUpdateRepo
+    bool deleteImagesHasFailures = await productRepo
         .deleteTheImages(id: product.id!)
         .then((value) => value.isSome());
     // Make UI Send Message

@@ -6,7 +6,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/components/lis
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 
 // Product Repository
-abstract class IAddProductRepo  {
+abstract class IProductRepo  {
   // Id For The Post And The Folder of the images
   late final String productID;
   //  Upload Images To DB
@@ -15,4 +15,10 @@ abstract class IAddProductRepo  {
   // Upload Product data
   Future<Either<FireStoreServerFailures, Unit>> createProduct(
       {required Product product});
+        // DeletePost
+  Future< Option<FireStoreServerFailures>>deleteThePost({required String id});
+  // Delete Images
+  Future< Option<FireStoreServerFailures>>deleteTheImages({required String id});
+  // Update Product
+  Future<Option<FireStoreServerFailures>> update({required Product product});
 }

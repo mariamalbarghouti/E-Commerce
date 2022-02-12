@@ -17,8 +17,8 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 // Add Product Controller
 class AddProductController extends GetxController {
   AddProductController(this.productRepo);
-  Product? product=Get.arguments;
-  final IAddProductRepo productRepo;
+  Product? product = Get.arguments;
+  final IProductRepo productRepo;
   late Rx<TextEditingController> descriptionEditionController;
   late Rx<TextEditingController> priceEditionController;
   late Rx<TextEditingController> titleEditionController;
@@ -28,22 +28,21 @@ class AddProductController extends GetxController {
   final Rx<Product> _product = Product.empty().obs;
   @override
   void onInit() {
-    if(product==null){
+    // if(product==null){
 
-    
     descriptionEditionController = TextEditingController().obs;
     priceEditionController = TextEditingController().obs;
     titleEditionController = TextEditingController().obs;
     addProductController = RoundedLoadingButtonController().obs;
-    }else{
-       descriptionEditionController.value.text=product!.description.getOrCrash();
-       priceEditionController.value.text=product!.price.getOrCrash();
-       titleEditionController.value.text=product!.title.getOrCrash();
+    // If 
+    if (product != null) {
+      descriptionEditionController.value.text =
+          product!.description.getOrCrash();
+      priceEditionController.value.text = product!.price.getOrCrash();
+      titleEditionController.value.text = product!.title.getOrCrash();
     }
     super.onInit();
   }
-
-  
 
   @override
   void onClose() {
@@ -128,13 +127,20 @@ class AddProductController extends GetxController {
 
   // Add Product
   Future<void> addProduct() async {
+
     // if there is NO failures
     // add product
     // else
     // error
+
     if (!_product.value.failureOption.isSome()) {
       // add product
+      if(product!=null){
       await _uploadProduct();
+
+      }else{
+       await _updateProduct();
+      }
       // sucess btn
       addProductController.value.success();
     } else {
@@ -151,7 +157,27 @@ class AddProductController extends GetxController {
           .whenComplete(() => addProductController.value.reset());
     }
   }
-
+_updateProduct()async{
+await productRepo.createProduct(product: _product.value).then(
+          (value) => value.fold(
+            (l) {
+              Get.snackbar(
+                "Error",
+                l.msg,
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            },
+            (r) {
+              Get.snackbar(
+                "Sucess",
+                "Your Product Has Been Added Sucessfully",
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              // Go back
+              return Get.offAllNamed(Routes.HOME);
+            },
+          ),);
+}
   // Upload Data
   Future<void> _uploadProduct() async {
     // Upload Images

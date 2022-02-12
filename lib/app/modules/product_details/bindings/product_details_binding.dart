@@ -1,19 +1,19 @@
 import 'package:get/get.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-import 'package:trail/app/modules/product_details/infrastracture/delete_update_repo_impl.dart';
-import 'package:trail/app/modules/product_details/repository/delete_update_repo.dart';
+import 'package:trail/app/modules/add_product/domain/product_repo.dart';
+import 'package:trail/app/modules/add_product/infrastructure/repo_imp/product_repo_imp.dart';
 
 import '../controllers/product_details_controller.dart';
 
 class ProductDetailsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<IDeleteOrUpdateRep>(
-      () => DeleteOrUpdateRepImpl(),
+    // Rpo
+    Get.lazyPut<IProductRepo>(
+      () => ProductRepoFirebaseImp(),
     );
+    // controller
     Get.lazyPut<ProductDetailsController>(
       () => ProductDetailsController(Get.find()),
-    );
-    // Product o= Product.empty(). 
+    ); 
   }
 }

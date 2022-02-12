@@ -24,6 +24,7 @@ class AddProductsBody extends GetView<AddProductController> {
               decoration: const InputDecoration(
                 labelText: "Title",
               ),
+              // initialValue:controller.titleEditionController.value.text ,
               textInputAction: TextInputAction.next,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (_) => controller.titleValidator(),

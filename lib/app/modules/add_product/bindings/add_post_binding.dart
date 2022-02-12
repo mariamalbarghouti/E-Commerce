@@ -7,7 +7,7 @@ import '../controllers/add_product_controller.dart';
 class AddProductBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<IAddProductRepo>(() => ProductRepoFirebaseImp());
+    Get.lazyPut<IProductRepo>(() => ProductRepoFirebaseImp());
     Get.lazyPut<AddProductController>(
       () => AddProductController(Get.find()),
     );

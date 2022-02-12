@@ -13,7 +13,7 @@ import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo
 
 // Implementing Prodiuct Repository
 // With Firebase
-class ProductRepoFirebaseImp implements IAddProductRepo {
+class ProductRepoFirebaseImp implements IProductRepo {
   final _firebaseFirestore = Get.find<FirebaseFirestore>();
 
   // Create UUID
@@ -73,6 +73,57 @@ class ProductRepoFirebaseImp implements IAddProductRepo {
           const FireStoreServerFailures.unexpectedError(),
         );
       }
+    }
+  }
+  
+  @override
+  Future<Option<FireStoreServerFailures>> deleteThePost(
+      {required String id}) async {
+    try {
+      await _firebaseFirestore.productsCollection.doc(id).delete();
+      return none();
+    } catch (e) {
+      return _handlingError(e);
+    }
+  }
+
+  @override
+  Future<Option<FireStoreServerFailures>> deleteTheImages(
+      {required String id}) async {
+    try {
+      for (int i = 0; i < Get.arguments.pickedImages.length; i++) {
+        await FirebaseStorage.instance
+            .ref('products')
+            .child(Get.arguments.id)
+            .child(i.toString())
+            .delete();
+      }
+      return none();
+    } catch (e) {
+      return _handlingError(e);
+    }
+  }
+
+  @override
+  Future<Option<FireStoreServerFailures>> update(
+      {required Product product}) async {
+    try {
+      await _firebaseFirestore.productsCollection
+          .doc(product.id)
+          .update(ProductDTO.fromDomain(product: product).toJson());
+      return none();
+    } catch (e) {
+      return _handlingError(e);
+    }
+  }
+
+  Option<FireStoreServerFailures> _handlingError(e) {
+    if (e is FirebaseException) {
+      return some(
+          FireStoreServerFailures.serverError(msg: "Server Error ${e.code}"));
+    } else {
+      return some(
+          FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"));
     }
   }
 }
