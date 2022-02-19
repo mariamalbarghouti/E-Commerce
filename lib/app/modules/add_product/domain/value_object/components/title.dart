@@ -13,7 +13,7 @@ class ProductTitle extends ValueObject<AddProductValueFailures, String> {
   factory ProductTitle({required String title}) {
     return ProductTitle._(
       emptyValidator(title)
-          .flatMap(shrotLengthValidator)
+          .flatMap(shortLengthValidator)
           .flatMap(singleLineValidator),
     );
   }

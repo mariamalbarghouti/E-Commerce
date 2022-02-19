@@ -4,12 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trail/1/search/home.dart';
 import 'package:trail/core/logger_mixin.dart';
 import 'app/routes/app_pages.dart';
 
 // Main Function
-void main() async {
+Future<void> main() async {
   // initializing ui
   WidgetsFlutterBinding.ensureInitialized();
   // initializing firebase

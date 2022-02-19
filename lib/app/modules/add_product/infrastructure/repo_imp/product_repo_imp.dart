@@ -10,6 +10,7 @@ import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
+import 'package:trail/core/print_logger.dart';
 
 // Implementing Prodiuct Repository
 // With Firebase
@@ -52,9 +53,10 @@ class ProductRepoFirebaseImp implements IProductRepo {
   Future<Either<FireStoreServerFailures, Unit>> createProduct({
     required Product product,
   }) async {
+    // put seller id 
     ProductDTO _productDTO = ProductDTO.fromDomain(
       product: product.copyWith(
-        uid: _firebaseFirestore.userCollection
+        uid:  _firebaseFirestore.userCollection
             .doc(await _firebaseFirestore.userID),
       ),
     );

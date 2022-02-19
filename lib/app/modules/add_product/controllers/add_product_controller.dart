@@ -17,38 +17,54 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 // Add Product Controller
 class AddProductController extends GetxController {
   AddProductController(this.productRepo);
-  Product? product = Get.arguments;
+  Product? updateProduct = Get.arguments;
   final IProductRepo productRepo;
-  late Rx<TextEditingController> descriptionEditionController;
-  late Rx<TextEditingController> priceEditionController;
-  late Rx<TextEditingController> titleEditionController;
-  late Rx<RoundedLoadingButtonController> addProductController;
-  var pickedImages = <Asset>[].obs;
-  // final GlobalKey<FormState> addProductFormKey = GlobalKey<FormState>();
-  final Rx<Product> _product = Product.empty().obs;
+  late TextEditingController descriptionEditionController;
+  late TextEditingController priceEditionController;
+  late TextEditingController titleEditionController;
+  late // Rx<
+      RoundedLoadingButtonController //>
+      addProductController;
+  var _pickedAsset = <Asset>[];
+  Rx<Product> product = Product.empty().obs;
+
   @override
   void onInit() {
-    // if(product==null){
+    // initialize the controllers
+    descriptionEditionController = TextEditingController();
+    priceEditionController = TextEditingController();
+    titleEditionController = TextEditingController();
+    addProductController = RoundedLoadingButtonController();
 
-    descriptionEditionController = TextEditingController().obs;
-    priceEditionController = TextEditingController().obs;
-    titleEditionController = TextEditingController().obs;
-    addProductController = RoundedLoadingButtonController().obs;
-    // If
-    if (product != null) {
-      descriptionEditionController.value.text =
-          product!.description.getOrCrash();
-      priceEditionController.value.text = product!.price.getOrCrash();
-      titleEditionController.value.text = product!.title.getOrCrash();
-    }
     super.onInit();
   }
 
   @override
+  void onReady() {
+    // If Update
+    if (updateProduct != null) {
+      product.value = product.value.copyWith(
+        title: updateProduct!.title,
+        description: updateProduct!.description,
+        price: updateProduct!.price,
+        id: updateProduct!.id,
+        uid: updateProduct!.uid,
+        // pickedImages: updateProduct!.pickedImages,
+      );
+      // _pickedAsset=updateProduct!.pickedImages.getOrCrash();
+      titleEditionController.text = updateProduct!.title.getOrCrash();
+      descriptionEditionController.text =
+          updateProduct!.description.getOrCrash();
+      priceEditionController.text = updateProduct!.price.getOrCrash();
+    }
+    super.onReady();
+  }
+
+  @override
   void onClose() {
-    titleEditionController.value.dispose();
-    descriptionEditionController.value.dispose();
-    priceEditionController.value.dispose();
+    titleEditionController.dispose();
+    descriptionEditionController.dispose();
+    priceEditionController.dispose();
     super.onClose();
   }
 
@@ -56,10 +72,10 @@ class AddProductController extends GetxController {
   Future<void> pickImgFromGallery() async {
     try {
       // Pick Image From Gallery
-      pickedImages.value = await MultiImagePicker.pickImages(
+      _pickedAsset = await MultiImagePicker.pickImages(
         maxImages: 5,
         enableCamera: true,
-        selectedAssets: pickedImages,
+        selectedAssets: _pickedAsset,
         materialOptions: const MaterialOptions(
           actionBarColor: "#000000",
           actionBarTitle: "Select Image",
@@ -71,7 +87,7 @@ class AddProductController extends GetxController {
       );
       // Convert Asset To File
       await _convertAssetIntoFile();
-      // coloredPrint(msg: "msg ${_product.toString()}", color: LogColors.green);
+      // coloredPrint(msg: "msg ${product.toString()}", color: LogColors.green);
     } on Exception catch (e) {
       Get.snackbar(
         "Error",
@@ -84,45 +100,45 @@ class AddProductController extends GetxController {
 // Delete Image From UI
   Future<void> deleteImage(int index) async {
     // Delete UI
-    pickedImages.removeAt(index);
+    _pickedAsset.removeAt(index);
     // Delete Data to Domain
-    _product.value.pickedImages.deleteIndex(index);
+    product.value.pickedImages.deleteIndex(index);
   }
 
   // Title Validator
   String? titleValidator() {
     // Copy The Value
-    _product.value = _product.value.copyWith(
+    product = product.value.copyWith(
       title: ProductTitle(
-        title: titleEditionController.value.text,
+        title: titleEditionController.text,
       ),
-    );
+    ).obs;
     // return validation value
-    return _product.value.title.value.fold((l) => l.msg, (r) => null);
+    return product.value.title.value.fold((l) => l.msg, (r) => null);
   }
 
   // Description Validator
   String? descriptionValidator() {
     // Copy The Value
-    _product.value = _product.value.copyWith(
+    product = product.value.copyWith(
       description: Description(
-        description: descriptionEditionController.value.text,
+        description: descriptionEditionController.text,
       ),
-    );
+    ).obs;
     // return validation value
-    return _product.value.description.value.fold((l) => l.msg, (r) => null);
+    return product.value.description.value.fold((l) => l.msg, (r) => null);
   }
 
   // Price Validator
   String? priceValidator() {
     // Copy The Value
-    _product.value = _product.value.copyWith(
+    product = product.value.copyWith(
       price: Price(
-        price: priceEditionController.value.text,
+        price: priceEditionController.text,
       ),
-    );
+    ).obs;
     // return validation value
-    return _product.value.price.value.fold((l) => l.msg, (r) => null);
+    return product.value.price.value.fold((l) => l.msg, (r) => null);
   }
 
   // Add Product
@@ -131,39 +147,42 @@ class AddProductController extends GetxController {
     // add product
     // else
     // error
-
-    if (!_product.value.failureOption.isSome()) {
+    if (!product.value.failureOption.isSome()) {
       // add product
-      if (product != null) {
+      if (updateProduct == null) {
         await _uploadProduct();
       } else {
         await _updateProduct();
       }
-      // sucess btn
-      addProductController.value.success();
+      // success btn
+      addProductController.success();
     } else {
       // button error
-      addProductController.value.error();
-      // error anackbar
+      addProductController.error();
+      // error snackbar
       Get.snackbar(
         "Error",
-        "${_product.value.failureOption.fold(() => none(), (a) => a.msg)}",
+        "${product.value.failureOption.fold(() => none(), (a) => a.msg)}",
         snackPosition: SnackPosition.BOTTOM,
       );
       // after 3 seconds make button reset
       Future.delayed(const Duration(seconds: 3))
-          .whenComplete(() => addProductController.value.reset());
+          .whenComplete(() => addProductController.reset());
     }
   }
 
- Future<void> _updateProduct() async {
-    await productRepo.update(product: _product.value).then(
+// Update Product
+  Future<void> _updateProduct() async {
+    await productRepo.update(product: product.value).then(
           (value) => value.fold(
-            () => Get.snackbar(
-              "Success",
-              "You Have Updated The Product",
-              snackPosition: SnackPosition.BOTTOM,
-            ),
+            () {
+              Get.snackbar(
+                "Success",
+                "You Have Updated The Product",
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              Get.offAllNamed(Routes.HOME);
+            },
             (a) => Get.snackbar(
               "Error",
               a.msg,
@@ -171,24 +190,6 @@ class AddProductController extends GetxController {
             ),
           ),
         );
-    // (l) {
-    //   Get.snackbar(
-    //     "Error",
-    //     l.msg,
-    //     snackPosition: SnackPosition.BOTTOM,
-    //   );
-    // },
-    // (r) {
-    //   Get.snackbar(
-    //     "Sucess",
-    //     "Your Product Has Been Added Sucessfully",
-    //     snackPosition: SnackPosition.BOTTOM,
-    //   );
-    //   // Go back
-    //   return Get.offAllNamed(Routes.HOME);
-    // },
-    // ),
-    // );
   }
 
   // Upload Data
@@ -200,7 +201,7 @@ class AddProductController extends GetxController {
       () => none(),
       (a) async {
         // copy the value
-        _product.value = _product.value.copyWith(
+        product.value = product.value.copyWith(
           pickedImages: ListOf5<String>(listOf5: a),
         );
         // Upload Product Info
@@ -213,7 +214,7 @@ class AddProductController extends GetxController {
   Future<Option<List<String>>> _uploadImagesToFirestorage() async {
     return await productRepo
         .uploadProductImages(
-            images: (_product.value.pickedImages) as ListOf5<File>)
+            images: (product.value.pickedImages) as ListOf5<File>)
         .then(
           (value) => value.fold((l) {
             Get.snackbar(
@@ -230,7 +231,7 @@ class AddProductController extends GetxController {
 
 //  Upload Product Info to Firebase
   Future<void> _uploadProductInfo() async {
-    await productRepo.createProduct(product: _product.value).then(
+    await productRepo.createProduct(product: product.value).then(
           (value) => value.fold(
             (l) {
               Get.snackbar(
@@ -241,8 +242,8 @@ class AddProductController extends GetxController {
             },
             (r) {
               Get.snackbar(
-                "Sucess",
-                "Your Product Has Been Added Sucessfully",
+                "Success",
+                "Your Product Has Been Added Successfully",
                 snackPosition: SnackPosition.BOTTOM,
               );
               // Go back
@@ -254,13 +255,13 @@ class AddProductController extends GetxController {
 
   // Covert Asset into File
   Future<void> _convertAssetIntoFile() async {
-    List<File> _imagesForDomain = <File>[];
+    var imagesForUI = <File>[];
     // Convert Asset To File
     await Future.wait(
-      pickedImages.map((element) async {
+      _pickedAsset.map((element) async {
         if (element.identifier != null) {
           // Convert Asset Into Add File
-          _imagesForDomain.add(
+          imagesForUI.add(
             File(await FlutterAbsolutePath.getAbsolutePath(
                     element.identifier!) ??
                 ""),
@@ -271,7 +272,7 @@ class AddProductController extends GetxController {
       }),
     );
     // Copy the value
-    _product.value = _product.value
-        .copyWith(pickedImages: ListOf5<File>(listOf5: _imagesForDomain));
+    product.value = product.value
+        .copyWith(pickedImages: ListOf5<File>(listOf5: imagesForUI));
   }
 }

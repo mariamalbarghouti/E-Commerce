@@ -8,7 +8,6 @@ import 'package:trail/app/modules/add_product/views/widgets/image_picker/image_p
 // Add Products Body
 class AddProductsBody extends GetView<AddProductController> {
   const AddProductsBody({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -20,18 +19,17 @@ class AddProductsBody extends GetView<AddProductController> {
             const ImagePickerWidget(),
             // Title
             TextFormField(
-              controller: controller.titleEditionController.value,
+              controller: controller.titleEditionController,
               decoration: const InputDecoration(
                 labelText: "Title",
               ),
-              // initialValue:controller.titleEditionController.value.text ,
               textInputAction: TextInputAction.next,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (_) => controller.titleValidator(),
             ),
             // Description
             TextFormField(
-              controller: controller.descriptionEditionController.value,
+              controller: controller.descriptionEditionController,
               decoration: const InputDecoration(
                 labelText: "Description",
               ),
@@ -41,7 +39,7 @@ class AddProductsBody extends GetView<AddProductController> {
             ),
             // Price
             TextFormField(
-              controller: controller.priceEditionController.value,
+              controller: controller.priceEditionController,
               decoration: const InputDecoration(
                 labelText: "Price",
               ),
@@ -50,24 +48,16 @@ class AddProductsBody extends GetView<AddProductController> {
               validator: (_) => controller.priceValidator(),
             ),
             // Add Product Button
-
-            // ElevatedButton(
-            //   onPressed: () async => await controller.addProduct(),
-            //   child: const Text("Add Product"),
-            // ),
-
             Padding(
               padding: const EdgeInsets.only(top: 16),
-              child: Obx(()=>
-                RoundedLoadingButton(
-                  onPressed: () async => await controller.addProduct(),
-                  child:const Text('Add Product'),
-                  controller: controller.addProductController.value,
-                  resetDuration: const Duration(seconds:3),
-                  // resetAfterDuration: true,
-                ),
+              child: RoundedLoadingButton(
+                onPressed: () async => await controller.addProduct(),
+                child: const Text('Add Product'),
+                controller: controller.addProductController,
+                resetDuration: const Duration(seconds: 3),
+                // resetAfterDuration: true,
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -11,7 +11,7 @@ class Description extends ValueObject<AddProductValueFailures, String> {
   final Either<AddProductValueFailures, String> value;
   factory Description({required String description}) {
     return Description._(
-      emptyValidator(description).flatMap(shrotLengthValidator),
+      emptyValidator(description).flatMap(shortLengthValidator),
     );
   }
 }

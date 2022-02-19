@@ -1,18 +1,15 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:trail/app/modules/add_product/controllers/add_product_controller.dart';
 
 // Selected Images
 class SelectedImagesWidget extends GetView<AddProductController> {
-  //StatelessWidget {
   const SelectedImagesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => (controller.pickedImages.isEmpty)
+      () => (controller.product.value.pickedImages.isEmpty)
           ? const SizedBox.shrink()
           : SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -20,11 +17,10 @@ class SelectedImagesWidget extends GetView<AddProductController> {
               child: SizedBox(
                 height: 80,
                 child: ListView.builder(
-                  itemCount:
-                      controller.pickedImages.length,
+                  itemCount: controller.product.value.pickedImages.length,
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Stack(
                       clipBehavior: Clip.none,
@@ -33,10 +29,12 @@ class SelectedImagesWidget extends GetView<AddProductController> {
                         Card(
                           color: Colors.amber,
                           clipBehavior: Clip.hardEdge,
-                          child: AssetThumb(
-                            asset: controller.pickedImages[index],
-                            width: 300,
-                            height: 300,
+                          child: Image.file(
+                            controller.product.value.pickedImages
+                                .getOrCrash()[index],
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
                           ),
                         ),
                         // Delete Button
