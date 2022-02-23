@@ -1,10 +1,13 @@
-void coloredPrint({required String msg, LogColors color = LogColors.yellow}) {
-  print('${convertEnumToValue(color)} $msg\x1B[0m');
-}
 
+// For Printing A Color Logger
+void coloredPrint({required String msg, LogColors color = LogColors.yellow}) {
+  print('${_convertEnumToValue(color)} $msg\x1B[0m');
+}
+// Log Colors
 enum LogColors { black, red, green, yellow, blue, magenta, cyan, white }
 
-String convertEnumToValue(LogColors color) {
+// Convert Enum To Color
+String _convertEnumToValue(LogColors color) {
   switch (color) {
     case LogColors.black:
       return "\x1B[30m";
