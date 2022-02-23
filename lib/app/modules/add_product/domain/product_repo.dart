@@ -16,11 +16,11 @@ abstract class IProductRepo  {
   Future<Either<FireStoreServerFailures, Unit>> createProductInfo(
       {required Product product});
         // DeletePost
-  Future< Option<FireStoreServerFailures>>deleteThePost({required String id});
+  Future< Option<FireStoreServerFailures>> deletePostInfo({required String id});
   // Delete Images
-  Future< Option<FireStoreServerFailures>>deleteTheImages({required String id});
+  Future< Option<FireStoreServerFailures>> deletePostImages({required String id});
   // Update Product Info
-  Future<Option<FireStoreServerFailures>> updateProductImages({required Product product});
+   Future<Either<FireStoreServerFailures, List<String>>> updateProductImages({required ListOf5<File> images});
   // Update Product Info
   Future<Option<FireStoreServerFailures>> updateProductInfo({required Product product});
 }

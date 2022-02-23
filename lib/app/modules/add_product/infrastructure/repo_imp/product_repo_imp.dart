@@ -12,10 +12,11 @@ import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
 import 'package:trail/core/print_logger.dart';
 
-// Implementing Product Repository
+// Implementing Prodiuct Repository
 // With Firebase
 class ProductRepoFirebaseImp implements IProductRepo {
   final _firebaseFirestore = Get.find<FirebaseFirestore>();
+  final _firebaseFireStorage =FirebaseStorage.instance;
 
   // Create UUID
   @override
@@ -29,7 +30,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     try {
       List<String> _downloadedUrl = [];
       for (int i = 0; i < images.length; i++) {
-        UploadTask _uploadTask = FirebaseStorage.instance
+        UploadTask _uploadTask = _firebaseFireStorage
             .ref('products')
             .child(productID)
             .child('$i')
@@ -78,8 +79,9 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
   
+
   @override
-  Future<Option<FireStoreServerFailures>> deleteThePost(
+  Future<Option<FireStoreServerFailures>> deletePostInfo(
       {required String id}) async {
     try {
       await _firebaseFirestore.productsCollection.doc(id).delete();
@@ -90,7 +92,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }
 
   @override
-  Future<Option<FireStoreServerFailures>> deleteTheImages(
+  Future<Option<FireStoreServerFailures>> deletePostImages(
       {required String id}) async {
     try {
       for (int i = 0; i < Get.arguments.pickedImages.length; i++) {
@@ -119,6 +121,29 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
+  @override
+   Future<Either<FireStoreServerFailures, List<String>>> updateProductImages({required ListOf5<File> images}) async{
+     try {
+      List<String> _downloadedUrl = [];
+      // for (int i = 0; i < images.length; i++) {
+        UploadTask _uploadTask = _firebaseFireStorage
+            .ref('products')
+            .child("6hypbjNwlQFsS4ihbm82")
+            .child('0')
+            .putFile(images.getOrCrash()[0]);
+        await _uploadTask.then((picValue) async {
+          await picValue.ref.getDownloadURL().then((downloadUrl) {
+            _downloadedUrl.add(downloadUrl);
+          });
+        });
+      // }
+      return right(_downloadedUrl);
+    } catch (e) {
+      return left(
+        FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"),
+      );
+    }
+  }
   Option<FireStoreServerFailures> _handlingError(e) {
     if (e is FirebaseException) {
       return some(
@@ -127,11 +152,5 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return some(
           FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"));
     }
-  }
-
-  @override
-  Future<Option<FireStoreServerFailures>> updateProductImages({required Product product}) {
-    // TODO: implement updateProductImages
-    throw UnimplementedError();
   }
 }

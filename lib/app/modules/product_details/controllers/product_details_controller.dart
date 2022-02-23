@@ -58,12 +58,12 @@ class ProductDetailsController extends GetxController {
   Future<void> _deletepost() async {
     // Check if delete post have failure or not
     bool deletePostHasFailures = await productRepo
-        .deleteThePost(id: product.id!)
+        .deletePostInfo(id: product.id!)
         .then((value) => value.isSome());
 
     // Check if delete image have failure or not
     bool deleteImagesHasFailures = await productRepo
-        .deleteTheImages(id: product.id!)
+        .deletePostImages(id: product.id!)
         .then((value) => value.isSome());
     // Make UI Send Message
     if (deletePostHasFailures && deleteImagesHasFailures) {

@@ -236,7 +236,7 @@ fun(){
   }
   _updateImages(){
     // _deleteNotUpdatedImages();
-
+    
   }
  Future<void> _updateProductInfo()async{
   await productRepo.updateProductInfo(product: product.value
