@@ -69,7 +69,7 @@ class ProductDetailsController extends GetxController {
     if (deletePostHasFailures && deleteImagesHasFailures) {
       Get.snackbar("Failure", "An Error Have Been Occurs");
     } else {
-      Get.snackbar("Sucess", "You Have Deleted The Post!");
+      Get.snackbar("Success", "You Have Deleted The Post!");
       return Get.offNamed(Routes.HOME);
     }
   }
