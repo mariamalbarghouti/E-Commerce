@@ -16,7 +16,6 @@ class HomeView extends GetView<HomeController> {
       ),
       drawer: const AppDrawerWidget(),
       body:const  HomeBody(),
-     
     );
   }
 }

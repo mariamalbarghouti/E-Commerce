@@ -6,12 +6,18 @@ import 'package:trail/app/modules/add_product/domain/validation/list_of_5_valida
 // Picked Images List
 class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
   ListOf5._(this.value);
+  static const maxLength = 5;
   @override
   Either<AddProductValueFailures, List<T>> value;
   factory ListOf5({required List<T> listOf5}) {
     return ListOf5._(
       listOf5Validator<T>(imagesList: listOf5),
     );
+  }
+// to convet dynamic List into An Specific Data Type
+  ListOf5<M> convertDynamicListToAnSpecificDataType<M>() {
+    List<M> _convertToM = List<M>.from(getOrCrash());
+    return ListOf5._(right(_convertToM));
   }
 
   /// for deleting index
@@ -29,7 +35,8 @@ class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
     } else {
       value = left(
         const AddProductValueFailures.empty(
-            msg: "You Have To Upload At least One Image"),
+          msg: "You Don't Have Images To delete!",
+        ),
       );
     }
   }
@@ -37,8 +44,9 @@ class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
   // Length
   int get length => value.getOrElse(() => []).length;
   // IsFull
-  bool get isFull => length == 5;
+  bool get isFull => length == maxLength;
 
   // Is Empty
   bool get isEmpty => value.getOrElse(() => []).isEmpty;
+  bool get isNotEmpty => !isEmpty;
 }

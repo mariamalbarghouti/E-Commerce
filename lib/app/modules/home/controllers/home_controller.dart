@@ -18,7 +18,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   List<Product> _products = [];
   // Screolling Controller
   // Rx<ScrollController> scrollingController = ScrollController().obs;
-  Rx<RefreshController> refresherController = RefreshController().obs;
+  RefreshController refresherController = RefreshController();
   // Is Loading
   Rx<bool> isLoading = false.obs;
   // final List<String> _searchHistory = ["Fusha", "Google"];
@@ -51,7 +51,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
   void onClose() {
     homeRepository.dispose();
     // scrollingController.value.dispose();
-    refresherController.value.dispose();
+    refresherController.dispose();
     super.onClose();
   }
 // fun()async{
@@ -87,7 +87,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
       return;
     }
     isLoading.value = true;
-    refresherController.value.requestLoading();
+    // refresherController.requestLoading();
 
     change(_products, status: RxStatus.loadingMore());
     // Fetch Next Page
@@ -105,9 +105,9 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
             l.msg,
             snackPosition: SnackPosition.BOTTOM,
           );
-          return refresherController.value.loadNoData();
+          return refresherController.loadNoData();
         } else {
-          refresherController.value.loadFailed();
+          refresherController.loadFailed();
           return change(null, status: RxStatus.error(l.msg));
         }
       },
@@ -116,27 +116,27 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
         _products.addAll(r);
         // Change UI
         change(_products, status: RxStatus.success());
-        refresherController.value.loadComplete();
+        refresherController.loadComplete();
         isLoading.value = false;
       });
     });
   }
 
   // Refresh The Screen
-  void refreshTheScreen() {
-    refresherController.refresh();
-    // Get.delete()
-    // Clear The Products
-    _products.clear();
-    // Fetch first 15
-    _fetchProductsFromDB();
-    // tell the ui i am done
-    refresherController.value.refreshCompleted();
-  }
+  // void refreshTheScreen() {
+  //   refresherController.requestRefresh();
+  //   // Get.delete()
+  //   // Clear The Products
+  //   _products.clear();
+  //   // Fetch first 15
+  //   _fetchProductsFromDB();
+  //   // tell the ui i am done
+  //   refresherController.refreshCompleted();
+  // }
 
   goUp() {
     // refresherController.value.position=
-    refresherController.value.position?.moveTo(0);
+    refresherController.position?.moveTo(0);
   }
 
 

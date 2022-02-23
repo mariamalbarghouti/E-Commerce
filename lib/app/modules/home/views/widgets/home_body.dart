@@ -10,12 +10,12 @@ class HomeBody extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-      // On Sucess
+      // On Success
       (state) => SmartRefresher(
-        controller: controller.refresherController.value,
+        controller: controller.refresherController,
         scrollDirection: Axis.vertical,
         // on refresh
-        onRefresh: controller.refreshTheScreen,
+        // onRefresh: controller.refreshTheScreen,
         // on loading
         onLoading: controller.fetchNextPageOfProductsFromDB,
         enablePullDown: true,
@@ -95,7 +95,7 @@ class HomeBody extends GetView<HomeController> {
                         child: Center(
                           child: Center(
                             child: Text(
-                              "😨Unexcepected Error Happened contact us. product id is${state[index].id}",
+                              "😨Unexpected Error Happened contact us. product id is${state[index].id}",
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -108,7 +108,7 @@ class HomeBody extends GetView<HomeController> {
       onError: (error) => Container(
         color: Colors.green,
         child: Center(
-          child: Text("Unexcepected Error $error"),
+          child: Text("Unexpected Error $error"),
         ),
       ),
       // On Loading

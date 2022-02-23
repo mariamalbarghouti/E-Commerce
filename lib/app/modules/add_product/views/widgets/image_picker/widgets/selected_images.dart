@@ -29,21 +29,37 @@ class SelectedImagesWidget extends GetView<AddProductController> {
                         Card(
                           color: Colors.amber,
                           clipBehavior: Clip.hardEdge,
-                          child: Image.file(
-                            controller.product.value.pickedImages
-                                .getOrCrash()[index],
-                            width: 90,
-                            height: 90,
-                            fit: BoxFit.cover,
-                          ),
+                          child: (controller.product.value.pickedImages
+                                      .getOrCrash()[index]
+                                      .runtimeType !=
+                                  String)
+                              // Image If From Gallery
+                              ? Image.file(
+                                  controller.product.value.pickedImages
+                                      .getOrCrash()[index],
+                                  width: 90,
+                                  height: 90,
+                                  fit: BoxFit.cover,
+                                )
+                              // Image If Update
+                              : Image.network(
+                                  controller.product.value.pickedImages
+                                      .getOrCrash()[index],
+                                  width: 90,
+                                  height: 90,
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                         // Delete Button
                         Positioned(
                           right: 0,
                           top: -5,
                           child: InkWell(
-                            onTap: () async =>
-                                await controller.deleteImage(index),
+                            onTap: () async => await controller.deleteImage(
+                              index: index,
+                              image: controller.product.value.pickedImages
+                                  .getOrCrash()[index],
+                            ),
                             child: const CircleAvatar(
                               child: Icon(
                                 Icons.delete_outlined,

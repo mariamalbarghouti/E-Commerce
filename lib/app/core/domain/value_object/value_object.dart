@@ -12,9 +12,12 @@ abstract class ValueObject<T,M> {
     return value.getOrElse(()=>dflt);
   }
   // return right hand side
-  getRightValue(){
-    return optionOf(value);
-  }
+  // getRightValue(){
+  //   return optionOf(value);
+  // }
+  // Option<T>getLeft(){
+  //   return value.fold((l) => some(l), (r) => none());
+  // }
   
   @override
   String toString() => 'ValueObject(value: $value)';
