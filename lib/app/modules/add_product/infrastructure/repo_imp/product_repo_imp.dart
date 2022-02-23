@@ -12,7 +12,7 @@ import 'package:trail/app/modules/add_product/domain/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
 import 'package:trail/core/print_logger.dart';
 
-// Implementing Prodiuct Repository
+// Implementing Product Repository
 // With Firebase
 class ProductRepoFirebaseImp implements IProductRepo {
   final _firebaseFirestore = Get.find<FirebaseFirestore>();
@@ -50,7 +50,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
   // Create Product Firebase Implementation
   @override
-  Future<Either<FireStoreServerFailures, Unit>> createProduct({
+  Future<Either<FireStoreServerFailures, Unit>> createProductInfo({
     required Product product,
   }) async {
     // put seller id 
@@ -107,7 +107,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }
 
   @override
-  Future<Option<FireStoreServerFailures>> update(
+  Future<Option<FireStoreServerFailures>> updateProductInfo(
       {required Product product}) async {
     try {
       await _firebaseFirestore.productsCollection
@@ -127,5 +127,11 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return some(
           FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"));
     }
+  }
+
+  @override
+  Future<Option<FireStoreServerFailures>> updateProductImages({required Product product}) {
+    // TODO: implement updateProductImages
+    throw UnimplementedError();
   }
 }

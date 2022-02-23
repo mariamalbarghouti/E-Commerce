@@ -118,6 +118,7 @@ class AddProductController extends GetxController {
     // increase the image picker from gallery count
     // after if
     // delete from UI
+
     if (product.value.pickedImages.getOrCrash()[index].runtimeType != String) {
       _pickedAsset
           .removeWhere((element) => element.name == _getFileName(image));
@@ -129,7 +130,7 @@ class AddProductController extends GetxController {
     // Delete Data from UI
     // product.value.pickedImages.deleteIndex(index);
     // product.refresh();
-    product.update((val) => val!.pickedImages.deleteIndex(index));
+    product.update((val) => val!.pickedImages.deleteByIndex(index));
     coloredPrint(msg: "After Delete ${product.value.pickedImages}");
     coloredPrint(msg: "Length ${product.value.pickedImages.length}");
     coloredPrint(msg: "Is Empty ${product.value.pickedImages.isEmpty}");
@@ -212,10 +213,36 @@ class AddProductController extends GetxController {
     }
   }
 
-// Update Product
+// Delete Not Updated Images 
+ void _deleteNotUpdatedImages() {
+    // product.update((val) {
+    // product=val!.pickedImages.value.
+    for (int i = 0; i < product.value.pickedImages.length; i++) {
+      if (product.value.pickedImages.getOrCrash()[i].runtimeType == String) {
+        product.value.pickedImages.deleteByIndex(i);
+      }
+    }
+  }
+fun(){
+  coloredPrint(msg: " product.value.pickedImages${ product.value.pickedImages}");
+  _deleteNotUpdatedImages();
+  coloredPrint(msg: " product.value.pickedImages${ product.value.pickedImages}");
+
+}
+  // Update Product
   Future<void> _updateProduct() async {
-    
-    await productRepo.update(product: product.value).then(
+      
+   await _updateProductInfo();
+  }
+  _updateImages(){
+    // _deleteNotUpdatedImages();
+
+  }
+ Future<void> _updateProductInfo()async{
+  await productRepo.updateProductInfo(product: product.value
+       .copyWith(pickedImages: product.value.pickedImages
+    .convertDynamicListToAnSpecificDataType<File>())
+    ).then(
           (value) => value.fold(
             () {
               Get.snackbar(
@@ -232,7 +259,6 @@ class AddProductController extends GetxController {
             ),
           ),
         );
-
   }
 
   // Upload Data
@@ -251,7 +277,6 @@ class AddProductController extends GetxController {
             .obs;
         // Upload Product Info
         await _uploadProductInfo();
-        
       },
     );
   }
@@ -260,12 +285,10 @@ class AddProductController extends GetxController {
   Future<Option<List<String>>> _uploadImagesToFirestorage() async {
     return await productRepo
         .uploadProductImages(
-          // I have Created pickedImages as dynamic
-          // To make it as an specific type
-          // just convert it like so
-          images: product.value.pickedImages
-              .convertDynamicListToAnSpecificDataType<File>()
-        )
+            // I have Created pickedImages as dynamic
+            // To make it as an specific type
+            // just convert it like so
+            images: product.value.pickedImages.convertDynamicListToAnSpecificDataType<File>())
         .then(
           (value) => value.fold(
             (l) {
@@ -283,7 +306,7 @@ class AddProductController extends GetxController {
 
 //  Upload Product Info to Firebase
   Future<void> _uploadProductInfo() async {
-    await productRepo.createProduct(product: product.value).then(
+    await productRepo.createProductInfo(product: product.value).then(
           (value) => value.fold(
             (l) {
               Get.snackbar(
@@ -378,4 +401,5 @@ class AddProductController extends GetxController {
   // Get The Name Of The Image
   // Out of The File Path
   String _getFileName(File file) => file.path.split("/").last;
+ 
 }

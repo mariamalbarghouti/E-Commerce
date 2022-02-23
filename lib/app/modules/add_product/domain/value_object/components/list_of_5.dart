@@ -20,10 +20,34 @@ class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
     return ListOf5._(right(_convertToM));
   }
 
+  //  getDataTypeOfRightSideByIndex(int index) => getOrCrash()[index].runtimeType;
+
   /// for deleting index
-  void deleteIndex(index) {
+  void deleteByIndex(index) {
     if (!isEmpty) {
-      value.getOrElse(() => <T>[]).removeAt(index);
+      // value.getOrElse(() => <T>[]).removeAt(index);
+     getOrElse(() => <T>[]).removeAt(index);
+      // if the next is empty make a failure
+      if (getOrElse(() => <T>[]).isEmpty) {
+        value = left(
+          const AddProductValueFailures.empty(
+            msg: "You Have To Upload At least One Image",
+          ),
+        );
+      }
+    } else {
+      value = left(
+        const AddProductValueFailures.empty(
+          msg: "You Don't Have Images To delete!",
+        ),
+      );
+    }
+  }
+  // Delete By Value
+  void deleteByValue(value) {
+    if (!isEmpty) {
+      getOrElse(() => <T>[]).where((element) => element==value);
+    
       // if the next is empty make a failure
       if (value.getOrElse(() => <T>[]).isEmpty) {
         value = left(

@@ -13,12 +13,14 @@ abstract class IProductRepo  {
   Future<Either<FireStoreServerFailures, List<String>>> uploadProductImages(
       {required ListOf5<File> images});
   // Upload Product data
-  Future<Either<FireStoreServerFailures, Unit>> createProduct(
+  Future<Either<FireStoreServerFailures, Unit>> createProductInfo(
       {required Product product});
         // DeletePost
   Future< Option<FireStoreServerFailures>>deleteThePost({required String id});
   // Delete Images
   Future< Option<FireStoreServerFailures>>deleteTheImages({required String id});
-  // Update Product
-  Future<Option<FireStoreServerFailures>> update({required Product product});
+  // Update Product Info
+  Future<Option<FireStoreServerFailures>> updateProductImages({required Product product});
+  // Update Product Info
+  Future<Option<FireStoreServerFailures>> updateProductInfo({required Product product});
 }

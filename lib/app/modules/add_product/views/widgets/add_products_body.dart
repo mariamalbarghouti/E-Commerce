@@ -58,6 +58,7 @@ class AddProductsBody extends GetView<AddProductController> {
                 // resetAfterDuration: true,
               ),
             ),
+            TextButton(onPressed: ()=>controller.fun(), child: Text("ed"))
           ],
         ),
       ),

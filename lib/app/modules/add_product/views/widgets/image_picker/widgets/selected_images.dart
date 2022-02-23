@@ -52,7 +52,7 @@ class SelectedImagesWidget extends GetView<AddProductController> {
                         ),
                         // Delete Button
                         Positioned(
-                          right: 0,
+                         right: 0,
                           top: -5,
                           child: InkWell(
                             onTap: () async => await controller.deleteImage(
