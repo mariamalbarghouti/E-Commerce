@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
-import 'package:trail/app/core/infrastucture/firebase_helper.dart';
+import 'package:trail/app/core/infrastructure/firebase_helper.dart';
 import 'package:trail/app/modules/sign_up/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/sign_up/domain/repository/repository.dart';

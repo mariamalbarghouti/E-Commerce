@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
-import 'package:trail/app/core/infrastucture/firebase_helper.dart';
+import 'package:trail/app/core/infrastructure/firebase_helper.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:dartz/dartz.dart';

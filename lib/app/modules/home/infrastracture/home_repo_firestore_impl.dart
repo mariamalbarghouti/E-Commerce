@@ -8,7 +8,7 @@ import 'package:trail/app/core/domain/failures/server_failures/firestore_failure
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo.dart';
 import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
-import 'package:trail/app/core/infrastucture/firebase_helper.dart';
+import 'package:trail/app/core/infrastructure/firebase_helper.dart';
 import 'package:rxdart/rxdart.dart';
 
 // Sign Out Repository Implementation
