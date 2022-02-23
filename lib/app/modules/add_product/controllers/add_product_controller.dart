@@ -214,6 +214,7 @@ class AddProductController extends GetxController {
 
 // Update Product
   Future<void> _updateProduct() async {
+    
     await productRepo.update(product: product.value).then(
           (value) => value.fold(
             () {
@@ -231,6 +232,7 @@ class AddProductController extends GetxController {
             ),
           ),
         );
+
   }
 
   // Upload Data
