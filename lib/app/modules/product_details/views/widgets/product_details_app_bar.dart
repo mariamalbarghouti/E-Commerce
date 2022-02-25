@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 import 'package:trail/app/modules/product_details/controllers/product_details_controller.dart';
 
 // AppBar of Product Details
@@ -11,7 +12,7 @@ class ProductDetailsAppBar extends GetView<ProductDetailsController>
   Widget build(BuildContext context) {
     // Appbar
     return AppBar(
-      title: Text('${controller.product.title.getOrCrash()}'),
+      title: Text('${(Get.arguments as Product).title.getOrCrash()}'),
       centerTitle: true,
       // Delete aor Update
       actions: [

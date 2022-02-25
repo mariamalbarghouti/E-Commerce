@@ -31,17 +31,18 @@ class ProductDetailsBody extends GetView<ProductDetailsController> {
           ),
           // Price
           Text(
-            "Price: ${Get.arguments.price.getOrCrash()}",
+            "Price: ${controller.product.price.getOrCrash()}",
             style: const TextStyle(fontSize: 20),
           ),
           // Description
           Text(
-            "Description: ${Get.arguments.description.getOrCrash()}",
+            "Description: ${controller.product.description.getOrCrash()}",
             style: const TextStyle(fontSize: 20),
           ),
           // Time
           Text(
-            "Time: ${Get.arguments.time.toString().substring(0, Get.arguments.time.toString().indexOf("."))}",
+            // "Time: ${controller.time.toString().substring(0, Get.arguments.time.toString().indexOf("."))}",
+            "Time: ${controller.product.time.toString().substring(0,19)}",
             style: const TextStyle(fontSize: 20),
           ),
         ],

@@ -14,6 +14,7 @@ import 'package:trail/app/routes/app_pages.dart';
 import 'package:trail/core/print_logger.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 // import 'package:path/path.dart' as path;
+import "package:trail/app/core/file_helper.dart";
 
 // Add Product Controller
 class AddProductController extends GetxController {
@@ -35,12 +36,7 @@ class AddProductController extends GetxController {
     priceEditionController = TextEditingController();
     titleEditionController = TextEditingController();
     addProductController = RoundedLoadingButtonController();
-    super.onInit();
-  }
 
-// TODO Ask for its job
-  @override
-  void onReady() {
     // If Update
     if (Get.arguments != null) {
       // get the data
@@ -67,7 +63,7 @@ class AddProductController extends GetxController {
       priceEditionController.text =
           (Get.arguments as Product).price.getOrCrash();
     }
-    super.onReady();
+    super.onInit();
   }
 
   @override
@@ -120,8 +116,8 @@ class AddProductController extends GetxController {
     // delete from UI
 
     if (product.value.pickedImages.getOrCrash()[index].runtimeType != String) {
-      _pickedAsset
-          .removeWhere((element) => element.name == _getFileName(image));
+      _pickedAsset.removeWhere(
+          (element) => element.name == (image as File).fileNameWithExtention);
     } else {
       // Make Image Picker From Gallery
       // Count Increased By One
@@ -131,9 +127,6 @@ class AddProductController extends GetxController {
     // product.value.pickedImages.deleteIndex(index);
     // product.refresh();
     product.update((val) => val!.pickedImages.deleteByIndex(index));
-    coloredPrint(msg: "After Delete ${product.value.pickedImages}");
-    coloredPrint(msg: "Length ${product.value.pickedImages.length}");
-    coloredPrint(msg: "Is Empty ${product.value.pickedImages.isEmpty}");
   }
 
   // Title Validator
@@ -213,121 +206,6 @@ class AddProductController extends GetxController {
     }
   }
 
-// Delete Not Updated Images 
- void _deleteNotUpdatedImages() {
-    // product.update((val) {
-    // product=val!.pickedImages.value.
-    for (int i = 0; i < product.value.pickedImages.length; i++) {
-      if (product.value.pickedImages.getOrCrash()[i].runtimeType == String) {
-        product.value.pickedImages.deleteByIndex(i);
-      }
-    }
-  }
-fun(){
-  coloredPrint(msg: " product.value.pickedImages${ product.value.pickedImages}");
-  _deleteNotUpdatedImages();
-  coloredPrint(msg: " product.value.pickedImages${ product.value.pickedImages}");
-
-}
-  // Update Product
-  Future<void> _updateProduct() async {
-      
-   await _updateProductInfo();
-  }
-  _updateImages(){
-    // _deleteNotUpdatedImages();
-    
-  }
- Future<void> _updateProductInfo()async{
-  await productRepo.updateProductInfo(product: product.value
-       .copyWith(pickedImages: product.value.pickedImages
-    .convertDynamicListToAnSpecificDataType<File>())
-    ).then(
-          (value) => value.fold(
-            () {
-              Get.snackbar(
-                "Success",
-                "You Have Updated The Product",
-                snackPosition: SnackPosition.BOTTOM,
-              );
-              Get.offAllNamed(Routes.HOME);
-            },
-            (a) => Get.snackbar(
-              "Error",
-              a.msg,
-              snackPosition: SnackPosition.BOTTOM,
-            ),
-          ),
-        );
-  }
-
-  // Upload Data
-  Future<void> _uploadProduct() async {
-    // Upload Images
-    Option<List<String>> _downloadedImages = await _uploadImagesToFirestorage();
-    // Upload Product Info
-    _downloadedImages.fold(
-      () => none(),
-      (a) async {
-        // copy the value
-        product = product.value
-            .copyWith(
-              pickedImages: ListOf5<String>(listOf5: a),
-            )
-            .obs;
-        // Upload Product Info
-        await _uploadProductInfo();
-      },
-    );
-  }
-
-  // Upload Images to Firebase
-  Future<Option<List<String>>> _uploadImagesToFirestorage() async {
-    return await productRepo
-        .uploadProductImages(
-            // I have Created pickedImages as dynamic
-            // To make it as an specific type
-            // just convert it like so
-            images: product.value.pickedImages.convertDynamicListToAnSpecificDataType<File>())
-        .then(
-          (value) => value.fold(
-            (l) {
-              Get.snackbar(
-                "Error",
-                l.msg,
-                snackPosition: SnackPosition.BOTTOM,
-              );
-              return none();
-            },
-            (r) => some(r),
-          ),
-        );
-  }
-
-//  Upload Product Info to Firebase
-  Future<void> _uploadProductInfo() async {
-    await productRepo.createProductInfo(product: product.value).then(
-          (value) => value.fold(
-            (l) {
-              Get.snackbar(
-                "Error",
-                l.msg,
-                snackPosition: SnackPosition.BOTTOM,
-              );
-            },
-            (r) {
-              Get.snackbar(
-                "Success",
-                "Your Product Has Been Added Successfully",
-                snackPosition: SnackPosition.BOTTOM,
-              );
-              // Go back
-              return Get.offAllNamed(Routes.HOME);
-            },
-          ),
-        );
-  }
-
   // Covert Asset into File
   Future<void> _convertAssetIntoFile() async {
     var _imagesConvertedToFile = <File>[].obs;
@@ -388,11 +266,12 @@ fun(){
     required String assetName,
   }) {
     // get the auto given name
-    file.path.split("/").last;
+    // file.path.split("/").last;
+    // String x= file.fileNameWithExtent;
     // get the original path
     // replace the auto given name by the original
     String _filePathWithOriginalName =
-        file.path.replaceAll(_getFileName(file), assetName);
+        file.path.replaceAll(file.fileNameWithExtention, assetName);
     // rename the file
     file = file.renameSync(_filePathWithOriginalName);
     return file;
@@ -400,6 +279,196 @@ fun(){
 
   // Get The Name Of The Image
   // Out of The File Path
-  String _getFileName(File file) => file.path.split("/").last;
- 
+  // String _getFileName(File file) => file.path.split("/").last;
+
+  // Upload Data
+  Future<void> _uploadProduct() async {
+    // Upload Images
+    Option<List<String>> _downloadedImages = await _uploadImagesToFirestorage();
+    // Upload Product Info
+    _downloadedImages.fold(
+      () => none(),
+      (a) async {
+        // copy the value
+        product = product.value
+            .copyWith(
+              pickedImages: ListOf5<String>(listOf5: a),
+            )
+            .obs;
+        // Upload Product Info
+        await _uploadProductInfo();
+      },
+    );
+  }
+
+  // Upload Images to Firebase
+  Future<Option<List<String>>> _uploadImagesToFirestorage() async {
+    coloredPrint(
+        msg: "msg${product.value.pickedImages.getOrCrash().runtimeType}");
+    return await productRepo
+        .uploadProductImages(
+            // I have Created pickedImages as dynamic
+            // To make it as an specific type
+            // just convert it like so
+            images: product.value.pickedImages
+                .convertDynamicListToAnSpecificDataType<File>())
+        .then(
+          (value) => value.fold(
+            (l) {
+              coloredPrint(
+                  msg:
+                      "msg${product.value.pickedImages.getOrCrash().runtimeType}");
+
+              Get.snackbar(
+                "Error",
+                l.msg,
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              return none();
+            },
+            (r) {
+              coloredPrint(
+                  msg:
+                      "msg${product.value.pickedImages.getOrCrash().runtimeType}");
+
+              return some(r);
+            },
+          ),
+        );
+  }
+
+//  Upload Product Info to Firebase
+  Future<void> _uploadProductInfo() async {
+    await productRepo.createProductInfo(product: product.value).then(
+          (value) => value.fold(
+            (l) {
+              Get.snackbar(
+                "Error",
+                l.msg,
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            },
+            (r) {
+              Get.snackbar(
+                "Success",
+                "Your Product Has Been Added Successfully",
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              // Go back
+              return Get.offAllNamed(Routes.HOME);
+            },
+          ),
+        );
+  }
+
+// Delete Not Updated Images
+  // product.update((val) {
+  void _deleteNotUpdatedImages() {
+    // product=val!.pickedImages.value.
+    for (int i = 0; i < product.value.pickedImages.length; i++) {
+      if (product.value.pickedImages.getOrCrash()[i].runtimeType == String) {
+        product.value.pickedImages.deleteByIndex(i);
+      }
+    }
+  }
+
+  fun() async {
+    // coloredPrint(msg: "Product uid ${product.value.pickedImages.getOrCrash()[0]}");
+    await productRepo.fun(product.value.id);
+    //  product.value.pickedImages
+    //             .convertDynamicListToAnSpecificDataTypeList<File>();
+    // coloredPrint(msg: "msg${product.value.pickedImages.getOrCrash()[0].runtimeType}");
+  }
+
+  // Update Product
+  Future<void> _updateProduct() async {
+    // await _updateImages();
+    // Upload Images
+    // if (product.value.pickedImages.isNotEmpty) {
+    // User Will Not Update Empty Images
+    coloredPrint(msg: "NotEmpty");
+    // _deleteNotUpdatedImages();
+    // if(product.value.pickedImages.getOrCrash())
+    ListOf5<File> _listOfNewPickedImages;
+    List<File> _listOfNew = [];
+    List<String> _listOfOldImages = [];
+    // List<File>? x=y;
+    for (int i = 0; i < product.value.pickedImages.length; i++) {
+      if (product.value.pickedImages.getOrCrash()[i].runtimeType != String) {
+        // product.value.pickedImages.deleteByIndex(i);
+        _listOfNew.add(product.value.pickedImages.getOrCrash()[i]);
+      } else {
+        _listOfOldImages.add(product.value.pickedImages.getOrCrash()[i]);
+      }
+    }
+    if (_listOfNew.isNotEmpty) {
+      _listOfNewPickedImages = ListOf5<File>(listOf5: _listOfNew);
+      Option<List<String>> _downloadedImages =
+          await _updateImages(_listOfNewPickedImages);
+      // Upload Product Info
+      _downloadedImages.fold(
+        () => none(),
+        (a) async {
+          // copy the value
+          product = product.value
+              .copyWith(
+                  pickedImages:
+                      ListOf5<String>(listOf5: _listOfOldImages..addAll(a)))
+              .obs;
+          // Upload Product Info
+          await _updateProductInfo();
+        },
+      );
+    } else {
+      await _updateProductInfo();
+    }
+  }
+
+  // Update Images
+  Future<Option<List<String>>> _updateImages(ListOf5<File> x) async {
+    return await productRepo
+        .updateProductImages(
+          images: x,
+          // .convertDynamicListToAnSpecificDataType<File>(),
+          id: product.value.id!,
+        )
+        .then(
+          (value) => value.fold(
+            (l) {
+              Get.snackbar(
+                "Error",
+                l.msg,
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              return none();
+            },
+            (r) => some(r),
+          ),
+        );
+  }
+
+  // Update Product Information
+  Future<void> _updateProductInfo() async {
+    await productRepo
+        .updateProductInfo(
+          product: product.value,
+        )
+        .then(
+          (value) => value.fold(
+            () {
+              Get.snackbar(
+                "Success",
+                "You Have Updated The Product",
+                snackPosition: SnackPosition.BOTTOM,
+              );
+              Get.offAllNamed(Routes.HOME);
+            },
+            (a) => Get.snackbar(
+              "Error",
+              a.msg,
+              snackPosition: SnackPosition.BOTTOM,
+            ),
+          ),
+        );
+  }
 }

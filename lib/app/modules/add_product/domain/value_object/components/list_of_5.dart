@@ -19,6 +19,15 @@ class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
     List<M> _convertToM = List<M>.from(getOrCrash());
     return ListOf5._(right(_convertToM));
   }
+// to convet dynamic List into An Specific Data Type
+  // ListOf5<K> convertDynamicListToAnSpecificDataTypeList<K>() {
+  //   List x=getOrCrash();
+  //   List<K> _convertToM =x.cast<K>();
+  //   // return _convertToM;
+  //   return ListOf5._(right(_convertToM));
+
+  //   // return  List<K>.from(getOrCrash());
+  // }
 
   //  getDataTypeOfRightSideByIndex(int index) => getOrCrash()[index].runtimeType;
 

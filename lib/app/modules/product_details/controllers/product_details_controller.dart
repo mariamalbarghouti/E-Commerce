@@ -34,7 +34,9 @@ class ProductDetailsController extends GetxController {
         ((await Get.find<FirebaseFirestore>().userID) == product.uid!.id);
 
     // retrive seller account
-    email.value = (await product.uid?.get().then((value) => (value.data()as Map<String,dynamic>)["email"]))!;
+    email.value = (await product.uid
+        ?.get()
+        .then((value) => (value.data() as Map<String, dynamic>)["email"]))!;
     super.onInit();
   }
 
@@ -42,7 +44,7 @@ class ProductDetailsController extends GetxController {
   Future<void> deleteOrUpdate({required String? itemName}) async {
     switch (itemName) {
       case "Delete":
-        _deletepost();
+        await _deletepost();
         break;
 
       case "Update":
@@ -63,7 +65,7 @@ class ProductDetailsController extends GetxController {
 
     // Check if delete image have failure or not
     bool deleteImagesHasFailures = await productRepo
-        .deletePostImages(id: product.id!)
+        .deletePostImages(product: product)
         .then((value) => value.isSome());
     // Make UI Send Message
     if (deletePostHasFailures && deleteImagesHasFailures) {

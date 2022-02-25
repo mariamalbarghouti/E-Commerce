@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/add_product/controllers/add_product_controller.dart';
+import 'package:trail/core/print_logger.dart';
 
 // Selected Images
 class SelectedImagesWidget extends GetView<AddProductController> {
@@ -21,7 +22,10 @@ class SelectedImagesWidget extends GetView<AddProductController> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
+                  itemBuilder: (context, index) 
+                  {
+                    coloredPrint(msg: " controller.product.v ${ controller.product.value.pickedImages
+                                      .getOrCrash()[index]}");
                     return Stack(
                       clipBehavior: Clip.none,
                       children: [

@@ -46,7 +46,10 @@ mixin _$Product {
   DocumentReference<Object?>? get uid => throw _privateConstructorUsedError;
   ProductTitle get title => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
-  Description get description => throw _privateConstructorUsedError;
+  Description get description =>
+      throw _privateConstructorUsedError; // nullable because
+// if the user make update the post
+// without update the images
   ListOf5<dynamic> get pickedImages => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
 
@@ -209,7 +212,9 @@ class _$_Product extends _Product {
   final Price price;
   @override
   final Description description;
-  @override
+  @override // nullable because
+// if the user make update the post
+// without update the images
   final ListOf5<dynamic> pickedImages;
   @override
   final DateTime? time;
@@ -279,7 +284,9 @@ abstract class _Product extends Product {
   Price get price => throw _privateConstructorUsedError;
   @override
   Description get description => throw _privateConstructorUsedError;
-  @override
+  @override // nullable because
+// if the user make update the post
+// without update the images
   ListOf5<dynamic> get pickedImages => throw _privateConstructorUsedError;
   @override
   DateTime? get time => throw _privateConstructorUsedError;

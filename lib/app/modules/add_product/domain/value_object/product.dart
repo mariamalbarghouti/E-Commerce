@@ -5,7 +5,6 @@ import 'package:trail/app/modules/add_product/domain/failures/value_object_failu
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/title.dart';
-
 import 'components/list_of_5.dart';
 
 part 'product.freezed.dart';
@@ -19,6 +18,9 @@ abstract class Product implements _$Product {
     required ProductTitle title,
     required Price price,
     required Description description,
+    // nullable because 
+    // if the user make update the post
+    // without update the images
     required ListOf5 pickedImages,
     DateTime? time,
   }) = _Product;
@@ -29,7 +31,6 @@ abstract class Product implements _$Product {
       price: Price(price: ""),
       description: Description(description: ""),
       pickedImages: ListOf5(listOf5: []),
-      // time: FieldValue.serverTimestamp(), //DateTime.now(),
     );
   }
   // 
