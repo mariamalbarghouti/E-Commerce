@@ -18,7 +18,7 @@ abstract class CURDOperationsServerFailures
   /// Unexpected Error
   const factory CURDOperationsServerFailures.unexpectedError(
       {@Default("Unexpected Error") String msg}) = _UnexpectedError;
-  // No More Data If user need to Fetch more
+  /// No More Data If user need to Fetch more
   const factory CURDOperationsServerFailures.noMoreData(
       {@Default("There Is No More Data") String msg}) = _NoMoreData;
 }
