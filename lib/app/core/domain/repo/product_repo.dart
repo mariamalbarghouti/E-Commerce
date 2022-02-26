@@ -5,29 +5,29 @@ import 'package:trail/app/core/domain/failures/server_failures/curd_server_error
 import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 
-// Product Repository
+/// Product Repository
 abstract class IProductRepo  {
-  // Id For The Post And The Folder of the images
+  /// Id For The Post And The Folder of the images
   late final String productID;
-  //  Upload Images To DB
+  ///  Upload Images To DB
   Future<Either<CURDOperationsServerFailures, List<String>>> uploadProductImages(
       {required ListOf5<File> images});
-  // Upload Product data
+  /// Upload Product data
   Future<Either<CURDOperationsServerFailures, Unit>> createProductInfo(
       {required Product product});
-        // DeletePost
+        /// DeletePost
   Future< Option<CURDOperationsServerFailures>> deletePostInfo({required String id});
-  // Delete Images
+  /// Delete Images
   Future< Option<CURDOperationsServerFailures>> deletePostImages({required Product product});
-  // Delete An Specific Image
+  /// Delete An Specific Image
   Future<Option<CURDOperationsServerFailures>> deleteAnSpecificImage( {required File image,required String id,});
-  // Update Product Images
+  /// Update Product Images
    Future<Either<CURDOperationsServerFailures, List<String>>> updateProductImages({required ListOf5<File> images,required String id});
-  // Update Product Info
+  /// Update Product Info
   Future<Option<CURDOperationsServerFailures>> updateProductInfo({required Product product});
-  // for bring data for the first time
+  /// for bring data for the first time
   Stream<Either<CURDOperationsServerFailures, List<Product>>> fetchProducts();
-  //  for pagination
+  ///  for pagination
   Stream<Either<CURDOperationsServerFailures, List<Product>>>
       fetchProductsFromTheNextPage();
 }
