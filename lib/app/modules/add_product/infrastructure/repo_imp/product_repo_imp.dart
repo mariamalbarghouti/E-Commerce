@@ -26,9 +26,10 @@ class ProductRepoFirebaseImp implements IProductRepo {
   @override
   String productID = Get.find<FirebaseFirestore>().UUID;
 
-/// Upload product Images
+  /// Upload product Images
   @override
-  Future<Either<CURDOperationsServerFailures, List<String>>> uploadProductImages({
+  Future<Either<CURDOperationsServerFailures, List<String>>>
+      uploadProductImages({
     required ListOf5<File> images,
   }) async {
     try {
@@ -49,7 +50,8 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(_downloadedUrl);
     } catch (e) {
       return left(
-        CURDOperationsServerFailures.unexpectedError(msg: "Unexpected Error $e"),
+        CURDOperationsServerFailures.unexpectedError(
+            msg: "Unexpected Error $e"),
       );
     }
   }
@@ -84,7 +86,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-/// Delete Post Info
+  /// Delete Post Info
   @override
   Future<Option<CURDOperationsServerFailures>> deletePostInfo(
       {required String id}) async {
@@ -111,6 +113,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
                 .replaceAll(RegExp(r'(\?alt).*'), ''),
           ),
         );
+
         /// Delete
         await _firebaseFireStorage.ref(_fileUrl).delete();
       }
@@ -136,21 +139,22 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }
 
   @override
-  Future<Either<CURDOperationsServerFailures, List<String>>> updateProductImages({
+  Future<Either<CURDOperationsServerFailures, List<String>>>
+      updateProductImages({
     required ListOf5<File> images,
     required String id,
   }) async {
     try {
       UploadTask _uploadTask;
       List<String> _downloadedUrl = [];
-      /// for (int i = 0; i < images.length; i++) {
       for (int i = 0; i < images.length; i++) {
         _uploadTask = _firebaseFireStorage
             .ref('products')
             .child(id)
             .child((images.getOrCrash()[i] as File).fileNameWithoutExtention)
             .putFile(images.getOrCrash()[i]);
-        /// Upload Image
+
+        // Upload Image
         await _uploadTask.then((picValue) async {
           await picValue.ref.getDownloadURL().then((downloadUrl) {
             _downloadedUrl.add(downloadUrl);
@@ -160,7 +164,8 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(_downloadedUrl);
     } catch (e) {
       return left(
-        CURDOperationsServerFailures.unexpectedError(msg: "Unexpected Error $e"),
+        CURDOperationsServerFailures.unexpectedError(
+            msg: "Unexpected Error $e"),
       );
     }
   }
@@ -187,15 +192,19 @@ class ProductRepoFirebaseImp implements IProductRepo {
   Option<CURDOperationsServerFailures> _handlingError(e) {
     if (e is FirebaseException) {
       return some(
-          CURDOperationsServerFailures.serverError(msg: "Server Error ${e.code}"));
+        CURDOperationsServerFailures.serverError(msg: "Server Error ${e.code}"),
+      );
     } else {
       return some(
-          CURDOperationsServerFailures.unexpectedError(msg: "Unexpected Error $e"));
+        CURDOperationsServerFailures.unexpectedError(
+            msg: "Unexpected Error $e"),
+      );
     }
   }
 
   DocumentSnapshot? _lastDoc;
   bool _hasMore = true;
+
   /// first one
   @override
   Stream<Either<CURDOperationsServerFailures, List<Product>>>
@@ -249,7 +258,8 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return left(const CURDOperationsServerFailures.permissionsDenied());
     } else if (error is FirebaseException &&
         error.code != 'permission-denied') {
-      return left( CURDOperationsServerFailures.serverError(msg: "Server Error ${error.code}"));
+      return left(CURDOperationsServerFailures.serverError(
+          msg: "Server Error ${error.code}"));
     } else {
       return left(
         CURDOperationsServerFailures.unexpectedError(msg: "Error: $error"),
