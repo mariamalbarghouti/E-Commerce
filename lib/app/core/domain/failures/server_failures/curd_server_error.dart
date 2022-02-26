@@ -21,4 +21,7 @@ abstract class CURDOperationsServerFailures
   /// No More Data If user need to Fetch more
   const factory CURDOperationsServerFailures.noMoreData(
       {@Default("There Is No More Data") String msg}) = _NoMoreData;
+  // const factory CURDOperationsServerFailures.unableToUpdate(
+  //     {@Default("Unable To Update") String msg}) = _UnableToUpdate;
+
 }

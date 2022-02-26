@@ -94,7 +94,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
       await _firebaseFirestore.productsCollection.doc(id).delete();
       return none();
     } catch (e) {
-      return _handlingError(e);
+      return _handlingError(error: e).fold((l) => some(l), (r) => none());
     }
   }
 
@@ -113,13 +113,12 @@ class ProductRepoFirebaseImp implements IProductRepo {
                 .replaceAll(RegExp(r'(\?alt).*'), ''),
           ),
         );
-
         /// Delete
         await _firebaseFireStorage.ref(_fileUrl).delete();
       }
       return none();
     } catch (e) {
-      return _handlingError(e);
+      return _handlingError(error: e).fold((l) => some(l), (r) => none());
     }
   }
 
@@ -134,7 +133,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
           .update(ProductDTO.fromDomain(product: product).toJson());
       return none();
     } catch (e) {
-      return _handlingError(e);
+      return _handlingError(error: e).fold((l) => some(l), (r) => none());
     }
   }
 
@@ -184,24 +183,9 @@ class ProductRepoFirebaseImp implements IProductRepo {
           .delete();
       return none();
     } catch (e) {
-      return _handlingError(e);
+      return _handlingError(error: e).fold((l) => some(l), (r) => none());
     }
   }
-
-  ///  Handling Error
-  Option<CURDOperationsServerFailures> _handlingError(e) {
-    if (e is FirebaseException) {
-      return some(
-        CURDOperationsServerFailures.serverError(msg: "Server Error ${e.code}"),
-      );
-    } else {
-      return some(
-        CURDOperationsServerFailures.unexpectedError(
-            msg: "Unexpected Error $e"),
-      );
-    }
-  }
-
   DocumentSnapshot? _lastDoc;
   bool _hasMore = true;
 
@@ -221,7 +205,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
           return ProductDTO.fromFireStore(doc).toDomain();
         }).toList());
       },
-    ).onErrorReturnWith((error, stackTrace) => handlingError(error: error));
+    ).onErrorReturnWith((error, stackTrace) => _handlingError(error: error));
   }
 
   /// Pagination
@@ -248,11 +232,11 @@ class ProductRepoFirebaseImp implements IProductRepo {
           return ProductDTO.fromFireStore(doc).toDomain();
         }).toList());
       },
-    ).onErrorReturnWith((error, stackTrace) => handlingError(error: error));
+    ).onErrorReturnWith((error, stackTrace) => _handlingError( error: error));
   }
 
   /// Handling Error
-  Either<CURDOperationsServerFailures, List<Product>> handlingError(
+  Either<CURDOperationsServerFailures, List<Product>> _handlingError(
       {required Object error}) {
     if (error is FirebaseException && error.code == 'permission-denied') {
       return left(const CURDOperationsServerFailures.permissionsDenied());
@@ -265,5 +249,19 @@ class ProductRepoFirebaseImp implements IProductRepo {
         CURDOperationsServerFailures.unexpectedError(msg: "Error: $error"),
       );
     }
-  }
+  }  
+  
+  ///  Handling Error
+  // Option<CURDOperationsServerFailures> _handlingError(e) {
+  //   if (e is FirebaseException) {
+  //     return some(
+  //       CURDOperationsServerFailures.serverError(msg: "Server Error ${e.code}"),
+  //     );
+  //   } else {
+  //     return some(
+  //       CURDOperationsServerFailures.unexpectedError(
+  //           msg: "Unexpected Error $e"),
+  //     );
+  //   }
+  // }
 }
