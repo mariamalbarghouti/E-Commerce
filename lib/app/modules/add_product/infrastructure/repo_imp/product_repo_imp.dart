@@ -5,7 +5,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/src/transformers/on_error_resume.dart';
 import 'package:trail/app/core/domain/failures/server_failures/curd_server_error.dart';
-import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures.dart';
 import 'package:trail/app/core/domain/repo/product_repo.dart';
 import 'package:trail/app/core/file_helper.dart';
 import 'package:trail/app/core/infrastructure/firebase_helper.dart';
@@ -16,18 +15,18 @@ import 'package:trail/app/modules/add_product/infrastructure/dto/add_product_tdo
 import 'package:trail/core/print_logger.dart';
 import 'package:path/path.dart' as Path;
 
-// import 'package/trail/app/core/file_helper.dart';
-// Implementing Product Repository
-// With Firebase
+/// import 'package/trail/app/core/file_helper.dart';
+/// Implementing Product Repository
+/// With Firebase
 class ProductRepoFirebaseImp implements IProductRepo {
   final _firebaseFirestore = Get.find<FirebaseFirestore>();
   final _firebaseFireStorage = FirebaseStorage.instance;
 
-  // Create UUID
+  /// Create UUID
   @override
   String productID = Get.find<FirebaseFirestore>().UUID;
 
-// Upload product Images
+/// Upload product Images
   @override
   Future<Either<CURDOperationsServerFailures, List<String>>> uploadProductImages({
     required ListOf5<File> images,
@@ -55,12 +54,12 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-  // Create Product Firebase Implementation
+  /// Create Product Firebase Implementation
   @override
   Future<Either<CURDOperationsServerFailures, Unit>> createProductInfo({
     required Product product,
   }) async {
-    // put seller id
+    /// put seller id
     ProductDTO _productDTO = ProductDTO.fromDomain(
       product: product.copyWith(
         uid: _firebaseFirestore.userCollection
@@ -85,7 +84,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-// Delete Post Info
+/// Delete Post Info
   @override
   Future<Option<CURDOperationsServerFailures>> deletePostInfo(
       {required String id}) async {
@@ -97,7 +96,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-  // Delete All The Images
+  /// Delete All The Images
   @override
   Future<Option<CURDOperationsServerFailures>> deletePostImages({
     required Product product,
@@ -105,14 +104,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
     try {
       String _fileUrl = "";
       for (int i = 0; i < product.pickedImages.length; i++) {
-        // Extract The Path From URL
+        /// Extract The Path From URL
         _fileUrl = Uri.decodeFull(
           Path.basename(
             (product.pickedImages.getOrCrash()[i] as String)
                 .replaceAll(RegExp(r'(\?alt).*'), ''),
           ),
         );
-        // Delete
+        /// Delete
         await _firebaseFireStorage.ref(_fileUrl).delete();
       }
       return none();
@@ -121,7 +120,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-  // Update Product Info
+  /// Update Product Info
   @override
   Future<Option<CURDOperationsServerFailures>> updateProductInfo({
     required Product product,
@@ -144,14 +143,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
     try {
       UploadTask _uploadTask;
       List<String> _downloadedUrl = [];
-      // for (int i = 0; i < images.length; i++) {
+      /// for (int i = 0; i < images.length; i++) {
       for (int i = 0; i < images.length; i++) {
         _uploadTask = _firebaseFireStorage
             .ref('products')
             .child(id)
             .child((images.getOrCrash()[i] as File).fileNameWithoutExtention)
             .putFile(images.getOrCrash()[i]);
-        // Upload Image
+        /// Upload Image
         await _uploadTask.then((picValue) async {
           await picValue.ref.getDownloadURL().then((downloadUrl) {
             _downloadedUrl.add(downloadUrl);
@@ -166,7 +165,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-  // Delete an Specific Image
+  /// Delete an Specific Image
   @override
   Future<Option<CURDOperationsServerFailures>> deleteAnSpecificImage({
     required File image,
@@ -197,7 +196,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
   DocumentSnapshot? _lastDoc;
   bool _hasMore = true;
-  // first one
+  /// first one
   @override
   Stream<Either<CURDOperationsServerFailures, List<Product>>>
       fetchProducts() async* {
@@ -216,7 +215,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     ).onErrorReturnWith((error, stackTrace) => handlingError(error: error));
   }
 
-  // Pagination
+  /// Pagination
   @override
   Stream<Either<CURDOperationsServerFailures, List<Product>>>
       fetchProductsFromTheNextPage() async* {
@@ -243,7 +242,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
     ).onErrorReturnWith((error, stackTrace) => handlingError(error: error));
   }
 
-  // Handling Error
+  /// Handling Error
   Either<CURDOperationsServerFailures, List<Product>> handlingError(
       {required Object error}) {
     if (error is FirebaseException && error.code == 'permission-denied') {
