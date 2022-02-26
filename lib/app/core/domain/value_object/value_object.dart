@@ -8,10 +8,7 @@ abstract class ValueObject<T,M> {
   getOrCrash(){
     return value.fold((l) => throw UnexpectedValueError(failure: l), (r) => r);
   }
-  // /// Reverse if the M "datatype" is List 
-  // getOrCrashReverseTheList(){
-  //   return value.fold((l) => throw UnexpectedValueError(failure: l), (r) => ( r as List).reversed);
-  // }
+  
   getOrElse(dflt){
     return value.getOrElse(()=>dflt);
   }
