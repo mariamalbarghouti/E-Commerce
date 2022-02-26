@@ -27,7 +27,7 @@ class AppPages {
     GetPage(
       name: _Paths.SIGN_IN,
       page: () => const SignInView(),
-      binding: RegistrationBinding(),
+      binding: SignInBinding(),
     ),
     // Home
     GetPage(
