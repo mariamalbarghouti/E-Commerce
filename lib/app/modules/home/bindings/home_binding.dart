@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:trail/app/core/infrastructure/product_repo.dart';
+import 'package:trail/app/modules/add_product/infrastructure/repo_imp/product_repo_imp.dart';
 import 'package:trail/app/modules/home/controllers/drawer_controller.dart';
-import 'package:trail/app/modules/home/domain/repositories/sign_out_repo.dart';
-import 'package:trail/app/modules/home/infrastracture/home_repo_firestore_impl.dart';
 import '../controllers/home_controller.dart';
 
 // Home Binding
@@ -13,8 +13,8 @@ class HomeBinding extends Bindings {
       AppDrawerController(homeRepo: Get.find()),
     );
       // Home Repository
-    Get.lazyPut<IHomeRepository>(()=>
-      HomeRepoFirebaseImplimentation(),
+    Get.lazyPut<IProductRepo>(()=>
+      ProductRepoFirebaseImp(),
       fenix: true,
       // pref: true,
     );

@@ -25,4 +25,9 @@ abstract class IProductRepo  {
    Future<Either<FireStoreServerFailures, List<String>>> updateProductImages({required ListOf5<File> images,required String id});
   // Update Product Info
   Future<Option<FireStoreServerFailures>> updateProductInfo({required Product product});
+  // for bring data for the first time
+  Stream<Either<FireStoreServerFailures, List<Product>>> fetchProducts();
+  //  for pagination
+  Stream<Either<FireStoreServerFailures, List<Product>>>
+      fetchProductsFromTheNextPage();
 }

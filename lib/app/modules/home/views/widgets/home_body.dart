@@ -11,11 +11,13 @@ class HomeBody extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return controller.obx(
       // On Success
-      (state) => SmartRefresher(
+      (state) {
+        controller.refresherController= RefreshController();
+        return SmartRefresher(
         controller: controller.refresherController,
         scrollDirection: Axis.vertical,
         // on refresh
-        // onRefresh: controller.refreshTheScreen,
+        onRefresh: controller.refreshTheScreen,
         // on loading
         onLoading: controller.fetchNextPageOfProductsFromDB,
         enablePullDown: true,
@@ -103,7 +105,8 @@ class HomeBody extends GetView<HomeController> {
                       ),
               );
             }),
-      ),
+      );
+      },
       // On Error
       onError: (error) => Container(
         color: Colors.green,

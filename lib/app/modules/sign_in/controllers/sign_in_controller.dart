@@ -10,7 +10,7 @@ class SignInController extends GetxController {
   SignInController({required this.iSignInRepoitory
       // required this.getSignedInUserService,
       });
-  final ISignInRepoitory iSignInRepoitory;
+  final IRegistrationRepository iSignInRepoitory;
   // final SignedInUserService getSignedInUserService;
   // Email Controller
   late Rx<TextEditingController> emailEditionController;

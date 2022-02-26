@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:trail/app/core/infrastructure/product_repo.dart';
 import '../../../core/domain/failures/server_failures/firestore_failures.dart';
 import '../../add_product/domain/value_object/product.dart';
-import '../domain/repositories/sign_out_repo.dart';
 import '../../../routes/app_pages.dart';
 import '../../../../core/print_logger.dart';
 
@@ -12,7 +12,7 @@ import '../../../../core/print_logger.dart';
 class HomeController extends GetxController with StateMixin<List<Product>> {
   HomeController({required this.homeRepository});
   // repo
-  final IHomeRepository homeRepository;
+  final IProductRepo homeRepository;
   // for presenting the Data
   // or append it
   List<Product> _products = [];
@@ -49,18 +49,12 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
 
   @override
   void onClose() {
-    homeRepository.dispose();
+    // homeRepository.dispose();
     // scrollingController.value.dispose();
     refresherController.dispose();
     super.onClose();
   }
-// fun()async{
-//     // monitor network fetch
-//     await Future.delayed(Duration(milliseconds: 1000));
-//     // if failed,use loadFailed(),if no data return,use LoadNodata()
 
-//   return  refresherController.value.loadComplete();
-// }
   // Fetching Data
   void _fetchProductsFromDB() {
     homeRepository.fetchProducts().listen((event) {
@@ -83,10 +77,10 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
     // if (scrollingController.value.offset >=
     //         scrollingController.value.position.maxScrollExtent &&
     //     !scrollingController.value.position.outOfRange) {
-    if (isLoading.value) {
-      return;
-    }
-    isLoading.value = true;
+    // if (isLoading.value) {
+    //   return;
+    // }
+    // isLoading.value = true;
     // refresherController.requestLoading();
 
     change(_products, status: RxStatus.loadingMore());
@@ -117,22 +111,23 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
         // Change UI
         change(_products, status: RxStatus.success());
         refresherController.loadComplete();
-        isLoading.value = false;
+        // isLoading.value = false;
       });
     });
   }
 
   // Refresh The Screen
-  // void refreshTheScreen() {
-  //   refresherController.requestRefresh();
-  //   // Get.delete()
-  //   // Clear The Products
-  //   _products.clear();
-  //   // Fetch first 15
-  //   _fetchProductsFromDB();
-  //   // tell the ui i am done
-  //   refresherController.refreshCompleted();
-  // }
+  void refreshTheScreen() {
+    // refresherController.twoLevelComplete();
+    // refresherController.requestRefresh();
+    // Get.delete()
+    // Clear The Products
+    _products.clear();
+    // Fetch first 15
+    _fetchProductsFromDB();
+    // tell the ui i am done
+    refresherController.refreshCompleted();
+  }
 
   goUp() {
     // refresherController.value.position=

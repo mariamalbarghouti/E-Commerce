@@ -7,7 +7,7 @@ import '../controllers/sign_in_controller.dart';
 class RegistrationBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ISignInRepoitory>(() => FirebaseSignInRepoImp());
+    Get.lazyPut<IRegistrationRepository>(() => FirebaseSignInRepoImp());
     // Get.lazyPut<SignedInUserService>(() => SignedInUserService());
     Get.lazyPut<SignInController>(
       () => SignInController(iSignInRepoitory: Get.find()),

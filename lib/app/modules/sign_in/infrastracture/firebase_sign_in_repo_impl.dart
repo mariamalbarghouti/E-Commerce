@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
 
 // Sign In Repository Implementation
-class FirebaseSignInRepoImp extends ISignInRepoitory {
+class FirebaseSignInRepoImp extends IRegistrationRepository {
   final FirebaseAuth _firebaseAuth = Get.find();
 
   // TODO
@@ -20,7 +20,7 @@ class FirebaseSignInRepoImp extends ISignInRepoitory {
     return optionOf(_firebaseAuth.currentUser?.uid);
   }
 
-  // Sign In With Email And Password
+  /// Sign In With Email And Password
   @override
   Future<Either<SignInServerFailures, Unit>> signInWithEnailAndPassword({
     required Email email,
@@ -29,9 +29,8 @@ class FirebaseSignInRepoImp extends ISignInRepoitory {
     try {
       return await _firebaseAuth
           .signInWithEmailAndPassword(
-            // TODO Why get or else
             email: email.getOrElse(() => "Invalid Email"),
-            password: password.getOrElse(() => "Invalide Password"),
+            password: password.getOrElse(() => "Invalid Password"),
           )
           .then((value) => right(unit));
       // Handling Exceptions
@@ -39,7 +38,7 @@ class FirebaseSignInRepoImp extends ISignInRepoitory {
       // User Not Found
       if (e.code == 'user-not-found') {
         return left(const SignInServerFailures.userNotFound());
-        // User Diabled
+        // User Disabled
       } else if (e.code == "user-disabled") {
         return left(const SignInServerFailures.userDisabled());
         // Invalid Email Or Wrong Password
@@ -52,5 +51,10 @@ class FirebaseSignInRepoImp extends ISignInRepoitory {
         );
       }
     }
+  }
+/// Sign Out
+   @override
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
   }
 }

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:trail/app/modules/add_product/domain/product_repo.dart';
+import 'package:trail/app/core/infrastructure/product_repo.dart';
 import 'package:trail/app/modules/add_product/infrastructure/repo_imp/product_repo_imp.dart';
 
 import '../controllers/product_details_controller.dart';
