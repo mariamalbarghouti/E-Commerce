@@ -15,6 +15,7 @@ import 'package:trail/core/print_logger.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 // import 'package:path/path.dart' as path;
 import "package:trail/app/core/file_helper.dart";
+import 'package:path/path.dart' as Path;
 
 // Add Product Controller
 class AddProductController extends GetxController {
@@ -28,6 +29,7 @@ class AddProductController extends GetxController {
   var _pickedAsset = <Asset>[];
   Rx<Product> product = Product.empty().obs;
   int _imagePickerCount = ListOf5.maxLength;
+  List<String> _deletedImages = [];
 
   @override
   void onInit() {
@@ -122,6 +124,7 @@ class AddProductController extends GetxController {
       // Make Image Picker From Gallery
       // Count Increased By One
       _imagePickerCount += 1;
+      _deletedImages.add(product.value.pickedImages.getOrCrash()[index]);
     }
     // Delete Data from UI
     // product.value.pickedImages.deleteIndex(index);
@@ -177,7 +180,7 @@ class AddProductController extends GetxController {
   }
 
   // Add Product
-  Future<void> addProduct() async {
+  Future<void> addOrUpdateProduct() async {
     // if there is NO failures
     // add product
     // else
@@ -226,11 +229,13 @@ class AddProductController extends GetxController {
         }
       }),
     );
+
     // merge images from db and gallery
     // if it is update
     // and user does not delete the images before
     // getting more from Gallery
     List<dynamic> _imagesFromDBAndGallery = [];
+
     if (Get.arguments != null &&
         (Get.arguments as Product).pickedImages.isNotEmpty) {
       // images from Gallery
@@ -303,8 +308,6 @@ class AddProductController extends GetxController {
 
   // Upload Images to Firebase
   Future<Option<List<String>>> _uploadImagesToFirestorage() async {
-    coloredPrint(
-        msg: "msg${product.value.pickedImages.getOrCrash().runtimeType}");
     return await productRepo
         .uploadProductImages(
             // I have Created pickedImages as dynamic
@@ -315,10 +318,6 @@ class AddProductController extends GetxController {
         .then(
           (value) => value.fold(
             (l) {
-              coloredPrint(
-                  msg:
-                      "msg${product.value.pickedImages.getOrCrash().runtimeType}");
-
               Get.snackbar(
                 "Error",
                 l.msg,
@@ -326,13 +325,7 @@ class AddProductController extends GetxController {
               );
               return none();
             },
-            (r) {
-              coloredPrint(
-                  msg:
-                      "msg${product.value.pickedImages.getOrCrash().runtimeType}");
-
-              return some(r);
-            },
+            (r) => some(r),
           ),
         );
   }
@@ -361,50 +354,26 @@ class AddProductController extends GetxController {
         );
   }
 
-// Delete Not Updated Images
-  // product.update((val) {
-  void _deleteNotUpdatedImages() {
-    // product=val!.pickedImages.value.
-    for (int i = 0; i < product.value.pickedImages.length; i++) {
-      if (product.value.pickedImages.getOrCrash()[i].runtimeType == String) {
-        product.value.pickedImages.deleteByIndex(i);
-      }
-    }
-  }
-
-  fun() async {
-    // coloredPrint(msg: "Product uid ${product.value.pickedImages.getOrCrash()[0]}");
-    await productRepo.fun(product.value.id);
-    //  product.value.pickedImages
-    //             .convertDynamicListToAnSpecificDataTypeList<File>();
-    // coloredPrint(msg: "msg${product.value.pickedImages.getOrCrash()[0].runtimeType}");
-  }
-
   // Update Product
   Future<void> _updateProduct() async {
-    // await _updateImages();
     // Upload Images
-    // if (product.value.pickedImages.isNotEmpty) {
-    // User Will Not Update Empty Images
-    coloredPrint(msg: "NotEmpty");
-    // _deleteNotUpdatedImages();
-    // if(product.value.pickedImages.getOrCrash())
     ListOf5<File> _listOfNewPickedImages;
     List<File> _listOfNew = [];
     List<String> _listOfOldImages = [];
-    // List<File>? x=y;
+    //
     for (int i = 0; i < product.value.pickedImages.length; i++) {
       if (product.value.pickedImages.getOrCrash()[i].runtimeType != String) {
-        // product.value.pickedImages.deleteByIndex(i);
         _listOfNew.add(product.value.pickedImages.getOrCrash()[i]);
       } else {
         _listOfOldImages.add(product.value.pickedImages.getOrCrash()[i]);
       }
     }
+    //
+    await _deleteImagesFromDB();
     if (_listOfNew.isNotEmpty) {
       _listOfNewPickedImages = ListOf5<File>(listOf5: _listOfNew);
       Option<List<String>> _downloadedImages =
-          await _updateImages(_listOfNewPickedImages);
+          await _updateImages(updateNewImages: _listOfNewPickedImages);
       // Upload Product Info
       _downloadedImages.fold(
         () => none(),
@@ -416,20 +385,73 @@ class AddProductController extends GetxController {
                       ListOf5<String>(listOf5: _listOfOldImages..addAll(a)))
               .obs;
           // Upload Product Info
+          _deleteDuplicatedImagesFromTheImagesFromDBAndGalleryImages();
+
           await _updateProductInfo();
         },
       );
     } else {
+      // No Update In Images
       await _updateProductInfo();
     }
   }
 
+  // Will Get The Name Of DB Images
+  // && File Images Name
+  // Then if there is any duplication
+  // delete it
+  void _deleteDuplicatedImagesFromTheImagesFromDBAndGalleryImages() {
+    List<String> _imagesName = [];
+    // get the images name
+    // from Gallery and db
+    for (int i = 0; i < product.value.pickedImages.length; i++) {
+      if (product.value.pickedImages.getOrCrash()[i].runtimeType == String) {
+        // extract the name from url
+        _imagesName.add(Uri.decodeFull(
+          Path.basename(
+            (product.value.pickedImages.getOrCrash()[i] as String)
+                .replaceAll(RegExp(r'(\?alt).*'), ''),
+          ),
+        ).split("/").last);
+      } else {
+        // name of file
+        _imagesName.add((product.value.pickedImages.getOrCrash()[i] as File)
+            .fileNameWithoutExtention
+            .split("/")
+            .last);
+      }
+    }
+    // delete douplicated images
+    for (int i = 0; i < _imagesName.length - 1; i++) {
+      for (int j = i + 1; j < _imagesName.length; j++) {
+        if (_imagesName[i] == _imagesName[j]) {
+          _imagesName.removeAt(j);
+          product.value.pickedImages.deleteByIndex(i);
+          j = j - 1;
+        }
+      }
+    }
+  }
+
+  // Delete Image If User Clicked Delete
+  // and This Image Is from Server
+  Future<void> _deleteImagesFromDB() async {
+    if (_deletedImages.isNotEmpty) {
+      await productRepo.deletePostImages(
+        product: product.value.copyWith(
+          pickedImages: ListOf5<String>(listOf5: _deletedImages),
+        ),
+      );
+    }
+  }
+
   // Update Images
-  Future<Option<List<String>>> _updateImages(ListOf5<File> x) async {
+  Future<Option<List<String>>> _updateImages({
+    required ListOf5<File> updateNewImages,
+  }) async {
     return await productRepo
         .updateProductImages(
-          images: x,
-          // .convertDynamicListToAnSpecificDataType<File>(),
+          images: updateNewImages,
           id: product.value.id!,
         )
         .then(

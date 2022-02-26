@@ -51,14 +51,13 @@ class AddProductsBody extends GetView<AddProductController> {
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: RoundedLoadingButton(
-                onPressed: () async => await controller.addProduct(),
+                onPressed: () async => await controller.addOrUpdateProduct(),
                 child: const Text('Add Product'),
                 controller: controller.addProductController,
                 resetDuration: const Duration(seconds: 3),
                 // resetAfterDuration: true,
               ),
             ),
-            TextButton(onPressed: ()async=>await controller.fun(), child: Text("ed"))
           ],
         ),
       ),

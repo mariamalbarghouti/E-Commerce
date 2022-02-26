@@ -19,9 +19,10 @@ abstract class IProductRepo  {
   Future< Option<FireStoreServerFailures>> deletePostInfo({required String id});
   // Delete Images
   Future< Option<FireStoreServerFailures>> deletePostImages({required Product product});
-  // Update Product Info
+  // Delete An Specific Image
+  Future<Option<FireStoreServerFailures>> deleteAnSpecificImage( {required File image,required String id,});
+  // Update Product Images
    Future<Either<FireStoreServerFailures, List<String>>> updateProductImages({required ListOf5<File> images,required String id});
   // Update Product Info
   Future<Option<FireStoreServerFailures>> updateProductInfo({required Product product});
-fun(id);
 }

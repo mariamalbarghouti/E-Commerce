@@ -32,8 +32,9 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }) async {
     try {
       List<String> _downloadedUrl = [];
+      UploadTask _uploadTask;
       for (int i = 0; i < images.length; i++) {
-        UploadTask _uploadTask = _firebaseFireStorage
+        _uploadTask = _firebaseFireStorage
             .ref('products')
             .child(productID)
             .child((images.getOrCrash()[i] as File).fileNameWithoutExtention)
@@ -97,7 +98,6 @@ class ProductRepoFirebaseImp implements IProductRepo {
   // Delete All The Images
   @override
   Future<Option<FireStoreServerFailures>> deletePostImages({
-   
     required Product product,
   }) async {
     try {
@@ -140,14 +140,16 @@ class ProductRepoFirebaseImp implements IProductRepo {
     required String id,
   }) async {
     try {
+      UploadTask _uploadTask;
       List<String> _downloadedUrl = [];
       // for (int i = 0; i < images.length; i++) {
       for (int i = 0; i < images.length; i++) {
-        UploadTask _uploadTask = _firebaseFireStorage
+        _uploadTask = _firebaseFireStorage
             .ref('products')
             .child(id)
             .child((images.getOrCrash()[i] as File).fileNameWithoutExtention)
             .putFile(images.getOrCrash()[i]);
+        // Upload Image
         await _uploadTask.then((picValue) async {
           await picValue.ref.getDownloadURL().then((downloadUrl) {
             _downloadedUrl.add(downloadUrl);
@@ -162,25 +164,25 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
+  // Delete an Specific Image
   @override
-  fun(id) async {
-    // FullMetadata x =
-// String fileUrl =Uri.decodeFull(Path.basename(.replaceAll(RegExp(r'(\?alt).*'), '')));
-    var x = await _firebaseFireStorage
-        // .ref('products/$id')
-        // .getReferenceFromUrl()
-        .ref();
-    coloredPrint(msg: "msg#${x}");
-    await _firebaseFireStorage
-        // .ref('products/$id')
-        // .getReferenceFromUrl()
-        .ref(
-            "https://firebasestorage.googleapis.com/v0/b/fluttertrail.appspot.com/o/products%2FAmJ20c4ho9EGtgBdGRvS%2FScreenshot_2022-02-23-00-34-45?alt=media&token=0ad3bdc5-e471-41bc-9f04-78dae8e5ee5a")
-        // .getMetadata();
-        .delete();
-    coloredPrint(msg: "msg#");
+  Future<Option<FireStoreServerFailures>> deleteAnSpecificImage({
+    required File image,
+    required String id,
+  }) async {
+    try {
+      await _firebaseFireStorage
+          .ref('products')
+          .child(id)
+          .child(image.fileNameWithoutExtention)
+          .delete();
+      return none();
+    } catch (e) {
+      return _handlingError(e);
+    }
   }
 
+  //  Handling Error
   Option<FireStoreServerFailures> _handlingError(e) {
     if (e is FirebaseException) {
       return some(
