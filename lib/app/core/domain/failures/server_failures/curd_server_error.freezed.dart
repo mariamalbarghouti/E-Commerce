@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'server_failures.dart';
+part of 'curd_server_error.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,115 +14,114 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$SignInServerFailuresTearOff {
-  const _$SignInServerFailuresTearOff();
+class _$CURDOperationsServerFailuresTearOff {
+  const _$CURDOperationsServerFailuresTearOff();
 
-  _ServerError serverError({required String msg}) {
+  _ServerError serverError({String msg = "Server Error"}) {
     return _ServerError(
       msg: msg,
     );
   }
 
-  _InvalidEmailOrPassword invalidEmailOrPassword(
-      {String msg = "Invalid Email Or Password"}) {
-    return _InvalidEmailOrPassword(
+  _PermissionsDenied permissionsDenied({String msg = "Permission Denied"}) {
+    return _PermissionsDenied(
       msg: msg,
     );
   }
 
-  _UserNotFound userNotFound({String msg = "User Not Found"}) {
-    return _UserNotFound(
+  _UnexpectedError unexpectedError({String msg = "Unexpected Error"}) {
+    return _UnexpectedError(
       msg: msg,
     );
   }
 
-  _UserDisabled userDisabled({String msg = "User Disabled"}) {
-    return _UserDisabled(
+  _NoMoreData noMoreData({String msg = "There Is No More Data"}) {
+    return _NoMoreData(
       msg: msg,
     );
   }
 }
 
 /// @nodoc
-const $SignInServerFailures = _$SignInServerFailuresTearOff();
+const $CURDOperationsServerFailures = _$CURDOperationsServerFailuresTearOff();
 
 /// @nodoc
-mixin _$SignInServerFailures {
+mixin _$CURDOperationsServerFailures {
   String get msg => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) serverError,
-    required TResult Function(String msg) invalidEmailOrPassword,
-    required TResult Function(String msg) userNotFound,
-    required TResult Function(String msg) userDisabled,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
-    required TResult Function(_InvalidEmailOrPassword value)
-        invalidEmailOrPassword,
-    required TResult Function(_UserNotFound value) userNotFound,
-    required TResult Function(_UserDisabled value) userDisabled,
+    required TResult Function(_PermissionsDenied value) permissionsDenied,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SignInServerFailuresCopyWith<SignInServerFailures> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CURDOperationsServerFailuresCopyWith<CURDOperationsServerFailures>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SignInServerFailuresCopyWith<$Res> {
-  factory $SignInServerFailuresCopyWith(SignInServerFailures value,
-          $Res Function(SignInServerFailures) then) =
-      _$SignInServerFailuresCopyWithImpl<$Res>;
+abstract class $CURDOperationsServerFailuresCopyWith<$Res> {
+  factory $CURDOperationsServerFailuresCopyWith(
+          CURDOperationsServerFailures value,
+          $Res Function(CURDOperationsServerFailures) then) =
+      _$CURDOperationsServerFailuresCopyWithImpl<$Res>;
   $Res call({String msg});
 }
 
 /// @nodoc
-class _$SignInServerFailuresCopyWithImpl<$Res>
-    implements $SignInServerFailuresCopyWith<$Res> {
-  _$SignInServerFailuresCopyWithImpl(this._value, this._then);
+class _$CURDOperationsServerFailuresCopyWithImpl<$Res>
+    implements $CURDOperationsServerFailuresCopyWith<$Res> {
+  _$CURDOperationsServerFailuresCopyWithImpl(this._value, this._then);
 
-  final SignInServerFailures _value;
+  final CURDOperationsServerFailures _value;
   // ignore: unused_field
-  final $Res Function(SignInServerFailures) _then;
+  final $Res Function(CURDOperationsServerFailures) _then;
 
   @override
   $Res call({
@@ -139,7 +138,7 @@ class _$SignInServerFailuresCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class _$ServerErrorCopyWith<$Res>
-    implements $SignInServerFailuresCopyWith<$Res> {
+    implements $CURDOperationsServerFailuresCopyWith<$Res> {
   factory _$ServerErrorCopyWith(
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
@@ -149,7 +148,7 @@ abstract class _$ServerErrorCopyWith<$Res>
 
 /// @nodoc
 class __$ServerErrorCopyWithImpl<$Res>
-    extends _$SignInServerFailuresCopyWithImpl<$Res>
+    extends _$CURDOperationsServerFailuresCopyWithImpl<$Res>
     implements _$ServerErrorCopyWith<$Res> {
   __$ServerErrorCopyWithImpl(
       _ServerError _value, $Res Function(_ServerError) _then)
@@ -174,21 +173,23 @@ class __$ServerErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
-  const _$_ServerError({required this.msg});
+  const _$_ServerError({this.msg = "Server Error"});
 
+  @JsonKey(defaultValue: "Server Error")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInServerFailures.serverError(msg: $msg)';
+    return 'CURDOperationsServerFailures.serverError(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SignInServerFailures.serverError'))
+      ..add(DiagnosticsProperty(
+          'type', 'CURDOperationsServerFailures.serverError'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
@@ -213,9 +214,9 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) serverError,
-    required TResult Function(String msg) invalidEmailOrPassword,
-    required TResult Function(String msg) userNotFound,
-    required TResult Function(String msg) userDisabled,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
     return serverError(msg);
   }
@@ -224,9 +225,9 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
     return serverError?.call(msg);
   }
@@ -235,9 +236,9 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -250,10 +251,9 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
-    required TResult Function(_InvalidEmailOrPassword value)
-        invalidEmailOrPassword,
-    required TResult Function(_UserNotFound value) userNotFound,
-    required TResult Function(_UserDisabled value) userDisabled,
+    required TResult Function(_PermissionsDenied value) permissionsDenied,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
     return serverError(this);
   }
@@ -262,9 +262,9 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
     return serverError?.call(this);
   }
@@ -273,9 +273,9 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -285,8 +285,8 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   }
 }
 
-abstract class _ServerError implements SignInServerFailures {
-  const factory _ServerError({required String msg}) = _$_ServerError;
+abstract class _ServerError implements CURDOperationsServerFailures {
+  const factory _ServerError({String msg}) = _$_ServerError;
 
   @override
   String get msg => throw _privateConstructorUsedError;
@@ -297,31 +297,31 @@ abstract class _ServerError implements SignInServerFailures {
 }
 
 /// @nodoc
-abstract class _$InvalidEmailOrPasswordCopyWith<$Res>
-    implements $SignInServerFailuresCopyWith<$Res> {
-  factory _$InvalidEmailOrPasswordCopyWith(_InvalidEmailOrPassword value,
-          $Res Function(_InvalidEmailOrPassword) then) =
-      __$InvalidEmailOrPasswordCopyWithImpl<$Res>;
+abstract class _$PermissionsDeniedCopyWith<$Res>
+    implements $CURDOperationsServerFailuresCopyWith<$Res> {
+  factory _$PermissionsDeniedCopyWith(
+          _PermissionsDenied value, $Res Function(_PermissionsDenied) then) =
+      __$PermissionsDeniedCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$InvalidEmailOrPasswordCopyWithImpl<$Res>
-    extends _$SignInServerFailuresCopyWithImpl<$Res>
-    implements _$InvalidEmailOrPasswordCopyWith<$Res> {
-  __$InvalidEmailOrPasswordCopyWithImpl(_InvalidEmailOrPassword _value,
-      $Res Function(_InvalidEmailOrPassword) _then)
-      : super(_value, (v) => _then(v as _InvalidEmailOrPassword));
+class __$PermissionsDeniedCopyWithImpl<$Res>
+    extends _$CURDOperationsServerFailuresCopyWithImpl<$Res>
+    implements _$PermissionsDeniedCopyWith<$Res> {
+  __$PermissionsDeniedCopyWithImpl(
+      _PermissionsDenied _value, $Res Function(_PermissionsDenied) _then)
+      : super(_value, (v) => _then(v as _PermissionsDenied));
 
   @override
-  _InvalidEmailOrPassword get _value => super._value as _InvalidEmailOrPassword;
+  _PermissionsDenied get _value => super._value as _PermissionsDenied;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_InvalidEmailOrPassword(
+    return _then(_PermissionsDenied(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -332,18 +332,18 @@ class __$InvalidEmailOrPasswordCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_InvalidEmailOrPassword
+class _$_PermissionsDenied
     with DiagnosticableTreeMixin
-    implements _InvalidEmailOrPassword {
-  const _$_InvalidEmailOrPassword({this.msg = "Invalid Email Or Password"});
+    implements _PermissionsDenied {
+  const _$_PermissionsDenied({this.msg = "Permission Denied"});
 
-  @JsonKey(defaultValue: "Invalid Email Or Password")
+  @JsonKey(defaultValue: "Permission Denied")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInServerFailures.invalidEmailOrPassword(msg: $msg)';
+    return 'CURDOperationsServerFailures.permissionsDenied(msg: $msg)';
   }
 
   @override
@@ -351,14 +351,14 @@ class _$_InvalidEmailOrPassword
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'SignInServerFailures.invalidEmailOrPassword'))
+          'type', 'CURDOperationsServerFailures.permissionsDenied'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InvalidEmailOrPassword &&
+        (other is _PermissionsDenied &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -369,43 +369,42 @@ class _$_InvalidEmailOrPassword
 
   @JsonKey(ignore: true)
   @override
-  _$InvalidEmailOrPasswordCopyWith<_InvalidEmailOrPassword> get copyWith =>
-      __$InvalidEmailOrPasswordCopyWithImpl<_InvalidEmailOrPassword>(
-          this, _$identity);
+  _$PermissionsDeniedCopyWith<_PermissionsDenied> get copyWith =>
+      __$PermissionsDeniedCopyWithImpl<_PermissionsDenied>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) serverError,
-    required TResult Function(String msg) invalidEmailOrPassword,
-    required TResult Function(String msg) userNotFound,
-    required TResult Function(String msg) userDisabled,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
-    return invalidEmailOrPassword(msg);
+    return permissionsDenied(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
-    return invalidEmailOrPassword?.call(msg);
+    return permissionsDenied?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
-    if (invalidEmailOrPassword != null) {
-      return invalidEmailOrPassword(msg);
+    if (permissionsDenied != null) {
+      return permissionsDenied(msg);
     }
     return orElse();
   }
@@ -414,79 +413,77 @@ class _$_InvalidEmailOrPassword
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
-    required TResult Function(_InvalidEmailOrPassword value)
-        invalidEmailOrPassword,
-    required TResult Function(_UserNotFound value) userNotFound,
-    required TResult Function(_UserDisabled value) userDisabled,
+    required TResult Function(_PermissionsDenied value) permissionsDenied,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
-    return invalidEmailOrPassword(this);
+    return permissionsDenied(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
-    return invalidEmailOrPassword?.call(this);
+    return permissionsDenied?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
-    if (invalidEmailOrPassword != null) {
-      return invalidEmailOrPassword(this);
+    if (permissionsDenied != null) {
+      return permissionsDenied(this);
     }
     return orElse();
   }
 }
 
-abstract class _InvalidEmailOrPassword implements SignInServerFailures {
-  const factory _InvalidEmailOrPassword({String msg}) =
-      _$_InvalidEmailOrPassword;
+abstract class _PermissionsDenied implements CURDOperationsServerFailures {
+  const factory _PermissionsDenied({String msg}) = _$_PermissionsDenied;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InvalidEmailOrPasswordCopyWith<_InvalidEmailOrPassword> get copyWith =>
+  _$PermissionsDeniedCopyWith<_PermissionsDenied> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$UserNotFoundCopyWith<$Res>
-    implements $SignInServerFailuresCopyWith<$Res> {
-  factory _$UserNotFoundCopyWith(
-          _UserNotFound value, $Res Function(_UserNotFound) then) =
-      __$UserNotFoundCopyWithImpl<$Res>;
+abstract class _$UnexpectedErrorCopyWith<$Res>
+    implements $CURDOperationsServerFailuresCopyWith<$Res> {
+  factory _$UnexpectedErrorCopyWith(
+          _UnexpectedError value, $Res Function(_UnexpectedError) then) =
+      __$UnexpectedErrorCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$UserNotFoundCopyWithImpl<$Res>
-    extends _$SignInServerFailuresCopyWithImpl<$Res>
-    implements _$UserNotFoundCopyWith<$Res> {
-  __$UserNotFoundCopyWithImpl(
-      _UserNotFound _value, $Res Function(_UserNotFound) _then)
-      : super(_value, (v) => _then(v as _UserNotFound));
+class __$UnexpectedErrorCopyWithImpl<$Res>
+    extends _$CURDOperationsServerFailuresCopyWithImpl<$Res>
+    implements _$UnexpectedErrorCopyWith<$Res> {
+  __$UnexpectedErrorCopyWithImpl(
+      _UnexpectedError _value, $Res Function(_UnexpectedError) _then)
+      : super(_value, (v) => _then(v as _UnexpectedError));
 
   @override
-  _UserNotFound get _value => super._value as _UserNotFound;
+  _UnexpectedError get _value => super._value as _UnexpectedError;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_UserNotFound(
+    return _then(_UnexpectedError(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -497,30 +494,33 @@ class __$UserNotFoundCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
-  const _$_UserNotFound({this.msg = "User Not Found"});
+class _$_UnexpectedError
+    with DiagnosticableTreeMixin
+    implements _UnexpectedError {
+  const _$_UnexpectedError({this.msg = "Unexpected Error"});
 
-  @JsonKey(defaultValue: "User Not Found")
+  @JsonKey(defaultValue: "Unexpected Error")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInServerFailures.userNotFound(msg: $msg)';
+    return 'CURDOperationsServerFailures.unexpectedError(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SignInServerFailures.userNotFound'))
+      ..add(DiagnosticsProperty(
+          'type', 'CURDOperationsServerFailures.unexpectedError'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _UserNotFound &&
+        (other is _UnexpectedError &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -531,42 +531,42 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
 
   @JsonKey(ignore: true)
   @override
-  _$UserNotFoundCopyWith<_UserNotFound> get copyWith =>
-      __$UserNotFoundCopyWithImpl<_UserNotFound>(this, _$identity);
+  _$UnexpectedErrorCopyWith<_UnexpectedError> get copyWith =>
+      __$UnexpectedErrorCopyWithImpl<_UnexpectedError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) serverError,
-    required TResult Function(String msg) invalidEmailOrPassword,
-    required TResult Function(String msg) userNotFound,
-    required TResult Function(String msg) userDisabled,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
-    return userNotFound(msg);
+    return unexpectedError(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
-    return userNotFound?.call(msg);
+    return unexpectedError?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
-    if (userNotFound != null) {
-      return userNotFound(msg);
+    if (unexpectedError != null) {
+      return unexpectedError(msg);
     }
     return orElse();
   }
@@ -575,78 +575,77 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
-    required TResult Function(_InvalidEmailOrPassword value)
-        invalidEmailOrPassword,
-    required TResult Function(_UserNotFound value) userNotFound,
-    required TResult Function(_UserDisabled value) userDisabled,
+    required TResult Function(_PermissionsDenied value) permissionsDenied,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
-    return userNotFound(this);
+    return unexpectedError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
-    return userNotFound?.call(this);
+    return unexpectedError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
-    if (userNotFound != null) {
-      return userNotFound(this);
+    if (unexpectedError != null) {
+      return unexpectedError(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserNotFound implements SignInServerFailures {
-  const factory _UserNotFound({String msg}) = _$_UserNotFound;
+abstract class _UnexpectedError implements CURDOperationsServerFailures {
+  const factory _UnexpectedError({String msg}) = _$_UnexpectedError;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserNotFoundCopyWith<_UserNotFound> get copyWith =>
+  _$UnexpectedErrorCopyWith<_UnexpectedError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$UserDisabledCopyWith<$Res>
-    implements $SignInServerFailuresCopyWith<$Res> {
-  factory _$UserDisabledCopyWith(
-          _UserDisabled value, $Res Function(_UserDisabled) then) =
-      __$UserDisabledCopyWithImpl<$Res>;
+abstract class _$NoMoreDataCopyWith<$Res>
+    implements $CURDOperationsServerFailuresCopyWith<$Res> {
+  factory _$NoMoreDataCopyWith(
+          _NoMoreData value, $Res Function(_NoMoreData) then) =
+      __$NoMoreDataCopyWithImpl<$Res>;
   @override
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$UserDisabledCopyWithImpl<$Res>
-    extends _$SignInServerFailuresCopyWithImpl<$Res>
-    implements _$UserDisabledCopyWith<$Res> {
-  __$UserDisabledCopyWithImpl(
-      _UserDisabled _value, $Res Function(_UserDisabled) _then)
-      : super(_value, (v) => _then(v as _UserDisabled));
+class __$NoMoreDataCopyWithImpl<$Res>
+    extends _$CURDOperationsServerFailuresCopyWithImpl<$Res>
+    implements _$NoMoreDataCopyWith<$Res> {
+  __$NoMoreDataCopyWithImpl(
+      _NoMoreData _value, $Res Function(_NoMoreData) _then)
+      : super(_value, (v) => _then(v as _NoMoreData));
 
   @override
-  _UserDisabled get _value => super._value as _UserDisabled;
+  _NoMoreData get _value => super._value as _NoMoreData;
 
   @override
   $Res call({
     Object? msg = freezed,
   }) {
-    return _then(_UserDisabled(
+    return _then(_NoMoreData(
       msg: msg == freezed
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -657,30 +656,31 @@ class __$UserDisabledCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
-  const _$_UserDisabled({this.msg = "User Disabled"});
+class _$_NoMoreData with DiagnosticableTreeMixin implements _NoMoreData {
+  const _$_NoMoreData({this.msg = "There Is No More Data"});
 
-  @JsonKey(defaultValue: "User Disabled")
+  @JsonKey(defaultValue: "There Is No More Data")
   @override
   final String msg;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInServerFailures.userDisabled(msg: $msg)';
+    return 'CURDOperationsServerFailures.noMoreData(msg: $msg)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SignInServerFailures.userDisabled'))
+      ..add(DiagnosticsProperty(
+          'type', 'CURDOperationsServerFailures.noMoreData'))
       ..add(DiagnosticsProperty('msg', msg));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _UserDisabled &&
+        (other is _NoMoreData &&
             (identical(other.msg, msg) ||
                 const DeepCollectionEquality().equals(other.msg, msg)));
   }
@@ -691,42 +691,42 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
 
   @JsonKey(ignore: true)
   @override
-  _$UserDisabledCopyWith<_UserDisabled> get copyWith =>
-      __$UserDisabledCopyWithImpl<_UserDisabled>(this, _$identity);
+  _$NoMoreDataCopyWith<_NoMoreData> get copyWith =>
+      __$NoMoreDataCopyWithImpl<_NoMoreData>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) serverError,
-    required TResult Function(String msg) invalidEmailOrPassword,
-    required TResult Function(String msg) userNotFound,
-    required TResult Function(String msg) userDisabled,
+    required TResult Function(String msg) permissionsDenied,
+    required TResult Function(String msg) unexpectedError,
+    required TResult Function(String msg) noMoreData,
   }) {
-    return userDisabled(msg);
+    return noMoreData(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
   }) {
-    return userDisabled?.call(msg);
+    return noMoreData?.call(msg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? serverError,
-    TResult Function(String msg)? invalidEmailOrPassword,
-    TResult Function(String msg)? userNotFound,
-    TResult Function(String msg)? userDisabled,
+    TResult Function(String msg)? permissionsDenied,
+    TResult Function(String msg)? unexpectedError,
+    TResult Function(String msg)? noMoreData,
     required TResult orElse(),
   }) {
-    if (userDisabled != null) {
-      return userDisabled(msg);
+    if (noMoreData != null) {
+      return noMoreData(msg);
     }
     return orElse();
   }
@@ -735,48 +735,47 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
-    required TResult Function(_InvalidEmailOrPassword value)
-        invalidEmailOrPassword,
-    required TResult Function(_UserNotFound value) userNotFound,
-    required TResult Function(_UserDisabled value) userDisabled,
+    required TResult Function(_PermissionsDenied value) permissionsDenied,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+    required TResult Function(_NoMoreData value) noMoreData,
   }) {
-    return userDisabled(this);
+    return noMoreData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
   }) {
-    return userDisabled?.call(this);
+    return noMoreData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
-    TResult Function(_InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(_UserNotFound value)? userNotFound,
-    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_PermissionsDenied value)? permissionsDenied,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    TResult Function(_NoMoreData value)? noMoreData,
     required TResult orElse(),
   }) {
-    if (userDisabled != null) {
-      return userDisabled(this);
+    if (noMoreData != null) {
+      return noMoreData(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserDisabled implements SignInServerFailures {
-  const factory _UserDisabled({String msg}) = _$_UserDisabled;
+abstract class _NoMoreData implements CURDOperationsServerFailures {
+  const factory _NoMoreData({String msg}) = _$_NoMoreData;
 
   @override
   String get msg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserDisabledCopyWith<_UserDisabled> get copyWith =>
+  _$NoMoreDataCopyWith<_NoMoreData> get copyWith =>
       throw _privateConstructorUsedError;
 }

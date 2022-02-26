@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/src/transformers/on_error_resume.dart';
-import 'package:trail/app/core/domain/failures/server_failures/firestore_failures.dart';
+import 'package:trail/app/core/domain/failures/server_failures/curd_server_error.dart';
+import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures.dart';
 import 'package:trail/app/core/domain/repo/product_repo.dart';
 import 'package:trail/app/core/file_helper.dart';
 import 'package:trail/app/core/infrastructure/firebase_helper.dart';
@@ -28,7 +29,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
 // Upload product Images
   @override
-  Future<Either<FireStoreServerFailures, List<String>>> uploadProductImages({
+  Future<Either<CURDOperationsServerFailures, List<String>>> uploadProductImages({
     required ListOf5<File> images,
   }) async {
     try {
@@ -49,14 +50,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(_downloadedUrl);
     } catch (e) {
       return left(
-        FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"),
+        CURDOperationsServerFailures.unexpectedError(msg: "Unexpected Error $e"),
       );
     }
   }
 
   // Create Product Firebase Implementation
   @override
-  Future<Either<FireStoreServerFailures, Unit>> createProductInfo({
+  Future<Either<CURDOperationsServerFailures, Unit>> createProductInfo({
     required Product product,
   }) async {
     // put seller id
@@ -74,11 +75,11 @@ class ProductRepoFirebaseImp implements IProductRepo {
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
         return left(
-          const FireStoreServerFailures.permissionsDenied(),
+          const CURDOperationsServerFailures.permissionsDenied(),
         );
       } else {
         return left(
-          const FireStoreServerFailures.unexpectedError(),
+          const CURDOperationsServerFailures.unexpectedError(),
         );
       }
     }
@@ -86,7 +87,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
 // Delete Post Info
   @override
-  Future<Option<FireStoreServerFailures>> deletePostInfo(
+  Future<Option<CURDOperationsServerFailures>> deletePostInfo(
       {required String id}) async {
     try {
       await _firebaseFirestore.productsCollection.doc(id).delete();
@@ -98,7 +99,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
   // Delete All The Images
   @override
-  Future<Option<FireStoreServerFailures>> deletePostImages({
+  Future<Option<CURDOperationsServerFailures>> deletePostImages({
     required Product product,
   }) async {
     try {
@@ -122,7 +123,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
   // Update Product Info
   @override
-  Future<Option<FireStoreServerFailures>> updateProductInfo({
+  Future<Option<CURDOperationsServerFailures>> updateProductInfo({
     required Product product,
   }) async {
     try {
@@ -136,7 +137,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }
 
   @override
-  Future<Either<FireStoreServerFailures, List<String>>> updateProductImages({
+  Future<Either<CURDOperationsServerFailures, List<String>>> updateProductImages({
     required ListOf5<File> images,
     required String id,
   }) async {
@@ -160,14 +161,14 @@ class ProductRepoFirebaseImp implements IProductRepo {
       return right(_downloadedUrl);
     } catch (e) {
       return left(
-        FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"),
+        CURDOperationsServerFailures.unexpectedError(msg: "Unexpected Error $e"),
       );
     }
   }
 
   // Delete an Specific Image
   @override
-  Future<Option<FireStoreServerFailures>> deleteAnSpecificImage({
+  Future<Option<CURDOperationsServerFailures>> deleteAnSpecificImage({
     required File image,
     required String id,
   }) async {
@@ -183,36 +184,22 @@ class ProductRepoFirebaseImp implements IProductRepo {
     }
   }
 
-  //  Handling Error
-  Option<FireStoreServerFailures> _handlingError(e) {
+  ///  Handling Error
+  Option<CURDOperationsServerFailures> _handlingError(e) {
     if (e is FirebaseException) {
       return some(
-          FireStoreServerFailures.serverError(msg: "Server Error ${e.code}"));
+          CURDOperationsServerFailures.serverError(msg: "Server Error ${e.code}"));
     } else {
       return some(
-          FireStoreServerFailures.unexpectedError(msg: "Unexpected Error $e"));
+          CURDOperationsServerFailures.unexpectedError(msg: "Unexpected Error $e"));
     }
   }
 
-  // @override
-  // Stream<Either<FireStoreServerFailures, List<Product>>> fetchProducts() {
-  //   // TODO: implement fetchProducts
-  //   throw UnimplementedError();
-  // }
-
-  // @override
-  // Stream<Either<FireStoreServerFailures, List<Product>>> fetchProductsFromTheNextPage() {
-  //   // TODO: implement fetchProductsFromTheNextPage
-  //   throw UnimplementedError();
-  // }
-
-  //  final _firebaseAuth = Get.find<FirebaseAuth>();
-  // final _firebaseFirestore = Get.find<FirebaseFirestore>();
   DocumentSnapshot? _lastDoc;
   bool _hasMore = true;
   // first one
   @override
-  Stream<Either<FireStoreServerFailures, List<Product>>>
+  Stream<Either<CURDOperationsServerFailures, List<Product>>>
       fetchProducts() async* {
     yield* _firebaseFirestore.productsCollection
         .orderBy('time', descending: true)
@@ -220,7 +207,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
         .snapshots()
         .map(
       (snapshot) {
-        return right<FireStoreServerFailures, List<Product>>(
+        return right<CURDOperationsServerFailures, List<Product>>(
             snapshot.docs.map((doc) {
           _lastDoc = doc;
           return ProductDTO.fromFireStore(doc).toDomain();
@@ -231,7 +218,7 @@ class ProductRepoFirebaseImp implements IProductRepo {
 
   // Pagination
   @override
-  Stream<Either<FireStoreServerFailures, List<Product>>>
+  Stream<Either<CURDOperationsServerFailures, List<Product>>>
       fetchProductsFromTheNextPage() async* {
     yield* _firebaseFirestore.productsCollection
         .orderBy('time', descending: true)
@@ -241,13 +228,13 @@ class ProductRepoFirebaseImp implements IProductRepo {
         .map(
       (snapshot) {
         if (!_hasMore) {
-          return left<FireStoreServerFailures, List<Product>>(
-              const FireStoreServerFailures.noMoreData());
+          return left<CURDOperationsServerFailures, List<Product>>(
+              const CURDOperationsServerFailures.noMoreData());
         }
         if (snapshot.docs.length < 6) {
           _hasMore = false;
         }
-        return right<FireStoreServerFailures, List<Product>>(
+        return right<CURDOperationsServerFailures, List<Product>>(
             snapshot.docs.map((doc) {
           _lastDoc = doc;
           return ProductDTO.fromFireStore(doc).toDomain();
@@ -257,16 +244,16 @@ class ProductRepoFirebaseImp implements IProductRepo {
   }
 
   // Handling Error
-  Either<FireStoreServerFailures, List<Product>> handlingError(
+  Either<CURDOperationsServerFailures, List<Product>> handlingError(
       {required Object error}) {
     if (error is FirebaseException && error.code == 'permission-denied') {
-      return left(const FireStoreServerFailures.permissionsDenied());
+      return left(const CURDOperationsServerFailures.permissionsDenied());
     } else if (error is FirebaseException &&
         error.code != 'permission-denied') {
-      return left(const FireStoreServerFailures.serverError());
+      return left( CURDOperationsServerFailures.serverError(msg: "Server Error ${error.code}"));
     } else {
       return left(
-        FireStoreServerFailures.unexpectedError(msg: "Error: $error"),
+        CURDOperationsServerFailures.unexpectedError(msg: "Error: $error"),
       );
     }
   }

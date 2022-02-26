@@ -10,14 +10,10 @@ extension FirebaseX on FirebaseFirestore {
   // Products Collection
   CollectionReference get productsCollection => collection("products");
   // Products uuid
-  // String get productUuid => collection("products").doc().id;
-  //  String uuid({required String collectionPath}) {
-  //    return collection(collectionPath).doc().id;
-  //  }
   /// Product Document generate 
   /// [productCollection]NDA[uuid]
   String get UUID => productsCollection.doc().id;
-  // User Document
+  /// User Document
   Future<DocumentReference<Object?>> get userDocument async {
     return FirebaseFirestore.instance.userCollection.doc(await userID);
   }

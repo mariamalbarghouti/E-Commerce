@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:trail/app/core/domain/failures/server_failures/curd_server_error.dart';
 import 'package:trail/app/core/domain/repo/product_repo.dart';
-import '../../../core/domain/failures/server_failures/firestore_failures.dart';
 import '../../add_product/domain/value_object/product.dart';
 import '../../../routes/app_pages.dart';
 import '../../../../core/print_logger.dart';
@@ -93,7 +93,7 @@ class HomeController extends GetxController with StateMixin<List<Product>> {
         // just return a snack bar
         // else
         // return the error
-        if (l.msg == const FireStoreServerFailures.noMoreData().msg) {
+        if (l.msg == const CURDOperationsServerFailures.noMoreData().msg) {
           Get.snackbar(
             "😒",
             l.msg,

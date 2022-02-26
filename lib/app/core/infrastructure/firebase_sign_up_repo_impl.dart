@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures.dart';
 import 'package:trail/app/core/domain/repo/user_info_repo.dart';
 import 'package:trail/app/core/infrastructure/firebase_helper.dart';
-import 'package:trail/app/modules/sign_up/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
 
-// User Info Repository Imp
+/// User Info Repository Imp
 class FirebaseUserInfoRepositoryImp extends IUserInfoRepository {
   final FirebaseAuth _firebaseAuth = Get.find();
 
 
-  // Saving User To DB
+  /// Saving User To DB
   @override
-  Future<Either<SignUpServerFailures, Unit>> registerUserInfoToFirestore({
+  Future<Either<RegistrationServerFailures, Unit>> registerUserInfoToFirestore({
     // required uid,
     required String email,
     required String password,
@@ -28,7 +28,7 @@ class FirebaseUserInfoRepositoryImp extends IUserInfoRepository {
       }).then((value) => right(unit));
     } catch (e) {
       return left(
-        SignUpServerFailures.serverError(msg: "Failed to add user: $e"),
+        RegistrationServerFailures.serverError(msg: "Failed to add user: $e"),
       );
     }
   }

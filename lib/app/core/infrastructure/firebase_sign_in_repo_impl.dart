@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures.dart';
 import 'package:trail/app/core/domain/repo/sign_in_repository.dart';
 import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
 import 'package:trail/app/modules/sign_in/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:trail/app/modules/sign_up/domain/failures/server_failures.dart';
 
 // Sign In Repository Implementation
 class FirebaseRegistrationRepoImp extends IRegistrationRepository {
@@ -13,7 +13,7 @@ class FirebaseRegistrationRepoImp extends IRegistrationRepository {
 
   /// Sign In With Email And Password
   @override
-  Future<Either<SignInServerFailures, Unit>> signInWithEnailAndPassword({
+  Future<Either<RegistrationServerFailures, Unit>> signInWithEnailAndPassword({
     required Email email,
     required Password password,
   }) async {
@@ -28,17 +28,17 @@ class FirebaseRegistrationRepoImp extends IRegistrationRepository {
     } on FirebaseAuthException catch (e) {
       // User Not Found
       if (e.code == 'user-not-found') {
-        return left(const SignInServerFailures.userNotFound());
+        return left(const RegistrationServerFailures.userNotFound());
         // User Disabled
       } else if (e.code == "user-disabled") {
-        return left(const SignInServerFailures.userDisabled());
+        return left(const RegistrationServerFailures.userDisabled());
         // Invalid Email Or Wrong Password
       } else if (e.code == "invalid-email" || e.code == "wrong-password") {
-        return left(const SignInServerFailures.invalidEmailOrPassword());
+        return left(const RegistrationServerFailures.invalidEmailOrPassword());
         // Server Error
       } else {
         return left(
-          SignInServerFailures.serverError(msg: "Server Error ${e.code}"),
+          RegistrationServerFailures.serverError(msg: "Server Error ${e.code}"),
         );
       }
     }
@@ -46,7 +46,7 @@ class FirebaseRegistrationRepoImp extends IRegistrationRepository {
 
   /// Sign Up Firebase Impl
   @override
-  Future<Either<SignUpServerFailures, Unit>> signUpWithEmailAndPassword({
+  Future<Either<RegistrationServerFailures, Unit>> signUpWithEmailAndPassword({
     required Email email,
     required Password password,
   }) async {
@@ -60,22 +60,22 @@ class FirebaseRegistrationRepoImp extends IRegistrationRepository {
       // Email In Use
       if (e.code == 'email-already-in-use') {
         return left(
-          const SignUpServerFailures.emailAlreadyInUse(),
+          const RegistrationServerFailures.emailAlreadyInUse(),
         );
         // Invalid Email
       } else if (e.code == 'invalid-email') {
         return left(
-          const SignUpServerFailures.invalidEmail(),
+          const RegistrationServerFailures.invalidEmail(),
         );
-        // Weak Password
-      } else if (e.code == "weak-password") {
-        return left(
-          const SignUpServerFailures.weakPassword(),
-        );
+      //   // Weak Password
+      // } else if (e.code == "weak-password") {
+      //   return left(
+      //     const SignUpServerFailures.weakPassword(),
+      //   );
         // Else
       } else {
         return left(
-          SignUpServerFailures.serverError(
+          RegistrationServerFailures.serverError(
             msg: "Server Error ${e.code}",
           ),
         );
