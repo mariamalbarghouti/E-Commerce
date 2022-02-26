@@ -11,14 +11,6 @@ import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.d
 class FirebaseSignInRepoImp extends IRegistrationRepository {
   final FirebaseAuth _firebaseAuth = Get.find();
 
-  // TODO
-  // i think i have to return right and left
-  // to handle the issues if uid is null
-  // TODO daeling with it in UI
-  @override
-  Future<Option<String>> getSignedInUserID() async {
-    return optionOf(_firebaseAuth.currentUser?.uid);
-  }
 
   /// Sign In With Email And Password
   @override
