@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures.dart';
+import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures/registration_server_failures.dart';
 import 'package:trail/app/core/domain/repo/sign_in_repository.dart';
 import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
-import 'package:trail/app/modules/sign_in/domain/failures/server_failures.dart';
 import 'package:dartz/dartz.dart';
 
 // Sign In Repository Implementation

@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/src/transformers/on_error_resume.dart';
-import 'package:trail/app/core/domain/failures/server_failures/curd_server_error.dart';
+import 'package:trail/app/core/domain/failures/server_failures/curd_server_failures/curd_server_failures.dart';
 import 'package:trail/app/core/domain/repo/product_repo.dart';
 import 'package:trail/app/core/file_helper.dart';
 import 'package:trail/app/core/infrastructure/firebase_helper.dart';

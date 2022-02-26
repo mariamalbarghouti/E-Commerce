@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures.dart';
+import 'package:trail/app/core/domain/failures/server_failures/registration_server_failures/registration_server_failures.dart';
 import 'package:trail/app/core/domain/repo/user_info_repo.dart';
 import 'package:trail/app/core/infrastructure/firebase_helper.dart';
 import 'package:dartz/dartz.dart';

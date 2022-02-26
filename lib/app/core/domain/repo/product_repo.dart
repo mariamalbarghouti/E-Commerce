@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:trail/app/core/domain/failures/server_failures/curd_server_error.dart';
+import 'package:trail/app/core/domain/failures/server_failures/curd_server_failures/curd_server_failures.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
 

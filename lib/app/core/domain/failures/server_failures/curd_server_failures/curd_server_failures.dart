@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'curd_server_error.freezed.dart';
+part 'curd_server_failures.freezed.dart';
 
 // Registration Server Failures
 @freezed
