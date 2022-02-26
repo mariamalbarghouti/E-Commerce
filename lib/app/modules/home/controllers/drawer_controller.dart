@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
+import 'package:trail/app/core/domain/repo/sign_in_repository.dart';
 import 'package:trail/app/routes/app_pages.dart';
 
 // App Drawer Controller

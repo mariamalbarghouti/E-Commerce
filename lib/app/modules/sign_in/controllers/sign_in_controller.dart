@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/core/domain/repo/sign_in_repository.dart';
 import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
-import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
 import 'package:trail/app/routes/app_pages.dart';
 
 // Sign In Controller
 class SignInController extends GetxController {
-  SignInController({required this.iSignInRepoitory
+  SignInController({required this.iSignInRepository
       // required this.getSignedInUserService,
       });
-  final IRegistrationRepository iSignInRepoitory;
+  final IRegistrationRepository iSignInRepository;
   // final SignedInUserService getSignedInUserService;
   // Email Controller
   late Rx<TextEditingController> emailEditionController;
@@ -49,7 +49,7 @@ class SignInController extends GetxController {
   // sign In
   Future<void> signIn() async {
     if (signInKey.currentState?.validate() ?? false) {
-      await iSignInRepoitory
+      await iSignInRepository
           .signInWithEnailAndPassword(
             email: Email(
               email: emailEditionController.value.text, //"mariam@gmail.com",

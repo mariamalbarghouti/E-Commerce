@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/core/error/authentication_error.dart';
-import 'package:trail/app/modules/sign_in/domain/repository/sign_in_repository.dart';
 
 // Firebase helper
 extension FirebaseX on FirebaseFirestore {

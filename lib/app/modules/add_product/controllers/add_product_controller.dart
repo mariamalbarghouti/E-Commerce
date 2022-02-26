@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
-import 'package:trail/app/core/infrastructure/product_repo.dart';
+import 'package:trail/app/core/domain/repo/product_repo.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/description.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/list_of_5.dart';
 import 'package:trail/app/modules/add_product/domain/value_object/components/price.dart';

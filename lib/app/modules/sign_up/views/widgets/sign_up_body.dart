@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trail/app/modules/sign_up/controllers/sign_up_controller.dart';
-import 'package:trail/app/modules/sign_up/infrastracture/firebase_sign_up_repo_impl.dart';
+import 'package:trail/app/core/infrastructure/firebase_sign_up_repo_impl.dart';
 import 'package:trail/app/routes/app_pages.dart';
 
 // Sign Up Body

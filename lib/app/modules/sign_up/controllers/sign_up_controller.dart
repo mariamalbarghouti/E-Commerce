@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trail/app/core/domain/repo/sign_in_repository.dart';
+import 'package:trail/app/core/domain/repo/user_info_repo.dart';
 import 'package:trail/app/core/domain/value_object/confirm_password.dart';
 import 'package:trail/app/core/domain/value_object/email.dart';
 import 'package:trail/app/core/domain/value_object/password.dart';
-import 'package:trail/app/modules/sign_up/domain/repository/repository.dart';
 import 'package:trail/app/modules/sign_up/domain/value_object/user_name.dart';
 import 'package:trail/app/routes/app_pages.dart';
 
@@ -12,9 +12,12 @@ import 'package:trail/app/routes/app_pages.dart';
 class SignUpController extends GetxController {
   SignUpController({
     required this.signUpRepository,
-    // required this.getSignedInUserService,
+    required this.userInfoRepository,
   });
-  final ISignUpRepository signUpRepository;
+  // Sign Up Repo
+  final IRegistrationRepository signUpRepository;
+  // User Info Repo
+  final IUserInfoRepository userInfoRepository;
   // final SignedInUserService getSignedInUserService;
   // Name Controller
   late Rx<TextEditingController> nameEditionController;
@@ -107,7 +110,7 @@ class SignUpController extends GetxController {
                 ),
             // Register his data to firebase
             (r) async {
-          await signUpRepository
+          await userInfoRepository
               .registerUserInfoToFirestore(
                 email: emailEditionController.value.text,
                 password: passwordEditionController.value.text,

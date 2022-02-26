@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:trail/app/core/infrastructure/firebase_helper.dart';
-import 'package:trail/app/core/infrastructure/product_repo.dart';
-import 'package:trail/app/modules/add_product/domain/value_object/product.dart';
-import 'package:trail/app/routes/app_pages.dart';
-import 'package:trail/core/print_logger.dart';
+import '../../../core/domain/repo/product_repo.dart';
+import '../../../core/infrastructure/firebase_helper.dart';
+import '../../add_product/domain/value_object/product.dart';
+import '../../../routes/app_pages.dart';
+import '../../../../core/print_logger.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 
 // Product Details Controller
