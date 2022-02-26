@@ -24,8 +24,7 @@ class SelectedImagesWidget extends GetView<AddProductController> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) 
                   {
-                    coloredPrint(msg: " controller.product.v ${ controller.product.value.pickedImages
-                                      .getOrCrash()[index]}");
+                
                     return Stack(
                       clipBehavior: Clip.none,
                       children: [

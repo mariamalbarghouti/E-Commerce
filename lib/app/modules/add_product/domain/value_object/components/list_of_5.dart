@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:trail/app/core/domain/value_object/value_object.dart';
 import 'package:trail/app/modules/add_product/domain/failures/value_object_failures.dart';
 import 'package:trail/app/modules/add_product/domain/validation/list_of_5_validator.dart';
+import 'package:trail/core/print_logger.dart';
 
 // Picked Images List
 class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
@@ -52,6 +53,7 @@ class ListOf5<T> extends ValueObject<AddProductValueFailures, List<T>> {
       );
     }
   }
+
   // Delete By Value
   void deleteByValue(value) {
     if (!isEmpty) {

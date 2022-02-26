@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
@@ -25,11 +25,20 @@ class AddProductController extends GetxController {
   late TextEditingController priceEditionController;
   late TextEditingController titleEditionController;
   late RoundedLoadingButtonController addProductController;
-  // for the picked image from Gallery
-  var _pickedAsset = <Asset>[];
   Rx<Product> product = Product.empty().obs;
+  // for the picked image from Gallery
+  // I need to use this specific image picker
+  // [multi_image_picker2] library
+  // it is dealing with Asset not File
+  // so i will handel it soon
+  var _pickedAsset = <Asset>[];
+  // for making the count of picking images
+  // from gallery variable accourding to
+  // the number of images from db
   int _imagePickerCount = ListOf5.maxLength;
-  List<String> _deletedImages = [];
+  // for deleting it from db at the end
+  // when the user click update
+  final List<String> _deletedImages = [];
 
   @override
   void onInit() {
@@ -76,7 +85,7 @@ class AddProductController extends GetxController {
     super.onClose();
   }
 
-  // Image Picker
+  /// Image Picker
   Future<void> pickImgFromGallery() async {
     try {
       // Pick Image From Gallery
@@ -105,7 +114,7 @@ class AddProductController extends GetxController {
     }
   }
 
-// Delete Image From UI
+  /// Delete Image From UI
   Future<void> deleteImage({
     required int index,
     required dynamic image,
@@ -127,12 +136,10 @@ class AddProductController extends GetxController {
       _deletedImages.add(product.value.pickedImages.getOrCrash()[index]);
     }
     // Delete Data from UI
-    // product.value.pickedImages.deleteIndex(index);
-    // product.refresh();
     product.update((val) => val!.pickedImages.deleteByIndex(index));
   }
 
-  // Title Validator
+  /// Title Validator
   String? titleValidator() {
     // Copy The Value
     product = product.value
@@ -147,7 +154,7 @@ class AddProductController extends GetxController {
     return product.value.title.value.fold((l) => l.msg, (r) => null);
   }
 
-  // Description Validator
+  /// Description Validator
   String? descriptionValidator() {
     // Copy The Value
     product = product.value
@@ -157,13 +164,11 @@ class AddProductController extends GetxController {
           ),
         )
         .obs;
-    // product.refresh();
-
     // return validation value
     return product.value.description.value.fold((l) => l.msg, (r) => null);
   }
 
-  // Price Validator
+  /// Price Validator
   String? priceValidator() {
     // Copy The Value
     product = product.value
@@ -179,7 +184,9 @@ class AddProductController extends GetxController {
     return product.value.price.value.fold((l) => l.msg, (r) => null);
   }
 
-  // Add Product
+  /// Add Product
+  /// Or
+  /// Update
   Future<void> addOrUpdateProduct() async {
     // if there is NO failures
     // add product
@@ -209,15 +216,15 @@ class AddProductController extends GetxController {
     }
   }
 
-  // Covert Asset into File
+  /// Covert Asset into File
   Future<void> _convertAssetIntoFile() async {
-    var _imagesConvertedToFile = <File>[].obs;
+    var _assetsConvertedToFile = <File>[];
     // Convert Asset To File
     await Future.wait(
       _pickedAsset.map((element) async {
         if (element.identifier != null) {
           // Convert Asset Into File
-          _imagesConvertedToFile.add(
+          _assetsConvertedToFile.add(
             _fileWithOriginalAssetName(
                 file: File(await FlutterAbsolutePath.getAbsolutePath(
                         element.identifier ?? "") ??
@@ -235,11 +242,10 @@ class AddProductController extends GetxController {
     // and user does not delete the images before
     // getting more from Gallery
     List<dynamic> _imagesFromDBAndGallery = [];
-
     if (Get.arguments != null &&
         (Get.arguments as Product).pickedImages.isNotEmpty) {
       // images from Gallery
-      _imagesFromDBAndGallery.addAll(_imagesConvertedToFile);
+      _imagesFromDBAndGallery.addAll(_assetsConvertedToFile);
       // images from db
       _imagesFromDBAndGallery.addAll(product.value.pickedImages.getOrCrash());
     }
@@ -255,17 +261,17 @@ class AddProductController extends GetxController {
                   ? _imagesFromDBAndGallery
                   // else
                   // put File
-                  : _imagesConvertedToFile,
+                  : _assetsConvertedToFile,
             ),
           )
           .obs,
     );
   }
 
-  // When I convert the Image from Asset To file
-  // it's given a new name
-  // i need the Asset Have the same name as File
-  // to be deleted easily
+  /// When I convert the Image from Asset To file
+  /// it's given a new name
+  /// i need the Asset Have the same name as File
+  /// to be deleted easily
   File _fileWithOriginalAssetName({
     required File file,
     required String assetName,
@@ -282,11 +288,7 @@ class AddProductController extends GetxController {
     return file;
   }
 
-  // Get The Name Of The Image
-  // Out of The File Path
-  // String _getFileName(File file) => file.path.split("/").last;
-
-  // Upload Data
+  /// Upload Data
   Future<void> _uploadProduct() async {
     // Upload Images
     Option<List<String>> _downloadedImages = await _uploadImagesToFirestorage();
@@ -306,7 +308,7 @@ class AddProductController extends GetxController {
     );
   }
 
-  // Upload Images to Firebase
+  /// Upload Images to Firebase
   Future<Option<List<String>>> _uploadImagesToFirestorage() async {
     return await productRepo
         .uploadProductImages(
@@ -330,7 +332,7 @@ class AddProductController extends GetxController {
         );
   }
 
-//  Upload Product Info to Firebase
+  ///  Upload Product Info to Firebase
   Future<void> _uploadProductInfo() async {
     await productRepo.createProductInfo(product: product.value).then(
           (value) => value.fold(
@@ -354,13 +356,14 @@ class AddProductController extends GetxController {
         );
   }
 
-  // Update Product
+  /// Update Product
+  /// I need to separate the old and new images
+  /// if new upload to firestore
   Future<void> _updateProduct() async {
-    // Upload Images
-    ListOf5<File> _listOfNewPickedImages;
+    // ListOf5<File> _listOfNewPickedImages;
     List<File> _listOfNew = [];
     List<String> _listOfOldImages = [];
-    //
+    // separate new images && old images
     for (int i = 0; i < product.value.pickedImages.length; i++) {
       if (product.value.pickedImages.getOrCrash()[i].runtimeType != String) {
         _listOfNew.add(product.value.pickedImages.getOrCrash()[i]);
@@ -368,12 +371,19 @@ class AddProductController extends GetxController {
         _listOfOldImages.add(product.value.pickedImages.getOrCrash()[i]);
       }
     }
-    //
-    await _deleteImagesFromDB();
+    // Delete Images the user is deleted from UI
+    // which is came from DB
+    await _deleteSpecificImagesFromDB();
+
+    // upload new images To Firestorage
     if (_listOfNew.isNotEmpty) {
-      _listOfNewPickedImages = ListOf5<File>(listOf5: _listOfNew);
-      Option<List<String>> _downloadedImages =
-          await _updateImages(updateNewImages: _listOfNewPickedImages);
+      // delete the douplicated images before upload to firestore
+      Option<List<String>> _downloadedImages = await _updateImages(
+        updateNewImages: ListOf5<File>(
+            listOf5: _deleteDuplicatedImagesFromTheImagesFromDBAndGalleryImages(
+          newImages: _listOfNew,
+        )),
+      );
       // Upload Product Info
       _downloadedImages.fold(
         () => none(),
@@ -384,9 +394,8 @@ class AddProductController extends GetxController {
                   pickedImages:
                       ListOf5<String>(listOf5: _listOfOldImages..addAll(a)))
               .obs;
-          // Upload Product Info
-          _deleteDuplicatedImagesFromTheImagesFromDBAndGalleryImages();
 
+          // Upload Product Info
           await _updateProductInfo();
         },
       );
@@ -396,11 +405,14 @@ class AddProductController extends GetxController {
     }
   }
 
-  // Will Get The Name Of DB Images
-  // && File Images Name
-  // Then if there is any duplication
-  // delete it
-  void _deleteDuplicatedImagesFromTheImagesFromDBAndGalleryImages() {
+  /// returns with a list of only new picked images
+  /// Will Get The Name Of DB Images
+  /// && File Images Name
+  /// Then if there is any duplication
+  /// delete it
+  List<File> _deleteDuplicatedImagesFromTheImagesFromDBAndGalleryImages({
+    required List<File> newImages,
+  }) {
     List<String> _imagesName = [];
     // get the images name
     // from Gallery and db
@@ -425,17 +437,24 @@ class AddProductController extends GetxController {
     for (int i = 0; i < _imagesName.length - 1; i++) {
       for (int j = i + 1; j < _imagesName.length; j++) {
         if (_imagesName[i] == _imagesName[j]) {
+          // remove from forloop
           _imagesName.removeAt(j);
+          // remove from product
           product.value.pickedImages.deleteByIndex(i);
+          // remove this from new images, the user picked from Gallery
+          newImages.removeWhere(
+              (element) => element.fileNameWithoutExtention == _imagesName[i]);
+          // back to the same index
           j = j - 1;
         }
       }
     }
+    return newImages;
   }
 
-  // Delete Image If User Clicked Delete
-  // and This Image Is from Server
-  Future<void> _deleteImagesFromDB() async {
+  /// Delete Image If User Clicked Delete
+  /// and This Image Is from Server
+  Future<void> _deleteSpecificImagesFromDB() async {
     if (_deletedImages.isNotEmpty) {
       await productRepo.deletePostImages(
         product: product.value.copyWith(
@@ -445,7 +464,7 @@ class AddProductController extends GetxController {
     }
   }
 
-  // Update Images
+  /// Update Images
   Future<Option<List<String>>> _updateImages({
     required ListOf5<File> updateNewImages,
   }) async {
@@ -469,7 +488,7 @@ class AddProductController extends GetxController {
         );
   }
 
-  // Update Product Information
+  /// Update Product Information
   Future<void> _updateProductInfo() async {
     await productRepo
         .updateProductInfo(
