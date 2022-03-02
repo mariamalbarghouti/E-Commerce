@@ -13,6 +13,7 @@ which provides the progressive evolution of the project.
   - Sign Out 
 - Adding Multiple Images
 - CURD Operations
+- Pagination
 
 ## For Achieving  These Functionality I Have Used:
 
